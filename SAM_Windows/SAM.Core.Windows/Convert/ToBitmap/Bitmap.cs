@@ -4,7 +4,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Media.Imaging;
 
-namespace SAM.Windows.Core
+namespace SAM.Core.Windows
 {
     public static partial class Convert
     {

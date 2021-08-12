@@ -7,8 +7,8 @@
     <ProjectGuid>{1F33E540-DA46-411D-A1BC-6A3E554A1E63}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SAM_Windows</RootNamespace>
-    <AssemblyName>SAM_Windows</AssemblyName>
+    <RootNamespace>SAM.Core.Windows</RootNamespace>
+    <AssemblyName>SAM.Core.Windows</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -17,10 +17,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\build\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\build\SAM.Core.Windows.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,7 +34,7 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="SAM.Core">
-      <HintPath>..\..\..\SAM\build\net5.0\SAM.Core.dll</HintPath>
+      <HintPath>..\..\..\SAM\build\SAM.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
