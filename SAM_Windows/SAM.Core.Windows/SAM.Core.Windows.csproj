@@ -50,15 +50,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\File\FileLockWrapper.cs" />
+    <Compile Include="Classes\WindowHandle.cs" />
     <Compile Include="Controls\HintedTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Convert\ToBitmapSource\BitmapSource.cs" />
     <Compile Include="Convert\ToBitmap\Bitmap.cs" />
     <Compile Include="EventHandler\ControlText_NumberOnly.cs" />
+    <Compile Include="Forms\SimpleProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SimpleProgressForm.designer.cs">
+      <DependentUpon>SimpleProgressForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\Controls.cs" />
+    <Compile Include="Query\DropDownWidth.cs" />
     <Compile Include="Query\LockingProcesses.cs" />
+    <Compile Include="Query\Size.cs" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\SimpleProgressForm.resx">
+      <DependentUpon>SimpleProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
