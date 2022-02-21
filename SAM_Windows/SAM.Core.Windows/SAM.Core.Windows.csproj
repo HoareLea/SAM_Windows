@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\File\FileLockWrapper.cs" />
+    <Compile Include="Classes\IdleTimer.cs" />
     <Compile Include="Classes\WindowHandle.cs" />
     <Compile Include="Controls\HintedTextBox.cs">
       <SubType>Component</SubType>
