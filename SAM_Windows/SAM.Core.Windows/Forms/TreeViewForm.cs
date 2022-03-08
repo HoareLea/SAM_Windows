@@ -153,8 +153,6 @@ namespace SAM.Core.Windows.Forms
             }
 
             TreeView_Main.AfterCheck += TreeView_Main_AfterCheck;
-
-            TreeView_Main.ExpandAll();
         }
 
         private TreeNode GetTreeNode(string text)
@@ -228,6 +226,17 @@ namespace SAM.Core.Windows.Forms
 
                 return result;
             }
+        }
+
+        public void ExpandAll()
+        {
+
+            TreeView_Main.ExpandAll();
+        }
+
+        public void CollapseAll()
+        {
+            TreeView_Main.CollapseAll();
         }
     }
 }
