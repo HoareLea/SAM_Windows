@@ -27,9 +27,21 @@ namespace SAM.Core.Windows
             }
             finally
             {
-                SAM.Core.Modify.DeleteObject(intPtr);
+                Modify.DeleteObject(intPtr);
             }
             return bitmapSource;
+        }
+
+        /// <summary>
+        /// Converts a Bitmap to a BitmapSource
+        /// source: <see href="https://thebuildingcoder.typepad.com/blog/2018/05/scaling-a-bitmap-for-the-large-and-small-image-icons.html">Scaling a Bitmap for the Large and Small Image Icons</see>
+        /// </summary>
+        public static BitmapSource ToBitmapSource(this Bitmap bitmap, int width, int height)
+        {
+            if (bitmap == null)
+                return null;
+
+            return ToBitmapSource(ToBitmap(bitmap, width, height));
         }
 
         /// <summary>
