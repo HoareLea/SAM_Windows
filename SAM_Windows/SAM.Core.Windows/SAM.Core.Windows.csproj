@@ -58,6 +58,12 @@
     <Compile Include="Convert\ToBitmapSource\BitmapSource.cs" />
     <Compile Include="Convert\ToBitmap\Bitmap.cs" />
     <Compile Include="EventHandler\ControlText_NumberOnly.cs" />
+    <Compile Include="Forms\ComboBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ComboBoxForm.Designer.cs">
+      <DependentUpon>ComboBoxForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SimpleProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="Forms\ComboBoxForm.resx">
+      <DependentUpon>ComboBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SimpleProgressForm.resx">
       <DependentUpon>SimpleProgressForm.cs</DependentUpon>
     </EmbeddedResource>
