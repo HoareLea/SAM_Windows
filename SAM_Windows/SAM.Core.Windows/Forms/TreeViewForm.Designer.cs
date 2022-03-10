@@ -105,6 +105,7 @@ namespace SAM.Core.Windows.Forms
             this.Controls.Add(this.TreeView_Main);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 500);
             this.Name = "TreeViewForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

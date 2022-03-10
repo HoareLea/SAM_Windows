@@ -70,6 +70,12 @@
     <Compile Include="Forms\SimpleProgressForm.designer.cs">
       <DependentUpon>SimpleProgressForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TextBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TextBoxForm.Designer.cs">
+      <DependentUpon>TextBoxForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TreeViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SimpleProgressForm.resx">
       <DependentUpon>SimpleProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TextBoxForm.resx">
+      <DependentUpon>TextBoxForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TreeViewForm.resx">
       <DependentUpon>TreeViewForm.cs</DependentUpon>
