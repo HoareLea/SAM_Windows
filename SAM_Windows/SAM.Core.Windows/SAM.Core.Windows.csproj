@@ -64,6 +64,12 @@
     <Compile Include="Forms\ComboBoxForm.Designer.cs">
       <DependentUpon>ComboBoxForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SearchForm.Designer.cs">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SimpleProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,10 +94,17 @@
     <Compile Include="Query\LockingProcesses.cs" />
     <Compile Include="Query\Size.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\ComboBoxForm.resx">
       <DependentUpon>ComboBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SearchForm.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SimpleProgressForm.resx">
       <DependentUpon>SimpleProgressForm.cs</DependentUpon>
