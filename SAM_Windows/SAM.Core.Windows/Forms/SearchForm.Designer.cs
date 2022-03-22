@@ -41,7 +41,7 @@ namespace SAM.Core.Windows.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Text.Location = new System.Drawing.Point(12, 12);
             this.TextBox_Text.Name = "TextBox_Text";
-            this.TextBox_Text.Size = new System.Drawing.Size(208, 20);
+            this.TextBox_Text.Size = new System.Drawing.Size(208, 22);
             this.TextBox_Text.TabIndex = 0;
             this.TextBox_Text.TextChanged += new System.EventHandler(this.TextBox_Text_TextChanged);
             // 
@@ -51,9 +51,10 @@ namespace SAM.Core.Windows.Forms
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ListBox_Texts.FormattingEnabled = true;
+            this.ListBox_Texts.ItemHeight = 16;
             this.ListBox_Texts.Location = new System.Drawing.Point(12, 40);
             this.ListBox_Texts.Name = "ListBox_Texts";
-            this.ListBox_Texts.Size = new System.Drawing.Size(208, 251);
+            this.ListBox_Texts.Size = new System.Drawing.Size(208, 244);
             this.ListBox_Texts.TabIndex = 1;
             // 
             // Button_OK
@@ -81,7 +82,9 @@ namespace SAM.Core.Windows.Forms
             // 
             // SearchForm
             // 
+            this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(232, 353);
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.Button_Cancel);

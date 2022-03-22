@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
-    <Reference Include="SAM.Core, Version=1.0.8105.26597, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="SAM.Core, Version=1.0.8116.25888, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SAM\build\SAM.Core.dll</HintPath>
     </Reference>
