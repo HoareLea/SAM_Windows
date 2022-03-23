@@ -253,7 +253,5 @@ namespace SAM.Analytical.Windows.Forms
                 }
             }
         }
-
-
     }
 }

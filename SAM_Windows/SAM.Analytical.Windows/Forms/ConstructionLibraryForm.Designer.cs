@@ -37,6 +37,9 @@ namespace SAM.Analytical.Windows.Forms
             this.Column_ConstructionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Thickness = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Type = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Button_Remove = new System.Windows.Forms.Button();
+            this.Button_Add = new System.Windows.Forms.Button();
+            this.Button_Duplicate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Constructions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,6 +70,10 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.DataGridView_Constructions.AllowUserToAddRows = false;
             this.DataGridView_Constructions.AllowUserToDeleteRows = false;
+            this.DataGridView_Constructions.AllowUserToResizeRows = false;
+            this.DataGridView_Constructions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DataGridView_Constructions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridView_Constructions.BackgroundColor = System.Drawing.SystemColors.Control;
             this.DataGridView_Constructions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -80,9 +87,10 @@ namespace SAM.Analytical.Windows.Forms
             this.DataGridView_Constructions.RowHeadersWidth = 51;
             this.DataGridView_Constructions.RowTemplate.Height = 24;
             this.DataGridView_Constructions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView_Constructions.Size = new System.Drawing.Size(558, 342);
+            this.DataGridView_Constructions.Size = new System.Drawing.Size(558, 276);
             this.DataGridView_Constructions.TabIndex = 7;
             this.DataGridView_Constructions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellContentClick);
+            this.DataGridView_Constructions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellDoubleClick);
             // 
             // TextBox_Search
             // 
@@ -125,10 +133,48 @@ namespace SAM.Analytical.Windows.Forms
             this.Column_Type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column_Type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // Button_Remove
+            // 
+            this.Button_Remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Remove.Location = new System.Drawing.Point(495, 338);
+            this.Button_Remove.Name = "Button_Remove";
+            this.Button_Remove.Size = new System.Drawing.Size(75, 28);
+            this.Button_Remove.TabIndex = 11;
+            this.Button_Remove.Text = "Remove";
+            this.Button_Remove.UseVisualStyleBackColor = true;
+            this.Button_Remove.Click += new System.EventHandler(this.Button_Remove_Click);
+            // 
+            // Button_Add
+            // 
+            this.Button_Add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Add.Location = new System.Drawing.Point(414, 338);
+            this.Button_Add.Name = "Button_Add";
+            this.Button_Add.Size = new System.Drawing.Size(75, 28);
+            this.Button_Add.TabIndex = 10;
+            this.Button_Add.Text = "Add";
+            this.Button_Add.UseVisualStyleBackColor = true;
+            this.Button_Add.Click += new System.EventHandler(this.Button_Add_Click);
+            // 
+            // Button_Duplicate
+            // 
+            this.Button_Duplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Duplicate.Location = new System.Drawing.Point(333, 338);
+            this.Button_Duplicate.Name = "Button_Duplicate";
+            this.Button_Duplicate.Size = new System.Drawing.Size(75, 28);
+            this.Button_Duplicate.TabIndex = 12;
+            this.Button_Duplicate.Text = "Duplicate";
+            this.Button_Duplicate.UseVisualStyleBackColor = true;
+            this.Button_Duplicate.Click += new System.EventHandler(this.Button_Duplicate_Click);
+            // 
             // ConstructionLibraryForm
             // 
+            this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(582, 453);
+            this.Controls.Add(this.Button_Duplicate);
+            this.Controls.Add(this.Button_Remove);
+            this.Controls.Add(this.Button_Add);
             this.Controls.Add(this.Label_Search);
             this.Controls.Add(this.TextBox_Search);
             this.Controls.Add(this.DataGridView_Constructions);
@@ -136,6 +182,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Controls.Add(this.Button_Cancel);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(600, 500);
             this.Name = "ConstructionLibraryForm";
             this.ShowIcon = false;
             this.Text = "Construction Library";
@@ -156,5 +203,8 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_ConstructionName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Thickness;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column_Type;
+        private System.Windows.Forms.Button Button_Remove;
+        private System.Windows.Forms.Button Button_Add;
+        private System.Windows.Forms.Button Button_Duplicate;
     }
 }
