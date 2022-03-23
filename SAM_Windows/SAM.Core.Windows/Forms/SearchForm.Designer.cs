@@ -44,6 +44,7 @@ namespace SAM.Core.Windows.Forms
             this.TextBox_Text.Size = new System.Drawing.Size(208, 22);
             this.TextBox_Text.TabIndex = 0;
             this.TextBox_Text.TextChanged += new System.EventHandler(this.TextBox_Text_TextChanged);
+            this.TextBox_Text.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_Text_KeyDown);
             // 
             // ListBox_Texts
             // 

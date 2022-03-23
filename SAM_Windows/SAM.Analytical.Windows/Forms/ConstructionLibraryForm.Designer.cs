@@ -32,11 +32,11 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_OK = new System.Windows.Forms.Button();
             this.Button_Cancel = new System.Windows.Forms.Button();
             this.DataGridView_Constructions = new System.Windows.Forms.DataGridView();
-            this.TextBox_Search = new System.Windows.Forms.TextBox();
-            this.Label_Search = new System.Windows.Forms.Label();
             this.Column_ConstructionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Thickness = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Type = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.TextBox_Search = new System.Windows.Forms.TextBox();
+            this.Label_Search = new System.Windows.Forms.Label();
             this.Button_Remove = new System.Windows.Forms.Button();
             this.Button_Add = new System.Windows.Forms.Button();
             this.Button_Duplicate = new System.Windows.Forms.Button();
@@ -82,6 +82,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Column_Thickness,
             this.Column_Type});
             this.DataGridView_Constructions.Location = new System.Drawing.Point(12, 56);
+            this.DataGridView_Constructions.MultiSelect = false;
             this.DataGridView_Constructions.Name = "DataGridView_Constructions";
             this.DataGridView_Constructions.RowHeadersVisible = false;
             this.DataGridView_Constructions.RowHeadersWidth = 51;
@@ -91,22 +92,6 @@ namespace SAM.Analytical.Windows.Forms
             this.DataGridView_Constructions.TabIndex = 7;
             this.DataGridView_Constructions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellContentClick);
             this.DataGridView_Constructions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellDoubleClick);
-            // 
-            // TextBox_Search
-            // 
-            this.TextBox_Search.Location = new System.Drawing.Point(71, 28);
-            this.TextBox_Search.Name = "TextBox_Search";
-            this.TextBox_Search.Size = new System.Drawing.Size(499, 22);
-            this.TextBox_Search.TabIndex = 8;
-            // 
-            // Label_Search
-            // 
-            this.Label_Search.AutoSize = true;
-            this.Label_Search.Location = new System.Drawing.Point(12, 31);
-            this.Label_Search.Name = "Label_Search";
-            this.Label_Search.Size = new System.Drawing.Size(53, 17);
-            this.Label_Search.TabIndex = 9;
-            this.Label_Search.Text = "Search";
             // 
             // Column_ConstructionName
             // 
@@ -132,6 +117,25 @@ namespace SAM.Analytical.Windows.Forms
             this.Column_Type.Name = "Column_Type";
             this.Column_Type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column_Type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // TextBox_Search
+            // 
+            this.TextBox_Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox_Search.Location = new System.Drawing.Point(71, 28);
+            this.TextBox_Search.Name = "TextBox_Search";
+            this.TextBox_Search.Size = new System.Drawing.Size(499, 22);
+            this.TextBox_Search.TabIndex = 8;
+            this.TextBox_Search.TextChanged += new System.EventHandler(this.TextBox_Search_TextChanged);
+            // 
+            // Label_Search
+            // 
+            this.Label_Search.AutoSize = true;
+            this.Label_Search.Location = new System.Drawing.Point(12, 31);
+            this.Label_Search.Name = "Label_Search";
+            this.Label_Search.Size = new System.Drawing.Size(53, 17);
+            this.Label_Search.TabIndex = 9;
+            this.Label_Search.Text = "Search";
             // 
             // Button_Remove
             // 

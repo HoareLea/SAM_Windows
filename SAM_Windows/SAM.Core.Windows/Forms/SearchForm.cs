@@ -163,5 +163,13 @@ namespace SAM.Core.Windows.Forms
                 return result;
             }
         }
+
+        private void TextBox_Text_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down && ListBox_Texts.Items != null && ListBox_Texts.Items.Count > 0)
+            {
+                ListBox_Texts.Focus();
+            }
+        }
     }
 }

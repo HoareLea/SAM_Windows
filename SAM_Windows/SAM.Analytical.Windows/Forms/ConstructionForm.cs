@@ -155,9 +155,13 @@ namespace SAM.Analytical.Windows.Forms
                 return null;
             }
 
+            List<IMaterial> materials = materialLibrary.GetMaterials();
+            materials?.Sort((x, y) => x.Name.CompareTo(y.Name));
+
             IMaterial result = null;
-            using (Core.Windows.Forms.SearchForm<IMaterial> searchForm = new Core.Windows.Forms.SearchForm<IMaterial>("Select Material", materialLibrary.GetMaterials(), (IMaterial x) => x.Name))
+            using (Core.Windows.Forms.SearchForm<IMaterial> searchForm = new Core.Windows.Forms.SearchForm<IMaterial>("Select Material", materials, (IMaterial x) => x.Name))
             {
+                searchForm.Size = new System.Drawing.Size(300, 400);
                 searchForm.SearchText = name;
                 if (searchForm.ShowDialog() != DialogResult.OK)
                 {
