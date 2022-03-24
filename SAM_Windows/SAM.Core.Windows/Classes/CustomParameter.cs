@@ -1,0 +1,118 @@
+﻿using SAM.Core.Attributes;
+using System;
+using System.Collections.Generic;
+
+namespace SAM.Core.Windows
+{
+    public class CustomParameter
+    {
+        private ParameterData parameterData;
+        private object value;
+
+        public CustomParameter(ParameterData parameterData, object value)
+        {
+            this.parameterData = parameterData;
+            this.value = value;
+        }
+
+        public string Name
+        {
+            get
+            {
+                return parameterData?.ParameterProperties?.Name;
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return parameterData?.ParameterProperties?.Description;
+            }
+        }
+
+        public object Value
+        {
+            get
+            {
+                return value;
+            }
+        }
+
+        public bool SetValue(object value)
+        {
+            this.value = value;
+            return true;
+        }
+
+        public bool IsReadOnly
+        {
+            get
+            {
+                if (parameterData?.ParameterProperties == null)
+                {
+                    return false;
+                }
+
+                return parameterData.ParameterProperties.AccessType == AccessType.Read;
+            }
+        }
+
+        public List<Type> ParameterTypes
+        {
+            get
+            {
+                ParameterValue parameterValue = parameterData?.ParameterValue;
+                if (parameterValue != null)
+                {
+                    ParameterType parameterType = parameterValue.ParameterType;
+                    switch (parameterType)
+                    {
+                        case ParameterType.Boolean:
+                            return new List<Type>() { typeof(bool) };
+
+                        case ParameterType.Color:
+                            return new List<Type>() { typeof(System.Drawing.Color) };
+
+                        case ParameterType.DateTime:
+                            return new List<Type>() { typeof(DateTime) };
+
+                        case ParameterType.Double:
+                            return new List<Type>() { typeof(double) };
+
+                        case ParameterType.Guid:
+                            return new List<Type>() { typeof(Guid) };
+
+                        case ParameterType.Integer:
+                            return new List<Type>() { typeof(int) };
+
+                        case ParameterType.String:
+                            return new List<Type>() { typeof(string) };
+
+                        case ParameterType.Undefined:
+                            return new List<Type>() { typeof(object) };
+
+                        case ParameterType.IJSAMObject:
+                            if (parameterValue is SAMObjectParameterValue)
+                            {
+                                SAMObjectParameterValue sAMObjectParameterValue = (SAMObjectParameterValue)parameterValue;
+                                List<Type> result = sAMObjectParameterValue.Types;
+                                if (result != null)
+                                {
+                                    return result;
+                                }
+                            }
+                            return new List<Type>() { typeof(IJSAMObject) };
+                    }
+                }
+
+                if (value == null)
+                {
+                    return null;
+                }
+
+                return new List<Type>() { value.GetType() };
+            }
+        }
+    }
+}

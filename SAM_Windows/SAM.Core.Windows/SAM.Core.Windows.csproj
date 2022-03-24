@@ -50,20 +50,36 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CustomParameters.cs" />
+    <Compile Include="Classes\CustomParameter.cs" />
     <Compile Include="Classes\File\FileLockWrapper.cs" />
     <Compile Include="Classes\IdleTimer.cs" />
+    <Compile Include="Classes\CustomParameterDescriptor.cs" />
     <Compile Include="Classes\WindowHandle.cs" />
     <Compile Include="Controls\HintedTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Convert\ToBitmapSource\BitmapSource.cs" />
     <Compile Include="Convert\ToBitmap\Bitmap.cs" />
+    <Compile Include="Create\CustomParameters.cs" />
     <Compile Include="EventHandler\ControlText_NumberOnly.cs" />
     <Compile Include="Forms\ComboBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ComboBoxForm.Designer.cs">
       <DependentUpon>ComboBoxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MaterialForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MaterialForm.Designer.cs">
+      <DependentUpon>MaterialForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MaterialLibraryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MaterialLibraryForm.Designer.cs">
+      <DependentUpon>MaterialLibraryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SearchForm.cs">
       <SubType>Form</SubType>
@@ -103,6 +119,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\ComboBoxForm.resx">
       <DependentUpon>ComboBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MaterialForm.resx">
+      <DependentUpon>MaterialForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MaterialLibraryForm.resx">
+      <DependentUpon>MaterialLibraryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>

@@ -58,7 +58,7 @@ namespace SAM.Analytical.Windows.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Name.Location = new System.Drawing.Point(12, 48);
             this.TextBox_Name.Name = "TextBox_Name";
-            this.TextBox_Name.Size = new System.Drawing.Size(358, 22);
+            this.TextBox_Name.Size = new System.Drawing.Size(458, 22);
             this.TextBox_Name.TabIndex = 1;
             // 
             // DataGridView_Layers
@@ -82,7 +82,7 @@ namespace SAM.Analytical.Windows.Forms
             this.DataGridView_Layers.RowHeadersWidth = 51;
             this.DataGridView_Layers.RowTemplate.Height = 24;
             this.DataGridView_Layers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView_Layers.Size = new System.Drawing.Size(358, 270);
+            this.DataGridView_Layers.Size = new System.Drawing.Size(458, 270);
             this.DataGridView_Layers.TabIndex = 2;
             this.DataGridView_Layers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Layers_CellClick);
             this.DataGridView_Layers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Layers_CellDoubleClick);
@@ -107,7 +107,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_OK
             // 
             this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(214, 413);
+            this.Button_OK.Location = new System.Drawing.Point(314, 413);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 28);
             this.Button_OK.TabIndex = 4;
@@ -119,7 +119,7 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(295, 413);
+            this.Button_Cancel.Location = new System.Drawing.Point(395, 413);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
             this.Button_Cancel.TabIndex = 3;
@@ -130,7 +130,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_Add
             // 
             this.Button_Add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Add.Location = new System.Drawing.Point(214, 352);
+            this.Button_Add.Location = new System.Drawing.Point(314, 352);
             this.Button_Add.Name = "Button_Add";
             this.Button_Add.Size = new System.Drawing.Size(75, 28);
             this.Button_Add.TabIndex = 5;
@@ -141,7 +141,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_Remove
             // 
             this.Button_Remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Remove.Location = new System.Drawing.Point(295, 352);
+            this.Button_Remove.Location = new System.Drawing.Point(395, 352);
             this.Button_Remove.Name = "Button_Remove";
             this.Button_Remove.Size = new System.Drawing.Size(75, 28);
             this.Button_Remove.TabIndex = 6;
@@ -152,9 +152,9 @@ namespace SAM.Analytical.Windows.Forms
             // Button_Down
             // 
             this.Button_Down.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Button_Down.Location = new System.Drawing.Point(93, 352);
+            this.Button_Down.Location = new System.Drawing.Point(73, 352);
             this.Button_Down.Name = "Button_Down";
-            this.Button_Down.Size = new System.Drawing.Size(75, 28);
+            this.Button_Down.Size = new System.Drawing.Size(55, 28);
             this.Button_Down.TabIndex = 7;
             this.Button_Down.Text = "Down";
             this.Button_Down.UseVisualStyleBackColor = true;
@@ -165,7 +165,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Up.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Button_Up.Location = new System.Drawing.Point(12, 352);
             this.Button_Up.Name = "Button_Up";
-            this.Button_Up.Size = new System.Drawing.Size(75, 28);
+            this.Button_Up.Size = new System.Drawing.Size(55, 28);
             this.Button_Up.TabIndex = 8;
             this.Button_Up.Text = "Up";
             this.Button_Up.UseVisualStyleBackColor = true;
@@ -176,7 +176,7 @@ namespace SAM.Analytical.Windows.Forms
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(382, 453);
+            this.ClientSize = new System.Drawing.Size(482, 453);
             this.Controls.Add(this.Button_Up);
             this.Controls.Add(this.Button_Down);
             this.Controls.Add(this.Button_Remove);
