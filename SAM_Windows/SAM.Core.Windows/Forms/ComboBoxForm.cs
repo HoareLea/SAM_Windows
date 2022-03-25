@@ -12,6 +12,23 @@ namespace SAM.Core.Windows.Forms
             InitializeComponent();
         }
 
+        public ComboBoxForm(string name)
+        {
+            InitializeComponent();
+
+            Text = name;
+            if (typeof(T).IsEnum)
+            {
+                List<Enum> @enums = new List<Enum>();
+                foreach(Enum @enum in Enum.GetValues(typeof(T)))
+                {
+                    @enums.Add(@enum);
+                }
+
+                AddRange(enums.Cast<T>(), (T x) => Core.Query.Description((Enum)(object)x));
+            }
+        }
+
         public ComboBoxForm(string name, IEnumerable<T> items)
         {
             InitializeComponent();

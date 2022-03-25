@@ -22,6 +22,20 @@ namespace SAM.Core.Windows
             this.category = category;
         }
 
+        public CustomParameter(ParameterProperties parameterProperties, ParameterValue parameterValue, string category, object value)
+        {
+            parameterData = new ParameterData(parameterProperties, parameterValue);
+            this.value = value;
+            this.category = category;
+        }
+
+        public CustomParameter(string name, string description, AccessType accessType, ParameterValue parameterValue, string category, object value)
+        {
+            parameterData = new ParameterData(new ParameterProperties(name, description, accessType), parameterValue);
+            this.value = value;
+            this.category = category;
+        }
+
         public string Name
         {
             get
@@ -42,6 +56,11 @@ namespace SAM.Core.Windows
         {
             get
             {
+                if(value is double && double.IsNaN((double)value))
+                {
+                    return null;
+                }
+                
                 return value;
             }
         }

@@ -69,9 +69,9 @@ namespace SAM.Core.Windows.Forms
             // 
             this.TextBox_Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Name.Location = new System.Drawing.Point(171, 12);
+            this.TextBox_Name.Location = new System.Drawing.Point(117, 12);
             this.TextBox_Name.Name = "TextBox_Name";
-            this.TextBox_Name.Size = new System.Drawing.Size(199, 22);
+            this.TextBox_Name.Size = new System.Drawing.Size(253, 22);
             this.TextBox_Name.TabIndex = 2;
             // 
             // Button_OK
@@ -101,9 +101,9 @@ namespace SAM.Core.Windows.Forms
             // 
             this.TextBox_DisplayName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_DisplayName.Location = new System.Drawing.Point(171, 40);
+            this.TextBox_DisplayName.Location = new System.Drawing.Point(117, 40);
             this.TextBox_DisplayName.Name = "TextBox_DisplayName";
-            this.TextBox_DisplayName.Size = new System.Drawing.Size(199, 22);
+            this.TextBox_DisplayName.Size = new System.Drawing.Size(253, 22);
             this.TextBox_DisplayName.TabIndex = 8;
             // 
             // Label_DisplayName
@@ -119,9 +119,9 @@ namespace SAM.Core.Windows.Forms
             // 
             this.TextBox_Description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Description.Location = new System.Drawing.Point(171, 68);
+            this.TextBox_Description.Location = new System.Drawing.Point(117, 68);
             this.TextBox_Description.Name = "TextBox_Description";
-            this.TextBox_Description.Size = new System.Drawing.Size(199, 22);
+            this.TextBox_Description.Size = new System.Drawing.Size(253, 22);
             this.TextBox_Description.TabIndex = 10;
             // 
             // Label_Description

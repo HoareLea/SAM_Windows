@@ -20,6 +20,33 @@ namespace SAM.Core.Windows.Forms
             InitializeComponent();
 
             this.material = material;
+            if(this.material == null)
+            {
+                using (ComboBoxForm<MaterialType> comboBoxForm = new ComboBoxForm<MaterialType>("Select Material Type", Enum.GetValues(typeof(MaterialType)).Cast<MaterialType>().ToList().FindAll(x => x != MaterialType.Undefined)))
+                {
+                    DialogResult dialogResult = comboBoxForm.ShowDialog(this);
+                    if (dialogResult != DialogResult.OK)
+                    {
+                        DialogResult = dialogResult;
+                        Close();
+                    }
+
+                    switch(comboBoxForm.SelectedItem)
+                    {
+                        case MaterialType.Gas:
+                            this.material = new GasMaterial(Guid.NewGuid(), "Gas Material", "Gas Material", null, 0, 0, 0, 0);
+                            break;
+
+                        case MaterialType.Opaque:
+                            this.material = new OpaqueMaterial("Opaque Material", null, "Opaque Material", null, 0, 0, 0);
+                            break;
+
+                        case MaterialType.Transparent:
+                            this.material = new TransparentMaterial("Opaque Material", null, "Opaque Material", null, 0, 0, 0);
+                            break;
+                    }
+                }
+            }
 
             if(enums != null)
             {
@@ -45,9 +72,26 @@ namespace SAM.Core.Windows.Forms
 
                     TextBox_DisplayName.Text = material_Temp.DisplayName;
                     TextBox_Description.Text = material_Temp.Description;
-                    TextBox_ThermalConductivity.Text = material_Temp.ThermalConductivity.ToString();
-                    TextBox_SpecificHeatCapacity.Text = material_Temp.SpecificHeatCapacity.ToString();
-                    TextBox_Density.Text = material_Temp.Density.ToString();
+
+                    string value;
+
+                    value = double.IsNaN(material_Temp.ThermalConductivity) ? null : material_Temp.ThermalConductivity.ToString();
+                    TextBox_ThermalConductivity.Text = value;
+
+                    value = double.IsNaN(material_Temp.SpecificHeatCapacity) ? null : material_Temp.SpecificHeatCapacity.ToString();
+                    TextBox_SpecificHeatCapacity.Text = value;
+
+                    value = double.IsNaN(material_Temp.Density) ? null : material_Temp.Density.ToString();
+                    TextBox_Density.Text = value;
+
+                    CustomParameter customParameter = null;
+                    if (material_Temp is FluidMaterial)
+                    {
+                        FluidMaterial fluidMaterial = (FluidMaterial)material_Temp;
+                        customParameter = new CustomParameter("Dynamic Viscosity", "Dynamic Viscosity of Fluid [kg/(m*s)]", AccessType.ReadWrite, new Attributes.DoubleParameterValue(0), typeof(FluidMaterial).Assembly.Name(), fluidMaterial.DynamicViscosity);
+
+                        customParameters.Add(customParameter);
+                    }
 
                     PropertyGrid_Parameters.SelectedObject = customParameters;
                 }
@@ -62,7 +106,56 @@ namespace SAM.Core.Windows.Forms
         {
             get
             {
-                return null;
+                if(material == null)
+                {
+                    return null;
+                }
+
+                string name = TextBox_Name.Text;
+                string displayName = TextBox_DisplayName.Text;
+                string description = TextBox_Description.Text;
+                if(!Core.Query.TryConvert(TextBox_ThermalConductivity.Text, out double thermalConductivity))
+                {
+                    thermalConductivity = double.NaN;
+                }
+
+                if (!Core.Query.TryConvert(TextBox_SpecificHeatCapacity.Text, out double specificHeatCapacity))
+                {
+                    specificHeatCapacity = double.NaN;
+                }
+
+                if (!Core.Query.TryConvert(TextBox_SpecificHeatCapacity.Text, out double density))
+                {
+                    density = double.NaN;
+                }
+
+                CustomParameters customParameters = PropertyGrid_Parameters.SelectedObject as CustomParameters;
+
+                IMaterial result = null;
+                switch(material.MaterialType())
+                {
+                    case MaterialType.Gas:
+                        
+                        CustomParameter customParameter = customParameters.Cast<CustomParameter>().ToList().Find(x => x?.Name == "Dynamic Viscosity");
+                        if (!Core.Query.TryConvert(customParameter.Value, out double dynamicViscosity))
+                        {
+                            dynamicViscosity = double.NaN;
+                        }
+                        
+                        result = new GasMaterial(material.Guid, name, displayName, description, thermalConductivity, density, specificHeatCapacity, dynamicViscosity);
+                        break;
+
+                    case MaterialType.Opaque:
+                        break;
+
+                    case MaterialType.Transparent:
+                        break;
+
+                    default:
+                        return null;
+                }
+
+                return result;
             }
         }
 
