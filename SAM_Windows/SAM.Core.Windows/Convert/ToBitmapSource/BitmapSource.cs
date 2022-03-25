@@ -27,7 +27,7 @@ namespace SAM.Core.Windows
             }
             finally
             {
-                Modify.DeleteObject(intPtr);
+                Core.Modify.DeleteObject(intPtr);
             }
             return bitmapSource;
         }

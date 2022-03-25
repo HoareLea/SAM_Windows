@@ -7,6 +7,7 @@ namespace SAM.Core.Windows.Forms
     public partial class MaterialLibraryForm : Form
     {
         private MaterialLibrary materialLibrary;
+        private HashSet<Enum> enums;
 
         private IMaterial material_Selected;
 
@@ -15,17 +16,54 @@ namespace SAM.Core.Windows.Forms
             InitializeComponent();
         }
 
-        public MaterialLibraryForm(MaterialLibrary materialLibrary, IMaterial material_Selected = null)
+        public MaterialLibraryForm(MaterialLibrary materialLibrary, IEnumerable<Enum> enums = null, IMaterial material_Selected = null)
         {
             InitializeComponent();
 
             this.materialLibrary = materialLibrary;
             this.material_Selected = material_Selected;
+            if(enums != null)
+            {
+                this.enums = new HashSet<Enum>();
+                foreach(Enum @enum in enums)
+                {
+                    this.enums.Add(@enum);
+                }
+            }
         }
 
         private void MaterialLibraryForm_Load(object sender, EventArgs e)
         {
+            if (materialLibrary == null)
+            {
+                materialLibrary = new MaterialLibrary("Material Library");
+            }
 
+            string uniqueId = materialLibrary?.GetUniqueId(material_Selected);
+
+            List<IMaterial> constructions = materialLibrary?.GetMaterials();
+
+            if (constructions != null)
+            {
+                int index = -1;
+                foreach (IMaterial construction_Temp in constructions)
+                {
+                    DataGridViewRow dataGridViewRow = Add(construction_Temp);
+                    if (uniqueId != null)
+                    {
+                        string uniqueId_Temp = materialLibrary?.GetUniqueId(construction_Temp);
+                        if (uniqueId.Equals(uniqueId_Temp))
+                        {
+                            index = dataGridViewRow.Index;
+                        }
+                    }
+                }
+
+                if (index != -1)
+                {
+                    DataGridView_Materials.Rows[index].Selected = true;
+                }
+            }
         }
 
         private void TextBox_Search_TextChanged(object sender, EventArgs e)
@@ -99,7 +137,31 @@ namespace SAM.Core.Windows.Forms
                 return null;
             }
 
+            DataGridView_Materials.Rows[index].Tag = material;
+
             return DataGridView_Materials.Rows[index];
+        }
+
+        private void DataGridView_Materials_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == -1 || e.RowIndex == -1)
+            {
+                return;
+            }
+
+            IMaterial material = DataGridView_Materials.Rows[e.RowIndex].Tag as IMaterial;
+            if(material == null)
+            {
+                return;
+            }
+
+            using (MaterialForm materialForm = new MaterialForm(material, enums))
+            {
+                if(materialForm.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+            }
         }
     }
 }

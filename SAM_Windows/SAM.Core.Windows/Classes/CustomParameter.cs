@@ -6,13 +6,20 @@ namespace SAM.Core.Windows
 {
     public class CustomParameter
     {
-        private ParameterData parameterData;
+        private IParameterData parameterData;
+        private string category;
         private object value;
 
-        public CustomParameter(ParameterData parameterData, object value)
+        public CustomParameter(IParameterData parameterData, object value)
         {
             this.parameterData = parameterData;
             this.value = value;
+        }
+        public CustomParameter(IParameterData parameterData, string category, object value)
+        {
+            this.parameterData = parameterData;
+            this.value = value;
+            this.category = category;
         }
 
         public string Name
@@ -43,6 +50,14 @@ namespace SAM.Core.Windows
         {
             this.value = value;
             return true;
+        }
+
+        public string Category
+        {
+            get
+            {
+                return category;
+            }
         }
 
         public bool IsReadOnly

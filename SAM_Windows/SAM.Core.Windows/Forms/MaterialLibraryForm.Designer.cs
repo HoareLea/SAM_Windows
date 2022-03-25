@@ -116,6 +116,7 @@ namespace SAM.Core.Windows.Forms
             this.DataGridView_Materials.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridView_Materials.Size = new System.Drawing.Size(558, 276);
             this.DataGridView_Materials.TabIndex = 15;
+            this.DataGridView_Materials.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Materials_CellDoubleClick);
             // 
             // Column_DisplayName
             // 

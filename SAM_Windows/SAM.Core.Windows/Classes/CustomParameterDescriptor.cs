@@ -45,7 +45,14 @@ namespace SAM.Core.Windows
         {
             get
             {
-                return string.Empty;
+
+                string result = customParameter?.Category;
+                if(result == null)
+                {
+                    result = string.Empty;
+                }
+
+                return result;
             }
         }
 

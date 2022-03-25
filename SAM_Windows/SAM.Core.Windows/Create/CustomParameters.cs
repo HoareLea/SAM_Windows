@@ -12,24 +12,24 @@ namespace SAM.Core.Windows
             }
 
             CustomParameters result = new CustomParameters();
-            foreach(Type type in enumTypes)
+            foreach (Type type in enumTypes)
             {
-                if(type == null || !type.IsEnum)
+                if (type == null || !type.IsEnum)
                 {
                     continue;
                 }
 
-                foreach(Enum @enum in Enum.GetValues(type))
+                foreach (Enum @enum in Enum.GetValues(type))
                 {
-                    ParameterData parameterData = Core.Create.ParameterData(@enum);
-                    if (parameterData == null)
+                    EnumParameterData enumParameterData = new EnumParameterData(@enum);
+                    if (enumParameterData == null)
                     {
                         continue;
                     }
 
                     object value = sAMObject.GetValue(@enum);
 
-                    result.Add(new CustomParameter(parameterData, value));
+                    result.Add(new CustomParameter(enumParameterData, @enum.GetType().Assembly.Name(), value));
                 }
             }
 
@@ -46,15 +46,20 @@ namespace SAM.Core.Windows
             CustomParameters result = new CustomParameters();
             foreach(Enum @enum in enums)
             {
-                ParameterData parameterData = Core.Create.ParameterData(@enum);
-                if(parameterData == null)
+                if (!Core.Query.IsValid(sAMObject.GetType(), @enum))
+                {
+                    continue;
+                }
+
+                EnumParameterData enumParameterData = new EnumParameterData(@enum);
+                if (enumParameterData == null)
                 {
                     continue;
                 }
 
                 object value = sAMObject.GetValue(@enum);
 
-                result.Add(new CustomParameter(parameterData, value));
+                result.Add(new CustomParameter(enumParameterData, @enum.GetType().Assembly.Name(),value));
             }
 
             return result;

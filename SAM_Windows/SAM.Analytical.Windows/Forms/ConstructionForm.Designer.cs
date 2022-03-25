@@ -85,6 +85,7 @@ namespace SAM.Analytical.Windows.Forms
             this.DataGridView_Layers.Size = new System.Drawing.Size(458, 270);
             this.DataGridView_Layers.TabIndex = 2;
             this.DataGridView_Layers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Layers_CellClick);
+            this.DataGridView_Layers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Layers_CellContentClick);
             this.DataGridView_Layers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Layers_CellDoubleClick);
             this.DataGridView_Layers.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView_Layers_EditingControlShowing);
             // 

@@ -257,5 +257,10 @@ namespace SAM.Analytical.Windows.Forms
                 }
             }
         }
+
+        private void DataGridView_Layers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
