@@ -90,7 +90,7 @@ namespace SAM.Core.Windows.Forms
                         FluidMaterial fluidMaterial = (FluidMaterial)material_Temp;
                         customParameter = new CustomParameter("Dynamic Viscosity", "Dynamic Viscosity of Fluid [kg/(m*s)]", AccessType.ReadWrite, new Attributes.DoubleParameterValue(0), typeof(FluidMaterial).Assembly.Name(), fluidMaterial.DynamicViscosity);
 
-                        customParameters.Add(customParameter);
+                        customParameters?.Add(customParameter);
                     }
 
                     PropertyGrid_Parameters.SelectedObject = customParameters;
@@ -146,13 +146,22 @@ namespace SAM.Core.Windows.Forms
                         break;
 
                     case MaterialType.Opaque:
+                        Material opaqueMaterial = (OpaqueMaterial)material;
+                        result = new OpaqueMaterial(opaqueMaterial.Guid, name, displayName, description, thermalConductivity, density, specificHeatCapacity);
                         break;
 
                     case MaterialType.Transparent:
+                        Material transparentMaterial = (TransparentMaterial)material;
+                        result = new OpaqueMaterial(transparentMaterial.Guid, name, displayName, description, thermalConductivity, density, specificHeatCapacity);
                         break;
 
                     default:
                         return null;
+                }
+
+                if(result is SAMObject)
+                {
+                    ((SAMObject)result).SetValues(customParameters);
                 }
 
                 return result;

@@ -36,6 +36,14 @@ namespace SAM.Core.Windows
             this.category = category;
         }
 
+        public IParameterData ParameterData
+        {
+            get
+            {
+                return parameterData;
+            }
+        }
+        
         public string Name
         {
             get

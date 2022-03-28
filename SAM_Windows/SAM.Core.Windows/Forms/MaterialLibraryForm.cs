@@ -20,7 +20,11 @@ namespace SAM.Core.Windows.Forms
         {
             InitializeComponent();
 
-            this.materialLibrary = materialLibrary;
+            if (materialLibrary != null)
+            {
+                this.materialLibrary = new MaterialLibrary(materialLibrary);
+            }
+
             this.material_Selected = material_Selected;
             if(enums != null)
             {
@@ -161,7 +165,43 @@ namespace SAM.Core.Windows.Forms
                 {
                     return;
                 }
+
+                material = materialForm.Material;
             }
+
+            if(material == null)
+            {
+                return;
+            }
+
+            DataGridView_Materials.Rows.Remove(DataGridView_Materials.Rows[e.RowIndex]);
+            DataGridViewRow dataGridViewRow = Add(material);
+            DataGridView_Materials.Rows.Remove(dataGridViewRow);
+            DataGridView_Materials.Rows.Insert(e.RowIndex, dataGridViewRow);
+
+            materialLibrary.Add(material);
+        }
+
+        public MaterialLibrary MaterialLibrary
+        {
+            get
+            {
+                return new MaterialLibrary(materialLibrary);
+            }
+        }
+
+        private void Button_OK_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+
+            Close();
+        }
+
+        private void Button_Cancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+
+            Close();
         }
     }
 }

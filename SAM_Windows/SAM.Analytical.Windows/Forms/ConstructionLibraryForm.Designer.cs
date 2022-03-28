@@ -32,14 +32,15 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_OK = new System.Windows.Forms.Button();
             this.Button_Cancel = new System.Windows.Forms.Button();
             this.DataGridView_Constructions = new System.Windows.Forms.DataGridView();
+            this.Column_ConstructionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Thickness = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Type = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TextBox_Search = new System.Windows.Forms.TextBox();
             this.Label_Search = new System.Windows.Forms.Label();
             this.Button_Remove = new System.Windows.Forms.Button();
             this.Button_Add = new System.Windows.Forms.Button();
             this.Button_Duplicate = new System.Windows.Forms.Button();
-            this.Column_Type = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Column_Thickness = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_ConstructionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Button_Materials = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Constructions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,6 +94,31 @@ namespace SAM.Analytical.Windows.Forms
             this.DataGridView_Constructions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellContentClick);
             this.DataGridView_Constructions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellDoubleClick);
             // 
+            // Column_ConstructionName
+            // 
+            this.Column_ConstructionName.FillWeight = 60F;
+            this.Column_ConstructionName.HeaderText = "Construction Name";
+            this.Column_ConstructionName.MinimumWidth = 6;
+            this.Column_ConstructionName.Name = "Column_ConstructionName";
+            this.Column_ConstructionName.ReadOnly = true;
+            // 
+            // Column_Thickness
+            // 
+            this.Column_Thickness.FillWeight = 15F;
+            this.Column_Thickness.HeaderText = "Thickness";
+            this.Column_Thickness.MinimumWidth = 6;
+            this.Column_Thickness.Name = "Column_Thickness";
+            this.Column_Thickness.ReadOnly = true;
+            // 
+            // Column_Type
+            // 
+            this.Column_Type.FillWeight = 25F;
+            this.Column_Type.HeaderText = "Default Type";
+            this.Column_Type.MinimumWidth = 6;
+            this.Column_Type.Name = "Column_Type";
+            this.Column_Type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column_Type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // TextBox_Search
             // 
             this.TextBox_Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -145,30 +171,16 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Duplicate.UseVisualStyleBackColor = true;
             this.Button_Duplicate.Click += new System.EventHandler(this.Button_Duplicate_Click);
             // 
-            // Column_Type
+            // Button_Materials
             // 
-            this.Column_Type.FillWeight = 25F;
-            this.Column_Type.HeaderText = "Default Type";
-            this.Column_Type.MinimumWidth = 6;
-            this.Column_Type.Name = "Column_Type";
-            this.Column_Type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column_Type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Column_Thickness
-            // 
-            this.Column_Thickness.FillWeight = 15F;
-            this.Column_Thickness.HeaderText = "Thickness";
-            this.Column_Thickness.MinimumWidth = 6;
-            this.Column_Thickness.Name = "Column_Thickness";
-            this.Column_Thickness.ReadOnly = true;
-            // 
-            // Column_ConstructionName
-            // 
-            this.Column_ConstructionName.FillWeight = 60F;
-            this.Column_ConstructionName.HeaderText = "Construction Name";
-            this.Column_ConstructionName.MinimumWidth = 6;
-            this.Column_ConstructionName.Name = "Column_ConstructionName";
-            this.Column_ConstructionName.ReadOnly = true;
+            this.Button_Materials.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Button_Materials.Location = new System.Drawing.Point(12, 338);
+            this.Button_Materials.Name = "Button_Materials";
+            this.Button_Materials.Size = new System.Drawing.Size(75, 28);
+            this.Button_Materials.TabIndex = 13;
+            this.Button_Materials.Text = "Materials";
+            this.Button_Materials.UseVisualStyleBackColor = true;
+            this.Button_Materials.Click += new System.EventHandler(this.Button_Materials_Click);
             // 
             // ConstructionLibraryForm
             // 
@@ -176,6 +188,7 @@ namespace SAM.Analytical.Windows.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(582, 453);
+            this.Controls.Add(this.Button_Materials);
             this.Controls.Add(this.Button_Duplicate);
             this.Controls.Add(this.Button_Remove);
             this.Controls.Add(this.Button_Add);
@@ -210,5 +223,6 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_ConstructionName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Thickness;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column_Type;
+        private System.Windows.Forms.Button Button_Materials;
     }
 }

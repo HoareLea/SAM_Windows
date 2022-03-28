@@ -150,6 +150,7 @@ namespace SAM.Core.Windows.Forms
             this.Button_OK.TabIndex = 14;
             this.Button_OK.Text = "OK";
             this.Button_OK.UseVisualStyleBackColor = true;
+            this.Button_OK.Click += new System.EventHandler(this.Button_OK_Click);
             // 
             // Button_Cancel
             // 
@@ -161,10 +162,13 @@ namespace SAM.Core.Windows.Forms
             this.Button_Cancel.TabIndex = 13;
             this.Button_Cancel.Text = "Cancel";
             this.Button_Cancel.UseVisualStyleBackColor = true;
+            this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
             // MaterialLibraryForm
             // 
+            this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(582, 453);
             this.Controls.Add(this.Button_Duplicate);
             this.Controls.Add(this.Button_Remove);

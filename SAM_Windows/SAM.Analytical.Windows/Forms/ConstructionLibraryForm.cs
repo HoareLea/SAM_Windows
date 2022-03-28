@@ -82,6 +82,11 @@ namespace SAM.Analytical.Windows.Forms
                     DataGridView_Constructions.Rows[index].Selected = true;
                 }
             }
+
+            if(materialLibrary == null || materialLibrary.GetMaterials() == null)
+            {
+                Button_Materials.Visible = false;
+            }
         }
 
         private void Add(ConstructionLibrary constructionLibrary)
@@ -354,6 +359,19 @@ namespace SAM.Analytical.Windows.Forms
         private void TextBox_Search_TextChanged(object sender, EventArgs e)
         {
             Add(constructionLibrary);
+        }
+
+        private void Button_Materials_Click(object sender, EventArgs e)
+        {
+            using (Core.Windows.Forms.MaterialLibraryForm materialLibraryForm = new Core.Windows.Forms.MaterialLibraryForm(materialLibrary, Core.Query.Enums(typeof(OpaqueMaterialParameter), typeof(TransparentMaterialParameter))))
+            {
+                if (materialLibraryForm.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+
+                materialLibrary = materialLibraryForm.MaterialLibrary;
+            }
         }
     }
 }

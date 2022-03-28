@@ -262,5 +262,13 @@ namespace SAM.Analytical.Windows.Forms
         {
 
         }
+
+        private void Button_Modify_Click(object sender, EventArgs e)
+        {
+            if(materialLibrary == null)
+            {
+                return;
+            }
+        }
     }
 }
