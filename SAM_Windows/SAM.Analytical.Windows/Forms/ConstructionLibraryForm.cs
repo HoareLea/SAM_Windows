@@ -61,7 +61,7 @@ namespace SAM.Analytical.Windows.Forms
 
             List<Construction> constructions = constructionLibrary?.GetConstructions();
 
-            if(constructions != null)
+            if (constructions != null)
             {
                 int index = -1;
                 foreach (Construction construction_Temp in constructions)
@@ -83,21 +83,22 @@ namespace SAM.Analytical.Windows.Forms
                 }
             }
 
-            if(materialLibrary == null || materialLibrary.GetMaterials() == null)
+            if (materialLibrary == null || materialLibrary.GetMaterials() == null)
             {
                 Button_Materials.Visible = false;
+                Button_Add.Visible = false;
             }
         }
 
         private void Add(ConstructionLibrary constructionLibrary)
         {
             List<string> uniqueIds = new List<string>();
-            if(DataGridView_Constructions.SelectedRows != null && DataGridView_Constructions.SelectedRows.Count != 0)
+            if (DataGridView_Constructions.SelectedRows != null && DataGridView_Constructions.SelectedRows.Count != 0)
             {
-                foreach(DataGridViewRow dataGridViewRow in DataGridView_Constructions.SelectedRows)
+                foreach (DataGridViewRow dataGridViewRow in DataGridView_Constructions.SelectedRows)
                 {
                     string uniqueId_Temp = constructionLibrary?.GetUniqueId(dataGridViewRow.Tag as Construction);
-                    if(string.IsNullOrWhiteSpace(uniqueId_Temp))
+                    if (string.IsNullOrWhiteSpace(uniqueId_Temp))
                     {
                         continue;
                     }
@@ -109,12 +110,12 @@ namespace SAM.Analytical.Windows.Forms
             DataGridView_Constructions.Rows.Clear();
 
             List<Construction> constructions = constructionLibrary.GetConstructions();
-            if(constructions == null || constructions.Count == 0)
+            if (constructions == null || constructions.Count == 0)
             {
                 return;
             }
 
-            if(!string.IsNullOrWhiteSpace(TextBox_Search.Text))
+            if (!string.IsNullOrWhiteSpace(TextBox_Search.Text))
             {
                 Func<Construction, string> func = new Func<Construction, string>((Construction construction) =>
                 {
@@ -125,10 +126,10 @@ namespace SAM.Analytical.Windows.Forms
 
                     string result = construction.Name;
 
-                    if(construction.TryGetValue(ConstructionParameter.DefaultPanelType, out string panelTypeString) && !string.IsNullOrWhiteSpace(panelTypeString))
+                    if (construction.TryGetValue(ConstructionParameter.DefaultPanelType, out string panelTypeString) && !string.IsNullOrWhiteSpace(panelTypeString))
                     {
                         PanelType panelType = Core.Query.Enum<PanelType>(panelTypeString);
-                        if(panelType != PanelType.Undefined)
+                        if (panelType != PanelType.Undefined)
                         {
                             result = result == null ? Core.Query.Description(panelType) : string.Format("{0} {1}", result, Core.Query.Description(panelType));
                         }
@@ -149,7 +150,7 @@ namespace SAM.Analytical.Windows.Forms
 
         private DataGridViewRow Add(Construction construction)
         {
-            if(construction == null)
+            if (construction == null)
             {
                 return null;
             }
@@ -158,7 +159,7 @@ namespace SAM.Analytical.Windows.Forms
             double thickness = Math.Round(construction.GetThickness(), 3);
 
             PanelType panelType = PanelType.Undefined;
-            if(construction.TryGetValue(ConstructionParameter.DefaultPanelType, out string panelTypeString))
+            if (construction.TryGetValue(ConstructionParameter.DefaultPanelType, out string panelTypeString))
             {
                 panelType = Core.Query.Enum<PanelType>(panelTypeString);
             }
@@ -167,7 +168,7 @@ namespace SAM.Analytical.Windows.Forms
 
             int index = DataGridView_Constructions.Rows.Add(name, thickness, defaultType);
             DataGridViewRow result = DataGridView_Constructions.Rows[index];
-            if(result != null)
+            if (result != null)
             {
                 result.Tag = construction;
             }
@@ -197,7 +198,7 @@ namespace SAM.Analytical.Windows.Forms
         public List<Construction> GetConstructions(bool selected = true)
         {
             IEnumerable<DataGridViewRow> dataGridViewRows = selected ? DataGridView_Constructions.SelectedRows?.Cast<DataGridViewRow>() : DataGridView_Constructions.Rows?.Cast<DataGridViewRow>();
-            if(dataGridViewRows == null)
+            if (dataGridViewRows == null)
             {
                 return null;
             }
@@ -239,6 +240,19 @@ namespace SAM.Analytical.Windows.Forms
                 DataGridView_Constructions.MultiSelect = value;
             }
         }
+
+        public bool MaterialsButtonVisible
+        {
+            get
+            {
+                return Button_Materials.Visible;
+            }
+            set
+            {
+                Button_Materials.Visible = value;
+            }
+        }
+
 
         public ConstructionLibrary ConstructionLibrary
         {

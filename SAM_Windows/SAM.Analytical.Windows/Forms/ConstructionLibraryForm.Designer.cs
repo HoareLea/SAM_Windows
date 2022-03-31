@@ -180,6 +180,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Materials.TabIndex = 13;
             this.Button_Materials.Text = "Materials";
             this.Button_Materials.UseVisualStyleBackColor = true;
+            this.Button_Materials.Visible = false;
             this.Button_Materials.Click += new System.EventHandler(this.Button_Materials_Click);
             // 
             // ConstructionLibraryForm
