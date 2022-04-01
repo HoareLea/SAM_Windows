@@ -42,6 +42,11 @@ namespace SAM.Analytical.Windows.Forms
         {
             PropertyGrid_Parameters.HidePropertyPages();
 
+            foreach (PanelType panelType in Enum.GetValues(typeof(PanelType)))
+            {
+                ComboBox_PanelType.Items.Add(Core.Query.Description(panelType));
+            }
+
             if (panel != null)
             {
                 TextBox_Name.Text = panel?.Name;
@@ -50,13 +55,20 @@ namespace SAM.Analytical.Windows.Forms
                 TextBox_Guid.Text = panel.Guid.ToString();
                 TextBox_Construction.Text = panel.Construction?.Name;
 
+                ComboBox_PanelType.Text = Core.Query.Description(panel.PanelType);
+
                 PropertyGrid_Parameters.SelectedObject = customParameters;
+
+                TextBox_Area.Text = Math.Round(panel.GetArea(), 1).ToString();
+                TextBox_NetArea.Text = Math.Round(panel.GetAreaNet(), 1).ToString();
             }
 
             if(constructionLibrary == null)
             {
                 Button_SelectConstruction.Visible = false;
             }
+
+
         }
 
         public Panel Panel
@@ -68,7 +80,9 @@ namespace SAM.Analytical.Windows.Forms
                     return null;
                 }
 
-                Panel result = Create.Panel(panel);
+                PanelType panelType = Core.Query.Enum<PanelType>(ComboBox_PanelType.Text);
+
+                Panel result = Create.Panel(panel, panelType);
 
                 CustomParameters customParameters = PropertyGrid_Parameters.SelectedObject as CustomParameters;
 

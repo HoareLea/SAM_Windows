@@ -39,6 +39,12 @@ namespace SAM.Analytical.Windows.Forms
             this.TextBox_Construction = new System.Windows.Forms.TextBox();
             this.Label_Construction = new System.Windows.Forms.Label();
             this.Button_SelectConstruction = new System.Windows.Forms.Button();
+            this.Label_PanelType = new System.Windows.Forms.Label();
+            this.ComboBox_PanelType = new System.Windows.Forms.ComboBox();
+            this.TextBox_Area = new System.Windows.Forms.TextBox();
+            this.Label_Area = new System.Windows.Forms.Label();
+            this.Label_NetArea = new System.Windows.Forms.Label();
+            this.TextBox_NetArea = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // PropertyGrid_Parameters
@@ -46,9 +52,9 @@ namespace SAM.Analytical.Windows.Forms
             this.PropertyGrid_Parameters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PropertyGrid_Parameters.Location = new System.Drawing.Point(15, 138);
+            this.PropertyGrid_Parameters.Location = new System.Drawing.Point(15, 188);
             this.PropertyGrid_Parameters.Name = "PropertyGrid_Parameters";
-            this.PropertyGrid_Parameters.Size = new System.Drawing.Size(355, 269);
+            this.PropertyGrid_Parameters.Size = new System.Drawing.Size(355, 319);
             this.PropertyGrid_Parameters.TabIndex = 0;
             // 
             // Label_Name
@@ -73,7 +79,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_OK
             // 
             this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(214, 413);
+            this.Button_OK.Location = new System.Drawing.Point(214, 513);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 28);
             this.Button_OK.TabIndex = 6;
@@ -85,7 +91,7 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(295, 413);
+            this.Button_Cancel.Location = new System.Drawing.Point(295, 513);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
             this.Button_Cancel.TabIndex = 5;
@@ -143,14 +149,76 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_SelectConstruction.UseVisualStyleBackColor = true;
             this.Button_SelectConstruction.Click += new System.EventHandler(this.Button_SelectConstruction_Click);
             // 
+            // Label_PanelType
+            // 
+            this.Label_PanelType.AutoSize = true;
+            this.Label_PanelType.Location = new System.Drawing.Point(12, 133);
+            this.Label_PanelType.Name = "Label_PanelType";
+            this.Label_PanelType.Size = new System.Drawing.Size(84, 17);
+            this.Label_PanelType.TabIndex = 9;
+            this.Label_PanelType.Text = "Panel Type:";
+            // 
+            // ComboBox_PanelType
+            // 
+            this.ComboBox_PanelType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_PanelType.FormattingEnabled = true;
+            this.ComboBox_PanelType.Location = new System.Drawing.Point(118, 130);
+            this.ComboBox_PanelType.Name = "ComboBox_PanelType";
+            this.ComboBox_PanelType.Size = new System.Drawing.Size(252, 24);
+            this.ComboBox_PanelType.TabIndex = 12;
+            // 
+            // TextBox_Area
+            // 
+            this.TextBox_Area.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox_Area.Location = new System.Drawing.Point(118, 160);
+            this.TextBox_Area.Name = "TextBox_Area";
+            this.TextBox_Area.ReadOnly = true;
+            this.TextBox_Area.Size = new System.Drawing.Size(69, 22);
+            this.TextBox_Area.TabIndex = 14;
+            // 
+            // Label_Area
+            // 
+            this.Label_Area.AutoSize = true;
+            this.Label_Area.Location = new System.Drawing.Point(13, 163);
+            this.Label_Area.Name = "Label_Area";
+            this.Label_Area.Size = new System.Drawing.Size(42, 17);
+            this.Label_Area.TabIndex = 13;
+            this.Label_Area.Text = "Area:";
+            // 
+            // Label_NetArea
+            // 
+            this.Label_NetArea.AutoSize = true;
+            this.Label_NetArea.Location = new System.Drawing.Point(226, 163);
+            this.Label_NetArea.Name = "Label_NetArea";
+            this.Label_NetArea.Size = new System.Drawing.Size(68, 17);
+            this.Label_NetArea.TabIndex = 13;
+            this.Label_NetArea.Text = "Net Area:";
+            // 
+            // TextBox_NetArea
+            // 
+            this.TextBox_NetArea.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox_NetArea.Location = new System.Drawing.Point(300, 160);
+            this.TextBox_NetArea.Name = "TextBox_NetArea";
+            this.TextBox_NetArea.ReadOnly = true;
+            this.TextBox_NetArea.Size = new System.Drawing.Size(70, 22);
+            this.TextBox_NetArea.TabIndex = 14;
+            // 
             // PanelForm
             // 
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(382, 453);
+            this.ClientSize = new System.Drawing.Size(382, 553);
+            this.Controls.Add(this.TextBox_NetArea);
+            this.Controls.Add(this.Label_NetArea);
+            this.Controls.Add(this.TextBox_Area);
+            this.Controls.Add(this.Label_Area);
+            this.Controls.Add(this.ComboBox_PanelType);
             this.Controls.Add(this.Button_SelectConstruction);
             this.Controls.Add(this.TextBox_Construction);
+            this.Controls.Add(this.Label_PanelType);
             this.Controls.Add(this.Label_Construction);
             this.Controls.Add(this.TextBox_Guid);
             this.Controls.Add(this.Label_DisplayName);
@@ -184,5 +252,11 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.TextBox TextBox_Construction;
         private System.Windows.Forms.Label Label_Construction;
         private System.Windows.Forms.Button Button_SelectConstruction;
+        private System.Windows.Forms.Label Label_PanelType;
+        private System.Windows.Forms.ComboBox ComboBox_PanelType;
+        private System.Windows.Forms.TextBox TextBox_Area;
+        private System.Windows.Forms.Label Label_Area;
+        private System.Windows.Forms.Label Label_NetArea;
+        private System.Windows.Forms.TextBox TextBox_NetArea;
     }
 }

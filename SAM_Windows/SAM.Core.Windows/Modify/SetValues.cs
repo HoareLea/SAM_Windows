@@ -7,7 +7,7 @@ namespace SAM.Core.Windows
     {
         public static List<CustomParameter> SetValues(this SAMObject sAMObject, CustomParameters customParameters)
         {
-            return SetValues(sAMObject, customParameters.Cast<CustomParameter>());
+            return SetValues(sAMObject, customParameters?.Cast<CustomParameter>());
         }
 
         public static List<CustomParameter> SetValues(this SAMObject sAMObject, IEnumerable<CustomParameter> customParameters)

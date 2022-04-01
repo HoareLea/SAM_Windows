@@ -264,6 +264,7 @@ namespace SAM.Analytical.Windows.Forms
                 }
 
                 ConstructionLibrary result = new ConstructionLibrary(constructionLibrary);
+                constructionLibrary.GetConstructions().ForEach(x => result.Remove(x));
 
                 GetConstructions(false)?.ForEach(x => result.Add(x));
                 return result;
@@ -273,7 +274,7 @@ namespace SAM.Analytical.Windows.Forms
         private void Button_Add_Click(object sender, EventArgs e)
         {
             Construction construction = null;
-            using (ConstructionForm constructionForm = new ConstructionForm(materialLibrary))
+            using (ConstructionForm constructionForm = new ConstructionForm(materialLibrary, constructionLibrary))
             {
                 if(constructionForm.ShowDialog() != DialogResult.OK)
                 {
@@ -322,8 +323,18 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
 
-            construction = new Construction(Guid.NewGuid(), construction, ((string.IsNullOrWhiteSpace(construction.Name) ? string.Empty : construction.Name) + " 1").Trim());
-            using (ConstructionForm constructionForm = new ConstructionForm(materialLibrary, construction))
+            string name = (string.IsNullOrWhiteSpace(construction.Name) ? string.Empty : construction.Name).Trim();
+            string name_Temp = name;
+            int index = 1;
+            while(constructionLibrary?.GetConstructions()?.Find(x => x.Name == name_Temp) != null)
+            {
+                name_Temp = string.Format("{0} {1}", name, index.ToString());
+                index++;
+            }
+            name = name_Temp;
+
+            construction = new Construction(Guid.NewGuid(), construction, name);
+            using (ConstructionForm constructionForm = new ConstructionForm(materialLibrary, constructionLibrary, construction))
             {
                 if(constructionForm.ShowDialog() != DialogResult.OK)
                 {
@@ -355,7 +366,7 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
 
-            using (ConstructionForm constructionForm = new ConstructionForm(materialLibrary, construction))
+            using (ConstructionForm constructionForm = new ConstructionForm(materialLibrary, constructionLibrary, construction))
             {
                 if (constructionForm.ShowDialog() != DialogResult.OK)
                 {

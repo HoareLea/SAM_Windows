@@ -8,6 +8,7 @@ namespace SAM.Analytical.Windows.Forms
 {
     public partial class ConstructionForm : Form
     {
+        private ConstructionLibrary constructionLibrary;
         private MaterialLibrary materialLibrary;
         private Construction construction;
 
@@ -16,12 +17,13 @@ namespace SAM.Analytical.Windows.Forms
             InitializeComponent();
         }
 
-        public ConstructionForm(MaterialLibrary materialLibrary, Construction construction = null)
+        public ConstructionForm(MaterialLibrary materialLibrary, ConstructionLibrary constructionLibrary = null, Construction construction = null)
         {
             InitializeComponent();
 
             this.materialLibrary = materialLibrary;
             this.construction = construction;
+            this.constructionLibrary = constructionLibrary;
 
             if(materialLibrary == null)
             {
@@ -110,6 +112,12 @@ namespace SAM.Analytical.Windows.Forms
             if(string.IsNullOrEmpty(TextBox_Name.Text))
             {
                 MessageBox.Show("Provide valid name");
+                return;
+            }
+
+            if(constructionLibrary?.GetConstructions()?.Find(x => x.Name == TextBox_Name.Text) != null)
+            {
+                MessageBox.Show("Construction with the same name already exists. Provide different name");
                 return;
             }
 
