@@ -203,5 +203,54 @@ namespace SAM.Core.Windows.Forms
 
             Close();
         }
+
+        private void Button_Duplicate_Click(object sender, EventArgs e)
+        {
+            if (DataGridView_Materials.SelectedRows == null || DataGridView_Materials.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            IMaterial material = DataGridView_Materials.SelectedRows[0].Tag as IMaterial;
+            if (material == null)
+            {
+                return;
+            }
+
+            string name = (string.IsNullOrWhiteSpace(material.Name) ? string.Empty : material.Name).Trim();
+            string name_Temp = name;
+            int index = 1;
+            while (materialLibrary?.GetMaterials()?.Find(x => x.Name == name_Temp) != null)
+            {
+                name_Temp = string.Format("{0} {1}", name, index.ToString());
+                index++;
+            }
+            name = name_Temp;
+
+            material = Core.Create.Material(material as Material, name, name, null);
+            if(material == null)
+            {
+                MessageBox.Show("Material cannot be duplicated");
+                return;
+            }
+
+            using (MaterialForm materialForm = new MaterialForm(material, enums))
+            {
+                if (materialForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                material = materialForm.Material;
+            }
+
+            if (material == null)
+            {
+                return;
+            }
+
+            materialLibrary?.Add(material);
+            Add(material);
+        }
     }
 }

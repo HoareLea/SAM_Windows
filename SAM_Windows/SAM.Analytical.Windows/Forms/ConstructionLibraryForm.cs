@@ -253,6 +253,27 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
+        public bool Enabled
+        {
+            set
+            {
+                if(value)
+                {
+                    Button_Add.Visible = true;
+                    Button_Duplicate.Visible = true;
+                    Button_Remove.Visible = true;
+                    DataGridView_Constructions.ReadOnly = false;
+                }
+                else
+                {
+                    Button_Add.Visible = false;
+                    Button_Duplicate.Visible = false;
+                    Button_Remove.Visible = false;
+                    DataGridView_Constructions.ReadOnly = true;
+                }
+            }
+        }
+
 
         public ConstructionLibrary ConstructionLibrary
         {
@@ -368,6 +389,7 @@ namespace SAM.Analytical.Windows.Forms
 
             using (ConstructionForm constructionForm = new ConstructionForm(materialLibrary, constructionLibrary, construction))
             {
+                constructionForm.Enabled = Button_Add.Visible;
                 if (constructionForm.ShowDialog() != DialogResult.OK)
                 {
                     return;

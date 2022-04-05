@@ -52,6 +52,7 @@ namespace SAM.Core.Windows.Forms
             this.Button_Duplicate.TabIndex = 20;
             this.Button_Duplicate.Text = "Duplicate";
             this.Button_Duplicate.UseVisualStyleBackColor = true;
+            this.Button_Duplicate.Click += new System.EventHandler(this.Button_Duplicate_Click);
             // 
             // Button_Remove
             // 

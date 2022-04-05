@@ -278,5 +278,35 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
         }
+
+        public bool Enabled
+        {
+            set
+            {
+                DataGridView_Layers.CellDoubleClick -= new DataGridViewCellEventHandler(DataGridView_Layers_CellDoubleClick);
+
+                if (value)
+                {
+                    Button_Add.Visible = true;
+                    Button_Remove.Visible = true;
+                    Button_Up.Enabled = true;
+                    Button_Down.Enabled = true;
+                    DataGridView_Layers.ReadOnly = false;
+                    TextBox_Name.Enabled = true;
+                    DataGridView_Layers.CellDoubleClick += new DataGridViewCellEventHandler(DataGridView_Layers_CellDoubleClick);
+
+                }
+                else
+                {
+                    Button_Add.Visible = false;
+                    Button_Remove.Visible = false;
+                    Button_Up.Enabled = false;
+                    Button_Down.Enabled = false;
+                    DataGridView_Layers.ReadOnly = true;
+                    TextBox_Name.Enabled = false;
+
+                }
+            }
+        }
     }
 }
