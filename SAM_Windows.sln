@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SAM_Windows", "SAM_Windows"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAM.Analytical.Windows", "SAM_Windows\SAM.Analytical.Windows\SAM.Analytical.Windows.csproj", "{F15C5D91-BC85-45CB-A79E-8A6B46495701}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAM.Architectural.Windows", "SAM_Windows\SAM.Architectural.Windows\SAM.Architectural.Windows.csproj", "{5A1B6423-F181-400A-A27F-1B5A73C2704D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{F15C5D91-BC85-45CB-A79E-8A6B46495701}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F15C5D91-BC85-45CB-A79E-8A6B46495701}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F15C5D91-BC85-45CB-A79E-8A6B46495701}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A1B6423-F181-400A-A27F-1B5A73C2704D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A1B6423-F181-400A-A27F-1B5A73C2704D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A1B6423-F181-400A-A27F-1B5A73C2704D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A1B6423-F181-400A-A27F-1B5A73C2704D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1F33E540-DA46-411D-A1BC-6A3E554A1E63} = {4EFAB9F4-B33B-49BF-AFB9-8642F1C709E8}
 		{F15C5D91-BC85-45CB-A79E-8A6B46495701} = {4EFAB9F4-B33B-49BF-AFB9-8642F1C709E8}
+		{5A1B6423-F181-400A-A27F-1B5A73C2704D} = {4EFAB9F4-B33B-49BF-AFB9-8642F1C709E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EBC96553-B88B-4ADC-92FE-C63DF893D782}

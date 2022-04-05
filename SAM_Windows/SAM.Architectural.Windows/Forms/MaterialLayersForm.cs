@@ -4,26 +4,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace SAM.Analytical.Windows.Forms
+namespace SAM.Architectural.Windows.Forms
 {
-    public partial class ConstructionForm : Form
+    public partial class MaterialLayersForm : Form
     {
-        private ConstructionLibrary constructionLibrary;
+        private List<MaterialLayer> materialLayers;
         private MaterialLibrary materialLibrary;
-        private Construction construction;
 
-        public ConstructionForm()
+        public MaterialLayersForm()
         {
             InitializeComponent();
         }
 
-        public ConstructionForm(MaterialLibrary materialLibrary, ConstructionLibrary constructionLibrary = null, Construction construction = null)
+        public MaterialLayersForm(MaterialLibrary materialLibrary, IEnumerable<MaterialLayer> materialLayers = null)
         {
             InitializeComponent();
 
             this.materialLibrary = materialLibrary;
-            this.construction = construction;
-            this.constructionLibrary = constructionLibrary;
+
+            if(materialLayers != null)
+            {
+                this.materialLayers = new List<MaterialLayer>(materialLayers);
+            }
 
             if(materialLibrary == null)
             {
@@ -31,19 +33,13 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
-        private void ConstructionForm_Load(object sender, EventArgs e)
+        private void MaterialLayersForm_Load(object sender, EventArgs e)
         {
-            if(construction != null)
+            if(materialLayers != null)
             {
-                TextBox_Name.Text = construction.Name;
-
-                List<ConstructionLayer> constructionLayers = construction.ConstructionLayers;
-                if(constructionLayers != null)
+                foreach (MaterialLayer materialLayer in materialLayers)
                 {
-                    foreach(ConstructionLayer constructionLayer in constructionLayers)
-                    {
-                        Add(constructionLayer.Name, constructionLayer.Thickness);
-                    }
+                    Add(materialLayer.Name, materialLayer.Thickness);
                 }
             }
         }
@@ -59,7 +55,7 @@ namespace SAM.Analytical.Windows.Forms
             return true;
         }
 
-        public List<ConstructionLayer> ConstructionLayers
+        public List<MaterialLayer> MaterialLayers
         {
             get
             {
@@ -68,7 +64,7 @@ namespace SAM.Analytical.Windows.Forms
                     return null;
                 }
 
-                List<ConstructionLayer> result = new List<ConstructionLayer>();
+                List<MaterialLayer> result = new List<MaterialLayer>();
                 foreach(DataGridViewRow dataGridViewRow in DataGridView_Layers.Rows)
                 {
                     if(!Core.Query.TryConvert(dataGridViewRow.Cells[1].Value, out double thickness))
@@ -76,31 +72,11 @@ namespace SAM.Analytical.Windows.Forms
                         continue;
                     }
 
-                    ConstructionLayer constructionLayer = new ConstructionLayer(dataGridViewRow.Cells[0].Value as string, thickness);
-                    if(constructionLayer != null)
+                    MaterialLayer materialLayer = new MaterialLayer(dataGridViewRow.Cells[0].Value as string, thickness);
+                    if(materialLayer != null)
                     {
-                        result.Add(constructionLayer);
+                        result.Add(materialLayer);
                     }
-                }
-
-                return result;
-            }
-        }
-
-        public Construction Construction
-        {
-            get
-            {
-                Construction result = null;
-                if (construction != null)
-                {
-                    result =  new Construction(construction, ConstructionLayers);
-                    result = new Construction(result, TextBox_Name.Text);
-                }
-
-                if(result == null)
-                {
-                    result = new Construction(TextBox_Name.Text, ConstructionLayers);
                 }
 
                 return result;
@@ -109,22 +85,10 @@ namespace SAM.Analytical.Windows.Forms
 
         private void Button_OK_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(TextBox_Name.Text))
+            List<MaterialLayer> materialLayers = MaterialLayers;
+            if(materialLayers == null || materialLayers.Count == 0)
             {
-                MessageBox.Show("Provide valid name");
-                return;
-            }
-
-            if(constructionLibrary?.GetConstructions()?.Find(x => x.Name == TextBox_Name.Text) != null)
-            {
-                MessageBox.Show("Construction with the same name already exists. Provide different name");
-                return;
-            }
-
-            List<ConstructionLayer> constructionLayers = ConstructionLayers;
-            if(constructionLayers == null || constructionLayers.Count == 0)
-            {
-                MessageBox.Show("Provide valid construction layers");
+                MessageBox.Show("Provide valid layers");
                 return;
             }
             
@@ -148,7 +112,7 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
 
-            if(!material.TryGetValue(Core.MaterialParameter.DefaultThickness, out double thickness) || double.IsNaN(thickness) || thickness <= 0)
+            if(!material.TryGetValue(MaterialParameter.DefaultThickness, out double thickness) || double.IsNaN(thickness) || thickness <= 0)
             {
                 thickness = 0.1;
             }
@@ -292,7 +256,6 @@ namespace SAM.Analytical.Windows.Forms
                     Button_Up.Enabled = true;
                     Button_Down.Enabled = true;
                     DataGridView_Layers.ReadOnly = false;
-                    TextBox_Name.Enabled = true;
                     DataGridView_Layers.CellDoubleClick += new DataGridViewCellEventHandler(DataGridView_Layers_CellDoubleClick);
 
                 }
@@ -303,8 +266,6 @@ namespace SAM.Analytical.Windows.Forms
                     Button_Up.Enabled = false;
                     Button_Down.Enabled = false;
                     DataGridView_Layers.ReadOnly = true;
-                    TextBox_Name.Enabled = false;
-
                 }
             }
         }

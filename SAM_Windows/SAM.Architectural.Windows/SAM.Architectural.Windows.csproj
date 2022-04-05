@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F15C5D91-BC85-45CB-A79E-8A6B46495701}</ProjectGuid>
+    <ProjectGuid>{5A1B6423-F181-400A-A27F-1B5A73C2704D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SAM.Analytical.Windows</RootNamespace>
-    <AssemblyName>SAM.Analytical.Windows</AssemblyName>
+    <RootNamespace>SAM.Architectural.Windows</RootNamespace>
+    <AssemblyName>SAM.Architectural.Windows</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\build\SAM.Analytical.Windows.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,15 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SAM.Analytical, Version=1.0.8111.18813, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\SAM\build\SAM.Analytical.dll</HintPath>
-    </Reference>
-    <Reference Include="SAM.Architectural, Version=1.0.8111.18813, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="SAM.Architectural, Version=1.0.8130.16458, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SAM\build\SAM.Architectural.dll</HintPath>
     </Reference>
-    <Reference Include="SAM.Core">
+    <Reference Include="SAM.Core, Version=1.0.8130.16457, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SAM\build\SAM.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -55,29 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\ApertureConstructionForm.cs">
+    <Compile Include="Forms\MaterialLayersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ApertureConstructionForm.Designer.cs">
-      <DependentUpon>ApertureConstructionForm.cs</DependentUpon>
+    <Compile Include="Forms\MaterialLayersForm.Designer.cs">
+      <DependentUpon>MaterialLayersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ConstructionForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Controls\MaterialLayersControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\ConstructionForm.Designer.cs">
-      <DependentUpon>ConstructionForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ConstructionLibraryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ConstructionLibraryForm.Designer.cs">
-      <DependentUpon>ConstructionLibraryForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\PanelForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\PanelForm.Designer.cs">
-      <DependentUpon>PanelForm.cs</DependentUpon>
+    <Compile Include="Controls\MaterialLayersControl.Designer.cs">
+      <DependentUpon>MaterialLayersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -88,26 +72,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\MaterialLayersForm.resx">
+      <DependentUpon>MaterialLayersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MaterialLayersControl.resx">
+      <DependentUpon>MaterialLayersControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Forms\ApertureConstructionForm.resx">
-      <DependentUpon>ApertureConstructionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ConstructionForm.resx">
-      <DependentUpon>ConstructionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ConstructionLibraryForm.resx">
-      <DependentUpon>ConstructionLibraryForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PanelForm.resx">
-      <DependentUpon>PanelForm.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

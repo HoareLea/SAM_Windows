@@ -6,24 +6,25 @@ using System.Windows.Forms;
 
 namespace SAM.Analytical.Windows.Forms
 {
-    public partial class ConstructionForm : Form
+    public partial class ApertureConstructionForm : Form
     {
-        private ConstructionLibrary constructionLibrary;
         private MaterialLibrary materialLibrary;
-        private Construction construction;
 
-        public ConstructionForm()
+        private ApertureConstructionLibrary apertureConstructionLibrary;
+        private ApertureConstruction apertureConstruction;
+
+        public ApertureConstructionForm()
         {
             InitializeComponent();
         }
 
-        public ConstructionForm(MaterialLibrary materialLibrary, ConstructionLibrary constructionLibrary = null, Construction construction = null)
+        public ApertureConstructionForm(MaterialLibrary materialLibrary, ApertureConstructionLibrary apertureConstructionLibrary = null, ApertureConstruction apertureConstruction = null)
         {
             InitializeComponent();
 
             this.materialLibrary = materialLibrary;
-            this.construction = construction;
-            this.constructionLibrary = constructionLibrary;
+            this.apertureConstruction = apertureConstruction;
+            this.apertureConstructionLibrary = apertureConstructionLibrary;
 
             if(materialLibrary == null)
             {
@@ -31,13 +32,26 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
-        private void ConstructionForm_Load(object sender, EventArgs e)
+        private void ApertureConstructionForm_Load(object sender, EventArgs e)
         {
-            if(construction != null)
+            foreach(ApertureType apertureType in Enum.GetValues(typeof(ApertureType)))
             {
-                TextBox_Name.Text = construction.Name;
+                if(apertureType == ApertureType.Undefined)
+                {
+                    continue;
+                }
 
-                List<ConstructionLayer> constructionLayers = construction.ConstructionLayers;
+                ComboBox_ApertureType.Items.Add(Core.Query.Description(apertureType));
+            }
+
+            ComboBox_ApertureType.SelectedIndex = 0;
+            
+            
+            if(apertureConstruction != null)
+            {
+                TextBox_Name.Text = apertureConstruction.Name;
+
+                List<ConstructionLayer> constructionLayers = apertureConstruction.PaneConstructionLayers;
                 if(constructionLayers != null)
                 {
                     foreach(ConstructionLayer constructionLayer in constructionLayers)
@@ -45,6 +59,8 @@ namespace SAM.Analytical.Windows.Forms
                         Add(constructionLayer.Name, constructionLayer.Thickness);
                     }
                 }
+
+                ComboBox_ApertureType.Text = Core.Query.Description(apertureConstruction.ApertureType);
             }
         }
 
@@ -87,20 +103,20 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
-        public Construction Construction
+        public ApertureConstruction ApertureConstruction
         {
             get
             {
-                Construction result = null;
-                if (construction != null)
+                ApertureConstruction result = null;
+                if (apertureConstruction != null)
                 {
-                    result =  new Construction(construction, ConstructionLayers);
-                    result = new Construction(result, TextBox_Name.Text);
+                    result =  new ApertureConstruction(apertureConstruction, ConstructionLayers, apertureConstruction.FrameConstructionLayers);
+                    result = new ApertureConstruction(result, TextBox_Name.Text);
                 }
 
                 if(result == null)
                 {
-                    result = new Construction(TextBox_Name.Text, ConstructionLayers);
+                    result = new ApertureConstruction(Guid.NewGuid(), TextBox_Name.Text, Core.Query.Enum<ApertureType>(ComboBox_ApertureType.Text), ConstructionLayers);
                 }
 
                 return result;
@@ -115,7 +131,7 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
 
-            if(constructionLibrary?.GetConstructions()?.Find(x => x.Name == TextBox_Name.Text) != null)
+            if(apertureConstructionLibrary?.GetApertureConstructions()?.Find(x => x.Name == TextBox_Name.Text) != null)
             {
                 MessageBox.Show("Construction with the same name already exists. Provide different name");
                 return;
