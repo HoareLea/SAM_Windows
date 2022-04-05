@@ -80,8 +80,13 @@
       <DependentUpon>PanelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\Material.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SAM.Architectural.Windows\SAM.Architectural.Windows.csproj">
+      <Project>{5a1b6423-f181-400a-a27f-1b5a73c2704d}</Project>
+      <Name>SAM.Architectural.Windows</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SAM.Core.Windows\SAM.Core.Windows.csproj">
       <Project>{1f33e540-da46-411d-a1bc-6a3e554a1e63}</Project>
       <Name>SAM.Core.Windows</Name>

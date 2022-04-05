@@ -62,6 +62,8 @@ namespace SAM.Architectural.Windows
             this.DataGridView_Layers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridView_Layers.Size = new System.Drawing.Size(344, 210);
             this.DataGridView_Layers.TabIndex = 2;
+            this.DataGridView_Layers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Layers_CellDoubleClick);
+            this.DataGridView_Layers.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView_Layers_EditingControlShowing);
             // 
             // Column_MaterialName
             // 
@@ -88,6 +90,7 @@ namespace SAM.Architectural.Windows
             this.Button_Remove.TabIndex = 6;
             this.Button_Remove.Text = "Remove";
             this.Button_Remove.UseVisualStyleBackColor = true;
+            this.Button_Remove.Click += new System.EventHandler(this.Button_Remove_Click);
             // 
             // Button_Add
             // 
@@ -98,6 +101,7 @@ namespace SAM.Architectural.Windows
             this.Button_Add.TabIndex = 5;
             this.Button_Add.Text = "Add";
             this.Button_Add.UseVisualStyleBackColor = true;
+            this.Button_Add.Click += new System.EventHandler(this.Button_Add_Click);
             // 
             // Button_Up
             // 
@@ -108,6 +112,7 @@ namespace SAM.Architectural.Windows
             this.Button_Up.TabIndex = 8;
             this.Button_Up.Text = "Up";
             this.Button_Up.UseVisualStyleBackColor = true;
+            this.Button_Up.Click += new System.EventHandler(this.Button_Up_Click);
             // 
             // Button_Down
             // 
@@ -118,6 +123,7 @@ namespace SAM.Architectural.Windows
             this.Button_Down.TabIndex = 7;
             this.Button_Down.Text = "Down";
             this.Button_Down.UseVisualStyleBackColor = true;
+            this.Button_Down.Click += new System.EventHandler(this.Button_Down_Click);
             // 
             // MaterialLayersControl
             // 
@@ -130,6 +136,7 @@ namespace SAM.Architectural.Windows
             this.Controls.Add(this.Button_Up);
             this.Name = "MaterialLayersControl";
             this.Size = new System.Drawing.Size(350, 250);
+            this.Load += new System.EventHandler(this.MaterialLayersControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Layers)).EndInit();
             this.ResumeLayout(false);
 

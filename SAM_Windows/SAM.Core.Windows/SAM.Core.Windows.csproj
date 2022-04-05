@@ -112,6 +112,7 @@
     <Compile Include="Query\Controls.cs" />
     <Compile Include="Query\DropDownWidth.cs" />
     <Compile Include="Query\LockingProcesses.cs" />
+    <Compile Include="Query\Material.cs" />
     <Compile Include="Query\Size.cs" />
   </ItemGroup>
   <ItemGroup>
