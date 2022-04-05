@@ -168,17 +168,20 @@ namespace SAM.Architectural.Windows
             }
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<MaterialLayer> MaterialLayers
         {
             get
             {
-                if(DataGridView_Layers?.Rows == null)
+                if (DataGridView_Layers?.Rows == null)
                 {
                     return null;
                 }
 
                 List<MaterialLayer> result = new List<MaterialLayer>();
-                foreach(DataGridViewRow dataGridViewRow in DataGridView_Layers.Rows)
+                foreach (DataGridViewRow dataGridViewRow in DataGridView_Layers.Rows)
                 {
                     if (!Core.Query.TryConvert(dataGridViewRow.Cells[1].Value, out double thickness))
                     {
@@ -199,7 +202,7 @@ namespace SAM.Architectural.Windows
             {
                 DataGridView_Layers.Rows.Clear();
 
-                if(value != null)
+                if (value != null)
                 {
                     foreach (MaterialLayer materialLayer in value)
                     {

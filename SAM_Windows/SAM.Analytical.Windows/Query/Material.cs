@@ -7,7 +7,7 @@ namespace SAM.Analytical.Windows
     {
         public static List<ConstructionLayer> ConstructionLayers(this Architectural.Windows.MaterialLayersControl materialLayersControl)
         {
-            List<MaterialLayer> materialLayers = materialLayersControl?.MaterialLayers;
+            List<MaterialLayer> materialLayers = null;//materialLayersControl?.MaterialLayers;
             if(materialLayers == null)
             {
                 return null;

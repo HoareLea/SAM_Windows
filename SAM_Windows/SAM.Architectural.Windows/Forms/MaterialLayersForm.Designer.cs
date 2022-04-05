@@ -59,12 +59,9 @@ namespace SAM.Architectural.Windows.Forms
             // 
             // MaterialLayersControl_Main
             // 
-            this.MaterialLayersControl_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.MaterialLayersControl_Main.Location = new System.Drawing.Point(12, 12);
             this.MaterialLayersControl_Main.Name = "MaterialLayersControl_Main";
-            this.MaterialLayersControl_Main.Size = new System.Drawing.Size(358, 318);
+            this.MaterialLayersControl_Main.Size = new System.Drawing.Size(358, 316);
             this.MaterialLayersControl_Main.TabIndex = 5;
             // 
             // MaterialLayersForm
