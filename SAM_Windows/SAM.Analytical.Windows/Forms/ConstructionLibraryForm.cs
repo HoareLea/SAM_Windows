@@ -274,7 +274,6 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
-
         public ConstructionLibrary ConstructionLibrary
         {
             get

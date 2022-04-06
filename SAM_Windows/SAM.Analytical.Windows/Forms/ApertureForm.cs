@@ -42,9 +42,9 @@ namespace SAM.Analytical.Windows.Forms
         {
             PropertyGrid_Parameters.HidePropertyPages();
 
-            foreach (PanelType panelType in Enum.GetValues(typeof(PanelType)))
+            foreach (ApertureType apertureType in Enum.GetValues(typeof(ApertureType)))
             {
-                ComboBox_ApertureType.Items.Add(Core.Query.Description(panelType));
+                ComboBox_ApertureType.Items.Add(Core.Query.Description(apertureType));
             }
 
             if (aperture != null)
@@ -115,7 +115,8 @@ namespace SAM.Analytical.Windows.Forms
             ApertureConstruction apertureConstruction = null;
             using (ApertureConstructionLibraryForm apertureConstructionLibraryForm = new ApertureConstructionLibraryForm(materialLibrary, apertureConstructionLibrary))
             {
-                if(apertureConstructionLibraryForm.ShowDialog(this) != DialogResult.OK)
+                apertureConstructionLibraryForm.Text = "Aperture Constructions";
+                if (apertureConstructionLibraryForm.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
                 }

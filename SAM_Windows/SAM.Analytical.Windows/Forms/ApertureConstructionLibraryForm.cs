@@ -38,19 +38,18 @@ namespace SAM.Analytical.Windows.Forms
 
         private void ConstructionLibraryForm_Load(object sender, EventArgs e)
         {
-            List<string> panelTypes = new List<string>();
-            panelTypes.Add(string.Empty);
-            foreach (PanelType panelType in Enum.GetValues(typeof(PanelType)))
+            List<string> apertureTypes = new List<string>();
+            foreach (ApertureType apertureType in Enum.GetValues(typeof(ApertureType)))
             {
-                if (panelType == PanelType.Undefined)
+                if (apertureType == ApertureType.Undefined)
                 {
                     continue;
                 }
 
-                panelTypes.Add(Core.Query.Description(panelType));
+                apertureTypes.Add(Core.Query.Description(apertureType));
             }
 
-            (DataGridView_Constructions.Columns[2] as DataGridViewComboBoxColumn).DataSource = panelTypes;
+            (DataGridView_Constructions.Columns[2] as DataGridViewComboBoxColumn).DataSource = apertureTypes;
 
             if (apertureConstructionLibrary == null)
             {
@@ -155,15 +154,7 @@ namespace SAM.Analytical.Windows.Forms
             string name = apertureConstruction.Name;
             double thickness = Math.Round(apertureConstruction.MaxThickness(), 3);
 
-            PanelType panelType = PanelType.Undefined;
-            if (apertureConstruction.TryGetValue(ConstructionParameter.DefaultPanelType, out string panelTypeString))
-            {
-                panelType = Core.Query.Enum<PanelType>(panelTypeString);
-            }
-
-            string defaultType = panelType == PanelType.Undefined ? string.Empty : Core.Query.Description(panelType);
-
-            int index = DataGridView_Constructions.Rows.Add(name, thickness, defaultType);
+            int index = DataGridView_Constructions.Rows.Add(name, thickness, Core.Query.Description(apertureConstruction.ApertureType));
             DataGridViewRow result = DataGridView_Constructions.Rows[index];
             if (result != null)
             {

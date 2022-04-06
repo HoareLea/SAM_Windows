@@ -118,6 +118,7 @@ namespace SAM.Analytical.Windows.Forms
             Construction construction = null;
             using (ConstructionLibraryForm constructionLibraryForm = new ConstructionLibraryForm(materialLibrary, constructionLibrary))
             {
+                constructionLibraryForm.Text = "Constructions";
                 if(constructionLibraryForm.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
