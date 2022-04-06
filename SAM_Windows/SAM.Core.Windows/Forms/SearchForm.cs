@@ -165,5 +165,14 @@ namespace SAM.Core.Windows.Forms
                 ListBox_Texts.Focus();
             }
         }
+
+        private void ListBox_Texts_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if(ListBox_Texts.SelectedItems != null && ListBox_Texts.SelectedItems.Count != 0)
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+        }
     }
 }

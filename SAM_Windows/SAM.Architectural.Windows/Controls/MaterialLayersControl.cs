@@ -212,5 +212,21 @@ namespace SAM.Architectural.Windows
             }
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public MaterialLibrary MaterialLibrary
+        {
+            get
+            {
+                return materialLibrary;
+            }
+            set
+            {
+                materialLibrary = value;
+                Button_Add.Enabled = materialLibrary != null;
+            }
+        }
+
     }
 }

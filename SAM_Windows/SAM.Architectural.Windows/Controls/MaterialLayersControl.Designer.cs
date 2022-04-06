@@ -108,7 +108,7 @@ namespace SAM.Architectural.Windows
             this.Button_Up.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Button_Up.Location = new System.Drawing.Point(3, 219);
             this.Button_Up.Name = "Button_Up";
-            this.Button_Up.Size = new System.Drawing.Size(55, 28);
+            this.Button_Up.Size = new System.Drawing.Size(65, 28);
             this.Button_Up.TabIndex = 8;
             this.Button_Up.Text = "Up";
             this.Button_Up.UseVisualStyleBackColor = true;
@@ -117,9 +117,9 @@ namespace SAM.Architectural.Windows
             // Button_Down
             // 
             this.Button_Down.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Button_Down.Location = new System.Drawing.Point(64, 219);
+            this.Button_Down.Location = new System.Drawing.Point(74, 219);
             this.Button_Down.Name = "Button_Down";
-            this.Button_Down.Size = new System.Drawing.Size(55, 28);
+            this.Button_Down.Size = new System.Drawing.Size(65, 28);
             this.Button_Down.TabIndex = 7;
             this.Button_Down.Text = "Down";
             this.Button_Down.UseVisualStyleBackColor = true;

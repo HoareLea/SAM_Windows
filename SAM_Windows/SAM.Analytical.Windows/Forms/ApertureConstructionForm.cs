@@ -1,7 +1,6 @@
 ﻿using SAM.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace SAM.Analytical.Windows.Forms
@@ -20,14 +19,14 @@ namespace SAM.Analytical.Windows.Forms
 
         public ApertureConstructionForm(MaterialLibrary materialLibrary, ApertureConstructionLibrary apertureConstructionLibrary = null, ApertureConstruction apertureConstruction = null)
         {
-            InitializeComponent();
-
             this.materialLibrary = materialLibrary;
             this.apertureConstruction = apertureConstruction;
             this.apertureConstructionLibrary = apertureConstructionLibrary;
 
-            MaterialLayersControl_Pane.Enabled = materialLibrary != null;
-            MaterialLayersControl_Frame.Enabled = materialLibrary != null;
+            InitializeComponent();
+
+            MaterialLayersControl_Pane.MaterialLibrary = materialLibrary;
+            MaterialLayersControl_Frame.MaterialLibrary = materialLibrary;
         }
 
         private void ApertureConstructionForm_Load(object sender, EventArgs e)

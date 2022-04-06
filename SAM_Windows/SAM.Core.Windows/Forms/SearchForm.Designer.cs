@@ -57,6 +57,7 @@ namespace SAM.Core.Windows.Forms
             this.ListBox_Texts.Name = "ListBox_Texts";
             this.ListBox_Texts.Size = new System.Drawing.Size(208, 244);
             this.ListBox_Texts.TabIndex = 1;
+            this.ListBox_Texts.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListBox_Texts_MouseDoubleClick);
             // 
             // Button_OK
             // 

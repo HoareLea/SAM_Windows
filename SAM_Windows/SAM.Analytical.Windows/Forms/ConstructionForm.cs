@@ -19,13 +19,13 @@ namespace SAM.Analytical.Windows.Forms
 
         public ConstructionForm(MaterialLibrary materialLibrary, ConstructionLibrary constructionLibrary = null, Construction construction = null)
         {
-            InitializeComponent();
-
             this.materialLibrary = materialLibrary;
             this.construction = construction;
             this.constructionLibrary = constructionLibrary;
 
-            MaterialLayersControl_Main.Enabled = materialLibrary != null;
+            InitializeComponent();
+
+            MaterialLayersControl_Main.MaterialLibrary = materialLibrary;
         }
 
         private void ConstructionForm_Load(object sender, EventArgs e)
