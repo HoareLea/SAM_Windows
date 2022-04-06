@@ -37,10 +37,15 @@ namespace SAM.Analytical.Windows.Forms
             this.ComboBox_ApertureType = new System.Windows.Forms.ComboBox();
             this.GroupBox_PaneConstructionLayers = new System.Windows.Forms.GroupBox();
             this.GroupBox_FrameConstruction = new System.Windows.Forms.GroupBox();
+            this.SplitContainer_Construction = new System.Windows.Forms.SplitContainer();
             this.MaterialLayersControl_Pane = new SAM.Architectural.Windows.MaterialLayersControl();
             this.MaterialLayersControl_Frame = new SAM.Architectural.Windows.MaterialLayersControl();
             this.GroupBox_PaneConstructionLayers.SuspendLayout();
             this.GroupBox_FrameConstruction.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_Construction)).BeginInit();
+            this.SplitContainer_Construction.Panel1.SuspendLayout();
+            this.SplitContainer_Construction.Panel2.SuspendLayout();
+            this.SplitContainer_Construction.SuspendLayout();
             this.SuspendLayout();
             // 
             // Label_Name
@@ -105,9 +110,10 @@ namespace SAM.Analytical.Windows.Forms
             // GroupBox_PaneConstructionLayers
             // 
             this.GroupBox_PaneConstructionLayers.Controls.Add(this.MaterialLayersControl_Pane);
-            this.GroupBox_PaneConstructionLayers.Location = new System.Drawing.Point(15, 110);
+            this.GroupBox_PaneConstructionLayers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GroupBox_PaneConstructionLayers.Location = new System.Drawing.Point(0, 0);
             this.GroupBox_PaneConstructionLayers.Name = "GroupBox_PaneConstructionLayers";
-            this.GroupBox_PaneConstructionLayers.Size = new System.Drawing.Size(455, 295);
+            this.GroupBox_PaneConstructionLayers.Size = new System.Drawing.Size(458, 322);
             this.GroupBox_PaneConstructionLayers.TabIndex = 11;
             this.GroupBox_PaneConstructionLayers.TabStop = false;
             this.GroupBox_PaneConstructionLayers.Text = "Pane Construction";
@@ -115,15 +121,39 @@ namespace SAM.Analytical.Windows.Forms
             // GroupBox_FrameConstruction
             // 
             this.GroupBox_FrameConstruction.Controls.Add(this.MaterialLayersControl_Frame);
-            this.GroupBox_FrameConstruction.Location = new System.Drawing.Point(12, 429);
+            this.GroupBox_FrameConstruction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GroupBox_FrameConstruction.Location = new System.Drawing.Point(0, 0);
             this.GroupBox_FrameConstruction.Name = "GroupBox_FrameConstruction";
-            this.GroupBox_FrameConstruction.Size = new System.Drawing.Size(455, 295);
+            this.GroupBox_FrameConstruction.Size = new System.Drawing.Size(458, 318);
             this.GroupBox_FrameConstruction.TabIndex = 12;
             this.GroupBox_FrameConstruction.TabStop = false;
             this.GroupBox_FrameConstruction.Text = "Frame Construction";
             // 
+            // SplitContainer_Construction
+            // 
+            this.SplitContainer_Construction.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SplitContainer_Construction.Location = new System.Drawing.Point(12, 89);
+            this.SplitContainer_Construction.Name = "SplitContainer_Construction";
+            this.SplitContainer_Construction.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // SplitContainer_Construction.Panel1
+            // 
+            this.SplitContainer_Construction.Panel1.Controls.Add(this.GroupBox_PaneConstructionLayers);
+            // 
+            // SplitContainer_Construction.Panel2
+            // 
+            this.SplitContainer_Construction.Panel2.Controls.Add(this.GroupBox_FrameConstruction);
+            this.SplitContainer_Construction.Size = new System.Drawing.Size(458, 644);
+            this.SplitContainer_Construction.SplitterDistance = 322;
+            this.SplitContainer_Construction.TabIndex = 13;
+            // 
             // MaterialLayersControl_Pane
             // 
+            this.MaterialLayersControl_Pane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MaterialLayersControl_Pane.Location = new System.Drawing.Point(6, 34);
             this.MaterialLayersControl_Pane.Name = "MaterialLayersControl_Pane";
             this.MaterialLayersControl_Pane.Size = new System.Drawing.Size(440, 255);
@@ -131,6 +161,9 @@ namespace SAM.Analytical.Windows.Forms
             // 
             // MaterialLayersControl_Frame
             // 
+            this.MaterialLayersControl_Frame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MaterialLayersControl_Frame.Location = new System.Drawing.Point(6, 39);
             this.MaterialLayersControl_Frame.Name = "MaterialLayersControl_Frame";
             this.MaterialLayersControl_Frame.Size = new System.Drawing.Size(443, 250);
@@ -142,8 +175,7 @@ namespace SAM.Analytical.Windows.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(482, 803);
-            this.Controls.Add(this.GroupBox_FrameConstruction);
-            this.Controls.Add(this.GroupBox_PaneConstructionLayers);
+            this.Controls.Add(this.SplitContainer_Construction);
             this.Controls.Add(this.ComboBox_ApertureType);
             this.Controls.Add(this.Label_ApertureType);
             this.Controls.Add(this.Button_OK);
@@ -160,6 +192,10 @@ namespace SAM.Analytical.Windows.Forms
             this.Load += new System.EventHandler(this.ApertureConstructionForm_Load);
             this.GroupBox_PaneConstructionLayers.ResumeLayout(false);
             this.GroupBox_FrameConstruction.ResumeLayout(false);
+            this.SplitContainer_Construction.Panel1.ResumeLayout(false);
+            this.SplitContainer_Construction.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_Construction)).EndInit();
+            this.SplitContainer_Construction.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,5 +213,6 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.GroupBox GroupBox_FrameConstruction;
         private Architectural.Windows.MaterialLayersControl MaterialLayersControl_Pane;
         private Architectural.Windows.MaterialLayersControl MaterialLayersControl_Frame;
+        private System.Windows.Forms.SplitContainer SplitContainer_Construction;
     }
 }

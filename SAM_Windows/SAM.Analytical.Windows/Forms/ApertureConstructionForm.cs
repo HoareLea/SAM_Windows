@@ -83,7 +83,7 @@ namespace SAM.Analytical.Windows.Forms
                 if (apertureConstruction != null)
                 {
                     result =  new ApertureConstruction(apertureConstruction, PaneConstructionLayers, FrameConstructionLayers);
-                    result = new ApertureConstruction(result, TextBox_Name.Text);
+                    result = new ApertureConstruction(result.Guid, result, TextBox_Name.Text);
                 }
 
                 if(result == null)

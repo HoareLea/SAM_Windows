@@ -54,7 +54,7 @@ namespace SAM.Analytical.Windows.Forms
                 if (construction != null)
                 {
                     result =  new Construction(construction, ConstructionLayers);
-                    result = new Construction(result, TextBox_Name.Text);
+                    result = new Construction(result.Guid, result, TextBox_Name.Text);
                 }
 
                 if(result == null)
