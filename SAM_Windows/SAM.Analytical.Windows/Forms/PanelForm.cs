@@ -91,6 +91,14 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
+        public ConstructionLibrary ConstructionLibrary
+        {
+            get
+            {
+                return constructionLibrary;
+            }
+        }
+
         private void Button_OK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
