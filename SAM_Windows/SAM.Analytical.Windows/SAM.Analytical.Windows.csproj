@@ -43,6 +43,10 @@
     <Reference Include="SAM.Core">
       <HintPath>..\..\..\SAM\build\SAM.Core.dll</HintPath>
     </Reference>
+    <Reference Include="SAM.Geometry, Version=1.0.8131.16759, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SAM\build\SAM.Geometry.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -78,6 +82,12 @@
     </Compile>
     <Compile Include="Forms\ConstructionLibraryForm.Designer.cs">
       <DependentUpon>ConstructionLibraryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ApertureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApertureForm.Designer.cs">
+      <DependentUpon>ApertureForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\PanelForm.cs">
       <SubType>Form</SubType>
@@ -115,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConstructionLibraryForm.resx">
       <DependentUpon>ConstructionLibraryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ApertureForm.resx">
+      <DependentUpon>ApertureForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PanelForm.resx">
       <DependentUpon>PanelForm.cs</DependentUpon>
