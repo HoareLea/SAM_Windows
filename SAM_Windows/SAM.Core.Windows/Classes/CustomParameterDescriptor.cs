@@ -1,5 +1,4 @@
-﻿using SAM.Core.Attributes;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Linq;
 

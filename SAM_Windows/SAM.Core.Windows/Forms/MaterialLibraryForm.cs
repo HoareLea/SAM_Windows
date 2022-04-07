@@ -217,7 +217,7 @@ namespace SAM.Core.Windows.Forms
                 return;
             }
 
-            material = Modify.Duplicate(materialLibrary, material);
+            material = Modify.Duplicate(materialLibrary, material, this, enums);
             if(material != null)
             {
                 Add(material);

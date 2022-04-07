@@ -7,7 +7,7 @@ namespace SAM.Core.Windows
 {
     public static partial class Modify
     {
-        public static IMaterial Duplicate(this MaterialLibrary materialLibrary, IMaterial material, IEnumerable<Enum> enums = null)
+        public static IMaterial Duplicate(this MaterialLibrary materialLibrary, IMaterial material, IWin32Window owner = null, IEnumerable<Enum> enums = null)
         {
             if(materialLibrary == null || material == null)
             {
@@ -33,7 +33,7 @@ namespace SAM.Core.Windows
 
             using (MaterialForm materialForm = new MaterialForm(material, enums))
             {
-                if (materialForm.ShowDialog() != DialogResult.OK)
+                if (materialForm.ShowDialog(owner) != DialogResult.OK)
                 {
                     return null;
                 }
