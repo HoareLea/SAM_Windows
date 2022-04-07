@@ -262,5 +262,10 @@ namespace SAM.Core.Windows.Forms
 
             }
         }
+
+        private void MaterialLibraryForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"https://github.com/HoareLea/SAM/wiki/Construction#materials");
+        }
     }
 }

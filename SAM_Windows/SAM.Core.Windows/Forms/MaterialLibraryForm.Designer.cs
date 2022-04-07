@@ -181,6 +181,7 @@ namespace SAM.Core.Windows.Forms
             this.Controls.Add(this.DataGridView_Materials);
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.Button_Cancel);
+            this.HelpButton = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 500);
@@ -188,6 +189,7 @@ namespace SAM.Core.Windows.Forms
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Material Library";
+            this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.MaterialLibraryForm_HelpButtonClicked);
             this.Load += new System.EventHandler(this.MaterialLibraryForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Materials)).EndInit();
             this.ResumeLayout(false);

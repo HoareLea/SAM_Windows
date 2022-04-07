@@ -208,6 +208,7 @@ namespace SAM.Core.Windows.Forms
             this.Controls.Add(this.TextBox_Name);
             this.Controls.Add(this.Label_Name);
             this.Controls.Add(this.PropertyGrid_Parameters);
+            this.HelpButton = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(800, 600);
             this.MinimizeBox = false;
@@ -215,6 +216,7 @@ namespace SAM.Core.Windows.Forms
             this.Name = "MaterialForm";
             this.ShowIcon = false;
             this.Text = "Material";
+            this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.MaterialForm_HelpButtonClicked);
             this.Load += new System.EventHandler(this.MaterialForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

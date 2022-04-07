@@ -181,5 +181,27 @@ namespace SAM.Core.Windows.Forms
 
             Close();
         }
+
+        private void MaterialForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            string link = "https://github.com/HoareLea/SAM/wiki/Construction#materials";
+            if (material != null)
+            {
+                if(material is GasMaterial)
+                {
+                    link = "https://github.com/HoareLea/SAM/wiki/Construction#gas-material";
+                }
+                else if (material is TransparentMaterial)
+                {
+                    link = "https://github.com/HoareLea/SAM/wiki/Construction#transparent-material";
+                }
+                else if (material is OpaqueMaterial)
+                {
+                    link = "https://github.com/HoareLea/SAM/wiki/Construction#opaque-material";
+                }
+            }
+
+            System.Diagnostics.Process.Start(link);
+        }
     }
 }
