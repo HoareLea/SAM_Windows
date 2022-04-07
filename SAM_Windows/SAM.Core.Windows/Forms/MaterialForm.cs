@@ -136,7 +136,7 @@ namespace SAM.Core.Windows.Forms
                 {
                     case MaterialType.Gas:
                         
-                        CustomParameter customParameter = customParameters.Cast<CustomParameter>().ToList().Find(x => x?.Name == "Dynamic Viscosity");
+                        CustomParameter customParameter = customParameters?.Cast<CustomParameter>().ToList().Find(x => x?.Name == "Dynamic Viscosity");
                         if (!Core.Query.TryConvert(customParameter.Value, out double dynamicViscosity))
                         {
                             dynamicViscosity = double.NaN;
