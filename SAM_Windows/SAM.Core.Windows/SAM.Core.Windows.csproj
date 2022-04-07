@@ -121,6 +121,12 @@
     <Compile Include="Query\LockingProcesses.cs" />
     <Compile Include="Query\Material.cs" />
     <Compile Include="Query\Size.cs" />
+    <Compile Include="Controls\SearchControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SearchControl.Designer.cs">
+      <DependentUpon>SearchControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
@@ -128,6 +134,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\SearchControl.resx">
+      <DependentUpon>SearchControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ComboBoxForm.resx">
       <DependentUpon>ComboBoxForm.cs</DependentUpon>
     </EmbeddedResource>
