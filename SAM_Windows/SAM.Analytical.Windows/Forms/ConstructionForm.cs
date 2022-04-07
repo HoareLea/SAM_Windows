@@ -73,7 +73,7 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
 
-            if(constructionLibrary?.GetConstructions()?.Find(x => x.Name == TextBox_Name.Text) != null)
+            if(construction == null && constructionLibrary?.GetConstructions()?.Find(x => x.Name == TextBox_Name.Text) != null)
             {
                 MessageBox.Show("Construction with the same name already exists. Provide different name");
                 return;
