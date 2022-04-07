@@ -252,5 +252,44 @@ namespace SAM.Core.Windows.Forms
             materialLibrary?.Add(material);
             Add(material);
         }
+
+        private void Button_Add_Click(object sender, EventArgs e)
+        {
+            IMaterial material = null;
+            using (MaterialForm materialForm = new MaterialForm(material, enums))
+            {
+                if (materialForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                material = materialForm.Material;
+            }
+
+            if (material == null)
+            {
+                return;
+            }
+
+            materialLibrary?.Add(material);
+            Add(material);
+        }
+
+        private void Button_Remove_Click(object sender, EventArgs e)
+        {
+            if (DataGridView_Materials.SelectedRows == null || DataGridView_Materials.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            foreach (DataGridViewRow dataGridViewRow in DataGridView_Materials.SelectedRows)
+            {
+                DataGridView_Materials.Rows.Remove(dataGridViewRow);
+
+                IMaterial material = dataGridViewRow.Tag as IMaterial;
+                materialLibrary.Remove(material);
+
+            }
+        }
     }
 }

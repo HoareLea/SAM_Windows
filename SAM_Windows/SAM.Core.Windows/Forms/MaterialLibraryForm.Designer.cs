@@ -63,6 +63,7 @@ namespace SAM.Core.Windows.Forms
             this.Button_Remove.TabIndex = 19;
             this.Button_Remove.Text = "Remove";
             this.Button_Remove.UseVisualStyleBackColor = true;
+            this.Button_Remove.Click += new System.EventHandler(this.Button_Remove_Click);
             // 
             // Button_Add
             // 
@@ -73,6 +74,7 @@ namespace SAM.Core.Windows.Forms
             this.Button_Add.TabIndex = 18;
             this.Button_Add.Text = "Add";
             this.Button_Add.UseVisualStyleBackColor = true;
+            this.Button_Add.Click += new System.EventHandler(this.Button_Add_Click);
             // 
             // Label_Search
             // 
