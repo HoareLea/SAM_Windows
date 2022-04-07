@@ -111,6 +111,7 @@
     <Compile Include="Forms\TreeViewForm.Designer.cs">
       <DependentUpon>TreeViewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modify\Duplicate.cs" />
     <Compile Include="Modify\SetValue.cs" />
     <Compile Include="Modify\SetValues.cs" />
     <Compile Include="Modify\HidePropertyPages.cs" />
