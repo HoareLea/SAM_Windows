@@ -64,6 +64,12 @@
     <Compile Include="Convert\ToBitmap\Bitmap.cs" />
     <Compile Include="Create\CustomParameters.cs" />
     <Compile Include="EventHandler\ControlText_NumberOnly.cs" />
+    <Compile Include="Forms\BorderlessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BorderlessForm.Designer.cs">
+      <DependentUpon>BorderlessForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ComboBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\SearchControl.resx">
       <DependentUpon>SearchControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BorderlessForm.resx">
+      <DependentUpon>BorderlessForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ComboBoxForm.resx">
       <DependentUpon>ComboBoxForm.cs</DependentUpon>
