@@ -1,7 +1,7 @@
 ﻿
 namespace SAM.Core.Windows
 {
-    partial class SearchControl<T>
+    partial class SearchControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -55,6 +55,7 @@ namespace SAM.Core.Windows
             this.TextBox_Text.Name = "TextBox_Text";
             this.TextBox_Text.Size = new System.Drawing.Size(194, 22);
             this.TextBox_Text.TabIndex = 2;
+            this.TextBox_Text.TextChanged += new System.EventHandler(this.TextBox_Text_TextChanged);
             this.TextBox_Text.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_Text_KeyDown);
             // 
             // SearchControl

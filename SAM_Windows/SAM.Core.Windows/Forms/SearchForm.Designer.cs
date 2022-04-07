@@ -29,35 +29,10 @@ namespace SAM.Core.Windows.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.TextBox_Text = new System.Windows.Forms.TextBox();
-            this.ListBox_Texts = new System.Windows.Forms.ListBox();
             this.Button_OK = new System.Windows.Forms.Button();
             this.Button_Cancel = new System.Windows.Forms.Button();
+            this.SearchControl_Main = new SAM.Core.Windows.SearchControl();
             this.SuspendLayout();
-            // 
-            // TextBox_Text
-            // 
-            this.TextBox_Text.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Text.Location = new System.Drawing.Point(12, 12);
-            this.TextBox_Text.Name = "TextBox_Text";
-            this.TextBox_Text.Size = new System.Drawing.Size(208, 22);
-            this.TextBox_Text.TabIndex = 0;
-            this.TextBox_Text.TextChanged += new System.EventHandler(this.TextBox_Text_TextChanged);
-            this.TextBox_Text.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_Text_KeyDown);
-            // 
-            // ListBox_Texts
-            // 
-            this.ListBox_Texts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListBox_Texts.FormattingEnabled = true;
-            this.ListBox_Texts.ItemHeight = 16;
-            this.ListBox_Texts.Location = new System.Drawing.Point(12, 40);
-            this.ListBox_Texts.Name = "ListBox_Texts";
-            this.ListBox_Texts.Size = new System.Drawing.Size(208, 244);
-            this.ListBox_Texts.TabIndex = 1;
-            this.ListBox_Texts.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListBox_Texts_MouseDoubleClick);
             // 
             // Button_OK
             // 
@@ -82,16 +57,29 @@ namespace SAM.Core.Windows.Forms
             this.Button_Cancel.UseVisualStyleBackColor = true;
             this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
+            // SearchControl_Main
+            // 
+            this.SearchControl_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchControl_Main.Location = new System.Drawing.Point(12, 7);
+            this.SearchControl_Main.Name = "SearchControl_Main";
+            this.SearchControl_Main.SearchText = "";
+            this.SearchControl_Main.SearchObjectWrapper = null;
+            this.SearchControl_Main.SelectionMode = System.Windows.Forms.SelectionMode.One;
+            this.SearchControl_Main.Size = new System.Drawing.Size(208, 300);
+            this.SearchControl_Main.TabIndex = 7;
+            this.SearchControl_Main.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SearchControl_Main_MouseDoubleClick);
+            // 
             // SearchForm
             // 
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(232, 353);
+            this.Controls.Add(this.SearchControl_Main);
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.Button_Cancel);
-            this.Controls.Add(this.ListBox_Texts);
-            this.Controls.Add(this.TextBox_Text);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(250, 400);
@@ -100,15 +88,12 @@ namespace SAM.Core.Windows.Forms
             this.ShowInTaskbar = false;
             this.Text = "SearchForm";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox TextBox_Text;
-        private System.Windows.Forms.ListBox ListBox_Texts;
         private System.Windows.Forms.Button Button_OK;
         private System.Windows.Forms.Button Button_Cancel;
+        private SearchControl SearchControl_Main;
     }
 }

@@ -4,11 +4,9 @@ using System.Windows.Forms;
 
 namespace SAM.Core.Windows
 {
-    public partial class SearchControl<T> : UserControl
+    public partial class SearchControl : UserControl
     {
-        private SearchWrapper searchWrapper;
-
-        private Dictionary<string, T> dictionary;
+        private SearchObjectWrapper searchObjectWrapper;
 
         public MouseEventHandler MouseDoubleClick;
 
@@ -19,26 +17,26 @@ namespace SAM.Core.Windows
             InitializeComponent();
         }
 
-        public SearchControl(IEnumerable<T> items, Func<T, string> text, bool caseSensitive = false)
+        public SearchControl(IEnumerable<object> items, Func<object, string> text, bool caseSensitive = false)
         {
             InitializeComponent();
 
-            searchWrapper = new SearchWrapper(caseSensitive);
-            if (items != null)
-            {
-                dictionary = new Dictionary<string, T>();
-                foreach (T item in items)
-                {
-                    string value = text == null ? item.ToString() : text.Invoke(item);
-
-                    if (searchWrapper.Add(value))
-                    {
-                        dictionary[value] = item;
-                    }
-                }
-            }
+            searchObjectWrapper = new SearchObjectWrapper(items, text, caseSensitive);
 
             Search();
+        }
+
+        public SearchObjectWrapper SearchObjectWrapper
+        {
+            get
+            {
+                return searchObjectWrapper;
+            }
+            set
+            {
+                searchObjectWrapper = value;
+                Search();
+            }
         }
 
         private void Search()
@@ -56,15 +54,15 @@ namespace SAM.Core.Windows
 
             ListBox_Texts.Items.Clear();
 
-            if (searchWrapper == null)
+            if (searchObjectWrapper == null)
             {
                 return;
             }
 
-            List<string> texts = null; ;
+            List<string> texts = null;
             if (string.IsNullOrEmpty(TextBox_Text.Text) || TextBox_Text.Text.Length < 3)
             {
-                IEnumerable<string> texts_Temp = searchWrapper.Texts;
+                IEnumerable<string> texts_Temp = searchObjectWrapper.Texts;
                 if (texts_Temp != null)
                 {
                     texts = new List<string>(texts_Temp);
@@ -72,7 +70,7 @@ namespace SAM.Core.Windows
             }
             else
             {
-                texts = searchWrapper.Search(TextBox_Text.Text, true);
+                texts = searchObjectWrapper.SearchTexts(TextBox_Text.Text, true);
             }
 
             if (texts == null || texts.Count == 0)
@@ -120,7 +118,7 @@ namespace SAM.Core.Windows
             }
         }
 
-        public List<T> SelectedItems
+        public List<object> SelectedItems
         {
             get
             {
@@ -129,10 +127,11 @@ namespace SAM.Core.Windows
                     return null;
                 }
 
-                List<T> result = new List<T>();
+                List<object> result = new List<object>();
                 foreach (string text in ListBox_Texts.SelectedItems)
                 {
-                    if (dictionary.TryGetValue(text, out T item))
+                    object item = searchObjectWrapper.GetItem<object>(text);
+                    if (item != null)
                     {
                         result.Add(item);
                     }
@@ -140,6 +139,17 @@ namespace SAM.Core.Windows
 
                 return result;
             }
+        }
+
+        public List<T> GetSelectedItems<T>()
+        {
+            List<object> selectedItems = SelectedItems;
+            if(selectedItems == null)
+            {
+                return null;
+            }
+
+            return selectedItems.FindAll(x => x is T).ConvertAll(x => (T)x);
         }
 
         private void ListBox_Texts_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -166,6 +176,11 @@ namespace SAM.Core.Windows
             {
                 eventHandler(this, e);
             }
+        }
+
+        private void TextBox_Text_TextChanged(object sender, EventArgs e)
+        {
+            Search();
         }
     }
 }
