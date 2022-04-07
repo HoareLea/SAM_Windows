@@ -95,6 +95,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Controls.Add(this.Button_Cancel);
             this.Controls.Add(this.TextBox_Name);
             this.Controls.Add(this.Label_Name);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(800, 600);
             this.MinimizeBox = false;
@@ -103,6 +104,7 @@ namespace SAM.Analytical.Windows.Forms
             this.ShowIcon = false;
             this.Text = "Construction";
             this.Load += new System.EventHandler(this.ConstructionForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConstructionForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

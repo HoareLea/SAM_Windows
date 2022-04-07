@@ -141,5 +141,10 @@ namespace SAM.Analytical.Windows.Forms
                 TextBox_Name.Enabled = value;
             }
         }
+
+        private void ApertureConstructionForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            Query.JsonForm(ApertureConstruction, this, e);
+        }
     }
 }

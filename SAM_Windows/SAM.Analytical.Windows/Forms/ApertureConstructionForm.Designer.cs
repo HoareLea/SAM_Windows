@@ -36,10 +36,10 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_ApertureType = new System.Windows.Forms.Label();
             this.ComboBox_ApertureType = new System.Windows.Forms.ComboBox();
             this.GroupBox_PaneConstructionLayers = new System.Windows.Forms.GroupBox();
-            this.GroupBox_FrameConstruction = new System.Windows.Forms.GroupBox();
-            this.SplitContainer_Construction = new System.Windows.Forms.SplitContainer();
             this.MaterialLayersControl_Pane = new SAM.Architectural.Windows.MaterialLayersControl();
+            this.GroupBox_FrameConstruction = new System.Windows.Forms.GroupBox();
             this.MaterialLayersControl_Frame = new SAM.Architectural.Windows.MaterialLayersControl();
+            this.SplitContainer_Construction = new System.Windows.Forms.SplitContainer();
             this.GroupBox_PaneConstructionLayers.SuspendLayout();
             this.GroupBox_FrameConstruction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_Construction)).BeginInit();
@@ -118,6 +118,16 @@ namespace SAM.Analytical.Windows.Forms
             this.GroupBox_PaneConstructionLayers.TabStop = false;
             this.GroupBox_PaneConstructionLayers.Text = "Pane Construction";
             // 
+            // MaterialLayersControl_Pane
+            // 
+            this.MaterialLayersControl_Pane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MaterialLayersControl_Pane.Location = new System.Drawing.Point(6, 34);
+            this.MaterialLayersControl_Pane.Name = "MaterialLayersControl_Pane";
+            this.MaterialLayersControl_Pane.Size = new System.Drawing.Size(440, 255);
+            this.MaterialLayersControl_Pane.TabIndex = 0;
+            // 
             // GroupBox_FrameConstruction
             // 
             this.GroupBox_FrameConstruction.Controls.Add(this.MaterialLayersControl_Frame);
@@ -128,6 +138,16 @@ namespace SAM.Analytical.Windows.Forms
             this.GroupBox_FrameConstruction.TabIndex = 12;
             this.GroupBox_FrameConstruction.TabStop = false;
             this.GroupBox_FrameConstruction.Text = "Frame Construction";
+            // 
+            // MaterialLayersControl_Frame
+            // 
+            this.MaterialLayersControl_Frame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MaterialLayersControl_Frame.Location = new System.Drawing.Point(6, 39);
+            this.MaterialLayersControl_Frame.Name = "MaterialLayersControl_Frame";
+            this.MaterialLayersControl_Frame.Size = new System.Drawing.Size(443, 250);
+            this.MaterialLayersControl_Frame.TabIndex = 0;
             // 
             // SplitContainer_Construction
             // 
@@ -149,26 +169,6 @@ namespace SAM.Analytical.Windows.Forms
             this.SplitContainer_Construction.SplitterDistance = 322;
             this.SplitContainer_Construction.TabIndex = 13;
             // 
-            // MaterialLayersControl_Pane
-            // 
-            this.MaterialLayersControl_Pane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaterialLayersControl_Pane.Location = new System.Drawing.Point(6, 34);
-            this.MaterialLayersControl_Pane.Name = "MaterialLayersControl_Pane";
-            this.MaterialLayersControl_Pane.Size = new System.Drawing.Size(440, 255);
-            this.MaterialLayersControl_Pane.TabIndex = 0;
-            // 
-            // MaterialLayersControl_Frame
-            // 
-            this.MaterialLayersControl_Frame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaterialLayersControl_Frame.Location = new System.Drawing.Point(6, 39);
-            this.MaterialLayersControl_Frame.Name = "MaterialLayersControl_Frame";
-            this.MaterialLayersControl_Frame.Size = new System.Drawing.Size(443, 250);
-            this.MaterialLayersControl_Frame.TabIndex = 0;
-            // 
             // ApertureConstructionForm
             // 
             this.AcceptButton = this.Button_OK;
@@ -182,6 +182,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Controls.Add(this.Button_Cancel);
             this.Controls.Add(this.TextBox_Name);
             this.Controls.Add(this.Label_Name);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(800, 1000);
             this.MinimizeBox = false;
@@ -190,6 +191,7 @@ namespace SAM.Analytical.Windows.Forms
             this.ShowIcon = false;
             this.Text = "Aperture Construction";
             this.Load += new System.EventHandler(this.ApertureConstructionForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ApertureConstructionForm_KeyDown);
             this.GroupBox_PaneConstructionLayers.ResumeLayout(false);
             this.GroupBox_FrameConstruction.ResumeLayout(false);
             this.SplitContainer_Construction.Panel1.ResumeLayout(false);

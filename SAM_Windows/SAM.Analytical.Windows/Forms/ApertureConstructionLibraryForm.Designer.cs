@@ -32,15 +32,15 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_OK = new System.Windows.Forms.Button();
             this.Button_Cancel = new System.Windows.Forms.Button();
             this.DataGridView_Constructions = new System.Windows.Forms.DataGridView();
+            this.Column_ConstructionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Thickness = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Type = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TextBox_Search = new System.Windows.Forms.TextBox();
             this.Label_Search = new System.Windows.Forms.Label();
             this.Button_Remove = new System.Windows.Forms.Button();
             this.Button_Add = new System.Windows.Forms.Button();
             this.Button_Duplicate = new System.Windows.Forms.Button();
             this.Button_Materials = new System.Windows.Forms.Button();
-            this.Column_ConstructionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Thickness = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Type = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Constructions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,6 +93,31 @@ namespace SAM.Analytical.Windows.Forms
             this.DataGridView_Constructions.TabIndex = 7;
             this.DataGridView_Constructions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellContentClick);
             this.DataGridView_Constructions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellDoubleClick);
+            // 
+            // Column_ConstructionName
+            // 
+            this.Column_ConstructionName.FillWeight = 60F;
+            this.Column_ConstructionName.HeaderText = "Aperture Construction Name";
+            this.Column_ConstructionName.MinimumWidth = 6;
+            this.Column_ConstructionName.Name = "Column_ConstructionName";
+            this.Column_ConstructionName.ReadOnly = true;
+            // 
+            // Column_Thickness
+            // 
+            this.Column_Thickness.FillWeight = 15F;
+            this.Column_Thickness.HeaderText = "Thickness";
+            this.Column_Thickness.MinimumWidth = 6;
+            this.Column_Thickness.Name = "Column_Thickness";
+            this.Column_Thickness.ReadOnly = true;
+            // 
+            // Column_Type
+            // 
+            this.Column_Type.FillWeight = 25F;
+            this.Column_Type.HeaderText = "Type";
+            this.Column_Type.MinimumWidth = 6;
+            this.Column_Type.Name = "Column_Type";
+            this.Column_Type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column_Type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // TextBox_Search
             // 
@@ -158,31 +183,6 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Materials.Visible = false;
             this.Button_Materials.Click += new System.EventHandler(this.Button_Materials_Click);
             // 
-            // Column_ConstructionName
-            // 
-            this.Column_ConstructionName.FillWeight = 60F;
-            this.Column_ConstructionName.HeaderText = "Aperture Construction Name";
-            this.Column_ConstructionName.MinimumWidth = 6;
-            this.Column_ConstructionName.Name = "Column_ConstructionName";
-            this.Column_ConstructionName.ReadOnly = true;
-            // 
-            // Column_Thickness
-            // 
-            this.Column_Thickness.FillWeight = 15F;
-            this.Column_Thickness.HeaderText = "Thickness";
-            this.Column_Thickness.MinimumWidth = 6;
-            this.Column_Thickness.Name = "Column_Thickness";
-            this.Column_Thickness.ReadOnly = true;
-            // 
-            // Column_Type
-            // 
-            this.Column_Type.FillWeight = 25F;
-            this.Column_Type.HeaderText = "Type";
-            this.Column_Type.MinimumWidth = 6;
-            this.Column_Type.Name = "Column_Type";
-            this.Column_Type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column_Type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // ApertureConstructionLibraryForm
             // 
             this.AcceptButton = this.Button_OK;
@@ -198,6 +198,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Controls.Add(this.DataGridView_Constructions);
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.Button_Cancel);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 500);
@@ -205,6 +206,7 @@ namespace SAM.Analytical.Windows.Forms
             this.ShowIcon = false;
             this.Text = "Construction Library";
             this.Load += new System.EventHandler(this.ConstructionLibraryForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ApertureConstructionLibraryForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Constructions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

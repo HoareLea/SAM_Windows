@@ -139,5 +139,10 @@ namespace SAM.Analytical.Windows.Forms
             TextBox_Name.Text = panel.Name;
             TextBox_Construction.Text = construction.Name;
         }
+
+        private void PanelForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            Query.JsonForm(Panel, this, e);
+        }
     }
 }

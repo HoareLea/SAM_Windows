@@ -69,6 +69,12 @@
     <Compile Include="Forms\ComboBoxForm.Designer.cs">
       <DependentUpon>ComboBoxForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\JsonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\JsonForm.Designer.cs">
+      <DependentUpon>JsonForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MaterialForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\ComboBoxForm.resx">
       <DependentUpon>ComboBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\JsonForm.resx">
+      <DependentUpon>JsonForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MaterialForm.resx">
       <DependentUpon>MaterialForm.cs</DependentUpon>

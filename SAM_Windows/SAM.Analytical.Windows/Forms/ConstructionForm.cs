@@ -119,5 +119,10 @@ namespace SAM.Analytical.Windows.Forms
                 MaterialLayersControl_Main.Enabled = value;
             }
         }
+
+        private void ConstructionForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            Query.JsonForm(Construction, this, e);
+        }
     }
 }

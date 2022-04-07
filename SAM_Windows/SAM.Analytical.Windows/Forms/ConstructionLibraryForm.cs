@@ -419,5 +419,10 @@ namespace SAM.Analytical.Windows.Forms
                 materialLibrary = materialLibraryForm.MaterialLibrary;
             }
         }
+
+        private void ConstructionLibraryForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            Query.JsonForm(ConstructionLibrary, this, e);
+        }
     }
 }

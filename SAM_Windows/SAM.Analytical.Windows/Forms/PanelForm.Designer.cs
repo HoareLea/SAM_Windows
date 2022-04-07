@@ -227,6 +227,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Controls.Add(this.TextBox_Name);
             this.Controls.Add(this.Label_Name);
             this.Controls.Add(this.PropertyGrid_Parameters);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(800, 600);
             this.MinimizeBox = false;
@@ -235,6 +236,7 @@ namespace SAM.Analytical.Windows.Forms
             this.ShowIcon = false;
             this.Text = "Panel";
             this.Load += new System.EventHandler(this.MaterialForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PanelForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

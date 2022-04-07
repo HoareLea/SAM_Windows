@@ -198,6 +198,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Controls.Add(this.DataGridView_Constructions);
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.Button_Cancel);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 500);
@@ -205,6 +206,7 @@ namespace SAM.Analytical.Windows.Forms
             this.ShowIcon = false;
             this.Text = "Construction Library";
             this.Load += new System.EventHandler(this.ConstructionLibraryForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConstructionLibraryForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Constructions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

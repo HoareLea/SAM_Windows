@@ -136,5 +136,10 @@ namespace SAM.Analytical.Windows.Forms
             TextBox_Name.Text = aperture.Name;
             TextBox_Construction.Text = apertureConstruction.Name;
         }
+
+        private void ApertureForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            Query.JsonForm(Aperture, this, e);
+        }
     }
 }

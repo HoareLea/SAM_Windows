@@ -400,5 +400,10 @@ namespace SAM.Analytical.Windows.Forms
                 materialLibrary = materialLibraryForm.MaterialLibrary;
             }
         }
+
+        private void ApertureConstructionLibraryForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            Query.JsonForm(ApertureConstructionLibrary, this, e);
+        }
     }
 }
