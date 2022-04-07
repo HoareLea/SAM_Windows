@@ -30,14 +30,14 @@ namespace SAM.Architectural.Windows
         private void InitializeComponent()
         {
             this.DataGridView_Layers = new System.Windows.Forms.DataGridView();
-            this.Column_MaterialName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Thickness = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Button_Remove = new System.Windows.Forms.Button();
             this.Button_Add = new System.Windows.Forms.Button();
             this.Button_Up = new System.Windows.Forms.Button();
             this.Button_Down = new System.Windows.Forms.Button();
             this.Label_InternalSide = new System.Windows.Forms.Label();
             this.Label_ExternalSide = new System.Windows.Forms.Label();
+            this.Column_MaterialName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Thickness = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Layers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,22 +66,6 @@ namespace SAM.Architectural.Windows
             this.DataGridView_Layers.TabIndex = 2;
             this.DataGridView_Layers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Layers_CellDoubleClick);
             this.DataGridView_Layers.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView_Layers_EditingControlShowing);
-            // 
-            // Column_MaterialName
-            // 
-            this.Column_MaterialName.HeaderText = "Material Name";
-            this.Column_MaterialName.MinimumWidth = 6;
-            this.Column_MaterialName.Name = "Column_MaterialName";
-            this.Column_MaterialName.ReadOnly = true;
-            this.Column_MaterialName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column_Thickness
-            // 
-            this.Column_Thickness.FillWeight = 30F;
-            this.Column_Thickness.HeaderText = "Thickness";
-            this.Column_Thickness.MinimumWidth = 6;
-            this.Column_Thickness.Name = "Column_Thickness";
-            this.Column_Thickness.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Button_Remove
             // 
@@ -151,6 +135,23 @@ namespace SAM.Architectural.Windows
             this.Label_ExternalSide.Text = "External Side";
             this.Label_ExternalSide.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // Column_MaterialName
+            // 
+            this.Column_MaterialName.FillWeight = 65F;
+            this.Column_MaterialName.HeaderText = "Material Name";
+            this.Column_MaterialName.MinimumWidth = 6;
+            this.Column_MaterialName.Name = "Column_MaterialName";
+            this.Column_MaterialName.ReadOnly = true;
+            this.Column_MaterialName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column_Thickness
+            // 
+            this.Column_Thickness.FillWeight = 35F;
+            this.Column_Thickness.HeaderText = "Thickness [m]";
+            this.Column_Thickness.MinimumWidth = 6;
+            this.Column_Thickness.Name = "Column_Thickness";
+            this.Column_Thickness.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // MaterialLayersControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -174,13 +175,13 @@ namespace SAM.Architectural.Windows
         #endregion
 
         private System.Windows.Forms.DataGridView DataGridView_Layers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_MaterialName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_Thickness;
         private System.Windows.Forms.Button Button_Remove;
         private System.Windows.Forms.Button Button_Add;
         private System.Windows.Forms.Button Button_Up;
         private System.Windows.Forms.Button Button_Down;
         private System.Windows.Forms.Label Label_InternalSide;
         private System.Windows.Forms.Label Label_ExternalSide;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_MaterialName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_Thickness;
     }
 }
