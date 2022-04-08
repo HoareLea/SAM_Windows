@@ -83,6 +83,12 @@
     <Compile Include="Forms\JsonForm.Designer.cs">
       <DependentUpon>JsonForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectMaterialForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectMaterialForm.Designer.cs">
+      <DependentUpon>SelectMaterialForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MaterialForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\JsonForm.resx">
       <DependentUpon>JsonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectMaterialForm.resx">
+      <DependentUpon>SelectMaterialForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MaterialForm.resx">
       <DependentUpon>MaterialForm.cs</DependentUpon>

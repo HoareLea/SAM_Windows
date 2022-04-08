@@ -80,9 +80,11 @@ namespace SAM.Analytical.Windows.Forms
             // MaterialLayersControl_Main
             // 
             this.MaterialLayersControl_Main.Location = new System.Drawing.Point(12, 76);
+            this.MaterialLayersControl_Main.MinimumSize = new System.Drawing.Size(350, 300);
             this.MaterialLayersControl_Main.Name = "MaterialLayersControl_Main";
             this.MaterialLayersControl_Main.Size = new System.Drawing.Size(458, 305);
             this.MaterialLayersControl_Main.TabIndex = 9;
+            this.MaterialLayersControl_Main.Load += new System.EventHandler(this.MaterialLayersControl_Main_Load);
             // 
             // ConstructionForm
             // 

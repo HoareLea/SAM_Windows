@@ -123,5 +123,10 @@ namespace SAM.Analytical.Windows.Forms
         {
             Query.JsonForm(Construction, this, e);
         }
+
+        private void MaterialLayersControl_Main_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
