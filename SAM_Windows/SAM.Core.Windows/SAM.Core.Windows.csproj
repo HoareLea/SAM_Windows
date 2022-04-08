@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="Convert\ToBitmapSource\BitmapSource.cs" />
     <Compile Include="Convert\ToBitmap\Bitmap.cs" />
+    <Compile Include="Create\Material.cs" />
     <Compile Include="Create\CustomParameters.cs" />
     <Compile Include="EventHandler\ControlText_NumberOnly.cs" />
     <Compile Include="Forms\BorderlessForm.cs">
@@ -118,6 +119,12 @@
     <Compile Include="Forms\TreeViewForm.Designer.cs">
       <DependentUpon>TreeViewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MaterialControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MaterialControl.Designer.cs">
+      <DependentUpon>MaterialControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modify\Duplicate.cs" />
     <Compile Include="Modify\SetValue.cs" />
     <Compile Include="Modify\SetValues.cs" />
@@ -141,6 +148,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\MaterialControl.resx">
+      <DependentUpon>MaterialControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SearchControl.resx">
       <DependentUpon>SearchControl.cs</DependentUpon>
     </EmbeddedResource>
