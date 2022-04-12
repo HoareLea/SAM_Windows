@@ -169,8 +169,6 @@ namespace SAM.Analytical.Windows.Forms
             // 
             // TextBox_Area
             // 
-            this.TextBox_Area.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Area.Location = new System.Drawing.Point(118, 160);
             this.TextBox_Area.Name = "TextBox_Area";
             this.TextBox_Area.ReadOnly = true;
@@ -197,8 +195,6 @@ namespace SAM.Analytical.Windows.Forms
             // 
             // TextBox_NetArea
             // 
-            this.TextBox_NetArea.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_NetArea.Location = new System.Drawing.Point(300, 160);
             this.TextBox_NetArea.Name = "TextBox_NetArea";
             this.TextBox_NetArea.ReadOnly = true;
