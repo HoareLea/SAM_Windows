@@ -31,11 +31,6 @@ namespace SAM.Analytical.Windows.Forms
             SpaceControl_Main.Enums = enums?.ToList();
         }
 
-        private void Space_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public Space Space
         {
             get
@@ -46,6 +41,25 @@ namespace SAM.Analytical.Windows.Forms
             {
                 SpaceControl_Main.Space = value;
             }
+        }
+
+        private void Button_Cancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+
+            Close();
+        }
+
+        private void Button_OK_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+
+            Close();
+        }
+
+        private void SpaceForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            Query.JsonForm(Space, this, e);
         }
     }
 }

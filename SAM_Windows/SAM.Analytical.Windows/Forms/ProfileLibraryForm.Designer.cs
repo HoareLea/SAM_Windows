@@ -40,6 +40,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Add = new System.Windows.Forms.Button();
             this.Button_Duplicate = new System.Windows.Forms.Button();
             this.Button_Import = new System.Windows.Forms.Button();
+            this.ComboBox_Type = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Constructions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,7 +116,7 @@ namespace SAM.Analytical.Windows.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Search.Location = new System.Drawing.Point(71, 28);
             this.TextBox_Search.Name = "TextBox_Search";
-            this.TextBox_Search.Size = new System.Drawing.Size(499, 22);
+            this.TextBox_Search.Size = new System.Drawing.Size(337, 22);
             this.TextBox_Search.TabIndex = 8;
             this.TextBox_Search.TextChanged += new System.EventHandler(this.TextBox_Search_TextChanged);
             // 
@@ -172,12 +173,23 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Import.UseVisualStyleBackColor = true;
             this.Button_Import.Click += new System.EventHandler(this.Button_Import_Click);
             // 
+            // ComboBox_Type
+            // 
+            this.ComboBox_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_Type.FormattingEnabled = true;
+            this.ComboBox_Type.Location = new System.Drawing.Point(414, 27);
+            this.ComboBox_Type.Name = "ComboBox_Type";
+            this.ComboBox_Type.Size = new System.Drawing.Size(156, 24);
+            this.ComboBox_Type.TabIndex = 13;
+            this.ComboBox_Type.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Type_SelectedIndexChanged);
+            // 
             // ProfileLibraryForm
             // 
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(582, 453);
+            this.Controls.Add(this.ComboBox_Type);
             this.Controls.Add(this.Button_Import);
             this.Controls.Add(this.Button_Duplicate);
             this.Controls.Add(this.Button_Remove);
@@ -215,5 +227,6 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_ConstructionName;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column_Type;
         private System.Windows.Forms.Button Button_Import;
+        private System.Windows.Forms.ComboBox ComboBox_Type;
     }
 }

@@ -1,9 +1,13 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace SAM.Analytical.Windows.Controls
 {
     public partial class InternalConditionControl : UserControl
     {
+        public bool UseColors { get; set; } = false;
+
         private AdjacencyCluster adjacencyCluster;
         private ProfileLibrary profileLibrary;
         private object @object;
@@ -33,32 +37,36 @@ namespace SAM.Analytical.Windows.Controls
         {
             get
             {
-                return @object as Space;
+                Space space = @object as Space;
+                if(space == null)
+                {
+                    return null;
+                }
+
+                space.InternalCondition = GetInternalCondition();
+                return space;
             }
 
             set
             {
                 @object = value;
-                LoadObject();
+                LoadInternalCondition(value?.InternalCondition);
             }
         }
+
+        
 
         public InternalCondition InternalCondition
         {
             get
             {
-                if(@object is Space)
-                {
-                    return ((Space)@object).InternalCondition;
-                }
-
-                return @object as InternalCondition;
+                return GetInternalCondition();
             }
 
             set
             {
                 @object = value;
-                LoadObject();
+                LoadInternalCondition(value);
             }
         }
 
@@ -72,7 +80,7 @@ namespace SAM.Analytical.Windows.Controls
             set
             {
                 profileLibrary = value;
-                LoadObject();
+                LoadInternalCondition(@object is InternalCondition ? (InternalCondition)@object : (@object as Space)?.InternalCondition);
             }
         }
 
@@ -85,31 +93,50 @@ namespace SAM.Analytical.Windows.Controls
             set
             {
                 adjacencyCluster = value;
-                LoadObject();
+                LoadInternalCondition(@object is InternalCondition ? (InternalCondition)@object : (@object as Space)?.InternalCondition);
             }
         }
 
-        private void LoadObject()
+        private void LoadInternalCondition(InternalCondition internalCondition)
         {
-            InternalCondition internalCondition = @object as InternalCondition;
-            if(internalCondition == null)
-            {
-                internalCondition = (@object as Space)?.InternalCondition;
-            }
+            InternalCondition internalCondition_Template = internalCondition == null ? null : adjacencyCluster?.GetInternalConditions(false, true)?.ToList().Find(x => x.Name == internalCondition.Name);
 
             Space space = @object as Space;
 
-            if(space == null)
+            if (profileLibrary == null)
+            {
+                Button_HeatingProfile.Enabled = false;
+                Button_CoolingProfile.Enabled = false;
+                Button_OccupancyProfile.Enabled = false;
+                Button_LightingProfile.Enabled = false;
+                Button_EquipmentSensibleProfile.Enabled = false;
+                Button_EquipmentLatentProfile.Enabled = false;
+                Button_HumidificationProfile.Enabled = false;
+                Button_DehumidificationProfile.Enabled = false;
+            }
+            else
+            {
+                Button_HeatingProfile.Enabled = true;
+                Button_CoolingProfile.Enabled = true;
+                Button_OccupancyProfile.Enabled = true;
+                Button_LightingProfile.Enabled = true;
+                Button_EquipmentSensibleProfile.Enabled = true;
+                Button_EquipmentLatentProfile.Enabled = true;
+                Button_HumidificationProfile.Enabled = true;
+                Button_DehumidificationProfile.Enabled = true;
+            }
+
+            if (space == null)
             {
                 Button_Select.Visible = false;
                 Button_Create.Visible = false;
-                TextBox_Occupancy_SensibleGain.Visible = false;
+                TextBox_Occupancy_SensibleGain_Calculated.Visible = false;
                 Label_Occupancy_SensibleGain_W.Visible = false;
-                TextBox_Occupancy_LatentGain.Visible = false;
+                TextBox_Occupancy_LatentGain_Calculated.Visible = false;
                 Label_Occupancy_LatentGain_W.Visible = false;
-                TextBox_Equipment_SensibleGain.Visible = false;
+                TextBox_Equipment_SensibleGain_Calculated.Visible = false;
                 TextBox_Equipment_SensibleGain_W.Visible = false;
-                TextBox_Equipment_LatentGain.Visible = false;
+                TextBox_Equipment_LatentGain_Calculated.Visible = false;
                 Label_Equipment_LatentGain_W.Visible = false;
 
                 Label_SupplyUnit_AirFlow.Visible = false;
@@ -121,13 +148,13 @@ namespace SAM.Analytical.Windows.Controls
             {
                 Button_Select.Visible = true;
                 Button_Create.Visible = true;
-                TextBox_Occupancy_SensibleGain.Visible = true;
+                TextBox_Occupancy_SensibleGain_Calculated.Visible = true;
                 Label_Occupancy_SensibleGain_W.Visible = true;
-                TextBox_Occupancy_LatentGain.Visible = true;
+                TextBox_Occupancy_LatentGain_Calculated.Visible = true;
                 Label_Occupancy_LatentGain_W.Visible = true;
-                TextBox_Equipment_SensibleGain.Visible = true;
+                TextBox_Equipment_SensibleGain_Calculated.Visible = true;
                 TextBox_Equipment_SensibleGain_W.Visible = true;
-                TextBox_Equipment_LatentGain.Visible = true;
+                TextBox_Equipment_LatentGain_Calculated.Visible = true;
                 Label_Equipment_LatentGain_W.Visible = true;
 
                 Label_SupplyUnit_AirFlow.Visible = true;
@@ -145,19 +172,19 @@ namespace SAM.Analytical.Windows.Controls
 
             TextBox_Occupancy_ProfileName.Text = null;
             TextBox_Occupancy_ProfileGuid.Text = null;
-            TextBox_Occupancy_SensibleGainPerArea.Text = null;
-            TextBox_Occupancy_SensibleGain.Text = null;
-            TextBox_Occupancy_LatentGainPerArea.Text = null;
-            TextBox_Occupancy_LatentGain.Text = null;
+            TextBox_Occupancy_SensibleGainPerPerson.Text = null;
+            TextBox_Occupancy_SensibleGain_Calculated.Text = null;
+            TextBox_Occupancy_LatentGainPerPerson.Text = null;
+            TextBox_Occupancy_LatentGain_Calculated.Text = null;
 
             TextBox_Equipment_SensibleProfileName.Text = null;
             TextBox_Equipment_SensibleProfileGuid.Text = null;
-            TextBox_Equipment_SensibleGain.Text = null;
+            TextBox_Equipment_SensibleGain_Calculated.Text = null;
             TextBox_Equipment_SensibleGainPerArea.Text = null;
 
             TextBox_Equipment_LatentProfileName.Text = null;
             TextBox_Equipment_LatentProfileGuid.Text = null;
-            TextBox_Equipment_LatentGain.Text = null;
+            TextBox_Equipment_LatentGain_Calculated.Text = null;
             TextBox_Equipment_LatentGainPerArea.Text = null;
 
             TextBox_Lighting_ProfileName.Text = null;
@@ -194,7 +221,7 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_ExhaustUnit_AirFlow.Text = null;
 
 
-            if (InternalCondition != null)
+            if (internalCondition != null)
             {
                 TextBox_Name.Text = internalCondition.Name;
 
@@ -204,7 +231,7 @@ namespace SAM.Analytical.Windows.Controls
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.AreaPerPerson, out @double) && !double.IsNaN(@double))
                 {
-                    TextBox_AreaPerPerson.Text = @double.ToString();
+                    TextBox_AreaPerPerson.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
                 //Infiltration
@@ -222,7 +249,7 @@ namespace SAM.Analytical.Windows.Controls
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.InfiltrationAirChangesPerHour, out @double) && !double.IsNaN(@double))
                 {
-                    TextBox_Infiltration.Text = @double.ToString();
+                    TextBox_Infiltration.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
                 //Occupancy
@@ -240,21 +267,21 @@ namespace SAM.Analytical.Windows.Controls
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.OccupancySensibleGainPerPerson, out @double) && !double.IsNaN(@double))
                 {
-                    TextBox_Occupancy_SensibleGainPerArea.Text = @double.ToString();
+                    TextBox_Occupancy_SensibleGainPerPerson.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
-                if (space!= null)
+                if (space != null)
                 {
                     @double = Analytical.Query.OccupancySensibleGain(space);
-                    if(!double.IsNaN(@double))
+                    if (!double.IsNaN(@double))
                     {
-                        TextBox_Occupancy_SensibleGain.Text = @double.ToString();
+                        TextBox_Occupancy_SensibleGain_Calculated.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                     }
                 }
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.OccupancyLatentGainPerPerson, out @double) && !double.IsNaN(@double))
                 {
-                    TextBox_Occupancy_LatentGainPerArea.Text = @double.ToString();
+                    TextBox_Occupancy_LatentGainPerPerson.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
                 if (space != null)
@@ -262,7 +289,7 @@ namespace SAM.Analytical.Windows.Controls
                     @double = Analytical.Query.OccupancyLatentGain(space);
                     if (!double.IsNaN(@double))
                     {
-                        TextBox_Occupancy_LatentGain.Text = @double.ToString();
+                        TextBox_Occupancy_LatentGain_Calculated.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                     }
                 }
 
@@ -281,7 +308,7 @@ namespace SAM.Analytical.Windows.Controls
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.EquipmentSensibleGainPerArea, out @double) && !double.IsNaN(@double))
                 {
-                    TextBox_Equipment_SensibleGainPerArea.Text = @double.ToString();
+                    TextBox_Equipment_SensibleGainPerArea.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
                 if (space != null)
@@ -289,7 +316,7 @@ namespace SAM.Analytical.Windows.Controls
                     @double = Analytical.Query.CalculatedEquipmentSensibleGain(space);
                     if (!double.IsNaN(@double))
                     {
-                        TextBox_Equipment_SensibleGain.Text = @double.ToString();
+                        TextBox_Equipment_SensibleGain_Calculated.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                     }
                 }
 
@@ -306,7 +333,7 @@ namespace SAM.Analytical.Windows.Controls
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.EquipmentLatentGainPerArea, out @double) && !double.IsNaN(@double))
                 {
-                    TextBox_Equipment_LatentGainPerArea.Text = @double.ToString();
+                    TextBox_Equipment_LatentGainPerArea.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
                 if (space != null)
@@ -314,7 +341,7 @@ namespace SAM.Analytical.Windows.Controls
                     @double = Analytical.Query.CalculatedEquipmentLatentGain(space);
                     if (!double.IsNaN(@double))
                     {
-                        TextBox_Equipment_LatentGain.Text = @double.ToString();
+                        TextBox_Equipment_LatentGain_Calculated.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                     }
                 }
 
@@ -333,12 +360,12 @@ namespace SAM.Analytical.Windows.Controls
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.LightingGain, out @double) && !double.IsNaN(@double))
                 {
-                    TextBox_Lighting_Gain.Text = @double.ToString();
+                    TextBox_Lighting_Gain.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.LightingLevel, out @double) && !double.IsNaN(@double))
                 {
-                    TextBox_Lighting_Level.Text = @double.ToString();
+                    TextBox_Lighting_Level.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
                 //Heating
@@ -357,7 +384,7 @@ namespace SAM.Analytical.Windows.Controls
                 @double = Analytical.Query.HeatingDesignTemperature(internalCondition, profileLibrary);
                 if (!double.IsNaN(@double))
                 {
-                    TextBox_Heating_DesignTemperature.Text = @double.ToString();
+                    TextBox_Heating_DesignTemperature.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
                 //Cooling
@@ -376,7 +403,7 @@ namespace SAM.Analytical.Windows.Controls
                 @double = Analytical.Query.CoolingDesignTemperature(internalCondition, profileLibrary);
                 if (!double.IsNaN(@double))
                 {
-                    TextBox_Cooling_DesignTemperature.Text = @double.ToString();
+                    TextBox_Cooling_DesignTemperature.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
                 //Humidity
@@ -391,9 +418,9 @@ namespace SAM.Analytical.Windows.Controls
                 {
                     TextBox_Humidity_ProfileGuid.Text = profile.Guid.ToString();
                     @double = profile.MaxValue;
-                    if(!double.IsNaN(@double))
+                    if (!double.IsNaN(@double))
                     {
-                        TextBox_Humidity.Text = @double.ToString();
+                        TextBox_Humidity.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                     }
                 }
 
@@ -411,14 +438,14 @@ namespace SAM.Analytical.Windows.Controls
                     @double = profile.MaxValue;
                     if (!double.IsNaN(@double))
                     {
-                        TextBox_Dehumidity.Text = @double.ToString();
+                        TextBox_Dehumidity.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                     }
                 }
 
                 //VentilationSystem
 
                 @string = internalCondition.GetSystemTypeName<VentilationSystemType>();
-                if(!string.IsNullOrWhiteSpace(@string))
+                if (!string.IsNullOrWhiteSpace(@string))
                 {
                     TextBox_VentilationSystem_Name.Text = @string;
                     VentilationSystem ventilationSystem = null;
@@ -427,12 +454,12 @@ namespace SAM.Analytical.Windows.Controls
                         ventilationSystem = adjacencyCluster?.GetRelatedObjects<VentilationSystem>(space)?.Find(x => x.Name == @string);
                     }
 
-                    if(ventilationSystem == null)
+                    if (ventilationSystem == null)
                     {
                         adjacencyCluster?.GetObject((VentilationSystem x) => x.Name == @string);
                     }
 
-                    if(ventilationSystem != null)
+                    if (ventilationSystem != null)
                     {
                         TextBox_VentilationSystem_Guid.Text = ventilationSystem.Guid.ToString();
 
@@ -448,18 +475,18 @@ namespace SAM.Analytical.Windows.Controls
                     }
                 }
 
-                if(space != null)
+                if (space != null)
                 {
                     @double = Analytical.Query.SupplyAirFlow(space);
-                    if(!double.IsNaN(@double))
+                    if (!double.IsNaN(@double))
                     {
-                        TextBox_SupplyUnit_AirFlow.Text = @double.ToString();
+                        TextBox_SupplyUnit_AirFlow.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                     }
 
                     @double = Analytical.Query.ExhaustAirFlow(space);
                     if (!double.IsNaN(@double))
                     {
-                        TextBox_ExhaustUnit_AirFlow.Text = @double.ToString();
+                        TextBox_ExhaustUnit_AirFlow.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                     }
                 }
 
@@ -480,7 +507,7 @@ namespace SAM.Analytical.Windows.Controls
                         adjacencyCluster?.GetObject((HeatingSystem x) => x.Name == @string);
                     }
 
-                    if(heatingSystem != null)
+                    if (heatingSystem != null)
                     {
                         TextBox_HeatingSystem_Guid.Text = heatingSystem.Guid.ToString();
                     }
@@ -508,35 +535,661 @@ namespace SAM.Analytical.Windows.Controls
                         TextBox_CoolingSystem_Guid.Text = coolingSystem.Guid.ToString();
                     }
                 }
+            }
+
+            ApplyColors();
+        }
+
+        private InternalCondition GetInternalCondition()
+        {
+            InternalCondition result = null; 
+            
+            if (@object is Space)
+            {
+                result = ((Space)@object).InternalCondition;
+            }
+            else
+            {
+                result = @object as InternalCondition;
+            }
+
+            result = result == null ? new InternalCondition(TextBox_Name.Text) : new InternalCondition(TextBox_Name.Text, result);
+
+            double @double;
+
+            if(Core.Query.TryConvert(TextBox_AreaPerPerson.Text, out @double))
+            {
+                result.SetValue(InternalConditionParameter.AreaPerPerson, @double);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.AreaPerPerson);
+            }
+
+            if(TextBox_Heating_ProfileName.Text != null)
+            {
+                result.SetValue(InternalConditionParameter.HeatingProfileName, TextBox_Heating_ProfileName.Text);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.HeatingProfileName);
+            }
+
+            if (TextBox_Cooling_ProfileName.Text != null)
+            {
+                result.SetValue(InternalConditionParameter.CoolingProfileName, TextBox_Cooling_ProfileName.Text);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.CoolingProfileName);
+            }
+
+            if (TextBox_Occupancy_ProfileName.Text != null)
+            {
+                result.SetValue(InternalConditionParameter.OccupancyProfileName, TextBox_Occupancy_ProfileName.Text);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.OccupancyProfileName);
+            }
+
+            if (Core.Query.TryConvert(TextBox_Occupancy_SensibleGainPerPerson.Text, out @double))
+            {
+                result.SetValue(InternalConditionParameter.OccupancySensibleGainPerPerson, @double);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.OccupancySensibleGainPerPerson);
+            }
+
+            if (Core.Query.TryConvert(TextBox_Occupancy_LatentGainPerPerson.Text, out @double))
+            {
+                result.SetValue(InternalConditionParameter.OccupancyLatentGainPerPerson, @double);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.OccupancyLatentGainPerPerson);
+            }
+
+            if (TextBox_Lighting_ProfileName.Text != null)
+            {
+                result.SetValue(InternalConditionParameter.LightingProfileName, TextBox_Lighting_ProfileName.Text);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.LightingProfileName);
+            }
+
+            if (Core.Query.TryConvert(TextBox_Lighting_Gain.Text, out @double))
+            {
+                result.SetValue(InternalConditionParameter.LightingGain, @double);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.LightingGain);
+            }
+
+            if (Core.Query.TryConvert(TextBox_Lighting_Level.Text, out @double))
+            {
+                result.SetValue(InternalConditionParameter.LightingLevel, @double);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.LightingLevel);
+            }
+
+            if (TextBox_Equipment_SensibleProfileName.Text != null)
+            {
+                result.SetValue(InternalConditionParameter.EquipmentSensibleProfileName, TextBox_Equipment_SensibleProfileName.Text);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.EquipmentSensibleProfileName);
+            }
+
+            if (Core.Query.TryConvert(TextBox_Equipment_SensibleGainPerArea.Text, out @double))
+            {
+                result.SetValue(InternalConditionParameter.EquipmentSensibleGainPerArea, @double);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.EquipmentSensibleGainPerArea);
+            }
+
+            if (TextBox_Equipment_LatentProfileName.Text != null)
+            {
+                result.SetValue(InternalConditionParameter.EquipmentLatentProfileName, TextBox_Equipment_LatentProfileName.Text);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.EquipmentLatentProfileName);
+            }
+
+            if (Core.Query.TryConvert(TextBox_Equipment_LatentGainPerArea.Text, out @double))
+            {
+                result.SetValue(InternalConditionParameter.EquipmentLatentGainPerArea, @double);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.EquipmentLatentGainPerArea);
+            }
+
+            if (TextBox_Humidity_ProfileName.Text != null)
+            {
+                result.SetValue(InternalConditionParameter.HumidificationProfileName, TextBox_Humidity_ProfileName.Text);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.HumidificationProfileName);
+            }
+
+            if (TextBox_Dehumidity_ProfileName.Text != null)
+            {
+                result.SetValue(InternalConditionParameter.DehumidificationProfileName, TextBox_Dehumidity_ProfileName.Text);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.DehumidificationProfileName);
+            }
+
+            if (TextBox_Infiltration_ProfileName.Text != null)
+            {
+                result.SetValue(InternalConditionParameter.InfiltrationProfileName, TextBox_Infiltration_ProfileName.Text);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.InfiltrationProfileName);
+            }
+
+            if (Core.Query.TryConvert(TextBox_Infiltration.Text, out @double))
+            {
+                result.SetValue(InternalConditionParameter.InfiltrationAirChangesPerHour, @double);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.InfiltrationAirChangesPerHour);
+            }
+
+            if (TextBox_VentilationSystem_Name.Text != null)
+            {
+                result.SetValue(InternalConditionParameter.VentilationSystemTypeName, TextBox_VentilationSystem_Name.Text);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.VentilationSystemTypeName);
+            }
+
+            if (TextBox_HeatingSystem_Name.Text != null)
+            {
+                result.SetValue(InternalConditionParameter.HeatingSystemTypeName, TextBox_HeatingSystem_Name.Text);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.HeatingSystemTypeName);
+            }
+
+            if (TextBox_CoolingSystem_Name.Text != null)
+            {
+                result.SetValue(InternalConditionParameter.CoolingSystemTypeName, TextBox_CoolingSystem_Name.Text);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.CoolingSystemTypeName);
+            }
+
+            return result;
+        }
+
+        private void ApplyColors()
+        {
+            if(!UseColors)
+            {
+                return;
+            }
+
+            System.Drawing.Color color_Modified = System.Drawing.Color.LightYellow;
+            System.Drawing.Color color_Existing = System.Drawing.Color.LightGreen;
+
+
+            List<TextBox> textBoxes = Core.Windows.Query.Controls<TextBox>(this);
+            if(textBoxes != null)
+            {
+                textBoxes.ForEach(x => x.BackColor = x.ReadOnly ? System.Drawing.SystemColors.Control : System.Drawing.Color.White);
 
             }
+
+            if(string.IsNullOrWhiteSpace(TextBox_Name.Text))
+            {
+                return;
+            }
+
+            InternalCondition internalCondition_Template = adjacencyCluster?.GetInternalConditions(false, true)?.ToList().Find(x => x.Name == TextBox_Name.Text);
+
+            if (TextBox_Name?.Text == internalCondition_Template?.Name)
+            {
+                TextBox_Name.BackColor = color_Existing;
+            }
+            else
+            {
+                TextBox_Name.BackColor = color_Modified;
+            }
+
+            if (internalCondition_Template == null)
+            {
+                return;
+            }
+
+            double @double;
+            double double_Template;
+
+            string @string;
+            string string_Template;
+
+            //Heating
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.HeatingProfileName, out string_Template))
+            {
+                string_Template = null;
+            }
+
+            string_Template = string.IsNullOrEmpty(string_Template) ? null : string_Template;
+            @string = string.IsNullOrEmpty(TextBox_Heating_ProfileName.Text) ? null : TextBox_Heating_ProfileName.Text;
+
+            if (@string != string_Template)
+            {
+                TextBox_Heating_ProfileName.BackColor = color_Modified;
+                TextBox_Heating_ProfileGuid.BackColor = color_Modified;
+                TextBox_Heating_DesignTemperature.BackColor = color_Modified;
+            }
+
+            //Cooling
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.CoolingProfileName, out string_Template))
+            {
+                string_Template = null;
+            }
+
+            string_Template = string.IsNullOrEmpty(string_Template) ? null : string_Template;
+            @string = string.IsNullOrEmpty(TextBox_Cooling_ProfileName.Text) ? null : TextBox_Cooling_ProfileName.Text;
+
+            if (@string != string_Template)
+            {
+                TextBox_Cooling_ProfileName.BackColor = color_Modified;
+                TextBox_Cooling_ProfileGuid.BackColor = color_Modified;
+                TextBox_Cooling_DesignTemperature.BackColor = color_Modified;
+            }
+
+            //Occupancy
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.OccupancyProfileName, out string_Template))
+            {
+                string_Template = null;
+            }
+
+            string_Template = string.IsNullOrEmpty(string_Template) ? null : string_Template;
+            @string = string.IsNullOrEmpty(TextBox_Occupancy_ProfileName.Text) ? null : TextBox_Occupancy_ProfileName.Text;
+
+            if (@string != string_Template)
+            {
+                TextBox_Occupancy_ProfileName.BackColor = color_Modified;
+                TextBox_Occupancy_ProfileGuid.BackColor = color_Modified;
+            }
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.OccupancySensibleGainPerPerson, out double_Template))
+            {
+                double_Template = double.NaN;
+            }
+
+            if (!Core.Query.TryConvert(TextBox_Occupancy_SensibleGainPerPerson.Text, out @double))
+            {
+                @double = double.NaN;
+            }
+
+            if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
+            {
+                TextBox_Occupancy_SensibleGainPerPerson.BackColor = color_Modified;
+            }
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.OccupancyLatentGainPerPerson, out double_Template))
+            {
+                double_Template = double.NaN;
+            }
+
+            if (!Core.Query.TryConvert(TextBox_Occupancy_LatentGainPerPerson.Text, out @double))
+            {
+                @double = double.NaN;
+            }
+
+            if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
+            {
+                TextBox_Occupancy_LatentGainPerPerson.BackColor = color_Modified;
+            }
+
+            //Lighting
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.LightingProfileName, out string_Template))
+            {
+                string_Template = null;
+            }
+
+            string_Template = string.IsNullOrEmpty(string_Template) ? null : string_Template;
+            @string = string.IsNullOrEmpty(TextBox_Lighting_ProfileName.Text) ? null : TextBox_Lighting_ProfileName.Text;
+
+            if (@string != string_Template)
+            {
+                TextBox_Lighting_ProfileName.BackColor = color_Modified;
+                TextBox_Lighting_ProfileGuid.BackColor = color_Modified;
+            }
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.LightingGain, out double_Template))
+            {
+                double_Template = double.NaN;
+            }
+
+            if (!Core.Query.TryConvert(TextBox_Lighting_Gain.Text, out @double))
+            {
+                @double = double.NaN;
+            }
+
+            if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
+            {
+                TextBox_Lighting_Gain.BackColor = color_Modified;
+            }
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.LightingLevel, out double_Template))
+            {
+                double_Template = double.NaN;
+            }
+
+            if (!Core.Query.TryConvert(TextBox_Lighting_Level.Text, out @double))
+            {
+                @double = double.NaN;
+            }
+
+            if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
+            {
+                TextBox_Lighting_Level.BackColor = color_Modified;
+            }
+
+            //Equipment Sensible
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.EquipmentSensibleProfileName, out string_Template))
+            {
+                string_Template = null;
+            }
+
+            string_Template = string.IsNullOrEmpty(string_Template) ? null : string_Template;
+            @string = string.IsNullOrEmpty(TextBox_Equipment_SensibleProfileName.Text) ? null : TextBox_Equipment_SensibleProfileName.Text;
+
+            if (@string != string_Template)
+            {
+                TextBox_Equipment_SensibleProfileName.BackColor = color_Modified;
+                TextBox_Equipment_SensibleProfileGuid.BackColor = color_Modified;
+            }
+            
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.EquipmentSensibleGainPerArea, out double_Template))
+            {
+                double_Template = double.NaN;
+            }
+
+            if (!Core.Query.TryConvert(TextBox_Equipment_LatentGainPerArea.Text, out @double))
+            {
+                @double = double.NaN;
+            }
+
+            if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
+            {
+                TextBox_Equipment_LatentGainPerArea.BackColor = color_Modified;
+            }
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.EquipmentLatentProfileName, out string_Template))
+            {
+                string_Template = null;
+            }
+
+            string_Template = string.IsNullOrEmpty(string_Template) ? null : string_Template;
+            @string = string.IsNullOrEmpty(TextBox_Equipment_LatentProfileName.Text) ? null : TextBox_Equipment_LatentProfileName.Text;
+
+            if (@string != string_Template)
+            {
+                TextBox_Equipment_LatentProfileName.BackColor = color_Modified;
+                TextBox_Equipment_LatentProfileGuid.BackColor = color_Modified;
+            }
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.EquipmentLatentGainPerArea, out double_Template))
+            {
+                double_Template = double.NaN;
+            }
+
+            if (!Core.Query.TryConvert(TextBox_Equipment_LatentGainPerArea.Text, out @double))
+            {
+                @double = double.NaN;
+            }
+
+            if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
+            {
+                TextBox_Equipment_LatentGainPerArea.BackColor = color_Modified;
+            }
+
+            //Humidification
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.HumidificationProfileName, out string_Template))
+            {
+                string_Template = null;
+            }
+
+            string_Template = string.IsNullOrEmpty(string_Template) ? null : string_Template;
+            @string = string.IsNullOrEmpty(TextBox_Humidity_ProfileName.Text) ? null : TextBox_Humidity_ProfileName.Text;
+
+            if (@string != string_Template)
+            {
+                TextBox_Humidity_ProfileName.BackColor = color_Modified;
+                TextBox_Humidity_ProfileGuid.BackColor = color_Modified;
+                TextBox_Humidity.BackColor = color_Modified;
+            }
+
+            //Dehumidification
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.DehumidificationProfileName, out string_Template))
+            {
+                string_Template = null;
+            }
+
+            string_Template = string.IsNullOrEmpty(string_Template) ? null : string_Template;
+            @string = string.IsNullOrEmpty(TextBox_Dehumidity_ProfileName.Text) ? null : TextBox_Dehumidity_ProfileName.Text;
+
+            if (@string != string_Template)
+            {
+                TextBox_Dehumidity_ProfileName.BackColor = color_Modified;
+                TextBox_Dehumidity_ProfileGuid.BackColor = color_Modified;
+                TextBox_Dehumidity.BackColor = color_Modified;
+            }
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.InfiltrationProfileName, out string_Template))
+            {
+                string_Template = null;
+            }
+
+            //Infiltration
+
+            string_Template = string.IsNullOrEmpty(string_Template) ? null : string_Template;
+            @string = string.IsNullOrEmpty(TextBox_Infiltration_ProfileName.Text) ? null : TextBox_Infiltration_ProfileName.Text;
+
+            if (!string.IsNullOrWhiteSpace(@string) && !string.IsNullOrWhiteSpace(string_Template) && @string != string_Template)
+            {
+                TextBox_Infiltration_ProfileName.BackColor = color_Modified;
+                TextBox_Infiltration_ProfileGuid.BackColor = color_Modified;
+            }
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.InfiltrationAirChangesPerHour, out double_Template))
+            {
+                double_Template = double.NaN;
+            }
+
+            if(!Core.Query.TryConvert(TextBox_Infiltration.Text, out @double))
+            {
+                @double = double.NaN;
+            }
+
+            if(!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
+            {
+                TextBox_Infiltration.BackColor = color_Modified;
+            }
+
+            //Ventilation System
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.VentilationSystemTypeName, out string_Template))
+            {
+                string_Template = null;
+            }
+
+            string_Template = string.IsNullOrEmpty(string_Template) ? null : string_Template;
+            @string = string.IsNullOrEmpty(TextBox_VentilationSystem_Name.Text) ? null : TextBox_VentilationSystem_Name.Text;
+
+            if (@string != string_Template)
+            {
+                TextBox_VentilationSystem_Name.BackColor = color_Modified;
+                TextBox_VentilationSystem_Guid.BackColor = color_Modified;
+            }
+
+            //Heating System
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.HeatingSystemTypeName, out string_Template))
+            {
+                string_Template = null;
+            }
+
+            string_Template = string.IsNullOrEmpty(string_Template) ? null : string_Template;
+            @string = string.IsNullOrEmpty(TextBox_HeatingSystem_Name.Text) ? null : TextBox_HeatingSystem_Name.Text;
+
+            if (@string != string_Template)
+            {
+                TextBox_HeatingSystem_Name.BackColor = color_Modified;
+                TextBox_HeatingSystem_Guid.BackColor = color_Modified;
+            }
+
+            //Cooling System
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.CoolingSystemTypeName, out string_Template))
+            {
+                string_Template = null;
+            }
+
+            string_Template = string.IsNullOrEmpty(string_Template) ? null : string_Template;
+            @string = string.IsNullOrEmpty(TextBox_CoolingSystem_Name.Text) ? null : TextBox_CoolingSystem_Name.Text;
+
+            if (@string != string_Template)
+            {
+                TextBox_CoolingSystem_Name.BackColor = color_Modified;
+                TextBox_CoolingSystem_Guid.BackColor = color_Modified;
+            }
+
         }
 
         private void InternalConditionControl_Load(object sender, System.EventArgs e)
         {
             TextBox_AreaPerPerson.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
-            
+
             TextBox_Infiltration.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
-            
-            TextBox_Occupancy_SensibleGain.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
-            TextBox_Occupancy_LatentGain.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
-            TextBox_Occupancy_SensibleGainPerArea.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
-            TextBox_Occupancy_LatentGainPerArea.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+
+            TextBox_Occupancy_SensibleGain_Calculated.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_Occupancy_LatentGain_Calculated.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_Occupancy_SensibleGainPerPerson.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_Occupancy_LatentGainPerPerson.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
 
             TextBox_Lighting_Gain.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
             TextBox_Lighting_Level.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
 
-            TextBox_Heating_DesignTemperature.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+
+            TextBox_Name.TextChanged += TextBox_TextChanged;
             
-            TextBox_Cooling_DesignTemperature.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_AreaPerPerson.TextChanged += TextBox_TextChanged;
+            
+            TextBox_Heating_ProfileName.TextChanged += TextBox_TextChanged;
+            
+            TextBox_Cooling_ProfileName.TextChanged += TextBox_TextChanged;
+            
+            TextBox_Occupancy_ProfileName.TextChanged += TextBox_TextChanged;
+            
+            TextBox_Lighting_ProfileName.TextChanged += TextBox_TextChanged;
+            TextBox_Lighting_Gain.TextChanged += TextBox_TextChanged;
+            TextBox_Lighting_Level.TextChanged += TextBox_TextChanged;
+            
+            TextBox_Occupancy_SensibleGain_Calculated.TextChanged += TextBox_TextChanged;
+            TextBox_Occupancy_SensibleGainPerPerson.TextChanged += TextBox_TextChanged;
+            TextBox_Occupancy_LatentGain_Calculated.TextChanged += TextBox_TextChanged;
+            TextBox_Occupancy_LatentGainPerPerson.TextChanged += TextBox_TextChanged;
 
-            TextBox_Humidity.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_Equipment_SensibleProfileName.TextChanged += TextBox_TextChanged;
+            TextBox_Equipment_SensibleGain_Calculated.TextChanged += TextBox_TextChanged;
+            TextBox_Equipment_SensibleGainPerArea.TextChanged += TextBox_TextChanged;
 
-            TextBox_Dehumidity.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_Equipment_LatentProfileName.TextChanged += TextBox_TextChanged;
+            TextBox_Equipment_LatentGain_Calculated.TextChanged += TextBox_TextChanged;
+            TextBox_Equipment_LatentGainPerArea.TextChanged += TextBox_TextChanged;
 
-            TextBox_SupplyUnit_AirFlow.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_Humidity_ProfileName.TextChanged += TextBox_TextChanged;
+            TextBox_Dehumidity_ProfileName.TextChanged += TextBox_TextChanged;
 
-            TextBox_ExhaustUnit_AirFlow.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_Infiltration_ProfileName.TextChanged += TextBox_TextChanged;
+            TextBox_Infiltration.TextChanged += TextBox_TextChanged;
+
+            TextBox_VentilationSystem_Name.TextChanged += TextBox_TextChanged;
+            TextBox_HeatingSystem_Name.TextChanged += TextBox_TextChanged;
+            TextBox_CoolingSystem_Name.TextChanged += TextBox_TextChanged;
+
+            TextBox_SupplyUnit_Name.TextChanged += TextBox_TextChanged;
+            TextBox_ExhaustUnit_Name.TextChanged += TextBox_TextChanged;
+        }
+
+        private void TextBox_TextChanged(object sender, System.EventArgs e)
+        {
+            ApplyColors();
+        }
+
+        private void Button_Select_Click(object sender, System.EventArgs e)
+        {
+            InternalConditionLibrary internalConditionLibrary = new InternalConditionLibrary("Internal Condition Library");
+            adjacencyCluster?.GetInternalConditions(false, true)?.ToList().ForEach(x => internalConditionLibrary.Add(x));
+
+            using (Forms.InternalConditionLibraryForm internalConditionForm = new Forms.InternalConditionLibraryForm(internalConditionLibrary, profileLibrary, adjacencyCluster, InternalCondition))
+            {
+                if (internalConditionForm.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+
+                profileLibrary = internalConditionForm.ProfileLibrary;
+                adjacencyCluster = internalConditionForm.AdjacencyCluster;
+
+                Space space = Space;
+                if (space != null)
+                {
+                    space.InternalCondition = internalConditionForm.GetInternalConditions(true)?.FirstOrDefault();
+                    Space = space;
+                }
+                else
+                {
+                    InternalCondition = internalConditionForm.GetInternalConditions(true)?.FirstOrDefault();
+                }
+            }
+        }
+
+        private void Button_HeatingProfile_Click(object sender, System.EventArgs e)
+        {
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Thermostat);
+            if(profile == null)
+            {
+                return;
+            }
+
+            TextBox_Heating_ProfileName.Text = profile.Name;
+            TextBox_Heating_ProfileGuid.Text = profile.Guid.ToString();
+
+            InternalCondition internalCondition = GetInternalCondition();
+
+            double @double = Analytical.Query.HeatingDesignTemperature(internalCondition, profileLibrary);
+            TextBox_Heating_DesignTemperature.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
     }
 }

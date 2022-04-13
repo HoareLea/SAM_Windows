@@ -61,5 +61,19 @@ namespace SAM.Analytical.Windows.Forms
                 return InternalConditionControl_Main.InternalCondition;
             }
         }
+
+        public bool UseColors
+        {
+            get
+            {
+                return InternalConditionControl_Main.UseColors;
+            }
+
+            set
+            {
+                InternalConditionControl_Main.UseColors = value;
+            }
+        }
+
     }
 }

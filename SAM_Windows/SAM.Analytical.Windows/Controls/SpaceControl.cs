@@ -125,7 +125,7 @@ namespace SAM.Analytical.Windows
         {
             TextBox_Name.Text = space?.Name;
             TextBox_Guid.Text = space?.Guid.ToString();
-            TextBox_InternalCondition.Text = space.InternalCondition?.Name;
+            TextBox_InternalCondition.Text = space?.InternalCondition?.Name;
 
             LoadParameters();
         }
@@ -148,14 +148,21 @@ namespace SAM.Analytical.Windows
 
         private void Button_ModifyInternalCondition_Click(object sender, EventArgs e)
         {
-            using (InternalConditionForm internalConditionForm = new InternalConditionForm(space, profileLibrary, adjacencyCluster))
+            if(space == null)
             {
+                return;
+            }
+
+            using (InternalConditionForm internalConditionForm = new InternalConditionForm(new Space(space), profileLibrary, adjacencyCluster))
+            {
+                internalConditionForm.UseColors = true;
                 if (internalConditionForm.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
                 }
 
                 space.InternalCondition = internalConditionForm.InternalCondition;
+                Space = space;
             }
         }
     }

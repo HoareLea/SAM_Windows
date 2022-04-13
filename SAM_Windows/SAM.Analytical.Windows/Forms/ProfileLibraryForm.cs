@@ -15,6 +15,7 @@ namespace SAM.Analytical.Windows.Forms
         public ProfileLibraryForm()
         {
             InitializeComponent();
+            AddTypes();
         }
 
         public ProfileLibraryForm(ProfileLibrary profileLibrary)
@@ -22,6 +23,8 @@ namespace SAM.Analytical.Windows.Forms
             InitializeComponent();
 
             this.profileLibrary = profileLibrary;
+
+            AddTypes();
         }
 
         public ProfileLibraryForm(ProfileLibrary profileLibrary, Profile profile)
@@ -31,33 +34,12 @@ namespace SAM.Analytical.Windows.Forms
             this.profileLibrary = profileLibrary;
 
             profile_Selected = profile;
+
+            AddTypes();
         }
 
         private void ProfileLibraryForm_Load(object sender, EventArgs e)
         {
-            List<string> profileTypes = new List<string>();
-            foreach (ProfileType profileType in Enum.GetValues(typeof(ProfileType)))
-            {
-                if (profileType == ProfileType.Undefined)
-                {
-                    continue;
-                }
-
-                profileTypes.Add(Core.Query.Description(profileType));
-            }
-
-            foreach (ProfileGroup profileGroup in Enum.GetValues(typeof(ProfileGroup)))
-            {
-                if (profileGroup == ProfileGroup.Undefined)
-                {
-                    continue;
-                }
-
-                profileTypes.Add(Core.Query.Description(profileGroup));
-            }
-
-            (DataGridView_Constructions.Columns[1] as DataGridViewComboBoxColumn).DataSource = profileTypes;
-
             if (profileLibrary == null)
             {
                 profileLibrary = new ProfileLibrary("Profile Library");
@@ -158,21 +140,118 @@ namespace SAM.Analytical.Windows.Forms
 
             string name = profile.Name;
 
-            object type = null;
+            Enum type = null;
             type = profile.ProfileType;
             if((ProfileType)type == ProfileType.Undefined)
             {
                 type = profile.ProfileGroup;
             }
 
-            int index = DataGridView_Constructions.Rows.Add(name, Core.Query.Description((Enum)type));
+            int index = DataGridView_Constructions.Rows.Add(name, Core.Query.Description(type));
             DataGridViewRow result = DataGridView_Constructions.Rows[index];
             if (result != null)
             {
                 result.Tag = profile;
             }
 
+            if(type != null)
+            {
+                Enum @type_Selected = Type;
+                if(type_Selected != null)
+                {
+                    if (!type.Equals(type_Selected))
+                    {
+                        if(type is ProfileType)
+                        {
+                            result.Visible = false;
+                        }
+                        else if(type is ProfileGroup)
+                        {
+                            if(type_Selected is ProfileType)
+                            {
+                                if(!((ProfileGroup)type).Equals(((ProfileType)type_Selected).ProfileGroup()))
+                                {
+                                    result.Visible = false;
+                                }
+                            }
+                            else
+                            {
+                                result.Visible = false;
+                            }
+                        }
+                    }
+                }
+            }
+
             return result;
+        }
+
+        private void AddTypes()
+        {
+            List<string> profileTypes = new List<string>();
+            foreach (ProfileType profileType in Enum.GetValues(typeof(ProfileType)))
+            {
+                if (profileType == ProfileType.Undefined)
+                {
+                    continue;
+                }
+
+                profileTypes.Add(Core.Query.Description(profileType));
+            }
+
+            foreach (ProfileGroup profileGroup in Enum.GetValues(typeof(ProfileGroup)))
+            {
+                if (profileGroup == ProfileGroup.Undefined)
+                {
+                    continue;
+                }
+
+                profileTypes.Add(Core.Query.Description(profileGroup));
+            }
+
+            (DataGridView_Constructions.Columns[1] as DataGridViewComboBoxColumn).DataSource = profileTypes;
+
+            profileTypes = new List<string>(profileTypes);
+            profileTypes.Insert(0, string.Empty);
+            ComboBox_Type.DataSource = profileTypes;
+            ComboBox_Type.Text = string.Empty;
+        }
+
+        public Enum Type
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(ComboBox_Type.Text))
+                {
+                    return null;
+                }
+
+                Enum result = Core.Query.Enum<ProfileType>(ComboBox_Type.Text);
+                if ((ProfileType)result == ProfileType.Undefined)
+                {
+                    result = Core.Query.Enum<ProfileGroup>(ComboBox_Type.Text);
+                }
+
+                return result;
+            }
+
+            set
+            {
+                if (value == null && ComboBox_Type.Text != string.Empty)
+                {
+                    ComboBox_Type.Text = string.Empty;
+                    Add(profileLibrary);
+                }
+                else if (value is ProfileType || value is ProfileGroup)
+                {
+                    string text = Core.Query.Description(value);
+                    if (ComboBox_Type.Text != text)
+                    {
+                        ComboBox_Type.Text = text;
+                        Add(profileLibrary);
+                    }
+                }
+            }
         }
 
         private void Button_OK_Click(object sender, EventArgs e)
@@ -228,6 +307,19 @@ namespace SAM.Analytical.Windows.Forms
             set
             {
                 DataGridView_Constructions.MultiSelect = value;
+            }
+        }
+
+        public bool TypeEnabled
+        {
+            get
+            {
+                return ComboBox_Type.Enabled;
+            }
+
+            set
+            {
+                ComboBox_Type.Enabled = value;
             }
         }
 
@@ -399,6 +491,11 @@ namespace SAM.Analytical.Windows.Forms
             }
 
             profiles.ForEach(x => profileLibrary?.Add(x));
+            Add(profileLibrary);
+        }
+
+        private void ComboBox_Type_SelectedIndexChanged(object sender, EventArgs e)
+        {
             Add(profileLibrary);
         }
     }

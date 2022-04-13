@@ -29,6 +29,21 @@ namespace SAM.Core.Windows
             return result;
         }
 
+        public static List<T> Controls<T>(this Control control) where T: Control
+        {
+            Control.ControlCollection controls = control?.Controls;
+            if (controls == null)
+                return null;
+
+            List<Control> result = new List<Control>();
+            foreach (Control control_Temp in controls)
+            {
+                Controls(control_Temp, ref result);
+            }
+
+            return result.FindAll(x => x is T).ConvertAll(x => (T)x);
+        }
+
         public static List<T> Controls<T>(this Control control, string text, TextComparisonType textComparisonType, bool caseSensitive = true) where T : Control
         {
             if(control == null)

@@ -48,7 +48,7 @@ namespace SAM.Analytical.Windows
             this.PropertyGrid_Main.Margin = new System.Windows.Forms.Padding(2);
             this.PropertyGrid_Main.Name = "PropertyGrid_Main";
             this.PropertyGrid_Main.Size = new System.Drawing.Size(352, 262);
-            this.PropertyGrid_Main.TabIndex = 5;
+            this.PropertyGrid_Main.TabIndex = 2;
             // 
             // TextBox_Name
             // 
@@ -58,7 +58,7 @@ namespace SAM.Analytical.Windows
             this.TextBox_Name.Margin = new System.Windows.Forms.Padding(2);
             this.TextBox_Name.Name = "TextBox_Name";
             this.TextBox_Name.Size = new System.Drawing.Size(310, 22);
-            this.TextBox_Name.TabIndex = 4;
+            this.TextBox_Name.TabIndex = 0;
             // 
             // Label_Name
             // 
@@ -90,6 +90,7 @@ namespace SAM.Analytical.Windows
             this.TextBox_Guid.ReadOnly = true;
             this.TextBox_Guid.Size = new System.Drawing.Size(309, 22);
             this.TextBox_Guid.TabIndex = 4;
+            this.TextBox_Guid.TabStop = false;
             // 
             // Label_InternalCondition
             // 
@@ -111,6 +112,7 @@ namespace SAM.Analytical.Windows
             this.TextBox_InternalCondition.ReadOnly = true;
             this.TextBox_InternalCondition.Size = new System.Drawing.Size(229, 22);
             this.TextBox_InternalCondition.TabIndex = 4;
+            this.TextBox_InternalCondition.TabStop = false;
             // 
             // Button_ModifyInternalCondition
             // 
@@ -120,7 +122,7 @@ namespace SAM.Analytical.Windows
             this.Button_ModifyInternalCondition.Margin = new System.Windows.Forms.Padding(2);
             this.Button_ModifyInternalCondition.Name = "Button_ModifyInternalCondition";
             this.Button_ModifyInternalCondition.Size = new System.Drawing.Size(229, 27);
-            this.Button_ModifyInternalCondition.TabIndex = 12;
+            this.Button_ModifyInternalCondition.TabIndex = 1;
             this.Button_ModifyInternalCondition.Text = "Modify Internal Condition";
             this.Button_ModifyInternalCondition.UseVisualStyleBackColor = true;
             this.Button_ModifyInternalCondition.Click += new System.EventHandler(this.Button_ModifyInternalCondition_Click);
