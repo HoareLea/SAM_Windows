@@ -62,6 +62,30 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
+        public Space Space
+        {
+            get
+            {
+                return InternalConditionControl_Main.Space;
+            }
+        }
+
+        public AdjacencyCluster AdjacencyCluster
+        {
+            get
+            {
+                return InternalConditionControl_Main.AdjacencyCluster;
+            }
+        }
+
+        public ProfileLibrary ProfileLibrary
+        {
+            get
+            {
+                return InternalConditionControl_Main.ProfileLibrary;
+            }
+        }
+
         public bool UseColors
         {
             get

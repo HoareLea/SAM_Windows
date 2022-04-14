@@ -57,22 +57,26 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_EquipmentLatent = new System.Windows.Forms.GroupBox();
             this.Button_EquipmentLatentProfile = new System.Windows.Forms.Button();
             this.TextBox_Equipment_LatentProfileName = new System.Windows.Forms.TextBox();
-            this.TextBox_Equipment_LatentGain_Calculated = new System.Windows.Forms.TextBox();
+            this.Label_Equipment_LatentGain_W = new System.Windows.Forms.Label();
+            this.TextBox_Equipment_LatentGainCalculated = new System.Windows.Forms.TextBox();
             this.Label_Equipment_LatentGain_Wm2 = new System.Windows.Forms.Label();
             this.Label_Equipment_Latent = new System.Windows.Forms.Label();
             this.TextBox_Equipment_LatentProfileGuid = new System.Windows.Forms.TextBox();
-            this.Label_Equipment_LatentGain_W = new System.Windows.Forms.Label();
+            this.Label_Equipment_LatentGainCalculated_W = new System.Windows.Forms.Label();
+            this.TextBox_Equipment_LatentGain = new System.Windows.Forms.TextBox();
             this.Label_Equipment_LatentProfileGuid = new System.Windows.Forms.Label();
             this.Label_Equipment_LatentProfileName = new System.Windows.Forms.Label();
             this.TextBox_Equipment_LatentGainPerArea = new System.Windows.Forms.TextBox();
             this.GroupBox_Equipment_Sensible = new System.Windows.Forms.GroupBox();
             this.Button_EquipmentSensibleProfile = new System.Windows.Forms.Button();
             this.TextBox_Equipment_SensibleProfileName = new System.Windows.Forms.TextBox();
-            this.TextBox_Equipment_SensibleGain_Calculated = new System.Windows.Forms.TextBox();
+            this.Label_Equipment_SensibleGain_W = new System.Windows.Forms.Label();
+            this.TextBox_Equipment_SensibleGainCalculated = new System.Windows.Forms.TextBox();
             this.TextBox_Equipment_SensibleGain_Wm2 = new System.Windows.Forms.Label();
             this.Label_Equipment_SensibleGain = new System.Windows.Forms.Label();
             this.TextBox_Equipment_SensibleProfileGuid = new System.Windows.Forms.TextBox();
-            this.TextBox_Equipment_SensibleGain_W = new System.Windows.Forms.Label();
+            this.TextBox_Equipment_SensibleGain = new System.Windows.Forms.TextBox();
+            this.Label_Equipment_SensibleGainCalculated_W = new System.Windows.Forms.Label();
             this.Label_Equimpent_SensibleProfileGuid = new System.Windows.Forms.Label();
             this.Label_Equipment_SensibleProfileName = new System.Windows.Forms.Label();
             this.TextBox_Equipment_SensibleGainPerArea = new System.Windows.Forms.TextBox();
@@ -80,14 +84,18 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_LightingProfile = new System.Windows.Forms.Button();
             this.Label_Lighting_Level = new System.Windows.Forms.Label();
             this.TextBox_Lighting_ProfileName = new System.Windows.Forms.TextBox();
+            this.TextBox_Lighting_GainCalculated = new System.Windows.Forms.TextBox();
             this.TextBox_Lighting_Gain = new System.Windows.Forms.TextBox();
+            this.Label_Lighting_GainPerArea_Wm2 = new System.Windows.Forms.Label();
             this.Label_Lighting_Level_Lux = new System.Windows.Forms.Label();
             this.Label_LightingGain = new System.Windows.Forms.Label();
+            this.Label_Lighting_GainCalculated_W = new System.Windows.Forms.Label();
             this.TextBox_Lighting_ProfileGuid = new System.Windows.Forms.TextBox();
             this.Label_LightingGain_W = new System.Windows.Forms.Label();
             this.Label_Lighting_ProfileGuid = new System.Windows.Forms.Label();
             this.Label_Lighting_ProfileName = new System.Windows.Forms.Label();
             this.TextBox_Lighting_Level = new System.Windows.Forms.TextBox();
+            this.TextBox_Lighting_GainPerArea = new System.Windows.Forms.TextBox();
             this.GroupBox_Heating = new System.Windows.Forms.GroupBox();
             this.Button_HeatingProfile = new System.Windows.Forms.Button();
             this.Label_Heating_DesignTemperature_C = new System.Windows.Forms.Label();
@@ -155,12 +163,13 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_SupplyUnit_Name = new System.Windows.Forms.TextBox();
             this.Label_SupplyUnit_Name = new System.Windows.Forms.Label();
             this.Button_Select = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Label_internalCondition_Name = new System.Windows.Forms.Label();
             this.TextBox_Name = new System.Windows.Forms.TextBox();
             this.Button_Create = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.Label_AreaPerPerson = new System.Windows.Forms.Label();
             this.TextBox_AreaPerPerson = new System.Windows.Forms.TextBox();
             this.Label_AreaPerPerson_Unit = new System.Windows.Forms.Label();
+            this.Button_Reset = new System.Windows.Forms.Button();
             this.GroupBox_Infiltration.SuspendLayout();
             this.GroupBox_Occupancy.SuspendLayout();
             this.GroupBox_EquipmentLatent.SuspendLayout();
@@ -202,7 +211,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Infiltration_Unit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_Infiltration_Unit.AutoSize = true;
             this.Label_Infiltration_Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Infiltration_Unit.Location = new System.Drawing.Point(204, 88);
+            this.Label_Infiltration_Unit.Location = new System.Drawing.Point(178, 88);
             this.Label_Infiltration_Unit.Name = "Label_Infiltration_Unit";
             this.Label_Infiltration_Unit.Size = new System.Drawing.Size(44, 17);
             this.Label_Infiltration_Unit.TabIndex = 23;
@@ -217,6 +226,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_InfiltrationProfile.TabIndex = 14;
             this.Button_InfiltrationProfile.Text = "Select";
             this.Button_InfiltrationProfile.UseVisualStyleBackColor = true;
+            this.Button_InfiltrationProfile.Click += new System.EventHandler(this.Button_InfiltrationProfile_Click);
             // 
             // Label_Infiltartion_ProfileName
             // 
@@ -281,7 +291,7 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Infiltration.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox_Infiltration.Location = new System.Drawing.Point(117, 85);
             this.TextBox_Infiltration.Name = "TextBox_Infiltration";
-            this.TextBox_Infiltration.Size = new System.Drawing.Size(81, 22);
+            this.TextBox_Infiltration.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Infiltration.TabIndex = 15;
             // 
             // GroupBox_Occupancy
@@ -318,13 +328,14 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_OccupancyProfile.TabIndex = 5;
             this.Button_OccupancyProfile.Text = "Select";
             this.Button_OccupancyProfile.UseVisualStyleBackColor = true;
+            this.Button_OccupancyProfile.Click += new System.EventHandler(this.Button_OccupancyProfile_Click);
             // 
             // Label_Occupancy_LatentGain_Wp
             // 
             this.Label_Occupancy_LatentGain_Wp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_Occupancy_LatentGain_Wp.AutoSize = true;
             this.Label_Occupancy_LatentGain_Wp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Occupancy_LatentGain_Wp.Location = new System.Drawing.Point(198, 116);
+            this.Label_Occupancy_LatentGain_Wp.Location = new System.Drawing.Point(175, 116);
             this.Label_Occupancy_LatentGain_Wp.Name = "Label_Occupancy_LatentGain_Wp";
             this.Label_Occupancy_LatentGain_Wp.Size = new System.Drawing.Size(41, 17);
             this.Label_Occupancy_LatentGain_Wp.TabIndex = 6;
@@ -335,7 +346,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Occupancy_SensibleGain_Wp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_Occupancy_SensibleGain_Wp.AutoSize = true;
             this.Label_Occupancy_SensibleGain_Wp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Occupancy_SensibleGain_Wp.Location = new System.Drawing.Point(198, 88);
+            this.Label_Occupancy_SensibleGain_Wp.Location = new System.Drawing.Point(175, 88);
             this.Label_Occupancy_SensibleGain_Wp.Name = "Label_Occupancy_SensibleGain_Wp";
             this.Label_Occupancy_SensibleGain_Wp.Size = new System.Drawing.Size(41, 17);
             this.Label_Occupancy_SensibleGain_Wp.TabIndex = 6;
@@ -357,8 +368,9 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Occupancy_LatentGainPerPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox_Occupancy_LatentGainPerPerson.Location = new System.Drawing.Point(114, 113);
             this.TextBox_Occupancy_LatentGainPerPerson.Name = "TextBox_Occupancy_LatentGainPerPerson";
-            this.TextBox_Occupancy_LatentGainPerPerson.Size = new System.Drawing.Size(78, 22);
+            this.TextBox_Occupancy_LatentGainPerPerson.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Occupancy_LatentGainPerPerson.TabIndex = 8;
+            this.TextBox_Occupancy_LatentGainPerPerson.TextChanged += new System.EventHandler(this.TextBox_Occupancy_LatentGainPerPerson_TextChanged);
             // 
             // TextBox_Occupancy_SensibleGainPerPerson
             // 
@@ -366,8 +378,9 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Occupancy_SensibleGainPerPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox_Occupancy_SensibleGainPerPerson.Location = new System.Drawing.Point(114, 85);
             this.TextBox_Occupancy_SensibleGainPerPerson.Name = "TextBox_Occupancy_SensibleGainPerPerson";
-            this.TextBox_Occupancy_SensibleGainPerPerson.Size = new System.Drawing.Size(78, 22);
+            this.TextBox_Occupancy_SensibleGainPerPerson.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Occupancy_SensibleGainPerPerson.TabIndex = 6;
+            this.TextBox_Occupancy_SensibleGainPerPerson.TextChanged += new System.EventHandler(this.TextBox_Occupancy_SensibleGainPerPerson_TextChanged);
             // 
             // Label_Occupancy_SensibleGain_W
             // 
@@ -449,31 +462,33 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.TextBox_Occupancy_LatentGain_Calculated.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Occupancy_LatentGain_Calculated.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Occupancy_LatentGain_Calculated.Location = new System.Drawing.Point(298, 113);
+            this.TextBox_Occupancy_LatentGain_Calculated.Location = new System.Drawing.Point(324, 113);
             this.TextBox_Occupancy_LatentGain_Calculated.Name = "TextBox_Occupancy_LatentGain_Calculated";
             this.TextBox_Occupancy_LatentGain_Calculated.ReadOnly = true;
-            this.TextBox_Occupancy_LatentGain_Calculated.Size = new System.Drawing.Size(78, 22);
+            this.TextBox_Occupancy_LatentGain_Calculated.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Occupancy_LatentGain_Calculated.TabIndex = 9;
             // 
             // TextBox_Occupancy_SensibleGain_Calculated
             // 
             this.TextBox_Occupancy_SensibleGain_Calculated.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Occupancy_SensibleGain_Calculated.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Occupancy_SensibleGain_Calculated.Location = new System.Drawing.Point(298, 85);
+            this.TextBox_Occupancy_SensibleGain_Calculated.Location = new System.Drawing.Point(324, 85);
             this.TextBox_Occupancy_SensibleGain_Calculated.Name = "TextBox_Occupancy_SensibleGain_Calculated";
             this.TextBox_Occupancy_SensibleGain_Calculated.ReadOnly = true;
-            this.TextBox_Occupancy_SensibleGain_Calculated.Size = new System.Drawing.Size(78, 22);
+            this.TextBox_Occupancy_SensibleGain_Calculated.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Occupancy_SensibleGain_Calculated.TabIndex = 7;
             // 
             // GroupBox_EquipmentLatent
             // 
             this.GroupBox_EquipmentLatent.Controls.Add(this.Button_EquipmentLatentProfile);
             this.GroupBox_EquipmentLatent.Controls.Add(this.TextBox_Equipment_LatentProfileName);
-            this.GroupBox_EquipmentLatent.Controls.Add(this.TextBox_Equipment_LatentGain_Calculated);
+            this.GroupBox_EquipmentLatent.Controls.Add(this.Label_Equipment_LatentGain_W);
+            this.GroupBox_EquipmentLatent.Controls.Add(this.TextBox_Equipment_LatentGainCalculated);
             this.GroupBox_EquipmentLatent.Controls.Add(this.Label_Equipment_LatentGain_Wm2);
             this.GroupBox_EquipmentLatent.Controls.Add(this.Label_Equipment_Latent);
             this.GroupBox_EquipmentLatent.Controls.Add(this.TextBox_Equipment_LatentProfileGuid);
-            this.GroupBox_EquipmentLatent.Controls.Add(this.Label_Equipment_LatentGain_W);
+            this.GroupBox_EquipmentLatent.Controls.Add(this.Label_Equipment_LatentGainCalculated_W);
+            this.GroupBox_EquipmentLatent.Controls.Add(this.TextBox_Equipment_LatentGain);
             this.GroupBox_EquipmentLatent.Controls.Add(this.Label_Equipment_LatentProfileGuid);
             this.GroupBox_EquipmentLatent.Controls.Add(this.Label_Equipment_LatentProfileName);
             this.GroupBox_EquipmentLatent.Controls.Add(this.TextBox_Equipment_LatentGainPerArea);
@@ -494,6 +509,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_EquipmentLatentProfile.TabIndex = 24;
             this.Button_EquipmentLatentProfile.Text = "Select";
             this.Button_EquipmentLatentProfile.UseVisualStyleBackColor = true;
+            this.Button_EquipmentLatentProfile.Click += new System.EventHandler(this.Button_EquipmentLatentProfile_Click);
             // 
             // TextBox_Equipment_LatentProfileName
             // 
@@ -501,29 +517,40 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Equipment_LatentProfileName.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Equipment_LatentProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Equipment_LatentProfileName.Location = new System.Drawing.Point(109, 21);
+            this.TextBox_Equipment_LatentProfileName.Location = new System.Drawing.Point(102, 21);
             this.TextBox_Equipment_LatentProfileName.Name = "TextBox_Equipment_LatentProfileName";
             this.TextBox_Equipment_LatentProfileName.ReadOnly = true;
-            this.TextBox_Equipment_LatentProfileName.Size = new System.Drawing.Size(220, 22);
+            this.TextBox_Equipment_LatentProfileName.Size = new System.Drawing.Size(227, 22);
             this.TextBox_Equipment_LatentProfileName.TabIndex = 3;
             this.TextBox_Equipment_LatentProfileName.TabStop = false;
             // 
-            // TextBox_Equipment_LatentGain_Calculated
+            // Label_Equipment_LatentGain_W
             // 
-            this.TextBox_Equipment_LatentGain_Calculated.BackColor = System.Drawing.SystemColors.Control;
-            this.TextBox_Equipment_LatentGain_Calculated.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Equipment_LatentGain_Calculated.Location = new System.Drawing.Point(298, 77);
-            this.TextBox_Equipment_LatentGain_Calculated.Name = "TextBox_Equipment_LatentGain_Calculated";
-            this.TextBox_Equipment_LatentGain_Calculated.ReadOnly = true;
-            this.TextBox_Equipment_LatentGain_Calculated.Size = new System.Drawing.Size(72, 22);
-            this.TextBox_Equipment_LatentGain_Calculated.TabIndex = 26;
+            this.Label_Equipment_LatentGain_W.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Equipment_LatentGain_W.AutoSize = true;
+            this.Label_Equipment_LatentGain_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Equipment_LatentGain_W.Location = new System.Drawing.Point(282, 80);
+            this.Label_Equipment_LatentGain_W.Name = "Label_Equipment_LatentGain_W";
+            this.Label_Equipment_LatentGain_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_Equipment_LatentGain_W.TabIndex = 6;
+            this.Label_Equipment_LatentGain_W.Text = "[W]";
+            // 
+            // TextBox_Equipment_LatentGainCalculated
+            // 
+            this.TextBox_Equipment_LatentGainCalculated.BackColor = System.Drawing.SystemColors.Control;
+            this.TextBox_Equipment_LatentGainCalculated.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Equipment_LatentGainCalculated.Location = new System.Drawing.Point(321, 77);
+            this.TextBox_Equipment_LatentGainCalculated.Name = "TextBox_Equipment_LatentGainCalculated";
+            this.TextBox_Equipment_LatentGainCalculated.ReadOnly = true;
+            this.TextBox_Equipment_LatentGainCalculated.Size = new System.Drawing.Size(55, 22);
+            this.TextBox_Equipment_LatentGainCalculated.TabIndex = 26;
             // 
             // Label_Equipment_LatentGain_Wm2
             // 
             this.Label_Equipment_LatentGain_Wm2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_Equipment_LatentGain_Wm2.AutoSize = true;
             this.Label_Equipment_LatentGain_Wm2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Equipment_LatentGain_Wm2.Location = new System.Drawing.Point(193, 80);
+            this.Label_Equipment_LatentGain_Wm2.Location = new System.Drawing.Point(163, 80);
             this.Label_Equipment_LatentGain_Wm2.Name = "Label_Equipment_LatentGain_Wm2";
             this.Label_Equipment_LatentGain_Wm2.Size = new System.Drawing.Size(52, 17);
             this.Label_Equipment_LatentGain_Wm2.TabIndex = 6;
@@ -545,22 +572,32 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Equipment_LatentProfileGuid.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Equipment_LatentProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Equipment_LatentProfileGuid.Location = new System.Drawing.Point(109, 49);
+            this.TextBox_Equipment_LatentProfileGuid.Location = new System.Drawing.Point(102, 49);
             this.TextBox_Equipment_LatentProfileGuid.Name = "TextBox_Equipment_LatentProfileGuid";
             this.TextBox_Equipment_LatentProfileGuid.ReadOnly = true;
-            this.TextBox_Equipment_LatentProfileGuid.Size = new System.Drawing.Size(302, 22);
+            this.TextBox_Equipment_LatentProfileGuid.Size = new System.Drawing.Size(309, 22);
             this.TextBox_Equipment_LatentProfileGuid.TabIndex = 3;
             this.TextBox_Equipment_LatentProfileGuid.TabStop = false;
             // 
-            // Label_Equipment_LatentGain_W
+            // Label_Equipment_LatentGainCalculated_W
             // 
-            this.Label_Equipment_LatentGain_W.AutoSize = true;
-            this.Label_Equipment_LatentGain_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Equipment_LatentGain_W.Location = new System.Drawing.Point(382, 80);
-            this.Label_Equipment_LatentGain_W.Name = "Label_Equipment_LatentGain_W";
-            this.Label_Equipment_LatentGain_W.Size = new System.Drawing.Size(29, 17);
-            this.Label_Equipment_LatentGain_W.TabIndex = 4;
-            this.Label_Equipment_LatentGain_W.Text = "[W]";
+            this.Label_Equipment_LatentGainCalculated_W.AutoSize = true;
+            this.Label_Equipment_LatentGainCalculated_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Equipment_LatentGainCalculated_W.Location = new System.Drawing.Point(382, 80);
+            this.Label_Equipment_LatentGainCalculated_W.Name = "Label_Equipment_LatentGainCalculated_W";
+            this.Label_Equipment_LatentGainCalculated_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_Equipment_LatentGainCalculated_W.TabIndex = 4;
+            this.Label_Equipment_LatentGainCalculated_W.Text = "[W]";
+            // 
+            // TextBox_Equipment_LatentGain
+            // 
+            this.TextBox_Equipment_LatentGain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox_Equipment_LatentGain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Equipment_LatentGain.Location = new System.Drawing.Point(221, 77);
+            this.TextBox_Equipment_LatentGain.Name = "TextBox_Equipment_LatentGain";
+            this.TextBox_Equipment_LatentGain.Size = new System.Drawing.Size(55, 22);
+            this.TextBox_Equipment_LatentGain.TabIndex = 6;
+            this.TextBox_Equipment_LatentGain.TextChanged += new System.EventHandler(this.TextBox_Equipment_LatentGain_TextChanged);
             // 
             // Label_Equipment_LatentProfileGuid
             // 
@@ -586,20 +623,23 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.TextBox_Equipment_LatentGainPerArea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Equipment_LatentGainPerArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Equipment_LatentGainPerArea.Location = new System.Drawing.Point(109, 77);
+            this.TextBox_Equipment_LatentGainPerArea.Location = new System.Drawing.Point(102, 77);
             this.TextBox_Equipment_LatentGainPerArea.Name = "TextBox_Equipment_LatentGainPerArea";
-            this.TextBox_Equipment_LatentGainPerArea.Size = new System.Drawing.Size(78, 22);
+            this.TextBox_Equipment_LatentGainPerArea.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Equipment_LatentGainPerArea.TabIndex = 25;
+            this.TextBox_Equipment_LatentGainPerArea.TextChanged += new System.EventHandler(this.TextBox_Equipment_LatentGainPerArea_TextChanged);
             // 
             // GroupBox_Equipment_Sensible
             // 
             this.GroupBox_Equipment_Sensible.Controls.Add(this.Button_EquipmentSensibleProfile);
             this.GroupBox_Equipment_Sensible.Controls.Add(this.TextBox_Equipment_SensibleProfileName);
-            this.GroupBox_Equipment_Sensible.Controls.Add(this.TextBox_Equipment_SensibleGain_Calculated);
+            this.GroupBox_Equipment_Sensible.Controls.Add(this.Label_Equipment_SensibleGain_W);
+            this.GroupBox_Equipment_Sensible.Controls.Add(this.TextBox_Equipment_SensibleGainCalculated);
             this.GroupBox_Equipment_Sensible.Controls.Add(this.TextBox_Equipment_SensibleGain_Wm2);
             this.GroupBox_Equipment_Sensible.Controls.Add(this.Label_Equipment_SensibleGain);
             this.GroupBox_Equipment_Sensible.Controls.Add(this.TextBox_Equipment_SensibleProfileGuid);
-            this.GroupBox_Equipment_Sensible.Controls.Add(this.TextBox_Equipment_SensibleGain_W);
+            this.GroupBox_Equipment_Sensible.Controls.Add(this.TextBox_Equipment_SensibleGain);
+            this.GroupBox_Equipment_Sensible.Controls.Add(this.Label_Equipment_SensibleGainCalculated_W);
             this.GroupBox_Equipment_Sensible.Controls.Add(this.Label_Equimpent_SensibleProfileGuid);
             this.GroupBox_Equipment_Sensible.Controls.Add(this.Label_Equipment_SensibleProfileName);
             this.GroupBox_Equipment_Sensible.Controls.Add(this.TextBox_Equipment_SensibleGainPerArea);
@@ -620,6 +660,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_EquipmentSensibleProfile.TabIndex = 10;
             this.Button_EquipmentSensibleProfile.Text = "Select";
             this.Button_EquipmentSensibleProfile.UseVisualStyleBackColor = true;
+            this.Button_EquipmentSensibleProfile.Click += new System.EventHandler(this.Button_EquipmentSensibleProfile_Click);
             // 
             // TextBox_Equipment_SensibleProfileName
             // 
@@ -634,22 +675,33 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Equipment_SensibleProfileName.TabIndex = 3;
             this.TextBox_Equipment_SensibleProfileName.TabStop = false;
             // 
-            // TextBox_Equipment_SensibleGain_Calculated
+            // Label_Equipment_SensibleGain_W
             // 
-            this.TextBox_Equipment_SensibleGain_Calculated.BackColor = System.Drawing.SystemColors.Control;
-            this.TextBox_Equipment_SensibleGain_Calculated.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Equipment_SensibleGain_Calculated.Location = new System.Drawing.Point(298, 77);
-            this.TextBox_Equipment_SensibleGain_Calculated.Name = "TextBox_Equipment_SensibleGain_Calculated";
-            this.TextBox_Equipment_SensibleGain_Calculated.ReadOnly = true;
-            this.TextBox_Equipment_SensibleGain_Calculated.Size = new System.Drawing.Size(72, 22);
-            this.TextBox_Equipment_SensibleGain_Calculated.TabIndex = 12;
+            this.Label_Equipment_SensibleGain_W.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Equipment_SensibleGain_W.AutoSize = true;
+            this.Label_Equipment_SensibleGain_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Equipment_SensibleGain_W.Location = new System.Drawing.Point(288, 80);
+            this.Label_Equipment_SensibleGain_W.Name = "Label_Equipment_SensibleGain_W";
+            this.Label_Equipment_SensibleGain_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_Equipment_SensibleGain_W.TabIndex = 6;
+            this.Label_Equipment_SensibleGain_W.Text = "[W]";
+            // 
+            // TextBox_Equipment_SensibleGainCalculated
+            // 
+            this.TextBox_Equipment_SensibleGainCalculated.BackColor = System.Drawing.SystemColors.Control;
+            this.TextBox_Equipment_SensibleGainCalculated.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Equipment_SensibleGainCalculated.Location = new System.Drawing.Point(324, 77);
+            this.TextBox_Equipment_SensibleGainCalculated.Name = "TextBox_Equipment_SensibleGainCalculated";
+            this.TextBox_Equipment_SensibleGainCalculated.ReadOnly = true;
+            this.TextBox_Equipment_SensibleGainCalculated.Size = new System.Drawing.Size(55, 22);
+            this.TextBox_Equipment_SensibleGainCalculated.TabIndex = 12;
             // 
             // TextBox_Equipment_SensibleGain_Wm2
             // 
             this.TextBox_Equipment_SensibleGain_Wm2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Equipment_SensibleGain_Wm2.AutoSize = true;
             this.TextBox_Equipment_SensibleGain_Wm2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Equipment_SensibleGain_Wm2.Location = new System.Drawing.Point(193, 80);
+            this.TextBox_Equipment_SensibleGain_Wm2.Location = new System.Drawing.Point(169, 80);
             this.TextBox_Equipment_SensibleGain_Wm2.Name = "TextBox_Equipment_SensibleGain_Wm2";
             this.TextBox_Equipment_SensibleGain_Wm2.Size = new System.Drawing.Size(52, 17);
             this.TextBox_Equipment_SensibleGain_Wm2.TabIndex = 6;
@@ -678,15 +730,25 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Equipment_SensibleProfileGuid.TabIndex = 3;
             this.TextBox_Equipment_SensibleProfileGuid.TabStop = false;
             // 
-            // TextBox_Equipment_SensibleGain_W
+            // TextBox_Equipment_SensibleGain
             // 
-            this.TextBox_Equipment_SensibleGain_W.AutoSize = true;
-            this.TextBox_Equipment_SensibleGain_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Equipment_SensibleGain_W.Location = new System.Drawing.Point(382, 80);
-            this.TextBox_Equipment_SensibleGain_W.Name = "TextBox_Equipment_SensibleGain_W";
-            this.TextBox_Equipment_SensibleGain_W.Size = new System.Drawing.Size(29, 17);
-            this.TextBox_Equipment_SensibleGain_W.TabIndex = 4;
-            this.TextBox_Equipment_SensibleGain_W.Text = "[W]";
+            this.TextBox_Equipment_SensibleGain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox_Equipment_SensibleGain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Equipment_SensibleGain.Location = new System.Drawing.Point(227, 77);
+            this.TextBox_Equipment_SensibleGain.Name = "TextBox_Equipment_SensibleGain";
+            this.TextBox_Equipment_SensibleGain.Size = new System.Drawing.Size(55, 22);
+            this.TextBox_Equipment_SensibleGain.TabIndex = 6;
+            this.TextBox_Equipment_SensibleGain.TextChanged += new System.EventHandler(this.TextBox_Equipment_SensibleGain_TextChanged);
+            // 
+            // Label_Equipment_SensibleGainCalculated_W
+            // 
+            this.Label_Equipment_SensibleGainCalculated_W.AutoSize = true;
+            this.Label_Equipment_SensibleGainCalculated_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Equipment_SensibleGainCalculated_W.Location = new System.Drawing.Point(382, 80);
+            this.Label_Equipment_SensibleGainCalculated_W.Name = "Label_Equipment_SensibleGainCalculated_W";
+            this.Label_Equipment_SensibleGainCalculated_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_Equipment_SensibleGainCalculated_W.TabIndex = 4;
+            this.Label_Equipment_SensibleGainCalculated_W.Text = "[W]";
             // 
             // Label_Equimpent_SensibleProfileGuid
             // 
@@ -714,22 +776,27 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Equipment_SensibleGainPerArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox_Equipment_SensibleGainPerArea.Location = new System.Drawing.Point(109, 77);
             this.TextBox_Equipment_SensibleGainPerArea.Name = "TextBox_Equipment_SensibleGainPerArea";
-            this.TextBox_Equipment_SensibleGainPerArea.Size = new System.Drawing.Size(78, 22);
+            this.TextBox_Equipment_SensibleGainPerArea.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Equipment_SensibleGainPerArea.TabIndex = 11;
+            this.TextBox_Equipment_SensibleGainPerArea.TextChanged += new System.EventHandler(this.TextBox_Equipment_SensibleGainPerArea_TextChanged);
             // 
             // GroupBox_Lighting
             // 
             this.GroupBox_Lighting.Controls.Add(this.Button_LightingProfile);
             this.GroupBox_Lighting.Controls.Add(this.Label_Lighting_Level);
             this.GroupBox_Lighting.Controls.Add(this.TextBox_Lighting_ProfileName);
+            this.GroupBox_Lighting.Controls.Add(this.TextBox_Lighting_GainCalculated);
             this.GroupBox_Lighting.Controls.Add(this.TextBox_Lighting_Gain);
+            this.GroupBox_Lighting.Controls.Add(this.Label_Lighting_GainPerArea_Wm2);
             this.GroupBox_Lighting.Controls.Add(this.Label_Lighting_Level_Lux);
             this.GroupBox_Lighting.Controls.Add(this.Label_LightingGain);
+            this.GroupBox_Lighting.Controls.Add(this.Label_Lighting_GainCalculated_W);
             this.GroupBox_Lighting.Controls.Add(this.TextBox_Lighting_ProfileGuid);
             this.GroupBox_Lighting.Controls.Add(this.Label_LightingGain_W);
             this.GroupBox_Lighting.Controls.Add(this.Label_Lighting_ProfileGuid);
             this.GroupBox_Lighting.Controls.Add(this.Label_Lighting_ProfileName);
             this.GroupBox_Lighting.Controls.Add(this.TextBox_Lighting_Level);
+            this.GroupBox_Lighting.Controls.Add(this.TextBox_Lighting_GainPerArea);
             this.GroupBox_Lighting.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GroupBox_Lighting.Location = new System.Drawing.Point(428, 196);
             this.GroupBox_Lighting.Name = "GroupBox_Lighting";
@@ -747,6 +814,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_LightingProfile.TabIndex = 21;
             this.Button_LightingProfile.Text = "Select";
             this.Button_LightingProfile.UseVisualStyleBackColor = true;
+            this.Button_LightingProfile.Click += new System.EventHandler(this.Button_LightingProfile_Click);
             // 
             // Label_Lighting_Level
             // 
@@ -771,20 +839,42 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Lighting_ProfileName.TabIndex = 3;
             this.TextBox_Lighting_ProfileName.TabStop = false;
             // 
+            // TextBox_Lighting_GainCalculated
+            // 
+            this.TextBox_Lighting_GainCalculated.BackColor = System.Drawing.SystemColors.Control;
+            this.TextBox_Lighting_GainCalculated.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Lighting_GainCalculated.Location = new System.Drawing.Point(327, 77);
+            this.TextBox_Lighting_GainCalculated.Name = "TextBox_Lighting_GainCalculated";
+            this.TextBox_Lighting_GainCalculated.ReadOnly = true;
+            this.TextBox_Lighting_GainCalculated.Size = new System.Drawing.Size(55, 22);
+            this.TextBox_Lighting_GainCalculated.TabIndex = 12;
+            // 
             // TextBox_Lighting_Gain
             // 
             this.TextBox_Lighting_Gain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Lighting_Gain.Location = new System.Drawing.Point(112, 77);
+            this.TextBox_Lighting_Gain.Location = new System.Drawing.Point(230, 77);
             this.TextBox_Lighting_Gain.Name = "TextBox_Lighting_Gain";
-            this.TextBox_Lighting_Gain.Size = new System.Drawing.Size(72, 22);
+            this.TextBox_Lighting_Gain.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Lighting_Gain.TabIndex = 22;
+            this.TextBox_Lighting_Gain.TextChanged += new System.EventHandler(this.TextBox_Lighting_Gain_TextChanged);
+            // 
+            // Label_Lighting_GainPerArea_Wm2
+            // 
+            this.Label_Lighting_GainPerArea_Wm2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Lighting_GainPerArea_Wm2.AutoSize = true;
+            this.Label_Lighting_GainPerArea_Wm2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Lighting_GainPerArea_Wm2.Location = new System.Drawing.Point(172, 80);
+            this.Label_Lighting_GainPerArea_Wm2.Name = "Label_Lighting_GainPerArea_Wm2";
+            this.Label_Lighting_GainPerArea_Wm2.Size = new System.Drawing.Size(52, 17);
+            this.Label_Lighting_GainPerArea_Wm2.TabIndex = 6;
+            this.Label_Lighting_GainPerArea_Wm2.Text = "[W/m2]";
             // 
             // Label_Lighting_Level_Lux
             // 
             this.Label_Lighting_Level_Lux.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_Lighting_Level_Lux.AutoSize = true;
             this.Label_Lighting_Level_Lux.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Lighting_Level_Lux.Location = new System.Drawing.Point(190, 111);
+            this.Label_Lighting_Level_Lux.Location = new System.Drawing.Point(170, 111);
             this.Label_Lighting_Level_Lux.Name = "Label_Lighting_Level_Lux";
             this.Label_Lighting_Level_Lux.Size = new System.Drawing.Size(33, 17);
             this.Label_Lighting_Level_Lux.TabIndex = 6;
@@ -799,6 +889,16 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_LightingGain.Size = new System.Drawing.Size(96, 17);
             this.Label_LightingGain.TabIndex = 1;
             this.Label_LightingGain.Text = "Lighting Gain:";
+            // 
+            // Label_Lighting_GainCalculated_W
+            // 
+            this.Label_Lighting_GainCalculated_W.AutoSize = true;
+            this.Label_Lighting_GainCalculated_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Lighting_GainCalculated_W.Location = new System.Drawing.Point(385, 80);
+            this.Label_Lighting_GainCalculated_W.Name = "Label_Lighting_GainCalculated_W";
+            this.Label_Lighting_GainCalculated_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_Lighting_GainCalculated_W.TabIndex = 4;
+            this.Label_Lighting_GainCalculated_W.Text = "[W]";
             // 
             // TextBox_Lighting_ProfileGuid
             // 
@@ -817,7 +917,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.Label_LightingGain_W.AutoSize = true;
             this.Label_LightingGain_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_LightingGain_W.Location = new System.Drawing.Point(190, 80);
+            this.Label_LightingGain_W.Location = new System.Drawing.Point(292, 80);
             this.Label_LightingGain_W.Name = "Label_LightingGain_W";
             this.Label_LightingGain_W.Size = new System.Drawing.Size(29, 17);
             this.Label_LightingGain_W.TabIndex = 4;
@@ -849,8 +949,18 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Lighting_Level.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox_Lighting_Level.Location = new System.Drawing.Point(112, 108);
             this.TextBox_Lighting_Level.Name = "TextBox_Lighting_Level";
-            this.TextBox_Lighting_Level.Size = new System.Drawing.Size(72, 22);
+            this.TextBox_Lighting_Level.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Lighting_Level.TabIndex = 23;
+            // 
+            // TextBox_Lighting_GainPerArea
+            // 
+            this.TextBox_Lighting_GainPerArea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox_Lighting_GainPerArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Lighting_GainPerArea.Location = new System.Drawing.Point(112, 77);
+            this.TextBox_Lighting_GainPerArea.Name = "TextBox_Lighting_GainPerArea";
+            this.TextBox_Lighting_GainPerArea.Size = new System.Drawing.Size(55, 22);
+            this.TextBox_Lighting_GainPerArea.TabIndex = 11;
+            this.TextBox_Lighting_GainPerArea.TextChanged += new System.EventHandler(this.TextBox_Lighting_GainPerArea_TextChanged);
             // 
             // GroupBox_Heating
             // 
@@ -886,7 +996,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Heating_DesignTemperature_C.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_Heating_DesignTemperature_C.AutoSize = true;
             this.Label_Heating_DesignTemperature_C.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Heating_DesignTemperature_C.Location = new System.Drawing.Point(243, 88);
+            this.Label_Heating_DesignTemperature_C.Location = new System.Drawing.Point(217, 88);
             this.Label_Heating_DesignTemperature_C.Name = "Label_Heating_DesignTemperature_C";
             this.Label_Heating_DesignTemperature_C.Size = new System.Drawing.Size(25, 17);
             this.Label_Heating_DesignTemperature_C.TabIndex = 7;
@@ -957,7 +1067,7 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Heating_DesignTemperature.Location = new System.Drawing.Point(156, 85);
             this.TextBox_Heating_DesignTemperature.Name = "TextBox_Heating_DesignTemperature";
             this.TextBox_Heating_DesignTemperature.ReadOnly = true;
-            this.TextBox_Heating_DesignTemperature.Size = new System.Drawing.Size(81, 22);
+            this.TextBox_Heating_DesignTemperature.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Heating_DesignTemperature.TabIndex = 1;
             this.TextBox_Heating_DesignTemperature.TabStop = false;
             // 
@@ -988,13 +1098,14 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_CoolingProfile.TabIndex = 20;
             this.Button_CoolingProfile.Text = "Select";
             this.Button_CoolingProfile.UseVisualStyleBackColor = true;
+            this.Button_CoolingProfile.Click += new System.EventHandler(this.Button_CoolingProfile_Click);
             // 
             // Label_Cooling_DesignTemperature_C
             // 
             this.Label_Cooling_DesignTemperature_C.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_Cooling_DesignTemperature_C.AutoSize = true;
             this.Label_Cooling_DesignTemperature_C.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Cooling_DesignTemperature_C.Location = new System.Drawing.Point(243, 88);
+            this.Label_Cooling_DesignTemperature_C.Location = new System.Drawing.Point(220, 88);
             this.Label_Cooling_DesignTemperature_C.Name = "Label_Cooling_DesignTemperature_C";
             this.Label_Cooling_DesignTemperature_C.Size = new System.Drawing.Size(25, 17);
             this.Label_Cooling_DesignTemperature_C.TabIndex = 7;
@@ -1065,7 +1176,7 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Cooling_DesignTemperature.Location = new System.Drawing.Point(156, 85);
             this.TextBox_Cooling_DesignTemperature.Name = "TextBox_Cooling_DesignTemperature";
             this.TextBox_Cooling_DesignTemperature.ReadOnly = true;
-            this.TextBox_Cooling_DesignTemperature.Size = new System.Drawing.Size(81, 22);
+            this.TextBox_Cooling_DesignTemperature.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Cooling_DesignTemperature.TabIndex = 1;
             this.TextBox_Cooling_DesignTemperature.TabStop = false;
             // 
@@ -1096,13 +1207,14 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_HumidificationProfile.TabIndex = 13;
             this.Button_HumidificationProfile.Text = "Select";
             this.Button_HumidificationProfile.UseVisualStyleBackColor = true;
+            this.Button_HumidificationProfile.Click += new System.EventHandler(this.Button_HumidificationProfile_Click);
             // 
             // Label_Humidity_Unit
             // 
             this.Label_Humidity_Unit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_Humidity_Unit.AutoSize = true;
             this.Label_Humidity_Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Humidity_Unit.Location = new System.Drawing.Point(204, 88);
+            this.Label_Humidity_Unit.Location = new System.Drawing.Point(178, 88);
             this.Label_Humidity_Unit.Name = "Label_Humidity_Unit";
             this.Label_Humidity_Unit.Size = new System.Drawing.Size(21, 17);
             this.Label_Humidity_Unit.TabIndex = 7;
@@ -1173,7 +1285,7 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Humidity.Location = new System.Drawing.Point(117, 85);
             this.TextBox_Humidity.Name = "TextBox_Humidity";
             this.TextBox_Humidity.ReadOnly = true;
-            this.TextBox_Humidity.Size = new System.Drawing.Size(81, 22);
+            this.TextBox_Humidity.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Humidity.TabIndex = 1;
             this.TextBox_Humidity.TabStop = false;
             // 
@@ -1204,13 +1316,14 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_DehumidificationProfile.TabIndex = 27;
             this.Button_DehumidificationProfile.Text = "Select";
             this.Button_DehumidificationProfile.UseVisualStyleBackColor = true;
+            this.Button_DehumidificationProfile.Click += new System.EventHandler(this.Button_DehumidificationProfile_Click);
             // 
             // Label_Dehumidity_Unit
             // 
             this.Label_Dehumidity_Unit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_Dehumidity_Unit.AutoSize = true;
             this.Label_Dehumidity_Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Dehumidity_Unit.Location = new System.Drawing.Point(204, 88);
+            this.Label_Dehumidity_Unit.Location = new System.Drawing.Point(168, 88);
             this.Label_Dehumidity_Unit.Name = "Label_Dehumidity_Unit";
             this.Label_Dehumidity_Unit.Size = new System.Drawing.Size(21, 17);
             this.Label_Dehumidity_Unit.TabIndex = 7;
@@ -1232,10 +1345,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Dehumidity_ProfileName.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Dehumidity_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Dehumidity_ProfileName.Location = new System.Drawing.Point(117, 29);
+            this.TextBox_Dehumidity_ProfileName.Location = new System.Drawing.Point(107, 29);
             this.TextBox_Dehumidity_ProfileName.Name = "TextBox_Dehumidity_ProfileName";
             this.TextBox_Dehumidity_ProfileName.ReadOnly = true;
-            this.TextBox_Dehumidity_ProfileName.Size = new System.Drawing.Size(213, 22);
+            this.TextBox_Dehumidity_ProfileName.Size = new System.Drawing.Size(223, 22);
             this.TextBox_Dehumidity_ProfileName.TabIndex = 3;
             this.TextBox_Dehumidity_ProfileName.TabStop = false;
             // 
@@ -1255,10 +1368,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Dehumidity_ProfileGuid.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Dehumidity_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Dehumidity_ProfileGuid.Location = new System.Drawing.Point(117, 57);
+            this.TextBox_Dehumidity_ProfileGuid.Location = new System.Drawing.Point(107, 57);
             this.TextBox_Dehumidity_ProfileGuid.Name = "TextBox_Dehumidity_ProfileGuid";
             this.TextBox_Dehumidity_ProfileGuid.ReadOnly = true;
-            this.TextBox_Dehumidity_ProfileGuid.Size = new System.Drawing.Size(294, 22);
+            this.TextBox_Dehumidity_ProfileGuid.Size = new System.Drawing.Size(304, 22);
             this.TextBox_Dehumidity_ProfileGuid.TabIndex = 3;
             this.TextBox_Dehumidity_ProfileGuid.TabStop = false;
             // 
@@ -1278,10 +1391,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Dehumidity.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Dehumidity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Dehumidity.Location = new System.Drawing.Point(117, 85);
+            this.TextBox_Dehumidity.Location = new System.Drawing.Point(107, 85);
             this.TextBox_Dehumidity.Name = "TextBox_Dehumidity";
             this.TextBox_Dehumidity.ReadOnly = true;
-            this.TextBox_Dehumidity.Size = new System.Drawing.Size(81, 22);
+            this.TextBox_Dehumidity.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Dehumidity.TabIndex = 1;
             this.TextBox_Dehumidity.TabStop = false;
             // 
@@ -1546,7 +1659,7 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_ExhaustUnit_AirFlow.Location = new System.Drawing.Point(105, 59);
             this.TextBox_ExhaustUnit_AirFlow.Name = "TextBox_ExhaustUnit_AirFlow";
             this.TextBox_ExhaustUnit_AirFlow.ReadOnly = true;
-            this.TextBox_ExhaustUnit_AirFlow.Size = new System.Drawing.Size(81, 22);
+            this.TextBox_ExhaustUnit_AirFlow.Size = new System.Drawing.Size(55, 22);
             this.TextBox_ExhaustUnit_AirFlow.TabIndex = 19;
             this.TextBox_ExhaustUnit_AirFlow.TabStop = false;
             // 
@@ -1606,7 +1719,7 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_SupplyUnit_AirFlow.Location = new System.Drawing.Point(105, 59);
             this.TextBox_SupplyUnit_AirFlow.Name = "TextBox_SupplyUnit_AirFlow";
             this.TextBox_SupplyUnit_AirFlow.ReadOnly = true;
-            this.TextBox_SupplyUnit_AirFlow.Size = new System.Drawing.Size(81, 22);
+            this.TextBox_SupplyUnit_AirFlow.Size = new System.Drawing.Size(55, 22);
             this.TextBox_SupplyUnit_AirFlow.TabIndex = 17;
             this.TextBox_SupplyUnit_AirFlow.TabStop = false;
             // 
@@ -1654,15 +1767,15 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_Select.UseVisualStyleBackColor = true;
             this.Button_Select.Click += new System.EventHandler(this.Button_Select_Click);
             // 
-            // label1
+            // Label_internalCondition_Name
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(163, 17);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Internal Condition Name:";
+            this.Label_internalCondition_Name.AutoSize = true;
+            this.Label_internalCondition_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_internalCondition_Name.Location = new System.Drawing.Point(3, 9);
+            this.Label_internalCondition_Name.Name = "Label_internalCondition_Name";
+            this.Label_internalCondition_Name.Size = new System.Drawing.Size(163, 17);
+            this.Label_internalCondition_Name.TabIndex = 19;
+            this.Label_internalCondition_Name.Text = "Internal Condition Name:";
             // 
             // TextBox_Name
             // 
@@ -1675,50 +1788,63 @@ namespace SAM.Analytical.Windows.Controls
             // Button_Create
             // 
             this.Button_Create.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_Create.Location = new System.Drawing.Point(478, 6);
+            this.Button_Create.Location = new System.Drawing.Point(475, 5);
             this.Button_Create.Name = "Button_Create";
             this.Button_Create.Size = new System.Drawing.Size(75, 23);
             this.Button_Create.TabIndex = 2;
             this.Button_Create.Text = "Create";
             this.Button_Create.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // Label_AreaPerPerson
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 17);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "Area Per Person:";
+            this.Label_AreaPerPerson.AutoSize = true;
+            this.Label_AreaPerPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_AreaPerPerson.Location = new System.Drawing.Point(3, 37);
+            this.Label_AreaPerPerson.Name = "Label_AreaPerPerson";
+            this.Label_AreaPerPerson.Size = new System.Drawing.Size(117, 17);
+            this.Label_AreaPerPerson.TabIndex = 23;
+            this.Label_AreaPerPerson.Text = "Area Per Person:";
             // 
             // TextBox_AreaPerPerson
             // 
             this.TextBox_AreaPerPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox_AreaPerPerson.Location = new System.Drawing.Point(172, 34);
             this.TextBox_AreaPerPerson.Name = "TextBox_AreaPerPerson";
-            this.TextBox_AreaPerPerson.Size = new System.Drawing.Size(81, 22);
+            this.TextBox_AreaPerPerson.Size = new System.Drawing.Size(55, 22);
             this.TextBox_AreaPerPerson.TabIndex = 3;
+            this.TextBox_AreaPerPerson.TextChanged += new System.EventHandler(this.TextBox_AreaPerPerson_TextChanged);
             // 
             // Label_AreaPerPerson_Unit
             // 
             this.Label_AreaPerPerson_Unit.AutoSize = true;
             this.Label_AreaPerPerson_Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_AreaPerPerson_Unit.Location = new System.Drawing.Point(259, 37);
+            this.Label_AreaPerPerson_Unit.Location = new System.Drawing.Point(233, 37);
             this.Label_AreaPerPerson_Unit.Name = "Label_AreaPerPerson_Unit";
             this.Label_AreaPerPerson_Unit.Size = new System.Drawing.Size(47, 17);
             this.Label_AreaPerPerson_Unit.TabIndex = 25;
             this.Label_AreaPerPerson_Unit.Text = "[m2/p]";
             // 
+            // Button_Reset
+            // 
+            this.Button_Reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_Reset.Location = new System.Drawing.Point(556, 6);
+            this.Button_Reset.Name = "Button_Reset";
+            this.Button_Reset.Size = new System.Drawing.Size(75, 23);
+            this.Button_Reset.TabIndex = 26;
+            this.Button_Reset.Text = "Reset";
+            this.Button_Reset.UseVisualStyleBackColor = true;
+            this.Button_Reset.Click += new System.EventHandler(this.Button_Reset_Click);
+            // 
             // InternalConditionControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.Button_Reset);
             this.Controls.Add(this.Label_AreaPerPerson_Unit);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.Label_AreaPerPerson);
             this.Controls.Add(this.TextBox_AreaPerPerson);
             this.Controls.Add(this.Button_Create);
             this.Controls.Add(this.Button_Select);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Label_internalCondition_Name);
             this.Controls.Add(this.TextBox_Name);
             this.Controls.Add(this.GroupBox_Systems);
             this.Controls.Add(this.GroupBox_SystemTypes);
@@ -1795,21 +1921,21 @@ namespace SAM.Analytical.Windows.Controls
         private System.Windows.Forms.TextBox TextBox_Occupancy_SensibleGain_Calculated;
         private System.Windows.Forms.GroupBox GroupBox_EquipmentLatent;
         private System.Windows.Forms.TextBox TextBox_Equipment_LatentProfileName;
-        private System.Windows.Forms.TextBox TextBox_Equipment_LatentGain_Calculated;
+        private System.Windows.Forms.TextBox TextBox_Equipment_LatentGainCalculated;
         private System.Windows.Forms.Label Label_Equipment_LatentGain_Wm2;
         private System.Windows.Forms.Label Label_Equipment_Latent;
         private System.Windows.Forms.TextBox TextBox_Equipment_LatentProfileGuid;
-        private System.Windows.Forms.Label Label_Equipment_LatentGain_W;
+        private System.Windows.Forms.Label Label_Equipment_LatentGainCalculated_W;
         private System.Windows.Forms.Label Label_Equipment_LatentProfileGuid;
         private System.Windows.Forms.Label Label_Equipment_LatentProfileName;
         private System.Windows.Forms.TextBox TextBox_Equipment_LatentGainPerArea;
         private System.Windows.Forms.GroupBox GroupBox_Equipment_Sensible;
         private System.Windows.Forms.TextBox TextBox_Equipment_SensibleProfileName;
-        private System.Windows.Forms.TextBox TextBox_Equipment_SensibleGain_Calculated;
+        private System.Windows.Forms.TextBox TextBox_Equipment_SensibleGainCalculated;
         private System.Windows.Forms.Label TextBox_Equipment_SensibleGain_Wm2;
         private System.Windows.Forms.Label Label_Equipment_SensibleGain;
         private System.Windows.Forms.TextBox TextBox_Equipment_SensibleProfileGuid;
-        private System.Windows.Forms.Label TextBox_Equipment_SensibleGain_W;
+        private System.Windows.Forms.Label Label_Equipment_SensibleGainCalculated_W;
         private System.Windows.Forms.Label Label_Equimpent_SensibleProfileGuid;
         private System.Windows.Forms.Label Label_Equipment_SensibleProfileName;
         private System.Windows.Forms.TextBox TextBox_Equipment_SensibleGainPerArea;
@@ -1896,12 +2022,21 @@ namespace SAM.Analytical.Windows.Controls
         private System.Windows.Forms.TextBox TextBox_SupplyUnit_Name;
         private System.Windows.Forms.Label Label_SupplyUnit_Name;
         private System.Windows.Forms.Button Button_Select;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Label_internalCondition_Name;
         private System.Windows.Forms.TextBox TextBox_Name;
         private System.Windows.Forms.Button Button_Create;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Label_AreaPerPerson;
         private System.Windows.Forms.TextBox TextBox_AreaPerPerson;
         private System.Windows.Forms.Label Label_AreaPerPerson_Unit;
         private System.Windows.Forms.Label Label_Infiltration_Unit;
+        private System.Windows.Forms.Button Button_Reset;
+        private System.Windows.Forms.Label Label_Equipment_SensibleGain_W;
+        private System.Windows.Forms.TextBox TextBox_Equipment_SensibleGain;
+        private System.Windows.Forms.Label Label_Equipment_LatentGain_W;
+        private System.Windows.Forms.TextBox TextBox_Equipment_LatentGain;
+        private System.Windows.Forms.TextBox TextBox_Lighting_GainCalculated;
+        private System.Windows.Forms.Label Label_Lighting_GainPerArea_Wm2;
+        private System.Windows.Forms.Label Label_Lighting_GainCalculated_W;
+        private System.Windows.Forms.TextBox TextBox_Lighting_GainPerArea;
     }
 }

@@ -65,6 +65,12 @@
     <Compile Include="Controls\InternalConditionControl.Designer.cs">
       <DependentUpon>InternalConditionControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SpacesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SpacesControl.Designer.cs">
+      <DependentUpon>SpacesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ApertureConstructionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,12 @@
     <Compile Include="Forms\SpaceForm.Designer.cs">
       <DependentUpon>SpaceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SpacesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpacesForm.Designer.cs">
+      <DependentUpon>SpacesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modify\UpdateApertureConstructions.cs" />
     <Compile Include="Modify\UpdateConstructions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -155,6 +167,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\SpacesControl.resx">
+      <DependentUpon>SpacesControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SpaceControl.resx">
       <DependentUpon>SpaceControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SpaceForm.resx">
       <DependentUpon>SpaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpacesForm.resx">
+      <DependentUpon>SpacesForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

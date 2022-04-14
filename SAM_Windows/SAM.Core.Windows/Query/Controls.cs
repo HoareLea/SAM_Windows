@@ -24,7 +24,16 @@ namespace SAM.Core.Windows
 
             List<Control> result = new List<Control>();
             foreach (Control control in controls)
+            {
+                if(control == null)
+                {
+                    continue;
+                }
+
+                result.Add(control);
                 Controls(control, ref result);
+            }
+
 
             return result;
         }
@@ -38,6 +47,11 @@ namespace SAM.Core.Windows
             List<Control> result = new List<Control>();
             foreach (Control control_Temp in controls)
             {
+                if (control_Temp == null)
+                {
+                    continue;
+                }
+                result.Add(control_Temp);
                 Controls(control_Temp, ref result);
             }
 

@@ -161,6 +161,9 @@ namespace SAM.Analytical.Windows
                     return;
                 }
 
+                adjacencyCluster = internalConditionForm.AdjacencyCluster;
+                profileLibrary = internalConditionForm.ProfileLibrary;
+
                 space.InternalCondition = internalConditionForm.InternalCondition;
                 Space = space;
             }

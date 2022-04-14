@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -6,7 +7,7 @@ namespace SAM.Analytical.Windows.Controls
 {
     public partial class InternalConditionControl : UserControl
     {
-        public bool UseColors { get; set; } = false;
+        private bool useColors = false;
 
         private AdjacencyCluster adjacencyCluster;
         private ProfileLibrary profileLibrary;
@@ -38,7 +39,7 @@ namespace SAM.Analytical.Windows.Controls
             get
             {
                 Space space = @object as Space;
-                if(space == null)
+                if (space == null)
                 {
                     return null;
                 }
@@ -54,8 +55,23 @@ namespace SAM.Analytical.Windows.Controls
             }
         }
 
-        
+        public bool UseColors
+        {
+            get
+            {
+                return useColors;
+            }
 
+            set
+            {
+                useColors = value;
+                ApplyColors();
+            }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public InternalCondition InternalCondition
         {
             get
@@ -70,6 +86,9 @@ namespace SAM.Analytical.Windows.Controls
             }
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ProfileLibrary ProfileLibrary
         {
             get
@@ -84,6 +103,9 @@ namespace SAM.Analytical.Windows.Controls
             }
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public AdjacencyCluster AdjacencyCluster
         {
             get
@@ -130,14 +152,15 @@ namespace SAM.Analytical.Windows.Controls
             {
                 Button_Select.Visible = false;
                 Button_Create.Visible = false;
+                Button_Reset.Visible = false;
                 TextBox_Occupancy_SensibleGain_Calculated.Visible = false;
                 Label_Occupancy_SensibleGain_W.Visible = false;
                 TextBox_Occupancy_LatentGain_Calculated.Visible = false;
                 Label_Occupancy_LatentGain_W.Visible = false;
-                TextBox_Equipment_SensibleGain_Calculated.Visible = false;
-                TextBox_Equipment_SensibleGain_W.Visible = false;
-                TextBox_Equipment_LatentGain_Calculated.Visible = false;
-                Label_Equipment_LatentGain_W.Visible = false;
+                TextBox_Equipment_SensibleGainCalculated.Visible = false;
+                Label_Equipment_SensibleGainCalculated_W.Visible = false;
+                TextBox_Equipment_LatentGainCalculated.Visible = false;
+                Label_Equipment_LatentGainCalculated_W.Visible = false;
 
                 Label_SupplyUnit_AirFlow.Visible = false;
                 TextBox_SupplyUnit_AirFlow.Visible = false;
@@ -148,20 +171,23 @@ namespace SAM.Analytical.Windows.Controls
             {
                 Button_Select.Visible = true;
                 Button_Create.Visible = true;
+                Button_Reset.Visible = true;
                 TextBox_Occupancy_SensibleGain_Calculated.Visible = true;
                 Label_Occupancy_SensibleGain_W.Visible = true;
                 TextBox_Occupancy_LatentGain_Calculated.Visible = true;
                 Label_Occupancy_LatentGain_W.Visible = true;
-                TextBox_Equipment_SensibleGain_Calculated.Visible = true;
-                TextBox_Equipment_SensibleGain_W.Visible = true;
-                TextBox_Equipment_LatentGain_Calculated.Visible = true;
-                Label_Equipment_LatentGain_W.Visible = true;
+                TextBox_Equipment_SensibleGainCalculated.Visible = true;
+                Label_Equipment_SensibleGainCalculated_W.Visible = true;
+                TextBox_Equipment_LatentGainCalculated.Visible = true;
+                Label_Equipment_LatentGainCalculated_W.Visible = true;
 
                 Label_SupplyUnit_AirFlow.Visible = true;
                 TextBox_SupplyUnit_AirFlow.Visible = true;
                 Label_ExhaustUnit_AirFlow.Visible = true;
                 TextBox_ExhaustUnit_AirFlow.Visible = true;
             }
+
+            Button_Reset.Enabled = internalCondition_Template != null;
 
             TextBox_Name.Text = null;
             TextBox_AreaPerPerson.Text = null;
@@ -173,23 +199,22 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Occupancy_ProfileName.Text = null;
             TextBox_Occupancy_ProfileGuid.Text = null;
             TextBox_Occupancy_SensibleGainPerPerson.Text = null;
-            TextBox_Occupancy_SensibleGain_Calculated.Text = null;
             TextBox_Occupancy_LatentGainPerPerson.Text = null;
-            TextBox_Occupancy_LatentGain_Calculated.Text = null;
 
             TextBox_Equipment_SensibleProfileName.Text = null;
             TextBox_Equipment_SensibleProfileGuid.Text = null;
-            TextBox_Equipment_SensibleGain_Calculated.Text = null;
             TextBox_Equipment_SensibleGainPerArea.Text = null;
+            TextBox_Equipment_SensibleGain.Text = null;
 
             TextBox_Equipment_LatentProfileName.Text = null;
             TextBox_Equipment_LatentProfileGuid.Text = null;
-            TextBox_Equipment_LatentGain_Calculated.Text = null;
             TextBox_Equipment_LatentGainPerArea.Text = null;
+            TextBox_Equipment_LatentGain.Text = null;
 
             TextBox_Lighting_ProfileName.Text = null;
             TextBox_Lighting_ProfileGuid.Text = null;
             TextBox_Lighting_Gain.Text = null;
+            TextBox_Lighting_GainPerArea.Text = null;
             TextBox_Lighting_Level.Text = null;
 
             TextBox_Heating_ProfileName.Text = null;
@@ -270,15 +295,6 @@ namespace SAM.Analytical.Windows.Controls
                     TextBox_Occupancy_SensibleGainPerPerson.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
-                if (space != null)
-                {
-                    @double = Analytical.Query.OccupancySensibleGain(space);
-                    if (!double.IsNaN(@double))
-                    {
-                        TextBox_Occupancy_SensibleGain_Calculated.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
-                    }
-                }
-
                 if (internalCondition.TryGetValue(InternalConditionParameter.OccupancyLatentGainPerPerson, out @double) && !double.IsNaN(@double))
                 {
                     TextBox_Occupancy_LatentGainPerPerson.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
@@ -293,7 +309,7 @@ namespace SAM.Analytical.Windows.Controls
                     }
                 }
 
-                //Equipment
+                //Equipment Sensible
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.EquipmentSensibleProfileName, out @string) && !string.IsNullOrWhiteSpace(@string))
                 {
@@ -311,14 +327,12 @@ namespace SAM.Analytical.Windows.Controls
                     TextBox_Equipment_SensibleGainPerArea.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
-                if (space != null)
+                if (internalCondition.TryGetValue(InternalConditionParameter.EquipmentSensibleGain, out @double) && !double.IsNaN(@double))
                 {
-                    @double = Analytical.Query.CalculatedEquipmentSensibleGain(space);
-                    if (!double.IsNaN(@double))
-                    {
-                        TextBox_Equipment_SensibleGain_Calculated.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
-                    }
+                    TextBox_Equipment_SensibleGain.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
+
+                //Equipment Latent
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.EquipmentLatentProfileName, out @string) && !string.IsNullOrWhiteSpace(@string))
                 {
@@ -336,13 +350,9 @@ namespace SAM.Analytical.Windows.Controls
                     TextBox_Equipment_LatentGainPerArea.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
-                if (space != null)
+                if (internalCondition.TryGetValue(InternalConditionParameter.EquipmentLatentGain, out @double) && !double.IsNaN(@double))
                 {
-                    @double = Analytical.Query.CalculatedEquipmentLatentGain(space);
-                    if (!double.IsNaN(@double))
-                    {
-                        TextBox_Equipment_LatentGain_Calculated.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
-                    }
+                    TextBox_Equipment_LatentGain.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
                 //Lighting
@@ -361,6 +371,11 @@ namespace SAM.Analytical.Windows.Controls
                 if (internalCondition.TryGetValue(InternalConditionParameter.LightingGain, out @double) && !double.IsNaN(@double))
                 {
                     TextBox_Lighting_Gain.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+                }
+
+                if (internalCondition.TryGetValue(InternalConditionParameter.LightingGainPerArea, out @double) && !double.IsNaN(@double))
+                {
+                    TextBox_Lighting_GainPerArea.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                 }
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.LightingLevel, out @double) && !double.IsNaN(@double))
@@ -542,8 +557,8 @@ namespace SAM.Analytical.Windows.Controls
 
         private InternalCondition GetInternalCondition()
         {
-            InternalCondition result = null; 
-            
+            InternalCondition result = null;
+
             if (@object is Space)
             {
                 result = ((Space)@object).InternalCondition;
@@ -557,7 +572,7 @@ namespace SAM.Analytical.Windows.Controls
 
             double @double;
 
-            if(Core.Query.TryConvert(TextBox_AreaPerPerson.Text, out @double))
+            if (Core.Query.TryConvert(TextBox_AreaPerPerson.Text, out @double))
             {
                 result.SetValue(InternalConditionParameter.AreaPerPerson, @double);
             }
@@ -566,7 +581,7 @@ namespace SAM.Analytical.Windows.Controls
                 result.RemoveValue(InternalConditionParameter.AreaPerPerson);
             }
 
-            if(TextBox_Heating_ProfileName.Text != null)
+            if (TextBox_Heating_ProfileName.Text != null)
             {
                 result.SetValue(InternalConditionParameter.HeatingProfileName, TextBox_Heating_ProfileName.Text);
             }
@@ -629,6 +644,15 @@ namespace SAM.Analytical.Windows.Controls
                 result.RemoveValue(InternalConditionParameter.LightingGain);
             }
 
+            if (Core.Query.TryConvert(TextBox_Lighting_GainPerArea.Text, out @double))
+            {
+                result.SetValue(InternalConditionParameter.LightingGainPerArea, @double);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.LightingGainPerArea);
+            }
+
             if (Core.Query.TryConvert(TextBox_Lighting_Level.Text, out @double))
             {
                 result.SetValue(InternalConditionParameter.LightingLevel, @double);
@@ -656,6 +680,15 @@ namespace SAM.Analytical.Windows.Controls
                 result.RemoveValue(InternalConditionParameter.EquipmentSensibleGainPerArea);
             }
 
+            if (Core.Query.TryConvert(TextBox_Equipment_SensibleGain.Text, out @double))
+            {
+                result.SetValue(InternalConditionParameter.EquipmentSensibleGain, @double);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.EquipmentSensibleGain);
+            }
+
             if (TextBox_Equipment_LatentProfileName.Text != null)
             {
                 result.SetValue(InternalConditionParameter.EquipmentLatentProfileName, TextBox_Equipment_LatentProfileName.Text);
@@ -672,6 +705,15 @@ namespace SAM.Analytical.Windows.Controls
             else
             {
                 result.RemoveValue(InternalConditionParameter.EquipmentLatentGainPerArea);
+            }
+
+            if (Core.Query.TryConvert(TextBox_Equipment_LatentGain.Text, out @double))
+            {
+                result.SetValue(InternalConditionParameter.EquipmentLatentGain, @double);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.EquipmentLatentGain);
             }
 
             if (TextBox_Humidity_ProfileName.Text != null)
@@ -742,7 +784,13 @@ namespace SAM.Analytical.Windows.Controls
 
         private void ApplyColors()
         {
-            if(!UseColors)
+            List<TextBox> textBoxes = Core.Windows.Query.Controls<TextBox>(this);
+            if (textBoxes != null)
+            {
+                textBoxes.ForEach(x => x.BackColor = x.ReadOnly ? System.Drawing.SystemColors.Control : System.Drawing.Color.White);
+            }
+
+            if (!UseColors)
             {
                 return;
             }
@@ -750,15 +798,9 @@ namespace SAM.Analytical.Windows.Controls
             System.Drawing.Color color_Modified = System.Drawing.Color.LightYellow;
             System.Drawing.Color color_Existing = System.Drawing.Color.LightGreen;
 
+            bool reset = false;
 
-            List<TextBox> textBoxes = Core.Windows.Query.Controls<TextBox>(this);
-            if(textBoxes != null)
-            {
-                textBoxes.ForEach(x => x.BackColor = x.ReadOnly ? System.Drawing.SystemColors.Control : System.Drawing.Color.White);
-
-            }
-
-            if(string.IsNullOrWhiteSpace(TextBox_Name.Text))
+            if (string.IsNullOrWhiteSpace(TextBox_Name.Text))
             {
                 return;
             }
@@ -785,6 +827,24 @@ namespace SAM.Analytical.Windows.Controls
             string @string;
             string string_Template;
 
+            //Area Per Person
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.AreaPerPerson, out double_Template))
+            {
+                double_Template = double.NaN;
+            }
+
+            if (!Core.Query.TryConvert(TextBox_AreaPerPerson.Text, out @double))
+            {
+                @double = double.NaN;
+            }
+
+            if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
+            {
+                TextBox_AreaPerPerson.BackColor = color_Modified;
+                reset = true;
+            }
+
             //Heating
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.HeatingProfileName, out string_Template))
@@ -800,6 +860,7 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_Heating_ProfileName.BackColor = color_Modified;
                 TextBox_Heating_ProfileGuid.BackColor = color_Modified;
                 TextBox_Heating_DesignTemperature.BackColor = color_Modified;
+                reset = true;
             }
 
             //Cooling
@@ -817,6 +878,7 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_Cooling_ProfileName.BackColor = color_Modified;
                 TextBox_Cooling_ProfileGuid.BackColor = color_Modified;
                 TextBox_Cooling_DesignTemperature.BackColor = color_Modified;
+                reset = true;
             }
 
             //Occupancy
@@ -833,6 +895,7 @@ namespace SAM.Analytical.Windows.Controls
             {
                 TextBox_Occupancy_ProfileName.BackColor = color_Modified;
                 TextBox_Occupancy_ProfileGuid.BackColor = color_Modified;
+                reset = true;
             }
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.OccupancySensibleGainPerPerson, out double_Template))
@@ -848,6 +911,7 @@ namespace SAM.Analytical.Windows.Controls
             if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
             {
                 TextBox_Occupancy_SensibleGainPerPerson.BackColor = color_Modified;
+                reset = true;
             }
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.OccupancyLatentGainPerPerson, out double_Template))
@@ -863,6 +927,7 @@ namespace SAM.Analytical.Windows.Controls
             if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
             {
                 TextBox_Occupancy_LatentGainPerPerson.BackColor = color_Modified;
+                reset = true;
             }
 
             //Lighting
@@ -879,6 +944,7 @@ namespace SAM.Analytical.Windows.Controls
             {
                 TextBox_Lighting_ProfileName.BackColor = color_Modified;
                 TextBox_Lighting_ProfileGuid.BackColor = color_Modified;
+                reset = true;
             }
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.LightingGain, out double_Template))
@@ -894,6 +960,23 @@ namespace SAM.Analytical.Windows.Controls
             if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
             {
                 TextBox_Lighting_Gain.BackColor = color_Modified;
+                reset = true;
+            }
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.LightingGainPerArea, out double_Template))
+            {
+                double_Template = double.NaN;
+            }
+
+            if (!Core.Query.TryConvert(TextBox_Lighting_GainPerArea.Text, out @double))
+            {
+                @double = double.NaN;
+            }
+
+            if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
+            {
+                TextBox_Lighting_GainPerArea.BackColor = color_Modified;
+                reset = true;
             }
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.LightingLevel, out double_Template))
@@ -909,6 +992,7 @@ namespace SAM.Analytical.Windows.Controls
             if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
             {
                 TextBox_Lighting_Level.BackColor = color_Modified;
+                reset = true;
             }
 
             //Equipment Sensible
@@ -925,22 +1009,42 @@ namespace SAM.Analytical.Windows.Controls
             {
                 TextBox_Equipment_SensibleProfileName.BackColor = color_Modified;
                 TextBox_Equipment_SensibleProfileGuid.BackColor = color_Modified;
+                reset = true;
             }
-            
+
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.EquipmentSensibleGainPerArea, out double_Template))
             {
                 double_Template = double.NaN;
             }
 
-            if (!Core.Query.TryConvert(TextBox_Equipment_LatentGainPerArea.Text, out @double))
+            if (!Core.Query.TryConvert(TextBox_Equipment_SensibleGainPerArea.Text, out @double))
             {
                 @double = double.NaN;
             }
 
             if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
             {
-                TextBox_Equipment_LatentGainPerArea.BackColor = color_Modified;
+                TextBox_Equipment_SensibleGainPerArea.BackColor = color_Modified;
+                reset = true;
             }
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.EquipmentSensibleGain, out double_Template))
+            {
+                double_Template = double.NaN;
+            }
+
+            if (!Core.Query.TryConvert(TextBox_Equipment_SensibleGain.Text, out @double))
+            {
+                @double = double.NaN;
+            }
+
+            if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
+            {
+                TextBox_Equipment_SensibleGain.BackColor = color_Modified;
+                reset = true;
+            }
+
+            //Equipment Latent
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.EquipmentLatentProfileName, out string_Template))
             {
@@ -954,6 +1058,7 @@ namespace SAM.Analytical.Windows.Controls
             {
                 TextBox_Equipment_LatentProfileName.BackColor = color_Modified;
                 TextBox_Equipment_LatentProfileGuid.BackColor = color_Modified;
+                reset = true;
             }
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.EquipmentLatentGainPerArea, out double_Template))
@@ -969,6 +1074,23 @@ namespace SAM.Analytical.Windows.Controls
             if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
             {
                 TextBox_Equipment_LatentGainPerArea.BackColor = color_Modified;
+                reset = true;
+            }
+
+            if (!internalCondition_Template.TryGetValue(InternalConditionParameter.EquipmentLatentGain, out double_Template))
+            {
+                double_Template = double.NaN;
+            }
+
+            if (!Core.Query.TryConvert(TextBox_Equipment_LatentGain.Text, out @double))
+            {
+                @double = double.NaN;
+            }
+
+            if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
+            {
+                TextBox_Equipment_LatentGain.BackColor = color_Modified;
+                reset = true;
             }
 
             //Humidification
@@ -986,6 +1108,7 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_Humidity_ProfileName.BackColor = color_Modified;
                 TextBox_Humidity_ProfileGuid.BackColor = color_Modified;
                 TextBox_Humidity.BackColor = color_Modified;
+                reset = true;
             }
 
             //Dehumidification
@@ -1003,6 +1126,7 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_Dehumidity_ProfileName.BackColor = color_Modified;
                 TextBox_Dehumidity_ProfileGuid.BackColor = color_Modified;
                 TextBox_Dehumidity.BackColor = color_Modified;
+                reset = true;
             }
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.InfiltrationProfileName, out string_Template))
@@ -1019,6 +1143,7 @@ namespace SAM.Analytical.Windows.Controls
             {
                 TextBox_Infiltration_ProfileName.BackColor = color_Modified;
                 TextBox_Infiltration_ProfileGuid.BackColor = color_Modified;
+                reset = true;
             }
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.InfiltrationAirChangesPerHour, out double_Template))
@@ -1026,14 +1151,15 @@ namespace SAM.Analytical.Windows.Controls
                 double_Template = double.NaN;
             }
 
-            if(!Core.Query.TryConvert(TextBox_Infiltration.Text, out @double))
+            if (!Core.Query.TryConvert(TextBox_Infiltration.Text, out @double))
             {
                 @double = double.NaN;
             }
 
-            if(!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
+            if (!Core.Query.AlmostEqual(@double, double_Template, Core.Tolerance.Distance))
             {
                 TextBox_Infiltration.BackColor = color_Modified;
+                reset = true;
             }
 
             //Ventilation System
@@ -1050,6 +1176,7 @@ namespace SAM.Analytical.Windows.Controls
             {
                 TextBox_VentilationSystem_Name.BackColor = color_Modified;
                 TextBox_VentilationSystem_Guid.BackColor = color_Modified;
+                reset = true;
             }
 
             //Heating System
@@ -1066,6 +1193,7 @@ namespace SAM.Analytical.Windows.Controls
             {
                 TextBox_HeatingSystem_Name.BackColor = color_Modified;
                 TextBox_HeatingSystem_Guid.BackColor = color_Modified;
+                reset = true;
             }
 
             //Cooling System
@@ -1082,7 +1210,10 @@ namespace SAM.Analytical.Windows.Controls
             {
                 TextBox_CoolingSystem_Name.BackColor = color_Modified;
                 TextBox_CoolingSystem_Guid.BackColor = color_Modified;
+                reset = true;
             }
+
+            Button_Reset.Enabled = reset;
 
         }
 
@@ -1096,37 +1227,46 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Occupancy_LatentGain_Calculated.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
             TextBox_Occupancy_SensibleGainPerPerson.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
             TextBox_Occupancy_LatentGainPerPerson.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            
+            TextBox_Equipment_SensibleGain.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_Equipment_LatentGain.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_Equipment_SensibleGainPerArea.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_Equipment_LatentGainPerArea.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
 
             TextBox_Lighting_Gain.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_Lighting_GainPerArea.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
             TextBox_Lighting_Level.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
 
 
             TextBox_Name.TextChanged += TextBox_TextChanged;
-            
+
             TextBox_AreaPerPerson.TextChanged += TextBox_TextChanged;
-            
+
             TextBox_Heating_ProfileName.TextChanged += TextBox_TextChanged;
-            
+
             TextBox_Cooling_ProfileName.TextChanged += TextBox_TextChanged;
-            
+
             TextBox_Occupancy_ProfileName.TextChanged += TextBox_TextChanged;
-            
+
             TextBox_Lighting_ProfileName.TextChanged += TextBox_TextChanged;
             TextBox_Lighting_Gain.TextChanged += TextBox_TextChanged;
+            TextBox_Lighting_GainPerArea.TextChanged += TextBox_TextChanged;
             TextBox_Lighting_Level.TextChanged += TextBox_TextChanged;
-            
-            TextBox_Occupancy_SensibleGain_Calculated.TextChanged += TextBox_TextChanged;
+
+            //TextBox_Occupancy_SensibleGain_Calculated.TextChanged += TextBox_TextChanged;
             TextBox_Occupancy_SensibleGainPerPerson.TextChanged += TextBox_TextChanged;
-            TextBox_Occupancy_LatentGain_Calculated.TextChanged += TextBox_TextChanged;
+            //TextBox_Occupancy_LatentGain_Calculated.TextChanged += TextBox_TextChanged;
             TextBox_Occupancy_LatentGainPerPerson.TextChanged += TextBox_TextChanged;
 
             TextBox_Equipment_SensibleProfileName.TextChanged += TextBox_TextChanged;
-            TextBox_Equipment_SensibleGain_Calculated.TextChanged += TextBox_TextChanged;
+            //TextBox_Equipment_SensibleGainCalculated.TextChanged += TextBox_TextChanged;
             TextBox_Equipment_SensibleGainPerArea.TextChanged += TextBox_TextChanged;
+            TextBox_Equipment_SensibleGain.TextChanged += TextBox_TextChanged;
 
             TextBox_Equipment_LatentProfileName.TextChanged += TextBox_TextChanged;
-            TextBox_Equipment_LatentGain_Calculated.TextChanged += TextBox_TextChanged;
+            //TextBox_Equipment_LatentGainCalculated.TextChanged += TextBox_TextChanged;
             TextBox_Equipment_LatentGainPerArea.TextChanged += TextBox_TextChanged;
+            TextBox_Equipment_LatentGain.TextChanged += TextBox_TextChanged;
 
             TextBox_Humidity_ProfileName.TextChanged += TextBox_TextChanged;
             TextBox_Dehumidity_ProfileName.TextChanged += TextBox_TextChanged;
@@ -1175,10 +1315,27 @@ namespace SAM.Analytical.Windows.Controls
             }
         }
 
+        private void Button_Reset_Click(object sender, System.EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to reset values", "Reset", MessageBoxButtons.YesNo);
+            if(dialogResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            InternalCondition internalCondition_Template = adjacencyCluster?.GetInternalConditions(false, true)?.ToList().Find(x => x.Name == TextBox_Name.Text);
+            if (internalCondition_Template == null)
+            {
+                return;
+            }
+
+            LoadInternalCondition(internalCondition_Template);
+        }
+
         private void Button_HeatingProfile_Click(object sender, System.EventArgs e)
         {
             Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Thermostat);
-            if(profile == null)
+            if (profile == null)
             {
                 return;
             }
@@ -1190,6 +1347,359 @@ namespace SAM.Analytical.Windows.Controls
 
             double @double = Analytical.Query.HeatingDesignTemperature(internalCondition, profileLibrary);
             TextBox_Heating_DesignTemperature.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void Button_CoolingProfile_Click(object sender, System.EventArgs e)
+        {
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Thermostat);
+            if (profile == null)
+            {
+                return;
+            }
+
+            TextBox_Cooling_ProfileName.Text = profile.Name;
+            TextBox_Cooling_ProfileGuid.Text = profile.Guid.ToString();
+
+            InternalCondition internalCondition = GetInternalCondition();
+
+            double @double = Analytical.Query.CoolingDesignTemperature(internalCondition, profileLibrary);
+            TextBox_Cooling_DesignTemperature.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void Button_OccupancyProfile_Click(object sender, System.EventArgs e)
+        {
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Gain);
+            if (profile == null)
+            {
+                return;
+            }
+
+            TextBox_Occupancy_ProfileName.Text = profile.Name;
+            TextBox_Occupancy_ProfileGuid.Text = profile.Guid.ToString();
+
+            InternalCondition internalCondition = GetInternalCondition();
+
+            double value;
+
+            if (!internalCondition.TryGetValue(InternalConditionParameter.OccupancyLatentGainPerPerson, out value))
+            {
+                value = double.NaN;
+            }
+
+            TextBox_Occupancy_LatentGainPerPerson.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+
+            if (!internalCondition.TryGetValue(InternalConditionParameter.OccupancySensibleGainPerPerson, out value))
+            {
+                value = double.NaN;
+            }
+
+            TextBox_Occupancy_SensibleGainPerPerson.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+
+        }
+
+        private void Button_LightingProfile_Click(object sender, System.EventArgs e)
+        {
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Gain);
+            if (profile == null)
+            {
+                return;
+            }
+
+            TextBox_Lighting_ProfileName.Text = profile.Name;
+            TextBox_Lighting_ProfileGuid.Text = profile.Guid.ToString();
+
+            InternalCondition internalCondition = GetInternalCondition();
+
+            double value;
+
+            if (!internalCondition.TryGetValue(InternalConditionParameter.LightingGain, out value))
+            {
+                value = double.NaN;
+            }
+
+            TextBox_Lighting_Gain.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+
+            if (!internalCondition.TryGetValue(InternalConditionParameter.LightingLevel, out value))
+            {
+                value = double.NaN;
+            }
+
+            TextBox_Lighting_Level.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void Button_EquipmentSensibleProfile_Click(object sender, System.EventArgs e)
+        {
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Gain);
+            if (profile == null)
+            {
+                return;
+            }
+
+            TextBox_Equipment_SensibleProfileName.Text = profile.Name;
+            TextBox_Equipment_SensibleProfileGuid.Text = profile.Guid.ToString();
+
+            InternalCondition internalCondition = GetInternalCondition();
+
+            double value;
+
+            if (!internalCondition.TryGetValue(InternalConditionParameter.EquipmentSensibleGainPerArea, out value))
+            {
+                value = double.NaN;
+            }
+
+            TextBox_Equipment_SensibleGainPerArea.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+
+            if (!internalCondition.TryGetValue(InternalConditionParameter.EquipmentSensibleGain, out value))
+            {
+                value = double.NaN;
+            }
+
+            TextBox_Equipment_SensibleGain.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void Button_EquipmentLatentProfile_Click(object sender, System.EventArgs e)
+        {
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Gain);
+            if (profile == null)
+            {
+                return;
+            }
+
+            TextBox_Equipment_LatentProfileName.Text = profile.Name;
+            TextBox_Equipment_LatentProfileGuid.Text = profile.Guid.ToString();
+
+            InternalCondition internalCondition = GetInternalCondition();
+
+            double value;
+
+            if (!internalCondition.TryGetValue(InternalConditionParameter.EquipmentLatentGainPerArea, out value))
+            {
+                value = double.NaN;
+            }
+
+            TextBox_Equipment_LatentGainPerArea.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+
+            if (!internalCondition.TryGetValue(InternalConditionParameter.EquipmentLatentGain, out value))
+            {
+                value = double.NaN;
+            }
+
+            TextBox_Equipment_LatentGain.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void Button_HumidificationProfile_Click(object sender, System.EventArgs e)
+        {
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Humidistat);
+            if (profile == null)
+            {
+                return;
+            }
+
+            TextBox_Humidity_ProfileName.Text = profile.Name;
+            TextBox_Humidity_ProfileGuid.Text = profile.Guid.ToString();
+
+            double @double = profile.MaxValue;
+            if (!double.IsNaN(@double))
+            {
+                TextBox_Humidity.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+            }
+        }
+
+        private void Button_DehumidificationProfile_Click(object sender, System.EventArgs e)
+        {
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Humidistat);
+            if (profile == null)
+            {
+                return;
+            }
+
+            TextBox_Dehumidity_ProfileName.Text = profile.Name;
+            TextBox_Dehumidity_ProfileGuid.Text = profile.Guid.ToString();
+
+            double @double = profile.MaxValue;
+            if (!double.IsNaN(@double))
+            {
+                TextBox_Dehumidity.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+            }
+        }
+
+        private void Button_InfiltrationProfile_Click(object sender, System.EventArgs e)
+        {
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Gain);
+            if (profile == null)
+            {
+                return;
+            }
+
+            TextBox_Infiltration_ProfileName.Text = profile.Name;
+            TextBox_Infiltration_ProfileGuid.Text = profile.Guid.ToString();
+
+            InternalCondition internalCondition = GetInternalCondition();
+
+            double value;
+
+            if (!internalCondition.TryGetValue(InternalConditionParameter.InfiltrationAirChangesPerHour, out value))
+            {
+                value = double.NaN;
+            }
+
+            TextBox_Infiltration.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void TextBox_Equipment_SensibleGainPerArea_TextChanged(object sender, System.EventArgs e)
+        {
+            Space space = Space;
+            if(space == null)
+            {
+                return;
+            }
+
+            space = new Space(space);
+            space.InternalCondition = GetInternalCondition();
+
+            double @double = Analytical.Query.CalculatedEquipmentSensibleGain(space);
+            TextBox_Equipment_SensibleGainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void TextBox_Equipment_SensibleGain_TextChanged(object sender, System.EventArgs e)
+        {
+            Space space = Space;
+            if (space == null)
+            {
+                return;
+            }
+
+            space = new Space(space);
+            space.InternalCondition = GetInternalCondition();
+
+            double @double = Analytical.Query.CalculatedEquipmentSensibleGain(space);
+            TextBox_Equipment_SensibleGainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void TextBox_Equipment_LatentGainPerArea_TextChanged(object sender, System.EventArgs e)
+        {
+            Space space = Space;
+            if (space == null)
+            {
+                return;
+            }
+
+            space = new Space(space);
+            space.InternalCondition = GetInternalCondition();
+
+            double @double = Analytical.Query.CalculatedEquipmentLatentGain(space);
+            TextBox_Equipment_LatentGainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void TextBox_Equipment_LatentGain_TextChanged(object sender, System.EventArgs e)
+        {
+            Space space = Space;
+            if (space == null)
+            {
+                return;
+            }
+
+            space = new Space(space);
+            space.InternalCondition = GetInternalCondition();
+
+            double @double = Analytical.Query.CalculatedEquipmentLatentGain(space);
+            TextBox_Equipment_LatentGainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void TextBox_Lighting_GainPerArea_TextChanged(object sender, System.EventArgs e)
+        {
+            Space space = Space;
+            if (space == null)
+            {
+                return;
+            }
+
+            space = new Space(space);
+            space.InternalCondition = GetInternalCondition();
+
+            double @double = Analytical.Query.CalculatedLightingGain(space);
+            TextBox_Lighting_GainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void TextBox_Lighting_Gain_TextChanged(object sender, System.EventArgs e)
+        {
+            Space space = Space;
+            if (space == null)
+            {
+                return;
+            }
+
+            space = new Space(space);
+            space.InternalCondition = GetInternalCondition();
+
+            double @double = Analytical.Query.CalculatedLightingGain(space);
+            TextBox_Lighting_GainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void TextBox_AreaPerPerson_TextChanged(object sender, System.EventArgs e)
+        {
+            Space space = Space;
+            if (space == null)
+            {
+                return;
+            }
+
+            space = new Space(space);
+            space.InternalCondition = GetInternalCondition();
+
+            double @double;
+
+            @double = Analytical.Query.OccupancySensibleGain(space);
+
+            TextBox_Occupancy_SensibleGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+
+            @double = Analytical.Query.OccupancyLatentGain(space);
+
+            TextBox_Occupancy_LatentGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void TextBox_Occupancy_SensibleGainPerPerson_TextChanged(object sender, System.EventArgs e)
+        {
+            Space space = Space;
+            if (space == null)
+            {
+                return;
+            }
+
+            space = new Space(space);
+            space.InternalCondition = GetInternalCondition();
+
+            double @double;
+
+            @double = Analytical.Query.OccupancySensibleGain(space);
+
+            TextBox_Occupancy_SensibleGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+
+            @double = Analytical.Query.OccupancyLatentGain(space);
+
+            TextBox_Occupancy_LatentGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void TextBox_Occupancy_LatentGainPerPerson_TextChanged(object sender, System.EventArgs e)
+        {
+            Space space = Space;
+            if (space == null)
+            {
+                return;
+            }
+
+            space = new Space(space);
+            space.InternalCondition = GetInternalCondition();
+
+            double @double;
+
+            @double = Analytical.Query.OccupancySensibleGain(space);
+
+            TextBox_Occupancy_SensibleGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+
+            @double = Analytical.Query.OccupancyLatentGain(space);
+
+            TextBox_Occupancy_LatentGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
     }
 }
