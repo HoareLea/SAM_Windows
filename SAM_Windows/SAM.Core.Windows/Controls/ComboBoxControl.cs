@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace SAM.Core.Windows
@@ -14,6 +15,7 @@ namespace SAM.Core.Windows
             ComboBox_Main.ValueMember = "Object";
         }
 
+        [Description("Description for value"), Category("Data")]
         public string Description
         {
             get

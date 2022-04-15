@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace SAM.Core.Windows
@@ -92,6 +93,7 @@ namespace SAM.Core.Windows
             }
         }
 
+        [Description("Search Text"), Category("Data")]
         public string SearchText
         {
             get
@@ -105,6 +107,7 @@ namespace SAM.Core.Windows
             }
         }
 
+        [Description("Selection Mode"), Category("Behaviour")]
         public SelectionMode SelectionMode
         {
             get

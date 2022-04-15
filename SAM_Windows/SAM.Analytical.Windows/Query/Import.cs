@@ -1,6 +1,7 @@
 ﻿using SAM.Core;
 using SAM.Core.Windows.Forms;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -30,6 +31,13 @@ namespace SAM.Analytical.Windows
                 }
                 path = openFileDialog.FileName;
             }
+
+            return Import(path, out jSAMObjects, func, userSelection, owner);
+        }
+
+        public static List<T> Import<T>(string path, out List<IJSAMObject> jSAMObjects, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null)
+        {
+            jSAMObjects = null;
 
             if (string.IsNullOrWhiteSpace(path) || !System.IO.File.Exists(path))
             {
@@ -65,11 +73,11 @@ namespace SAM.Analytical.Windows
 
                 AdjacencyCluster adjacencyCluster = null;
 
-                if(jSAMObject is AdjacencyCluster)
+                if (jSAMObject is AdjacencyCluster)
                 {
                     adjacencyCluster = (AdjacencyCluster)jSAMObject;
                 }
-                else if(jSAMObject is AnalyticalModel)
+                else if (jSAMObject is AnalyticalModel)
                 {
                     AnalyticalModel analyticalModel = (AnalyticalModel)jSAMObject;
 
@@ -104,7 +112,7 @@ namespace SAM.Analytical.Windows
                     adjacencyCluster = analyticalModel.AdjacencyCluster;
                 }
 
-                if(adjacencyCluster != null)
+                if (adjacencyCluster != null)
                 {
                     List<Construction> constructions_Temp = adjacencyCluster.GetConstructions();
                     if (constructions_Temp != null)
@@ -272,7 +280,7 @@ namespace SAM.Analytical.Windows
             tuples_All.ForEach(x => groups.Add(x.Item1));
 
             List<Tuple<string, string, T>> tuples_Selected = tuples_All;
-            if(userSelection)
+            if (userSelection)
             {
                 tuples_Selected = null;
 
@@ -304,17 +312,59 @@ namespace SAM.Analytical.Windows
         {
             return Import(out List<IJSAMObject> jSAMObjects, func, userSelection, owner);
         }
-        
+
+        public static List<T> Import<T>(string path, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T : IJSAMObject
+        {
+            return Import(path, out List <IJSAMObject> jSAMObjects, func, userSelection, owner);
+        }
+
+        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, string path, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T : IJSAMObject
+        {
+            List<T> jSAMObjects = Import(path, out List<IJSAMObject> jSAMObjects_All, func, userSelection, owner);
+
+            return Import(analyticalModel, jSAMObjects, jSAMObjects_All, func, userSelection, owner);
+        }
+
         public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T: IJSAMObject
         {
             List<T> jSAMObjects = Import(out List<IJSAMObject> jSAMObjects_All,  func, userSelection, owner);
-            if(jSAMObjects == null)
+
+            return Import(analyticalModel, jSAMObjects, jSAMObjects_All, func, userSelection, owner);
+
+        }
+
+        public static AnalyticalModel Import(this AnalyticalModel analyticalModel, bool userSelection = true, IWin32Window owner = null)
+        {
+            Func<IJSAMObject, bool> func = null;
+
+            return Import(analyticalModel, func, userSelection, owner);
+        }
+
+        public static AnalyticalModel Import(this AnalyticalModel analyticalModel, string path, bool userSelection = true, IWin32Window owner = null)
+        {
+            return Import<IJSAMObject>(analyticalModel, path, null, userSelection, owner);
+        }
+
+        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, bool userSelection = true, IWin32Window owner = null) where T: IJSAMObject
+        {
+            return Import(analyticalModel, (IJSAMObject x) => x is T, userSelection, owner);
+        }
+
+        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, string path, bool userSelection = true, IWin32Window owner = null) where T : IJSAMObject
+        {
+            return Import(analyticalModel, path, (IJSAMObject x) => x is T, userSelection, owner);
+        }
+
+
+        private static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, IEnumerable<T> jSAMObjects, IEnumerable<IJSAMObject> jSAMObjects_All, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T : IJSAMObject
+        {
+            if (jSAMObjects == null)
             {
                 return null;
             }
 
             AdjacencyCluster adjacencyCluster = analyticalModel.AdjacencyCluster;
-            if(adjacencyCluster == null)
+            if (adjacencyCluster == null)
             {
                 adjacencyCluster = new AdjacencyCluster();
             }
@@ -324,7 +374,7 @@ namespace SAM.Analytical.Windows
             List<InternalCondition> internalConditions = new List<InternalCondition>();
             foreach (T jSAMObject in jSAMObjects)
             {
-                if(jSAMObject == null)
+                if (jSAMObject == null)
                 {
                     continue;
                 }
@@ -345,7 +395,7 @@ namespace SAM.Analytical.Windows
                 {
                     apertureConstructions.Add((ApertureConstruction)(object)jSAMObject);
                 }
-                else if(jSAMObject is InternalCondition)
+                else if (jSAMObject is InternalCondition)
                 {
                     internalConditions.Add((InternalCondition)(object)jSAMObject);
                 }
@@ -406,7 +456,7 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
-                List<IMaterial> materials = jSAMObjects_All?.FindAll(x => x is IMaterial).ConvertAll(x => (IMaterial)x);
+                List<IMaterial> materials = jSAMObjects_All?.ToList().FindAll(x => x is IMaterial).ConvertAll(x => (IMaterial)x);
                 if (materials != null && materials.Count != 0)
                 {
                     MaterialLibrary materialLibrary = analyticalModel.MaterialLibrary;
@@ -438,18 +488,18 @@ namespace SAM.Analytical.Windows
                 }
             }
 
-            if(internalConditions != null)
+            if (internalConditions != null)
             {
                 ProfileLibrary profileLibrary = analyticalModel.ProfileLibrary;
 
-                List<Profile> profiles = jSAMObjects_All?.FindAll(x => x is Profile).ConvertAll(x => (Profile)x);
+                List<Profile> profiles = jSAMObjects_All?.ToList().FindAll(x => x is Profile).ConvertAll(x => (Profile)x);
 
                 Dictionary<ProfileType, HashSet<string>> dictionary_Profile = new Dictionary<ProfileType, HashSet<string>>();
-                foreach(InternalCondition internalCondition in internalConditions)
+                foreach (InternalCondition internalCondition in internalConditions)
                 {
                     adjacencyCluster.AddObject(internalCondition);
 
-                    if(profiles != null && profiles.Count != 0)
+                    if (profiles != null && profiles.Count != 0)
                     {
                         IEnumerable<ProfileType> profileTypes = internalCondition.GetProfileTypes();
                         if (profileTypes != null)
@@ -481,17 +531,17 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
-                if(dictionary_Profile != null && dictionary_Profile.Count != 0)
+                if (dictionary_Profile != null && dictionary_Profile.Count != 0)
                 {
                     DialogResult dialogResult = MessageBox.Show(owner, "Try to import missing profiles?", "Profiles", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        foreach(KeyValuePair<ProfileType, HashSet<string>> keyValuePair in dictionary_Profile)
+                        foreach (KeyValuePair<ProfileType, HashSet<string>> keyValuePair in dictionary_Profile)
                         {
-                            foreach(string name in keyValuePair.Value)
+                            foreach (string name in keyValuePair.Value)
                             {
                                 Profile profile = Analytical.Query.Profile(profiles, name, keyValuePair.Key, true);
-                                if(profile != null)
+                                if (profile != null)
                                 {
                                     analyticalModel.AddProfile(profile);
                                 }
@@ -506,14 +556,5 @@ namespace SAM.Analytical.Windows
             return new AnalyticalModel(analyticalModel, adjacencyCluster);
         }
 
-        public static AnalyticalModel Import(this AnalyticalModel analyticalModel, bool userSelection = true, IWin32Window owner = null)
-        {
-            return Import<IJSAMObject>(analyticalModel, null, userSelection, owner);
-        }
-
-        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, bool userSelection = true, IWin32Window owner = null) where T: IJSAMObject
-        {
-            return Import(analyticalModel, (IJSAMObject x) => x is T, userSelection, owner);
-        }
     }
 }

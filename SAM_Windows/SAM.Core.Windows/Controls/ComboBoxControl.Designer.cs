@@ -39,7 +39,7 @@ namespace SAM.Core.Windows
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBox_Main.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_Main.FormattingEnabled = true;
-            this.ComboBox_Main.Location = new System.Drawing.Point(3, 27);
+            this.ComboBox_Main.Location = new System.Drawing.Point(3, 24);
             this.ComboBox_Main.Name = "ComboBox_Main";
             this.ComboBox_Main.Size = new System.Drawing.Size(191, 24);
             this.ComboBox_Main.TabIndex = 5;
@@ -47,7 +47,7 @@ namespace SAM.Core.Windows
             // Label_Description
             // 
             this.Label_Description.AutoSize = true;
-            this.Label_Description.Location = new System.Drawing.Point(3, 7);
+            this.Label_Description.Location = new System.Drawing.Point(3, 4);
             this.Label_Description.Name = "Label_Description";
             this.Label_Description.Size = new System.Drawing.Size(0, 17);
             this.Label_Description.TabIndex = 6;
@@ -58,7 +58,7 @@ namespace SAM.Core.Windows
             this.Controls.Add(this.Label_Description);
             this.Controls.Add(this.ComboBox_Main);
             this.Name = "ComboBoxControl";
-            this.Size = new System.Drawing.Size(197, 62);
+            this.Size = new System.Drawing.Size(197, 54);
             this.ResumeLayout(false);
             this.PerformLayout();
 

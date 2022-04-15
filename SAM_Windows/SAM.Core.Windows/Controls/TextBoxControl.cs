@@ -1,9 +1,11 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace SAM.Core.Windows
 {
     public partial class TextBoxControl : UserControl
     {
+        [Browsable(true), Category("Key")]
         public new event KeyPressEventHandler TextBoxKeyPress;
         public TextBoxControl()
         {
@@ -26,6 +28,7 @@ namespace SAM.Core.Windows
             }
         }
 
+        [Description("Description for value"), Category("Data")]
         public string Description
         {
             get

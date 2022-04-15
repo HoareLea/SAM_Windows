@@ -37,7 +37,7 @@ namespace SAM.Core.Windows
             // 
             this.TextBox_Main.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Main.Location = new System.Drawing.Point(3, 25);
+            this.TextBox_Main.Location = new System.Drawing.Point(3, 28);
             this.TextBox_Main.Name = "TextBox_Main";
             this.TextBox_Main.Size = new System.Drawing.Size(191, 22);
             this.TextBox_Main.TabIndex = 0;
@@ -46,7 +46,7 @@ namespace SAM.Core.Windows
             // Label_Description
             // 
             this.Label_Description.AutoSize = true;
-            this.Label_Description.Location = new System.Drawing.Point(3, 5);
+            this.Label_Description.Location = new System.Drawing.Point(3, 2);
             this.Label_Description.Name = "Label_Description";
             this.Label_Description.Size = new System.Drawing.Size(0, 17);
             this.Label_Description.TabIndex = 1;
@@ -58,7 +58,7 @@ namespace SAM.Core.Windows
             this.Controls.Add(this.Label_Description);
             this.Controls.Add(this.TextBox_Main);
             this.Name = "TextBoxControl";
-            this.Size = new System.Drawing.Size(197, 62);
+            this.Size = new System.Drawing.Size(197, 57);
             this.ResumeLayout(false);
             this.PerformLayout();
 
