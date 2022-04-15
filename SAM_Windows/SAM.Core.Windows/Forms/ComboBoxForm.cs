@@ -60,29 +60,9 @@ namespace SAM.Core.Windows.Forms
                 return;
             }
 
-            ComboBox_Main.DisplayMember = "Text";
-            ComboBox_Main.ValueMember = "Object";
+            ComboBoxControl_Main.AddRange(items, text);
 
-            List<dynamic> dynamics = new List<dynamic>();
-            dynamic selectedDynamic = null;
-            foreach (T item in items)
-            {
-                string value_text = text == null ? item.ToString() : text?.Invoke(item);
-                if (value_text == null)
-                {
-                    continue;
-                }
-
-                dynamics.Add(new { Object = item, Text = value_text });
-
-                if(item.Equals(selectedItem))
-                {
-                    selectedDynamic = dynamics.Last();
-                }
-            }
-
-            ComboBox_Main.DataSource = dynamics;
-            ComboBox_Main.SelectedItem = selectedDynamic;
+            ComboBoxControl_Main.SetSelectedItem(selectedItem);
         }
 
         private void Button_OK_Click(object sender, EventArgs e)
@@ -101,12 +81,20 @@ namespace SAM.Core.Windows.Forms
         {
             get
             {
-                if(ComboBox_Main?.SelectedItem == null)
-                {
-                    return default;
-                }
+                return ComboBoxControl_Main.GetSelectedItem<T>();
+            }
+        }
 
-                return (ComboBox_Main.SelectedItem as dynamic).Object;
+        public string Description
+        {
+            get
+            {
+                return ComboBoxControl_Main.Description;
+            }
+
+            set
+            {
+                ComboBoxControl_Main.Description = value;
             }
         }
     }

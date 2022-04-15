@@ -57,6 +57,12 @@
     <Compile Include="Classes\IdleTimer.cs" />
     <Compile Include="Classes\CustomParameterDescriptor.cs" />
     <Compile Include="Classes\WindowHandle.cs" />
+    <Compile Include="Controls\ComboBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ComboBoxControl.Designer.cs">
+      <DependentUpon>ComboBoxControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LocationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\ComboBoxControl.resx">
+      <DependentUpon>ComboBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\LocationControl.resx">
       <DependentUpon>LocationControl.cs</DependentUpon>
     </EmbeddedResource>

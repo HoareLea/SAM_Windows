@@ -380,7 +380,7 @@ namespace SAM.Analytical.Windows.Forms
             else
             {
                 AnalyticalModel analyticalModel = new AnalyticalModel(Guid.NewGuid(), "Temporary AnalyticalModel");
-                analyticalModel = Query.Import<InternalCondition>(analyticalModel, this);
+                analyticalModel = Query.Import<InternalCondition>(analyticalModel, true, this);
                 if(analyticalModel != null)
                 {
                     IEnumerable<InternalCondition> internalConditions = analyticalModel.GetInternalConditions();

@@ -8,7 +8,7 @@ namespace SAM.Analytical.Windows
 {
     public static partial class Query
     {
-        public static List<T> Import<T>(out List<IJSAMObject> jSAMObjects, Func<T, bool> func = null, IWin32Window owner = null) where T: IJSAMObject
+        public static List<T> Import<T>(out List<IJSAMObject> jSAMObjects, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T: IJSAMObject
         {
             jSAMObjects = null;
 
@@ -271,20 +271,25 @@ namespace SAM.Analytical.Windows
             HashSet<string> groups = new HashSet<string>();
             tuples_All.ForEach(x => groups.Add(x.Item1));
 
-            List<Tuple<string, string, T>> tuples_Selected = null;
-            using (TreeViewForm<Tuple<string, string, T>> treeViewForm = new TreeViewForm<Tuple<string, string, T>>("Select Objects", tuples_All, (Tuple<string, string, T> x) => x.Item2, (Tuple<string, string, T> x) => x.Item1))
+            List<Tuple<string, string, T>> tuples_Selected = tuples_All;
+            if(userSelection)
             {
-                if (groups.Count < 2)
-                {
-                    treeViewForm.ExpandAll();
-                }
+                tuples_Selected = null;
 
-                if (treeViewForm.ShowDialog(owner) != DialogResult.OK)
+                using (TreeViewForm<Tuple<string, string, T>> treeViewForm = new TreeViewForm<Tuple<string, string, T>>("Select Objects", tuples_All, (Tuple<string, string, T> x) => x.Item2, (Tuple<string, string, T> x) => x.Item1))
                 {
-                    return null;
-                }
+                    if (groups.Count < 2)
+                    {
+                        treeViewForm.ExpandAll();
+                    }
 
-                tuples_Selected = treeViewForm?.SelectedItems;
+                    if (treeViewForm.ShowDialog(owner) != DialogResult.OK)
+                    {
+                        return null;
+                    }
+
+                    tuples_Selected = treeViewForm?.SelectedItems;
+                }
             }
 
             if (tuples_Selected == null || tuples_Selected.Count == 0)
@@ -295,14 +300,14 @@ namespace SAM.Analytical.Windows
             return tuples_Selected.ConvertAll(x => x.Item3);
         }
 
-        public static List<T> Import<T>(Func<T, bool> func = null, IWin32Window owner = null) where T :IJSAMObject
+        public static List<T> Import<T>(Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T :IJSAMObject
         {
-            return Import(out List<IJSAMObject> jSAMObjects, func, owner);
+            return Import(out List<IJSAMObject> jSAMObjects, func, userSelection, owner);
         }
         
-        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, Func<T, bool> func = null, IWin32Window owner = null) where T: IJSAMObject
+        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T: IJSAMObject
         {
-            List<T> jSAMObjects = Import(out List<IJSAMObject> jSAMObjects_All,  func, owner);
+            List<T> jSAMObjects = Import(out List<IJSAMObject> jSAMObjects_All,  func, userSelection, owner);
             if(jSAMObjects == null)
             {
                 return null;
@@ -501,14 +506,14 @@ namespace SAM.Analytical.Windows
             return new AnalyticalModel(analyticalModel, adjacencyCluster);
         }
 
-        public static AnalyticalModel Import(this AnalyticalModel analyticalModel, IWin32Window owner = null)
+        public static AnalyticalModel Import(this AnalyticalModel analyticalModel, bool userSelection = true, IWin32Window owner = null)
         {
-            return Import<IJSAMObject>(analyticalModel, null, owner);
+            return Import<IJSAMObject>(analyticalModel, null, userSelection, owner);
         }
 
-        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, IWin32Window owner = null) where T: IJSAMObject
+        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, bool userSelection = true, IWin32Window owner = null) where T: IJSAMObject
         {
-            return Import(analyticalModel, (IJSAMObject x) => x is T, owner);
+            return Import(analyticalModel, (IJSAMObject x) => x is T, userSelection, owner);
         }
     }
 }
