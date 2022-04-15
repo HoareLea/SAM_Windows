@@ -171,6 +171,12 @@
     <Compile Include="Controls\SearchControl.Designer.cs">
       <DependentUpon>SearchControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TextBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TextBoxControl.Designer.cs">
+      <DependentUpon>TextBoxControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
@@ -192,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SearchControl.resx">
       <DependentUpon>SearchControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TextBoxControl.resx">
+      <DependentUpon>TextBoxControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddressAndLocationForm.resx">
       <DependentUpon>AddressAndLocationForm.cs</DependentUpon>

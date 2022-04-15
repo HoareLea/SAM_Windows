@@ -5,14 +5,11 @@ namespace SAM.Core.Windows.Forms
 {
     public partial class TextBoxForm<T> : Form
     {
+        public new event KeyPressEventHandler TextBoxKeyPress;
+        
         public TextBoxForm()
         {
             InitializeComponent();
-
-            if (Core.Query.IsNumeric(typeof(T)))
-            {
-                TextBox_Value.KeyPress += EventHandler.ControlText_NumberOnly;
-            }
         }
 
         public TextBoxForm(string name, string description)
@@ -20,30 +17,19 @@ namespace SAM.Core.Windows.Forms
             InitializeComponent();
 
             Text = name;
-            Label_Description.Text = description;
-
-            if(Core.Query.IsNumeric(typeof(T)))
-            {
-                TextBox_Value.KeyPress += EventHandler.ControlText_NumberOnly;
-            }
+            TextBoxControl_Main.Description = description;
         }
 
         public T Value
         {
             get
             {
-                if(!Core.Query.TryConvert(TextBox_Value.Text, out T result))
-                {
-                    return default;
-                }
-
-                return result;
+                return TextBoxControl_Main.GetValue<T>();
             }
 
             set
             {
-                TextBox_Value.Text = value?.ToString();
-                TextBox_Value.SelectAll();
+                TextBoxControl_Main.SetValue(value);
             }
         }
 
@@ -57,6 +43,27 @@ namespace SAM.Core.Windows.Forms
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void OnTextBoxKeyPress(KeyPressEventArgs e)
+        {
+            KeyPressEventHandler keyPressEventHandler;
+
+            keyPressEventHandler = TextBoxKeyPress;
+            if (keyPressEventHandler != null)
+            {
+                keyPressEventHandler(this, e);
+            }
+        }
+
+        private void TextBoxForm_Load(object sender, EventArgs e)
+        {
+            TextBoxControl_Main.TextBoxKeyPress += TextBoxControl_Main_TextBoxKeyPress;
+        }
+
+        private void TextBoxControl_Main_TextBoxKeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnTextBoxKeyPress(e);
         }
     }
 }

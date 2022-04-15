@@ -29,29 +29,10 @@ namespace SAM.Core.Windows.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.Label_Description = new System.Windows.Forms.Label();
-            this.TextBox_Value = new System.Windows.Forms.TextBox();
             this.Button_OK = new System.Windows.Forms.Button();
             this.Button_Cancel = new System.Windows.Forms.Button();
+            this.TextBoxControl_Main = new SAM.Core.Windows.TextBoxControl();
             this.SuspendLayout();
-            // 
-            // Label_Description
-            // 
-            this.Label_Description.AutoSize = true;
-            this.Label_Description.Location = new System.Drawing.Point(12, 16);
-            this.Label_Description.Name = "Label_Description";
-            this.Label_Description.Size = new System.Drawing.Size(79, 17);
-            this.Label_Description.TabIndex = 0;
-            this.Label_Description.Text = "Description";
-            // 
-            // TextBox_Value
-            // 
-            this.TextBox_Value.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Value.Location = new System.Drawing.Point(12, 42);
-            this.TextBox_Value.Name = "TextBox_Value";
-            this.TextBox_Value.Size = new System.Drawing.Size(244, 22);
-            this.TextBox_Value.TabIndex = 1;
             // 
             // Button_OK
             // 
@@ -76,14 +57,23 @@ namespace SAM.Core.Windows.Forms
             this.Button_Cancel.UseVisualStyleBackColor = true;
             this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
+            // TextBoxControl_Main
+            // 
+            this.TextBoxControl_Main.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxControl_Main.Description = "";
+            this.TextBoxControl_Main.Location = new System.Drawing.Point(12, 12);
+            this.TextBoxControl_Main.Name = "TextBoxControl_Main";
+            this.TextBoxControl_Main.Size = new System.Drawing.Size(244, 62);
+            this.TextBoxControl_Main.TabIndex = 5;
+            // 
             // TextBoxForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(268, 130);
+            this.Controls.Add(this.TextBoxControl_Main);
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.Button_Cancel);
-            this.Controls.Add(this.TextBox_Value);
-            this.Controls.Add(this.Label_Description);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -91,16 +81,14 @@ namespace SAM.Core.Windows.Forms
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "TextBoxForm";
+            this.Load += new System.EventHandler(this.TextBoxForm_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label Label_Description;
-        private System.Windows.Forms.TextBox TextBox_Value;
         private System.Windows.Forms.Button Button_OK;
         private System.Windows.Forms.Button Button_Cancel;
+        private TextBoxControl TextBoxControl_Main;
     }
 }
