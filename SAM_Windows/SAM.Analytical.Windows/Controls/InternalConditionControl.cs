@@ -1516,7 +1516,7 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Dehumidity_ProfileName.Text = profile.Name;
             TextBox_Dehumidity_ProfileGuid.Text = profile.Guid.ToString();
 
-            double @double = profile.MaxValue;
+            double @double = profile.MinValue;
             if (!double.IsNaN(@double))
             {
                 TextBox_Dehumidity.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
