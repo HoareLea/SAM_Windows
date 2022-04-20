@@ -82,6 +82,7 @@
     <Compile Include="Convert\ToBitmap\Bitmap.cs" />
     <Compile Include="Create\Material.cs" />
     <Compile Include="Create\CustomParameters.cs" />
+    <Compile Include="EventHandler\ControlText_IntegerOnly.cs" />
     <Compile Include="EventHandler\ControlText_NumberOnly.cs" />
     <Compile Include="Forms\AddressAndLocationForm.cs">
       <SubType>Form</SubType>

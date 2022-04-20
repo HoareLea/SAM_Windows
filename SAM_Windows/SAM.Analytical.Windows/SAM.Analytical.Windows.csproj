@@ -65,6 +65,12 @@
     <Compile Include="Controls\InternalConditionControl.Designer.cs">
       <DependentUpon>InternalConditionControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProfileControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProfileControl.Designer.cs">
+      <DependentUpon>ProfileControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SpacesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,6 +100,12 @@
     </Compile>
     <Compile Include="Forms\NewAnalyticalModelForm.Designer.cs">
       <DependentUpon>NewAnalyticalModelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProfileForm.Designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ProfileLibraryForm.cs">
       <SubType>Form</SubType>
@@ -131,6 +143,12 @@
     <Compile Include="Forms\PanelForm.Designer.cs">
       <DependentUpon>PanelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SetProfileValueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SetProfileValueForm.Designer.cs">
+      <DependentUpon>SetProfileValueForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SpaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +167,7 @@
     <Compile Include="Query\JsonForm.cs" />
     <Compile Include="Query\Import.cs" />
     <Compile Include="Modify\SelectProfile.cs" />
+    <Compile Include="Query\CategoryEnums.cs" />
     <Compile Include="Query\Material.cs" />
     <Compile Include="Controls\SpaceControl.cs">
       <SubType>UserControl</SubType>
@@ -168,11 +187,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="LiveCharts.WinForms">
+      <Version>0.9.7.1</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\ProfileControl.resx">
+      <DependentUpon>ProfileControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SpacesControl.resx">
       <DependentUpon>SpacesControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,6 +219,9 @@
     <EmbeddedResource Include="Forms\NewAnalyticalModelForm.resx">
       <DependentUpon>NewAnalyticalModelForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProfileLibraryForm.resx">
       <DependentUpon>ProfileLibraryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -211,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PanelForm.resx">
       <DependentUpon>PanelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SetProfileValueForm.resx">
+      <DependentUpon>SetProfileValueForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SpaceForm.resx">
       <DependentUpon>SpaceForm.cs</DependentUpon>
