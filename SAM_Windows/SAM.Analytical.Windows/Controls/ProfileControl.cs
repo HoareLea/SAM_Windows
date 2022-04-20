@@ -32,12 +32,12 @@ namespace SAM.Analytical.Windows.Controls
 
         private void UpdateProfileValues(Profile profile)
         {
-            profile.C
+            //profile.C
 
-            foreach(DataGridViewRow dataGridViewRow in DataGridView_Values.Rows)
-            {
-                profile.
-            }
+            //foreach(DataGridViewRow dataGridViewRow in DataGridView_Values.Rows)
+            //{
+            //    profile.
+            //}
 
         }
 
