@@ -34,6 +34,8 @@ namespace SAM.Analytical.Windows.Controls
             CartesianChart_Profile.Hoverable = false;
             CartesianChart_Profile.DisableAnimations = true;
             CartesianChart_Profile.DataTooltip = null;
+
+            Button_SetProfile.Enabled = profileLibrary != null;
         }
 
         private void UpdateProfileValues(Profile profile)
@@ -163,6 +165,7 @@ namespace SAM.Analytical.Windows.Controls
             set
             {
                 profileLibrary = value;
+                Button_SetProfile.Enabled = profileLibrary != null;
             }
         }
 
@@ -220,8 +223,17 @@ namespace SAM.Analytical.Windows.Controls
                 }
 
                 count = setProfileValueForm.Count;
-                startIndex = setProfileValueForm.StartIndex;
                 value = setProfileValueForm.Value;
+
+                if(!setProfileValueForm.Append)
+                {
+                    startIndex = setProfileValueForm.StartIndex;
+                }
+                else
+                {
+                    startIndex = profile.Max + 1;
+                }
+                
             }
 
             if (value == null || !value.HasValue)
@@ -279,6 +291,67 @@ namespace SAM.Analytical.Windows.Controls
             {
                 profile.Update(startIndex, count, 0);
             }
+
+            LoadProfile(profile);
+        }
+
+        private void Button_SetProfile_Click(object sender, EventArgs e)
+        {
+            if (DataGridView_Values.SelectedRows == null || DataGridView_Values.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            List<Profile> profiles = profileLibrary?.GetProfiles(profile.ProfileGroup, true);
+            if(profiles == null)
+            {
+                return;
+            }
+
+            profiles.RemoveAll(x => x.Guid == profile.Guid);
+
+            if(profiles.Count == 0)
+            {
+                return;
+            }
+
+            int startIndex = int.MaxValue;
+            foreach (DataGridViewRow dataGridViewRow in DataGridView_Values.SelectedRows)
+            {
+                if (!Core.Query.TryConvert(dataGridViewRow.Cells["Column_Index"].Value, out int startIndex_Temp))
+                {
+                    continue;
+                }
+
+                if (startIndex_Temp < startIndex)
+                {
+                    startIndex = startIndex_Temp;
+                }
+            }
+
+            Profile profile_ToBeAdded = null;
+
+            using (SetProfileForm setProfileForm = new SetProfileForm(startIndex, profiles))
+            {
+                if(setProfileForm.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+
+                profile_ToBeAdded = setProfileForm.Profile;
+
+                if(!setProfileForm.Append)
+                {
+                    startIndex = setProfileForm.StartIndex;
+                }
+                else
+                {
+                    startIndex = profile.Max + 1;
+                }
+
+            }
+
+            profile.Update(startIndex, profile_ToBeAdded);
 
             LoadProfile(profile);
         }

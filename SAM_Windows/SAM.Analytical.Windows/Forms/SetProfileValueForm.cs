@@ -96,5 +96,24 @@ namespace SAM.Analytical.Windows.Forms
 
             Close();
         }
+
+        public bool Append
+        {
+            get
+            {
+                return CheckBox_Append.Checked;
+            }
+
+            set
+            {
+                CheckBox_Append.Checked = value;
+            }
+        }
+
+        private void CheckBox_Append_CheckedChanged(object sender, System.EventArgs e)
+        {
+            TextBox_StartIndex.Enabled = !CheckBox_Append.Checked;
+            Label_StartIndex.Enabled = !CheckBox_Append.Checked;
+        }
     }
 }

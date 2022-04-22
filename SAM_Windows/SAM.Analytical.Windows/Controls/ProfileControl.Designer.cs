@@ -197,6 +197,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_SetProfile.TabIndex = 12;
             this.Button_SetProfile.Text = "Set Profile";
             this.Button_SetProfile.UseVisualStyleBackColor = true;
+            this.Button_SetProfile.Click += new System.EventHandler(this.Button_SetProfile_Click);
             // 
             // Button_SetValue
             // 

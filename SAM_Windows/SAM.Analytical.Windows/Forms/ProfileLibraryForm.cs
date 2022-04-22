@@ -463,7 +463,7 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
 
-            using (ProfileForm profileForm = new ProfileForm(profile))
+            using (ProfileForm profileForm = new ProfileForm(new Profile(profile)))
             {
                 profileForm.ProfileLibrary = ProfileLibrary;
                 if (profileForm.ShowDialog() != DialogResult.OK)

@@ -47,9 +47,15 @@ namespace SAM.Core.Windows
             TextBox_Main.Text = value?.ToString();
             TextBox_Main.SelectAll();
 
-            if (Core.Query.IsNumeric(typeof(T)))
+            TextBox_Main.KeyPress -= EventHandler.ControlText_NumberOnly;
+            TextBox_Main.KeyPress -= EventHandler.ControlText_IntegerOnly;
+
+            if (typeof(T) == typeof(int) || typeof(T) == typeof(long) || typeof(T) == typeof(short))
             {
-                TextBox_Main.KeyPress -= EventHandler.ControlText_NumberOnly;
+                TextBox_Main.KeyPress += EventHandler.ControlText_IntegerOnly;
+            }
+            else if (Core.Query.IsNumeric(typeof(T)))
+            {
                 TextBox_Main.KeyPress += EventHandler.ControlText_NumberOnly;
             }
         }

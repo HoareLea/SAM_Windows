@@ -37,6 +37,7 @@ namespace SAM.Analytical.Windows.Forms
             this.TextBox_Value = new System.Windows.Forms.TextBox();
             this.Label_Count = new System.Windows.Forms.Label();
             this.TextBox_Count = new System.Windows.Forms.TextBox();
+            this.CheckBox_Append = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // Button_OK
@@ -64,10 +65,10 @@ namespace SAM.Analytical.Windows.Forms
             // 
             // TextBox_StartIndex
             // 
-            this.TextBox_StartIndex.Location = new System.Drawing.Point(145, 9);
+            this.TextBox_StartIndex.Location = new System.Drawing.Point(69, 12);
             this.TextBox_StartIndex.MaxLength = 5;
             this.TextBox_StartIndex.Name = "TextBox_StartIndex";
-            this.TextBox_StartIndex.Size = new System.Drawing.Size(50, 22);
+            this.TextBox_StartIndex.Size = new System.Drawing.Size(50, 20);
             this.TextBox_StartIndex.TabIndex = 11;
             // 
             // Label_StartIndex
@@ -75,7 +76,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_StartIndex.AutoSize = true;
             this.Label_StartIndex.Location = new System.Drawing.Point(5, 15);
             this.Label_StartIndex.Name = "Label_StartIndex";
-            this.Label_StartIndex.Size = new System.Drawing.Size(75, 17);
+            this.Label_StartIndex.Size = new System.Drawing.Size(58, 13);
             this.Label_StartIndex.TabIndex = 12;
             this.Label_StartIndex.Text = "Start Index";
             // 
@@ -84,16 +85,16 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Value.AutoSize = true;
             this.Label_Value.Location = new System.Drawing.Point(5, 68);
             this.Label_Value.Name = "Label_Value";
-            this.Label_Value.Size = new System.Drawing.Size(44, 17);
+            this.Label_Value.Size = new System.Drawing.Size(34, 13);
             this.Label_Value.TabIndex = 14;
             this.Label_Value.Text = "Value";
             // 
             // TextBox_Value
             // 
-            this.TextBox_Value.Location = new System.Drawing.Point(115, 65);
+            this.TextBox_Value.Location = new System.Drawing.Point(69, 69);
             this.TextBox_Value.MaxLength = 10;
             this.TextBox_Value.Name = "TextBox_Value";
-            this.TextBox_Value.Size = new System.Drawing.Size(80, 22);
+            this.TextBox_Value.Size = new System.Drawing.Size(80, 20);
             this.TextBox_Value.TabIndex = 13;
             // 
             // Label_Count
@@ -101,17 +102,28 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Count.AutoSize = true;
             this.Label_Count.Location = new System.Drawing.Point(5, 43);
             this.Label_Count.Name = "Label_Count";
-            this.Label_Count.Size = new System.Drawing.Size(45, 17);
+            this.Label_Count.Size = new System.Drawing.Size(35, 13);
             this.Label_Count.TabIndex = 16;
             this.Label_Count.Text = "Count";
             // 
             // TextBox_Count
             // 
-            this.TextBox_Count.Location = new System.Drawing.Point(145, 37);
+            this.TextBox_Count.Location = new System.Drawing.Point(69, 40);
             this.TextBox_Count.MaxLength = 5;
             this.TextBox_Count.Name = "TextBox_Count";
-            this.TextBox_Count.Size = new System.Drawing.Size(50, 22);
+            this.TextBox_Count.Size = new System.Drawing.Size(50, 20);
             this.TextBox_Count.TabIndex = 15;
+            // 
+            // CheckBox_Append
+            // 
+            this.CheckBox_Append.AutoSize = true;
+            this.CheckBox_Append.Location = new System.Drawing.Point(125, 14);
+            this.CheckBox_Append.Name = "CheckBox_Append";
+            this.CheckBox_Append.Size = new System.Drawing.Size(63, 17);
+            this.CheckBox_Append.TabIndex = 17;
+            this.CheckBox_Append.Text = "Append";
+            this.CheckBox_Append.UseVisualStyleBackColor = true;
+            this.CheckBox_Append.CheckedChanged += new System.EventHandler(this.CheckBox_Append_CheckedChanged);
             // 
             // SetProfileValueForm
             // 
@@ -119,6 +131,7 @@ namespace SAM.Analytical.Windows.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(207, 153);
+            this.Controls.Add(this.CheckBox_Append);
             this.Controls.Add(this.Label_Count);
             this.Controls.Add(this.TextBox_Count);
             this.Controls.Add(this.Label_Value);
@@ -150,5 +163,6 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.TextBox TextBox_Value;
         private System.Windows.Forms.Label Label_Count;
         private System.Windows.Forms.TextBox TextBox_Count;
+        private System.Windows.Forms.CheckBox CheckBox_Append;
     }
 }
