@@ -61,7 +61,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Name.AutoSize = true;
             this.Label_Name.Location = new System.Drawing.Point(3, 6);
             this.Label_Name.Name = "Label_Name";
-            this.Label_Name.Size = new System.Drawing.Size(49, 17);
+            this.Label_Name.Size = new System.Drawing.Size(38, 13);
             this.Label_Name.TabIndex = 0;
             this.Label_Name.Text = "Name:";
             // 
@@ -71,7 +71,7 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Name.Location = new System.Drawing.Point(78, 3);
             this.TextBox_Name.Name = "TextBox_Name";
-            this.TextBox_Name.Size = new System.Drawing.Size(282, 22);
+            this.TextBox_Name.Size = new System.Drawing.Size(282, 20);
             this.TextBox_Name.TabIndex = 1;
             // 
             // Label_Category
@@ -79,7 +79,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Category.AutoSize = true;
             this.Label_Category.Location = new System.Drawing.Point(3, 34);
             this.Label_Category.Name = "Label_Category";
-            this.Label_Category.Size = new System.Drawing.Size(69, 17);
+            this.Label_Category.Size = new System.Drawing.Size(52, 13);
             this.Label_Category.TabIndex = 2;
             this.Label_Category.Text = "Category:";
             // 
@@ -91,7 +91,7 @@ namespace SAM.Analytical.Windows.Controls
             this.ComboBox_Category.FormattingEnabled = true;
             this.ComboBox_Category.Location = new System.Drawing.Point(78, 31);
             this.ComboBox_Category.Name = "ComboBox_Category";
-            this.ComboBox_Category.Size = new System.Drawing.Size(282, 24);
+            this.ComboBox_Category.Size = new System.Drawing.Size(282, 21);
             this.ComboBox_Category.TabIndex = 3;
             // 
             // DataGridView_Values
@@ -147,7 +147,7 @@ namespace SAM.Analytical.Windows.Controls
             this.CartesianChart_Profile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CartesianChart_Profile.Location = new System.Drawing.Point(3, 3);
             this.CartesianChart_Profile.Name = "CartesianChart_Profile";
-            this.CartesianChart_Profile.Size = new System.Drawing.Size(343, 151);
+            this.CartesianChart_Profile.Size = new System.Drawing.Size(343, 154);
             this.CartesianChart_Profile.TabIndex = 5;
             this.CartesianChart_Profile.Text = "Profile";
             // 
@@ -184,10 +184,12 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_Remove.TabIndex = 13;
             this.Button_Remove.Text = "Remove";
             this.Button_Remove.UseVisualStyleBackColor = true;
+            this.Button_Remove.Click += new System.EventHandler(this.Button_Remove_Click);
             // 
             // Button_SetProfile
             // 
             this.Button_SetProfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_SetProfile.Enabled = false;
             this.Button_SetProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button_SetProfile.Location = new System.Drawing.Point(155, 164);
             this.Button_SetProfile.Name = "Button_SetProfile";
@@ -222,10 +224,10 @@ namespace SAM.Analytical.Windows.Controls
             // TabPage_Profile
             // 
             this.TabPage_Profile.Controls.Add(this.CartesianChart_Profile);
-            this.TabPage_Profile.Location = new System.Drawing.Point(4, 25);
+            this.TabPage_Profile.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Profile.Name = "TabPage_Profile";
             this.TabPage_Profile.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_Profile.Size = new System.Drawing.Size(349, 157);
+            this.TabPage_Profile.Size = new System.Drawing.Size(349, 160);
             this.TabPage_Profile.TabIndex = 0;
             this.TabPage_Profile.Text = "Profile";
             this.TabPage_Profile.UseVisualStyleBackColor = true;
@@ -233,10 +235,10 @@ namespace SAM.Analytical.Windows.Controls
             // TabPage_Yearly
             // 
             this.TabPage_Yearly.Controls.Add(this.CartesianChart_Yearly);
-            this.TabPage_Yearly.Location = new System.Drawing.Point(4, 25);
+            this.TabPage_Yearly.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Yearly.Name = "TabPage_Yearly";
             this.TabPage_Yearly.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_Yearly.Size = new System.Drawing.Size(349, 157);
+            this.TabPage_Yearly.Size = new System.Drawing.Size(349, 160);
             this.TabPage_Yearly.TabIndex = 1;
             this.TabPage_Yearly.Text = "Yearly";
             this.TabPage_Yearly.UseVisualStyleBackColor = true;
@@ -246,7 +248,7 @@ namespace SAM.Analytical.Windows.Controls
             this.CartesianChart_Yearly.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CartesianChart_Yearly.Location = new System.Drawing.Point(3, 3);
             this.CartesianChart_Yearly.Name = "CartesianChart_Yearly";
-            this.CartesianChart_Yearly.Size = new System.Drawing.Size(343, 151);
+            this.CartesianChart_Yearly.Size = new System.Drawing.Size(343, 154);
             this.CartesianChart_Yearly.TabIndex = 6;
             this.CartesianChart_Yearly.Text = "Profile";
             // 

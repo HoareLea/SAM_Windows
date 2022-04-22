@@ -31,7 +31,7 @@ namespace SAM.Analytical.Windows.Forms
         {
             this.Button_OK = new System.Windows.Forms.Button();
             this.Button_Cancel = new System.Windows.Forms.Button();
-            this.DataGridView_Constructions = new System.Windows.Forms.DataGridView();
+            this.DataGridView_Profiles = new System.Windows.Forms.DataGridView();
             this.Column_ConstructionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Type = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TextBox_Search = new System.Windows.Forms.TextBox();
@@ -41,7 +41,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Duplicate = new System.Windows.Forms.Button();
             this.Button_Import = new System.Windows.Forms.Button();
             this.ComboBox_Type = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Constructions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Profiles)).BeginInit();
             this.SuspendLayout();
             // 
             // Button_OK
@@ -69,29 +69,29 @@ namespace SAM.Analytical.Windows.Forms
             // 
             // DataGridView_Constructions
             // 
-            this.DataGridView_Constructions.AllowUserToAddRows = false;
-            this.DataGridView_Constructions.AllowUserToDeleteRows = false;
-            this.DataGridView_Constructions.AllowUserToResizeRows = false;
-            this.DataGridView_Constructions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DataGridView_Profiles.AllowUserToAddRows = false;
+            this.DataGridView_Profiles.AllowUserToDeleteRows = false;
+            this.DataGridView_Profiles.AllowUserToResizeRows = false;
+            this.DataGridView_Profiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DataGridView_Constructions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DataGridView_Constructions.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.DataGridView_Constructions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView_Constructions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DataGridView_Profiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridView_Profiles.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DataGridView_Profiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridView_Profiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column_ConstructionName,
             this.Column_Type});
-            this.DataGridView_Constructions.Location = new System.Drawing.Point(12, 56);
-            this.DataGridView_Constructions.MultiSelect = false;
-            this.DataGridView_Constructions.Name = "DataGridView_Constructions";
-            this.DataGridView_Constructions.RowHeadersVisible = false;
-            this.DataGridView_Constructions.RowHeadersWidth = 51;
-            this.DataGridView_Constructions.RowTemplate.Height = 24;
-            this.DataGridView_Constructions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView_Constructions.Size = new System.Drawing.Size(558, 276);
-            this.DataGridView_Constructions.TabIndex = 7;
-            this.DataGridView_Constructions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellContentClick);
-            this.DataGridView_Constructions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellDoubleClick);
+            this.DataGridView_Profiles.Location = new System.Drawing.Point(12, 56);
+            this.DataGridView_Profiles.MultiSelect = false;
+            this.DataGridView_Profiles.Name = "DataGridView_Constructions";
+            this.DataGridView_Profiles.RowHeadersVisible = false;
+            this.DataGridView_Profiles.RowHeadersWidth = 51;
+            this.DataGridView_Profiles.RowTemplate.Height = 24;
+            this.DataGridView_Profiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridView_Profiles.Size = new System.Drawing.Size(558, 276);
+            this.DataGridView_Profiles.TabIndex = 7;
+            this.DataGridView_Profiles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Profiles_CellContentClick);
+            this.DataGridView_Profiles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Profiles_CellDoubleClick);
             // 
             // Column_ConstructionName
             // 
@@ -196,7 +196,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Controls.Add(this.Button_Add);
             this.Controls.Add(this.Label_Search);
             this.Controls.Add(this.TextBox_Search);
-            this.Controls.Add(this.DataGridView_Constructions);
+            this.Controls.Add(this.DataGridView_Profiles);
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.Button_Cancel);
             this.KeyPreview = true;
@@ -207,8 +207,8 @@ namespace SAM.Analytical.Windows.Forms
             this.ShowIcon = false;
             this.Text = "Profile Library";
             this.Load += new System.EventHandler(this.ProfileLibraryForm_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ApertureConstructionLibraryForm_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Constructions)).EndInit();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProfileLibraryForm_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Profiles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,7 +218,7 @@ namespace SAM.Analytical.Windows.Forms
 
         private System.Windows.Forms.Button Button_OK;
         private System.Windows.Forms.Button Button_Cancel;
-        private System.Windows.Forms.DataGridView DataGridView_Constructions;
+        private System.Windows.Forms.DataGridView DataGridView_Profiles;
         private System.Windows.Forms.TextBox TextBox_Search;
         private System.Windows.Forms.Label Label_Search;
         private System.Windows.Forms.Button Button_Remove;

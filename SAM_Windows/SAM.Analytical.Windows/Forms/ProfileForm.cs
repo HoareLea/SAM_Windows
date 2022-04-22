@@ -35,5 +35,31 @@ namespace SAM.Analytical.Windows.Forms
         {
 
         }
+
+        public ProfileLibrary ProfileLibrary
+        {
+            get
+            {
+                return ProfileControl_Main.ProfileLibrary;
+            }
+
+            set
+            {
+                ProfileControl_Main.ProfileLibrary = value;
+            }
+        }
+
+        public Profile Profile
+        {
+            get
+            {
+                return ProfileControl_Main.Profile;
+            }
+
+            set
+            {
+                ProfileControl_Main.Profile = value;
+            }
+        }
     }
 }

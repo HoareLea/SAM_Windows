@@ -20,6 +20,8 @@ namespace SAM.Analytical.Windows.Controls
 
         public ProfileControl(Profile profile)
         {
+            InitializeComponent();
+
             this.profile = profile;
         }
 
@@ -28,20 +30,51 @@ namespace SAM.Analytical.Windows.Controls
             CartesianChart_Yearly.Hoverable = false;
             CartesianChart_Yearly.DisableAnimations = true;
             CartesianChart_Yearly.DataTooltip = null;
+
+            CartesianChart_Profile.Hoverable = false;
+            CartesianChart_Profile.DisableAnimations = true;
+            CartesianChart_Profile.DataTooltip = null;
         }
 
         private void UpdateProfileValues(Profile profile)
         {
-            //profile.C
+            if(profile == null)
+            {
+                return;
+            }
 
-            //foreach(DataGridViewRow dataGridViewRow in DataGridView_Values.Rows)
-            //{
-            //    profile.
-            //}
+            Profile profile_Temp = null;
+            foreach (DataGridViewRow dataGridViewRow in DataGridView_Values.Rows)
+            {
+                if (!Core.Query.TryConvert(dataGridViewRow.Cells["Column_Index"]?.Value, out int index))
+                {
+                    continue;
+                }
+
+                if (!Core.Query.TryConvert(dataGridViewRow.Cells["Column_Value"]?.Value, out double value))
+                {
+                    continue;
+                }
+
+                Profile profile_DataGridViewRow = dataGridViewRow.Tag as Profile;
+                if(profile_DataGridViewRow == null)
+                {
+                    profile_Temp = null;
+                    profile.Add(index, value);
+                }
+                else if(profile_Temp == profile_DataGridViewRow)
+                {
+                    continue;
+                }
+                else
+                {
+                    profile_Temp = profile_DataGridViewRow;
+                }
+            }
 
         }
 
-        private void LoadProfile()
+        private void LoadProfile(Profile profile)
         {
             TextBox_Name.Text = null;
             DataGridView_Values.Rows.Clear();
@@ -116,12 +149,31 @@ namespace SAM.Analytical.Windows.Controls
             set
             {
                 profile = value;
-                LoadProfile();
+                LoadProfile(profile);
+            }
+        }
+
+        public ProfileLibrary ProfileLibrary
+        {
+            get
+            {
+                return profileLibrary;
+            }
+
+            set
+            {
+                profileLibrary = value;
             }
         }
 
         private void Button_SetValue_Click(object sender, EventArgs e)
         {
+            Profile profile = Profile;
+            if(profile == null)
+            {
+                return;
+            }
+
             int count = 1;
             int startIndex = 0;
             double? value = null;
@@ -177,41 +229,58 @@ namespace SAM.Analytical.Windows.Controls
                 return;
             }
 
-            List<int> indexes = new List<int>();
-            for (int i = 0; i < count; i++)
-            {
-                indexes.Add(startIndex + i);
-            }
+            profile.Update(startIndex, count, value.Value);
 
-            foreach(DataGridViewRow dataGridViewRow in DataGridView_Values.Rows)
-            {
-                if (!Core.Query.TryConvert(dataGridViewRow.Cells["Column_Index"].Value, out int index))
-                {
-                    continue;
-                }
+            LoadProfile(profile);
+        }
 
-                if(indexes.Contains(index))
-                {
-                    dataGridViewRow.Cells["Column_Value"].Value = value;
-                    indexes.Remove(index);
-                }
-
-                if(indexes.Count == 0)
-                {
-                    break;
-                }
-            }
-
-            if(indexes.Count == 0)
+        private void Button_Remove_Click(object sender, EventArgs e)
+        {
+            if(DataGridView_Values.SelectedRows == null || DataGridView_Values.SelectedRows.Count == 0)
             {
                 return;
             }
 
-            foreach(int index in indexes)
+            Profile profile = Profile;
+            if (profile == null)
             {
-                DataGridView_Values.Rows.Add(index, null, value);
+                return;
             }
 
+            int count = 1;
+            int startIndex = 0;
+
+            IEnumerable<DataGridViewRow> dataGridViewRows = DataGridView_Values.SelectedRows.Cast<DataGridViewRow>();
+            if (dataGridViewRows != null && dataGridViewRows.Count() != 0)
+            {
+                count = 0;
+                startIndex = int.MaxValue;
+                foreach (DataGridViewRow dataGridViewRow in DataGridView_Values.SelectedRows)
+                {
+                    if (!Core.Query.TryConvert(dataGridViewRow.Cells["Column_Index"].Value, out int startIndex_Temp))
+                    {
+                        continue;
+                    }
+
+                    if (startIndex_Temp < startIndex)
+                    {
+                        startIndex = startIndex_Temp;
+                    }
+
+                    count++;
+                }
+            }
+
+            if(startIndex + count - 1 == profile.Max)
+            {
+                profile.Remove(count);
+            }
+            else
+            {
+                profile.Update(startIndex, count, 0);
+            }
+
+            LoadProfile(profile);
         }
     }
 }

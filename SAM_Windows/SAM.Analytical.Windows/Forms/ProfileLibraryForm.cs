@@ -67,7 +67,7 @@ namespace SAM.Analytical.Windows.Forms
 
                 if (index != -1)
                 {
-                    DataGridView_Constructions.Rows[index].Selected = true;
+                    DataGridView_Profiles.Rows[index].Selected = true;
                 }
             }
         }
@@ -75,9 +75,9 @@ namespace SAM.Analytical.Windows.Forms
         private void Add(ProfileLibrary profileLibrary)
         {
             List<string> uniqueIds = new List<string>();
-            if (DataGridView_Constructions.SelectedRows != null && DataGridView_Constructions.SelectedRows.Count != 0)
+            if (DataGridView_Profiles.SelectedRows != null && DataGridView_Profiles.SelectedRows.Count != 0)
             {
-                foreach (DataGridViewRow dataGridViewRow in DataGridView_Constructions.SelectedRows)
+                foreach (DataGridViewRow dataGridViewRow in DataGridView_Profiles.SelectedRows)
                 {
                     string uniqueId_Temp = profileLibrary?.GetUniqueId(dataGridViewRow.Tag as Profile);
                     if (string.IsNullOrWhiteSpace(uniqueId_Temp))
@@ -89,7 +89,7 @@ namespace SAM.Analytical.Windows.Forms
                 }
             }
 
-            DataGridView_Constructions.Rows.Clear();
+            DataGridView_Profiles.Rows.Clear();
 
             List<Profile> profiles = profileLibrary.GetProfiles();
             if (profiles == null || profiles.Count == 0)
@@ -147,8 +147,8 @@ namespace SAM.Analytical.Windows.Forms
                 type = profile.ProfileGroup;
             }
 
-            int index = DataGridView_Constructions.Rows.Add(name, Core.Query.Description(type));
-            DataGridViewRow result = DataGridView_Constructions.Rows[index];
+            int index = DataGridView_Profiles.Rows.Add(name, Core.Query.Description(type));
+            DataGridViewRow result = DataGridView_Profiles.Rows[index];
             if (result != null)
             {
                 result.Tag = profile;
@@ -209,7 +209,7 @@ namespace SAM.Analytical.Windows.Forms
                 profileTypes.Add(Core.Query.Description(profileGroup));
             }
 
-            (DataGridView_Constructions.Columns[1] as DataGridViewComboBoxColumn).DataSource = profileTypes;
+            (DataGridView_Profiles.Columns[1] as DataGridViewComboBoxColumn).DataSource = profileTypes;
 
             profileTypes = new List<string>(profileTypes);
             profileTypes.Insert(0, string.Empty);
@@ -268,14 +268,14 @@ namespace SAM.Analytical.Windows.Forms
             Close();
         }
 
-        private void DataGridView_Constructions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView_Profiles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
         public List<Profile> GetProfiles(bool selected = true)
         {
-            IEnumerable<DataGridViewRow> dataGridViewRows = selected ? DataGridView_Constructions.SelectedRows?.Cast<DataGridViewRow>() : DataGridView_Constructions.Rows?.Cast<DataGridViewRow>();
+            IEnumerable<DataGridViewRow> dataGridViewRows = selected ? DataGridView_Profiles.SelectedRows?.Cast<DataGridViewRow>() : DataGridView_Profiles.Rows?.Cast<DataGridViewRow>();
             if (dataGridViewRows == null)
             {
                 return null;
@@ -302,11 +302,11 @@ namespace SAM.Analytical.Windows.Forms
         {
             get
             {
-                return DataGridView_Constructions.MultiSelect;
+                return DataGridView_Profiles.MultiSelect;
             }
             set
             {
-                DataGridView_Constructions.MultiSelect = value;
+                DataGridView_Profiles.MultiSelect = value;
             }
         }
 
@@ -332,14 +332,14 @@ namespace SAM.Analytical.Windows.Forms
                     Button_Add.Visible = true;
                     Button_Duplicate.Visible = true;
                     Button_Remove.Visible = true;
-                    DataGridView_Constructions.ReadOnly = false;
+                    DataGridView_Profiles.ReadOnly = false;
                 }
                 else
                 {
                     Button_Add.Visible = false;
                     Button_Duplicate.Visible = false;
                     Button_Remove.Visible = false;
-                    DataGridView_Constructions.ReadOnly = true;
+                    DataGridView_Profiles.ReadOnly = true;
                 }
             }
         }
@@ -363,113 +363,121 @@ namespace SAM.Analytical.Windows.Forms
 
         private void Button_Add_Click(object sender, EventArgs e)
         {
-            //ApertureConstruction apertureConstruction = null;
-            //using (ApertureConstructionForm apertureConstructionForm = new ApertureConstructionForm(materialLibrary, apertureConstructionLibrary))
-            //{
-            //    if(apertureConstructionForm.ShowDialog() != DialogResult.OK)
-            //    {
-            //        return;
-            //    }
+            Profile profile = null;
+            using (ProfileForm profileForm = new ProfileForm(profile))
+            {
+                profileForm.ProfileLibrary = ProfileLibrary;
+                if (profileForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
 
-            //    apertureConstruction = apertureConstructionForm.ApertureConstruction;
-            //}
+                profile = profileForm.Profile;
+                profileLibrary = profileForm.ProfileLibrary;
+            }
 
-            //if(apertureConstruction == null)
-            //{
-            //    return;
-            //}
-
-            //apertureConstructionLibrary?.Add(apertureConstruction);
-            //Add(apertureConstruction);
-        }
-
-        private void Button_Remove_Click(object sender, EventArgs e)
-        {
-            if (DataGridView_Constructions.SelectedRows == null || DataGridView_Constructions.SelectedRows.Count == 0)
+            if (profile == null)
             {
                 return;
             }
 
-            foreach(DataGridViewRow dataGridViewRow in DataGridView_Constructions.SelectedRows)
+            profileLibrary?.Add(profile);
+            Add(profileLibrary);
+        }
+
+        private void Button_Remove_Click(object sender, EventArgs e)
+        {
+            if (DataGridView_Profiles.SelectedRows == null || DataGridView_Profiles.SelectedRows.Count == 0)
             {
-                DataGridView_Constructions.Rows.Remove(dataGridViewRow);
+                return;
+            }
+
+            foreach(DataGridViewRow dataGridViewRow in DataGridView_Profiles.SelectedRows)
+            {
+                DataGridView_Profiles.Rows.Remove(dataGridViewRow);
 
                 Profile profile = dataGridViewRow.Tag as Profile;
                 profileLibrary.Remove(profile);
 
             }
+
+            Add(profileLibrary);
         }
 
         private void Button_Duplicate_Click(object sender, EventArgs e)
         {
-            //if (DataGridView_Constructions.SelectedRows == null || DataGridView_Constructions.SelectedRows.Count == 0)
-            //{
-            //    return;
-            //}
+            if (DataGridView_Profiles.SelectedRows == null || DataGridView_Profiles.SelectedRows.Count == 0)
+            {
+                return;
+            }
 
-            //Profile profile = DataGridView_Constructions.SelectedRows[0].Tag as Profile;
-            //if(profile == null)
-            //{
-            //    return;
-            //}
+            Profile profile = DataGridView_Profiles.SelectedRows[0].Tag as Profile;
+            if (profile == null)
+            {
+                return;
+            }
 
-            //string name = (string.IsNullOrWhiteSpace(profile.Name) ? string.Empty : profile.Name).Trim();
-            //string name_Temp = name;
-            //int index = 1;
-            //while(profileLibrary?.GetProfiles()?.Find(x => x.Name == name_Temp) != null)
-            //{
-            //    name_Temp = string.Format("{0} {1}", name, index.ToString());
-            //    index++;
-            //}
-            //name = name_Temp;
+            string name = (string.IsNullOrWhiteSpace(profile.Name) ? string.Empty : profile.Name).Trim();
+            string name_Temp = name;
+            int index = 1;
+            while (profileLibrary?.GetProfiles()?.Find(x => x.Name == name_Temp) != null)
+            {
+                name_Temp = string.Format("{0} {1}", name, index.ToString());
+                index++;
+            }
+            name = name_Temp;
 
-            //profile = new ApertureConstruction(Guid.NewGuid(), profile, name);
-            //using (ApertureConstructionForm apertureConstructionForm = new ApertureConstructionForm(materialLibrary, apertureConstructionLibrary, apertureConstruction))
-            //{
-            //    if(apertureConstructionForm.ShowDialog() != DialogResult.OK)
-            //    {
-            //        return;
-            //    }
+            profile = new Profile(Guid.NewGuid(), profile, name);
+            using (ProfileForm profileForm = new ProfileForm(profile))
+            {
+                profileForm.ProfileLibrary = ProfileLibrary;
 
-            //    apertureConstruction = apertureConstructionForm.ApertureConstruction;
-            //}
+                if (profileForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
 
-            //if(apertureConstruction == null)
-            //{
-            //    return;
-            //}
+                profile = profileForm.Profile;
+                profileLibrary = profileForm.ProfileLibrary;
+            }
 
-            //apertureConstructionLibrary?.Add(apertureConstruction);
-            //Add(apertureConstruction);
+            if (profile == null)
+            {
+                return;
+            }
+
+            profileLibrary?.Add(profile);
+            Add(ProfileLibrary);
         }
 
-        private void DataGridView_Constructions_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView_Profiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (DataGridView_Constructions.SelectedRows == null || DataGridView_Constructions.SelectedRows.Count == 0)
-            //{
-            //    return;
-            //}
+            if (DataGridView_Profiles.SelectedRows == null || DataGridView_Profiles.SelectedRows.Count == 0)
+            {
+                return;
+            }
 
-            //ApertureConstruction apertureConstruction = DataGridView_Constructions.SelectedRows[0].Tag as ApertureConstruction;
-            //if (apertureConstruction == null)
-            //{
-            //    return;
-            //}
+            Profile profile = DataGridView_Profiles.SelectedRows[0].Tag as Profile;
+            if (profile == null)
+            {
+                return;
+            }
 
-            //using (ApertureConstructionForm constructionForm = new ApertureConstructionForm(materialLibrary, apertureConstructionLibrary, apertureConstruction))
-            //{
-            //    constructionForm.Enabled = Button_Add.Visible;
-            //    if (constructionForm.ShowDialog() != DialogResult.OK)
-            //    {
-            //        return;
-            //    }
+            using (ProfileForm profileForm = new ProfileForm(profile))
+            {
+                profileForm.ProfileLibrary = ProfileLibrary;
+                if (profileForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
 
-            //    apertureConstruction = constructionForm.ApertureConstruction;
-            //}
+                profile = profileForm.Profile;
+                profileLibrary = profileForm.ProfileLibrary;
+            }
 
-            //DataGridView_Constructions.SelectedRows[0].Tag = apertureConstruction;
-            //DataGridView_Constructions.SelectedRows[0].Cells[0].Value = apertureConstruction.Name;
-            //DataGridView_Constructions.SelectedRows[0].Cells[1].Value = Math.Round(apertureConstruction.MaxThickness(), 3);
+
+            profileLibrary?.Add(profile);
+            Add(profileLibrary);
         }
 
         private void TextBox_Search_TextChanged(object sender, EventArgs e)
@@ -477,7 +485,7 @@ namespace SAM.Analytical.Windows.Forms
             Add(profileLibrary);
         }
 
-        private void ApertureConstructionLibraryForm_KeyDown(object sender, KeyEventArgs e)
+        private void ProfileLibraryForm_KeyDown(object sender, KeyEventArgs e)
         {
             Query.JsonForm(profileLibrary, this, e);
         }
