@@ -164,8 +164,7 @@ namespace SAM.Core.Windows
             // 
             // MaterialControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.TextBox_Density);
             this.Controls.Add(this.Label_Density);
             this.Controls.Add(this.TextBox_SpecificHeatCapacity);

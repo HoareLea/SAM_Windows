@@ -53,8 +53,7 @@ namespace SAM.Core.Windows
             // 
             // TextBoxControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.Label_Description);
             this.Controls.Add(this.TextBox_Main);
             this.Name = "TextBoxControl";

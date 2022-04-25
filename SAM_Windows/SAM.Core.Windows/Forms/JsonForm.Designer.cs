@@ -88,8 +88,7 @@ namespace SAM.Core.Windows.Forms
             // JsonForm
             // 
             this.AcceptButton = this.Button_Close;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Close;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.Button_Copy);
