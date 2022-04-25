@@ -142,6 +142,20 @@ namespace SAM.Analytical.Windows
                             jSAMObjects.Add(internalCondition);
                         }
                     }
+
+                    List<MechanicalSystemType> mechanicalSystemTypes = adjacencyCluster.GetMechanicalSystemTypes<MechanicalSystemType>();
+                    if(mechanicalSystemTypes != null)
+                    {
+                        foreach(MechanicalSystemType mechanicalSystemType in mechanicalSystemTypes)
+                        {
+                            if (mechanicalSystemType is T)
+                            {
+                                tuples_All.Add(new Tuple<string, string, T>(typeof(MechanicalSystemType).Name, mechanicalSystemType.Name, (T)(object)mechanicalSystemType));
+                            }
+
+                            jSAMObjects.Add(mechanicalSystemType);
+                        }
+                    }
                 }
 
                 if (jSAMObject is MaterialLibrary)
@@ -191,6 +205,23 @@ namespace SAM.Analytical.Windows
                             }
 
                             jSAMObjects.Add(profile);
+                        }
+                    }
+
+                }
+                else if (jSAMObject is SystemTypeLibrary)
+                {
+                    List<MechanicalSystemType> mechanicalSystemTypes_Temp = ((SystemTypeLibrary)jSAMObject).GetSystemTypes<MechanicalSystemType>();
+                    if (mechanicalSystemTypes_Temp != null)
+                    {
+                        foreach (MechanicalSystemType mechanicalSystemType in mechanicalSystemTypes_Temp)
+                        {
+                            if (mechanicalSystemType is T)
+                            {
+                                tuples_All.Add(new Tuple<string, string, T>(typeof(MechanicalSystemType).Name, mechanicalSystemType.Name, (T)(object)mechanicalSystemType));
+                            }
+
+                            jSAMObjects.Add(mechanicalSystemType);
                         }
                     }
 
@@ -252,6 +283,10 @@ namespace SAM.Analytical.Windows
                     else if (jSAMObject is InternalCondition)
                     {
                         tuples_All.Add(new Tuple<string, string, T>(typeof(InternalCondition).Name, ((InternalCondition)jSAMObject).Name, (T)jSAMObject));
+                    }
+                    else if (jSAMObject is MechanicalSystemType)
+                    {
+                        tuples_All.Add(new Tuple<string, string, T>(jSAMObject.GetType().Name, ((MechanicalSystemType)jSAMObject).Name, (T)jSAMObject));
                     }
                     else if (jSAMObject is SAMObject)
                     {
@@ -403,6 +438,10 @@ namespace SAM.Analytical.Windows
                     else if (jSAMObject is InternalCondition)
                     {
                         internalConditions.Add((InternalCondition)(object)jSAMObject);
+                    }
+                    else if (jSAMObject is MechanicalSystemType)
+                    {
+                        analyticalModel.AddMechanicalSystemType((MechanicalSystemType)(object)jSAMObject);
                     }
                 }
 
