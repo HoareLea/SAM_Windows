@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using SAM.Core.Windows;
 
 namespace SAM.Analytical.Windows
 {
@@ -372,178 +373,191 @@ namespace SAM.Analytical.Windows
             List<Construction> constructions = new List<Construction>();
             List<ApertureConstruction> apertureConstructions = new List<ApertureConstruction>();
             List<InternalCondition> internalConditions = new List<InternalCondition>();
-            foreach (T jSAMObject in jSAMObjects)
+            using (SimpleProgressForm simpleProgressForm = new SimpleProgressForm("Import", string.Empty, jSAMObjects.Count() + 4))
             {
-                if (jSAMObject == null)
+                foreach (T jSAMObject in jSAMObjects)
                 {
-                    continue;
-                }
+                    simpleProgressForm.Increment(jSAMObject is SAMObject ? ((SAMObject)(object)jSAMObject).Name : "???");
 
-                if (jSAMObject is IMaterial)
-                {
-                    analyticalModel.AddMaterial((IMaterial)jSAMObject);
-                }
-                else if (jSAMObject is Profile)
-                {
-                    analyticalModel.AddProfile((Profile)(object)jSAMObject);
-                }
-                else if (jSAMObject is Construction)
-                {
-                    constructions.Add((Construction)(object)jSAMObject);
-                }
-                else if (jSAMObject is ApertureConstruction)
-                {
-                    apertureConstructions.Add((ApertureConstruction)(object)jSAMObject);
-                }
-                else if (jSAMObject is InternalCondition)
-                {
-                    internalConditions.Add((InternalCondition)(object)jSAMObject);
-                }
-            }
-
-            if (constructions != null && constructions.Count != 0)
-            {
-                adjacencyCluster.UpdateConstructions(constructions);
-            }
-
-            if (apertureConstructions != null && apertureConstructions.Count != 0)
-            {
-                adjacencyCluster.UpdateApertureConstructions(apertureConstructions);
-            }
-
-            if (apertureConstructions != null || constructions != null)
-            {
-                HashSet<string> names = new HashSet<string>();
-
-                if (constructions != null)
-                {
-                    foreach (Construction construction in constructions)
+                    if (jSAMObject == null)
                     {
-                        List<ConstructionLayer> constructionLayers = construction?.ConstructionLayers;
-                        if (constructionLayers != null)
+                        continue;
+                    }
+
+                    if (jSAMObject is IMaterial)
+                    {
+                        analyticalModel.AddMaterial((IMaterial)jSAMObject);
+                    }
+                    else if (jSAMObject is Profile)
+                    {
+                        analyticalModel.AddProfile((Profile)(object)jSAMObject);
+                    }
+                    else if (jSAMObject is Construction)
+                    {
+                        constructions.Add((Construction)(object)jSAMObject);
+                    }
+                    else if (jSAMObject is ApertureConstruction)
+                    {
+                        apertureConstructions.Add((ApertureConstruction)(object)jSAMObject);
+                    }
+                    else if (jSAMObject is InternalCondition)
+                    {
+                        internalConditions.Add((InternalCondition)(object)jSAMObject);
+                    }
+                }
+
+                simpleProgressForm.Increment("Constructions");
+
+                if (constructions != null && constructions.Count != 0)
+                {
+                    adjacencyCluster.UpdateConstructions(constructions);
+                }
+
+                simpleProgressForm.Increment("ApertureConstructions");
+
+                if (apertureConstructions != null && apertureConstructions.Count != 0)
+                {
+                    adjacencyCluster.UpdateApertureConstructions(apertureConstructions);
+                }
+
+                simpleProgressForm.Increment("Missing Materials");
+
+                if (apertureConstructions != null || constructions != null)
+                {
+                    HashSet<string> names = new HashSet<string>();
+
+                    if (constructions != null)
+                    {
+                        foreach (Construction construction in constructions)
                         {
-                            foreach (ConstructionLayer constructionLayer in constructionLayers)
+                            List<ConstructionLayer> constructionLayers = construction?.ConstructionLayers;
+                            if (constructionLayers != null)
                             {
-                                names.Add(constructionLayer.Name);
+                                foreach (ConstructionLayer constructionLayer in constructionLayers)
+                                {
+                                    names.Add(constructionLayer.Name);
+                                }
+                            }
+                        }
+                    }
+
+                    if (apertureConstructions != null)
+                    {
+                        foreach (ApertureConstruction apertureConstruction in apertureConstructions)
+                        {
+                            List<ConstructionLayer> constructionLayers = null;
+
+                            constructionLayers = apertureConstruction?.PaneConstructionLayers;
+                            if (constructionLayers != null)
+                            {
+                                foreach (ConstructionLayer constructionLayer in constructionLayers)
+                                {
+                                    names.Add(constructionLayer.Name);
+                                }
+                            }
+
+                            constructionLayers = apertureConstruction?.FrameConstructionLayers;
+                            if (constructionLayers != null)
+                            {
+                                foreach (ConstructionLayer constructionLayer in constructionLayers)
+                                {
+                                    names.Add(constructionLayer.Name);
+                                }
+                            }
+                        }
+                    }
+
+                    List<IMaterial> materials = jSAMObjects_All?.ToList().FindAll(x => x is IMaterial).ConvertAll(x => (IMaterial)x);
+                    if (materials != null && materials.Count != 0)
+                    {
+                        MaterialLibrary materialLibrary = analyticalModel.MaterialLibrary;
+
+                        HashSet<string> names_Missing = new HashSet<string>();
+                        foreach (string name in names)
+                        {
+                            if (materialLibrary?.GetMaterial(name) == null)
+                            {
+                                names_Missing.Add(name);
+                            }
+                        }
+
+                        if (names_Missing != null && names_Missing.Count != 0)
+                        {
+                            DialogResult dialogResult = MessageBox.Show(owner, "Try to import missing materials?", "Materials", MessageBoxButtons.YesNo);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                foreach (string name in names_Missing)
+                                {
+                                    IMaterial material = materials.Find(x => x.Name == name);
+                                    if (material != null)
+                                    {
+                                        analyticalModel.AddMaterial(material);
+                                    }
+                                }
                             }
                         }
                     }
                 }
 
-                if (apertureConstructions != null)
+                simpleProgressForm.Increment("Internal Conditions");
+
+                if (internalConditions != null)
                 {
-                    foreach (ApertureConstruction apertureConstruction in apertureConstructions)
+                    ProfileLibrary profileLibrary = analyticalModel.ProfileLibrary;
+
+                    List<Profile> profiles = jSAMObjects_All?.ToList().FindAll(x => x is Profile).ConvertAll(x => (Profile)x);
+
+                    Dictionary<ProfileType, HashSet<string>> dictionary_Profile = new Dictionary<ProfileType, HashSet<string>>();
+                    foreach (InternalCondition internalCondition in internalConditions)
                     {
-                        List<ConstructionLayer> constructionLayers = null;
+                        adjacencyCluster.AddObject(internalCondition);
 
-                        constructionLayers = apertureConstruction?.PaneConstructionLayers;
-                        if (constructionLayers != null)
+                        if (profiles != null && profiles.Count != 0)
                         {
-                            foreach (ConstructionLayer constructionLayer in constructionLayers)
+                            IEnumerable<ProfileType> profileTypes = internalCondition.GetProfileTypes();
+                            if (profileTypes != null)
                             {
-                                names.Add(constructionLayer.Name);
-                            }
-                        }
+                                foreach (ProfileType profileType in profileTypes)
+                                {
+                                    string name = internalCondition.GetProfileName(profileType);
+                                    if (string.IsNullOrEmpty(name))
+                                    {
+                                        continue;
+                                    }
 
-                        constructionLayers = apertureConstruction?.FrameConstructionLayers;
-                        if (constructionLayers != null)
-                        {
-                            foreach (ConstructionLayer constructionLayer in constructionLayers)
-                            {
-                                names.Add(constructionLayer.Name);
+                                    Profile profile = internalCondition.GetProfile(profileType, profileLibrary);
+                                    if (profile != null)
+                                    {
+                                        continue;
+                                    }
+
+                                    if (!dictionary_Profile.TryGetValue(profileType, out HashSet<string> names))
+                                    {
+                                        names = new HashSet<string>();
+                                        dictionary_Profile[profileType] = names;
+                                    }
+
+                                    names.Add(name);
+
+                                }
                             }
                         }
                     }
-                }
 
-                List<IMaterial> materials = jSAMObjects_All?.ToList().FindAll(x => x is IMaterial).ConvertAll(x => (IMaterial)x);
-                if (materials != null && materials.Count != 0)
-                {
-                    MaterialLibrary materialLibrary = analyticalModel.MaterialLibrary;
-
-                    HashSet<string> names_Missing = new HashSet<string>();
-                    foreach (string name in names)
+                    if (dictionary_Profile != null && dictionary_Profile.Count != 0)
                     {
-                        if (materialLibrary?.GetMaterial(name) == null)
-                        {
-                            names_Missing.Add(name);
-                        }
-                    }
-
-                    if (names_Missing != null && names_Missing.Count != 0)
-                    {
-                        DialogResult dialogResult = MessageBox.Show(owner, "Try to import missing materials?", "Materials", MessageBoxButtons.YesNo);
+                        DialogResult dialogResult = MessageBox.Show(owner, "Try to import missing profiles?", "Profiles", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            foreach (string name in names_Missing)
+                            foreach (KeyValuePair<ProfileType, HashSet<string>> keyValuePair in dictionary_Profile)
                             {
-                                IMaterial material = materials.Find(x => x.Name == name);
-                                if (material != null)
+                                foreach (string name in keyValuePair.Value)
                                 {
-                                    analyticalModel.AddMaterial(material);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (internalConditions != null)
-            {
-                ProfileLibrary profileLibrary = analyticalModel.ProfileLibrary;
-
-                List<Profile> profiles = jSAMObjects_All?.ToList().FindAll(x => x is Profile).ConvertAll(x => (Profile)x);
-
-                Dictionary<ProfileType, HashSet<string>> dictionary_Profile = new Dictionary<ProfileType, HashSet<string>>();
-                foreach (InternalCondition internalCondition in internalConditions)
-                {
-                    adjacencyCluster.AddObject(internalCondition);
-
-                    if (profiles != null && profiles.Count != 0)
-                    {
-                        IEnumerable<ProfileType> profileTypes = internalCondition.GetProfileTypes();
-                        if (profileTypes != null)
-                        {
-                            foreach (ProfileType profileType in profileTypes)
-                            {
-                                string name = internalCondition.GetProfileName(profileType);
-                                if (string.IsNullOrEmpty(name))
-                                {
-                                    continue;
-                                }
-
-                                Profile profile = internalCondition.GetProfile(profileType, profileLibrary);
-                                if (profile != null)
-                                {
-                                    continue;
-                                }
-
-                                if (!dictionary_Profile.TryGetValue(profileType, out HashSet<string> names))
-                                {
-                                    names = new HashSet<string>();
-                                    dictionary_Profile[profileType] = names;
-                                }
-
-                                names.Add(name);
-
-                            }
-                        }
-                    }
-                }
-
-                if (dictionary_Profile != null && dictionary_Profile.Count != 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show(owner, "Try to import missing profiles?", "Profiles", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        foreach (KeyValuePair<ProfileType, HashSet<string>> keyValuePair in dictionary_Profile)
-                        {
-                            foreach (string name in keyValuePair.Value)
-                            {
-                                Profile profile = Analytical.Query.Profile(profiles, name, keyValuePair.Key, true);
-                                if (profile != null)
-                                {
-                                    analyticalModel.AddProfile(profile);
+                                    Profile profile = Analytical.Query.Profile(profiles, name, keyValuePair.Key, true);
+                                    if (profile != null)
+                                    {
+                                        analyticalModel.AddProfile(profile);
+                                    }
                                 }
                             }
                         }
@@ -555,6 +569,5 @@ namespace SAM.Analytical.Windows
 
             return new AnalyticalModel(analyticalModel, adjacencyCluster);
         }
-
     }
 }
