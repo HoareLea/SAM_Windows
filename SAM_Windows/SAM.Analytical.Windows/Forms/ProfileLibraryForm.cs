@@ -427,7 +427,7 @@ namespace SAM.Analytical.Windows.Forms
             }
             name = name_Temp;
 
-            profile = new Profile(Guid.NewGuid(), profile, name);
+            profile = new Profile(Guid.NewGuid(), profile, name, profile.Category);
             using (ProfileForm profileForm = new ProfileForm(profile))
             {
                 profileForm.ProfileLibrary = ProfileLibrary;
