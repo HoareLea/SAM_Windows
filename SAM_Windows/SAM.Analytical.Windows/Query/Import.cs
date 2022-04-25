@@ -441,7 +441,7 @@ namespace SAM.Analytical.Windows
                     }
                     else if (jSAMObject is MechanicalSystemType)
                     {
-                        analyticalModel.AddMechanicalSystemType((MechanicalSystemType)(object)jSAMObject);
+                        adjacencyCluster.AddObject((MechanicalSystemType)(object)jSAMObject);
                     }
                 }
 
