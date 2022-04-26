@@ -56,19 +56,7 @@ namespace SAM.Analytical.Windows.Controls
             toolStripMenuItem_AddRiser.Click += ToolStripMenuItem_Material_AddRiser_Click;
             contextMenuStrip_MechanicalSystem.Items.Add(toolStripMenuItem_AddRiser);
 
-            SpaceParameter? spaceParameter = null;
-            if(mechanicalSystem is VentilationSystem)
-            {
-                spaceParameter = SpaceParameter.VentilationRiserName;
-            }
-            else if (mechanicalSystem is CoolingSystem)
-            {
-                spaceParameter = SpaceParameter.CoolingRiserName;
-            }
-            else if (mechanicalSystem is HeatingSystem)
-            {
-                spaceParameter = SpaceParameter.HeatingRiserName;
-            }
+            SpaceParameter? spaceParameter = Analytical.Query.RiserNameSpaceParameter(mechanicalSystem);
 
             SortedDictionary<string, List<Space>> dictionary = new SortedDictionary<string, List<Space>>();
             if(adjacencyCluster != null)

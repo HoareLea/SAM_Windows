@@ -155,6 +155,12 @@
     <Compile Include="Forms\PanelForm.Designer.cs">
       <DependentUpon>PanelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\RiserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RiserForm.Designer.cs">
+      <DependentUpon>RiserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SetProfileForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PanelForm.resx">
       <DependentUpon>PanelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RiserForm.resx">
+      <DependentUpon>RiserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SetProfileForm.resx">
       <DependentUpon>SetProfileForm.cs</DependentUpon>
