@@ -65,6 +65,12 @@
     <Compile Include="Controls\InternalConditionControl.Designer.cs">
       <DependentUpon>InternalConditionControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MechanicalSystemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MechanicalSystemControl.Designer.cs">
+      <DependentUpon>MechanicalSystemControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ProfileControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\MechanicalSystemControl.resx">
+      <DependentUpon>MechanicalSystemControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ProfileControl.resx">
       <DependentUpon>ProfileControl.cs</DependentUpon>
     </EmbeddedResource>
