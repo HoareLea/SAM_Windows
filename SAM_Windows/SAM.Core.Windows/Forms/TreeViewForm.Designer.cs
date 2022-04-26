@@ -29,23 +29,10 @@ namespace SAM.Core.Windows.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.TreeView_Main = new System.Windows.Forms.TreeView();
             this.Button_Cancel = new System.Windows.Forms.Button();
             this.Button_OK = new System.Windows.Forms.Button();
-            this.Button_SelectNone = new System.Windows.Forms.Button();
-            this.Button_SelectAll = new System.Windows.Forms.Button();
+            this.TreeViewControl_Main = new SAM.Core.Windows.TreeViewControl();
             this.SuspendLayout();
-            // 
-            // TreeView_Main
-            // 
-            this.TreeView_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TreeView_Main.CheckBoxes = true;
-            this.TreeView_Main.Location = new System.Drawing.Point(12, 12);
-            this.TreeView_Main.Name = "TreeView_Main";
-            this.TreeView_Main.Size = new System.Drawing.Size(258, 320);
-            this.TreeView_Main.TabIndex = 0;
             // 
             // Button_Cancel
             // 
@@ -70,27 +57,15 @@ namespace SAM.Core.Windows.Forms
             this.Button_OK.UseVisualStyleBackColor = true;
             this.Button_OK.Click += new System.EventHandler(this.Button_OK_Click);
             // 
-            // Button_SelectNone
+            // TreeViewControl_Main
             // 
-            this.Button_SelectNone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Button_SelectNone.Location = new System.Drawing.Point(113, 338);
-            this.Button_SelectNone.Name = "Button_SelectNone";
-            this.Button_SelectNone.Size = new System.Drawing.Size(95, 28);
-            this.Button_SelectNone.TabIndex = 1;
-            this.Button_SelectNone.Text = "Select None";
-            this.Button_SelectNone.UseVisualStyleBackColor = true;
-            this.Button_SelectNone.Click += new System.EventHandler(this.Button_SelectNone_Click);
-            // 
-            // Button_SelectAll
-            // 
-            this.Button_SelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Button_SelectAll.Location = new System.Drawing.Point(12, 338);
-            this.Button_SelectAll.Name = "Button_SelectAll";
-            this.Button_SelectAll.Size = new System.Drawing.Size(95, 28);
-            this.Button_SelectAll.TabIndex = 2;
-            this.Button_SelectAll.Text = "Select All";
-            this.Button_SelectAll.UseVisualStyleBackColor = true;
-            this.Button_SelectAll.Click += new System.EventHandler(this.Button_SelectAll_Click);
+            this.TreeViewControl_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TreeViewControl_Main.Location = new System.Drawing.Point(12, 12);
+            this.TreeViewControl_Main.Name = "TreeViewControl_Main";
+            this.TreeViewControl_Main.Size = new System.Drawing.Size(258, 366);
+            this.TreeViewControl_Main.TabIndex = 3;
             // 
             // TreeViewForm
             // 
@@ -98,11 +73,9 @@ namespace SAM.Core.Windows.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(282, 453);
-            this.Controls.Add(this.Button_SelectAll);
+            this.Controls.Add(this.TreeViewControl_Main);
             this.Controls.Add(this.Button_OK);
-            this.Controls.Add(this.Button_SelectNone);
             this.Controls.Add(this.Button_Cancel);
-            this.Controls.Add(this.TreeView_Main);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(300, 500);
@@ -110,17 +83,13 @@ namespace SAM.Core.Windows.Forms
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "TreeViewForm";
-            this.Load += new System.EventHandler(this.TreeViewForm_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TreeView TreeView_Main;
         private System.Windows.Forms.Button Button_Cancel;
         private System.Windows.Forms.Button Button_OK;
-        private System.Windows.Forms.Button Button_SelectNone;
-        private System.Windows.Forms.Button Button_SelectAll;
+        private TreeViewControl TreeViewControl_Main;
     }
 }
