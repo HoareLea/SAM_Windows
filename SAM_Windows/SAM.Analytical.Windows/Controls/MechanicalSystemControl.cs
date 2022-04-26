@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SAM.Analytical.Windows.Controls
@@ -47,6 +48,14 @@ namespace SAM.Analytical.Windows.Controls
             TreeNode treeNode = TreeView_Main.Nodes.Add(string.IsNullOrWhiteSpace(mechanicalSystem?.FullName) ? "???" : mechanicalSystem.FullName);
             treeNode.Tag = typeof(MechanicalSystem);
 
+            ContextMenuStrip contextMenuStrip_MechanicalSystem = new ContextMenuStrip();
+            treeNode.ContextMenuStrip = contextMenuStrip_MechanicalSystem;
+            contextMenuStrip_MechanicalSystem.Tag = typeof(MechanicalSystem);
+
+            ToolStripMenuItem toolStripMenuItem_AddRiser = new ToolStripMenuItem() { Text = "Add Riser" };
+            toolStripMenuItem_AddRiser.Click += ToolStripMenuItem_Material_AddRiser_Click;
+            contextMenuStrip_MechanicalSystem.Items.Add(toolStripMenuItem_AddRiser);
+
             SpaceParameter? spaceParameter = null;
             if(mechanicalSystem is VentilationSystem)
             {
@@ -92,14 +101,55 @@ namespace SAM.Analytical.Windows.Controls
             foreach(KeyValuePair<string, List<Space>> keyValuePair in dictionary)
             {
                 TreeNode treeNode_Riser = treeNode.Nodes.Add(keyValuePair.Key);
-                foreach(Space space in keyValuePair.Value)
+
+                ContextMenuStrip contextMenuStrip_Riser = new ContextMenuStrip();
+                treeNode_Riser.ContextMenuStrip = contextMenuStrip_Riser;
+                contextMenuStrip_Riser.Tag = keyValuePair.Key;
+
+                ToolStripMenuItem toolStripMenuItem_RemoveRiser = new ToolStripMenuItem() { Text = "Remove" };
+                toolStripMenuItem_RemoveRiser.Click += ToolStripMenuItem_Material_RemoveRiser_Click;
+                contextMenuStrip_Riser.Items.Add(toolStripMenuItem_RemoveRiser);
+
+                ToolStripMenuItem toolStripMenuItem_AddSpace = new ToolStripMenuItem() { Text = "Add Space" };
+                toolStripMenuItem_AddSpace.Click += ToolStripMenuItem_Material_AddSpace_Click;
+                contextMenuStrip_Riser.Items.Add(toolStripMenuItem_AddSpace);
+
+                foreach (Space space in keyValuePair.Value)
                 {
                     string name = string.IsNullOrWhiteSpace(space.Name) ? "???" : space.Name;
 
                     TreeNode treeNode_Space = treeNode_Riser.Nodes.Add(space.Name);
                     treeNode_Space.Tag = space;
+
+                    ContextMenuStrip contextMenuStrip_Space = new ContextMenuStrip();
+                    treeNode_Space.ContextMenuStrip = contextMenuStrip_Space;
+                    contextMenuStrip_Space.Tag = space;
+
+                    ToolStripMenuItem toolStripMenuItem_RemoveSpace = new ToolStripMenuItem() { Text = "Remove" };
+                    toolStripMenuItem_RemoveSpace.Click += ToolStripMenuItem_Material_RemoveSpace_Click;
+                    contextMenuStrip_Space.Items.Add(toolStripMenuItem_RemoveSpace);
                 }
             }
+        }
+
+        private void ToolStripMenuItem_Material_RemoveSpace_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ToolStripMenuItem_Material_AddSpace_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ToolStripMenuItem_Material_RemoveRiser_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ToolStripMenuItem_Material_AddRiser_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private MechanicalSystem GetMechanicalSystem()
