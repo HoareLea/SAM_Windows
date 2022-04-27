@@ -29,6 +29,27 @@ namespace SAM.Analytical.Windows.Controls
             }
         }
 
+        public List<MechanicalSystemType> MechanicalSystemTypes
+        {
+            get
+            {
+                MechanicalSystemType mechanicalSystemType = mechanicalSystem?.Type;
+
+                List<MechanicalSystemType> result = adjacencyCluster?.GetMechanicalSystemTypes<MechanicalSystemType>();
+                if (result == null)
+                {
+                    result = new List<MechanicalSystemType>();
+                }
+
+                if (mechanicalSystemType != null && result.Find(x => x.Name == mechanicalSystemType.Name) == null)
+                {
+                    result.Add(mechanicalSystemType);
+                }
+
+                return result;
+            }
+        }
+
         public AdjacencyCluster AdjacencyCluster
         {
             get
@@ -45,6 +66,8 @@ namespace SAM.Analytical.Windows.Controls
 
         private void LoadMechanicalSystem(MechanicalSystem mechanicalSystem)
         {
+            TreeView_Main.Nodes.Clear();
+
             TreeNode treeNode = TreeView_Main.Nodes.Add(string.IsNullOrWhiteSpace(mechanicalSystem?.FullName) ? "???" : mechanicalSystem.FullName);
             treeNode.Tag = typeof(MechanicalSystem);
 
@@ -118,6 +141,25 @@ namespace SAM.Analytical.Windows.Controls
                     contextMenuStrip_Space.Items.Add(toolStripMenuItem_RemoveSpace);
                 }
             }
+
+            List<MechanicalSystemType> mechanicalSystemTypes = MechanicalSystemTypes;
+            mechanicalSystemTypes?.Sort((x, y) => x.Name.CompareTo(y.Name));
+
+            string selectedName = ComboBox_MechanicalSystemType.Text;
+
+            ComboBox_MechanicalSystemType.Items.Clear();
+            mechanicalSystemTypes.ForEach(x => ComboBox_MechanicalSystemType.Items.Add(x.Name));
+
+            if(string.IsNullOrWhiteSpace(selectedName))
+            {
+                selectedName = mechanicalSystem?.Type?.Name;
+            }
+
+            ComboBox_MechanicalSystemType.Text = selectedName;
+
+            TextBox_FullName.Text = mechanicalSystem?.FullName;
+            TextBox_Id.Text = mechanicalSystem?.Id;
+
         }
 
         private void ToolStripMenuItem_Material_RemoveSpace_Click(object sender, EventArgs e)
