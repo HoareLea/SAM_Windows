@@ -29,6 +29,19 @@ namespace SAM.Analytical.Windows.Controls
             }
         }
 
+        public MechanicalSystemCategory MechanicalSystemCategory
+        {
+            get
+            {
+                if(mechanicalSystem == null)
+                {
+                    return MechanicalSystemCategory.Undefined;
+                }
+
+                return mechanicalSystem.MechanicalSystemCategory();
+            }
+        }
+
         public List<MechanicalSystemType> MechanicalSystemTypes
         {
             get
@@ -179,7 +192,19 @@ namespace SAM.Analytical.Windows.Controls
 
         private void ToolStripMenuItem_Material_AddRiser_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            MechanicalSystemCategory mechanicalSystemCategory = MechanicalSystemCategory;
+            if (mechanicalSystemCategory == MechanicalSystemCategory.Undefined)
+            {
+                return;
+            }
+
+            using (Forms.RiserForm riserForm = new Forms.RiserForm(Create.RiserName(mechanicalSystemCategory, adjacencyCluster), adjacencyCluster?.GetSpaces(), mechanicalSystemCategory))
+            {
+                if (riserForm.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+            }
         }
 
         private MechanicalSystem GetMechanicalSystem()
