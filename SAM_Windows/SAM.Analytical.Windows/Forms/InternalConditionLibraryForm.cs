@@ -238,7 +238,22 @@ namespace SAM.Analytical.Windows.Forms
         {
             get
             {
-                return adjacencyCluster;
+                if(adjacencyCluster == null)
+                {
+                    return null;
+                }
+
+                AdjacencyCluster result = new AdjacencyCluster(adjacencyCluster);
+                List<InternalCondition> internalCondtions = GetInternalConditions(false);
+                if (internalCondtions != null)
+                {
+                    foreach(InternalCondition internalCondition in internalCondtions)
+                    {
+                        result.AddObject(internalCondition);
+                    }
+                }
+
+                return result;
             }
         }
 
