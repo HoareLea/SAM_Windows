@@ -51,6 +51,8 @@ namespace SAM.Analytical.Windows.Forms
 
             if (profiles != null)
             {
+                DataGridView_Profiles.Rows.Clear();
+
                 int index = -1;
                 foreach (Profile profile_Temp in profiles)
                 {
@@ -152,38 +154,58 @@ namespace SAM.Analytical.Windows.Forms
             if (result != null)
             {
                 result.Tag = profile;
+                result.Visible = IsValid(profile);
             }
 
-            if(type != null)
+            return result;
+        }
+
+        private bool IsValid(Profile profile)
+        {
+            if(profile == null)
             {
-                Enum @type_Selected = Type;
-                if(type_Selected != null)
+                return false;
+            }
+
+            Enum type = null;
+            type = profile.ProfileType;
+            if ((ProfileType)type == ProfileType.Undefined)
+            {
+                type = profile.ProfileGroup;
+            }
+
+            if(type == null)
+            {
+                return true;
+            }
+
+            Enum @type_Selected = Type;
+            if (type_Selected != null)
+            {
+                if (!type.Equals(type_Selected))
                 {
-                    if (!type.Equals(type_Selected))
+                    if (type is ProfileType)
                     {
-                        if(type is ProfileType)
+                        return false;
+                    }
+                    else if (type is ProfileGroup)
+                    {
+                        if (type_Selected is ProfileType)
                         {
-                            result.Visible = false;
+                            if (!((ProfileGroup)type).Equals(((ProfileType)type_Selected).ProfileGroup()))
+                            {
+                                return false;
+                            }
                         }
-                        else if(type is ProfileGroup)
+                        else
                         {
-                            if(type_Selected is ProfileType)
-                            {
-                                if(!((ProfileGroup)type).Equals(((ProfileType)type_Selected).ProfileGroup()))
-                                {
-                                    result.Visible = false;
-                                }
-                            }
-                            else
-                            {
-                                result.Visible = false;
-                            }
+                            return false;
                         }
                     }
                 }
             }
 
-            return result;
+            return true;
         }
 
         private void AddTypes()
@@ -492,7 +514,16 @@ namespace SAM.Analytical.Windows.Forms
 
         private void Button_Import_Click(object sender, EventArgs e)
         {
-            List<Profile> profiles = Query.Import<Profile>(owner: this);
+            Func<Profile, bool> func = null;
+            if(!ComboBox_Type.Enabled)
+            {
+                func = new Func<Profile, bool>((Profile x) =>
+                {
+                    return IsValid(x);
+                });
+            }
+
+            List<Profile> profiles = Query.Import(func: func, owner: this);
             if(profiles == null)
             {
                 return;
