@@ -6,8 +6,6 @@ namespace SAM.Analytical.Windows.Forms
 {
     public partial class SimulateForm : Form
     {
-        private WeatherData weatherData;
-
         public SimulateForm()
         {
             InitializeComponent();
@@ -39,7 +37,7 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
 
-            if(weatherData == null)
+            if(WeatherData == null)
             {
                 MessageBox.Show("Provide Wether Data");
                 return;
