@@ -354,7 +354,7 @@ namespace SAM.Analytical.Windows.Forms
                 }
 
                 ProfileLibrary result = new ProfileLibrary(profileLibrary);
-                profileLibrary.GetProfiles().ForEach(x => result.Remove(x));
+                profileLibrary.GetProfiles()?.ForEach(x => result.Remove(x));
 
                 GetProfiles(false)?.ForEach(x => result.Add(x));
                 return result;
