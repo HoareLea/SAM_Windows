@@ -17,7 +17,7 @@ namespace SAM.Analytical.Windows
             string path = null;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                string directory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SAM");
+                string directory = Analytical.Query.ResourcesDirectory();
                 if (System.IO.Directory.Exists(directory))
                 {
                     openFileDialog.InitialDirectory = directory;

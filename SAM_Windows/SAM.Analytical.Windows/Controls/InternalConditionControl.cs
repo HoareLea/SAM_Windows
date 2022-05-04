@@ -797,6 +797,7 @@ namespace SAM.Analytical.Windows.Controls
 
             System.Drawing.Color color_Modified = System.Drawing.Color.LightYellow;
             System.Drawing.Color color_Existing = System.Drawing.Color.LightGreen;
+            System.Drawing.Color color_Error = System.Drawing.Color.Tomato;
 
             bool reset = false;
 
@@ -863,6 +864,11 @@ namespace SAM.Analytical.Windows.Controls
                 reset = true;
             }
 
+            if(!string.IsNullOrWhiteSpace(@string) && string.IsNullOrWhiteSpace(TextBox_Heating_ProfileGuid.Text))
+            {
+                TextBox_Heating_ProfileGuid.BackColor = color_Error;
+            }
+
             //Cooling
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.CoolingProfileName, out string_Template))
@@ -881,6 +887,11 @@ namespace SAM.Analytical.Windows.Controls
                 reset = true;
             }
 
+            if (!string.IsNullOrWhiteSpace(@string) && string.IsNullOrWhiteSpace(TextBox_Cooling_ProfileGuid.Text))
+            {
+                TextBox_Cooling_ProfileGuid.BackColor = color_Error;
+            }
+
             //Occupancy
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.OccupancyProfileName, out string_Template))
@@ -896,6 +907,11 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_Occupancy_ProfileName.BackColor = color_Modified;
                 TextBox_Occupancy_ProfileGuid.BackColor = color_Modified;
                 reset = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(@string) && string.IsNullOrWhiteSpace(TextBox_Occupancy_ProfileGuid.Text))
+            {
+                TextBox_Occupancy_ProfileGuid.BackColor = color_Error;
             }
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.OccupancySensibleGainPerPerson, out double_Template))
@@ -945,6 +961,11 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_Lighting_ProfileName.BackColor = color_Modified;
                 TextBox_Lighting_ProfileGuid.BackColor = color_Modified;
                 reset = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(@string) && string.IsNullOrWhiteSpace(TextBox_Lighting_ProfileGuid.Text))
+            {
+                TextBox_Lighting_ProfileGuid.BackColor = color_Error;
             }
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.LightingGain, out double_Template))
@@ -1012,6 +1033,11 @@ namespace SAM.Analytical.Windows.Controls
                 reset = true;
             }
 
+            if (!string.IsNullOrWhiteSpace(@string) && string.IsNullOrWhiteSpace(TextBox_Equipment_SensibleProfileGuid.Text))
+            {
+                TextBox_Equipment_SensibleProfileGuid.BackColor = color_Error;
+            }
+
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.EquipmentSensibleGainPerArea, out double_Template))
             {
                 double_Template = double.NaN;
@@ -1059,6 +1085,11 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_Equipment_LatentProfileName.BackColor = color_Modified;
                 TextBox_Equipment_LatentProfileGuid.BackColor = color_Modified;
                 reset = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(@string) && string.IsNullOrWhiteSpace(TextBox_Equipment_LatentProfileGuid.Text))
+            {
+                TextBox_Equipment_LatentProfileGuid.BackColor = color_Error;
             }
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.EquipmentLatentGainPerArea, out double_Template))
@@ -1111,6 +1142,11 @@ namespace SAM.Analytical.Windows.Controls
                 reset = true;
             }
 
+            if (!string.IsNullOrWhiteSpace(@string) && string.IsNullOrWhiteSpace(TextBox_Humidity_ProfileGuid.Text))
+            {
+                TextBox_Humidity_ProfileGuid.BackColor = color_Error;
+            }
+
             //Dehumidification
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.DehumidificationProfileName, out string_Template))
@@ -1129,6 +1165,11 @@ namespace SAM.Analytical.Windows.Controls
                 reset = true;
             }
 
+            if (!string.IsNullOrWhiteSpace(@string) && string.IsNullOrWhiteSpace(TextBox_Dehumidity_ProfileGuid.Text))
+            {
+                TextBox_Dehumidity_ProfileGuid.BackColor = color_Error;
+            }
+
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.InfiltrationProfileName, out string_Template))
             {
                 string_Template = null;
@@ -1144,6 +1185,11 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_Infiltration_ProfileName.BackColor = color_Modified;
                 TextBox_Infiltration_ProfileGuid.BackColor = color_Modified;
                 reset = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(@string) && string.IsNullOrWhiteSpace(TextBox_Infiltration_ProfileGuid.Text))
+            {
+                TextBox_Infiltration_ProfileGuid.BackColor = color_Error;
             }
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.InfiltrationAirChangesPerHour, out double_Template))
@@ -1179,6 +1225,11 @@ namespace SAM.Analytical.Windows.Controls
                 reset = true;
             }
 
+            if (!string.IsNullOrWhiteSpace(@string) && string.IsNullOrWhiteSpace(TextBox_VentilationSystem_Guid.Text))
+            {
+                TextBox_VentilationSystem_Guid.BackColor = color_Error;
+            }
+
             //Heating System
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.HeatingSystemTypeName, out string_Template))
@@ -1196,6 +1247,11 @@ namespace SAM.Analytical.Windows.Controls
                 reset = true;
             }
 
+            if (!string.IsNullOrWhiteSpace(@string) && string.IsNullOrWhiteSpace(TextBox_HeatingSystem_Guid.Text))
+            {
+                TextBox_HeatingSystem_Guid.BackColor = color_Error;
+            }
+
             //Cooling System
 
             if (!internalCondition_Template.TryGetValue(InternalConditionParameter.CoolingSystemTypeName, out string_Template))
@@ -1211,6 +1267,11 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_CoolingSystem_Name.BackColor = color_Modified;
                 TextBox_CoolingSystem_Guid.BackColor = color_Modified;
                 reset = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(@string) && string.IsNullOrWhiteSpace(TextBox_CoolingSystem_Guid.Text))
+            {
+                TextBox_CoolingSystem_Guid.BackColor = color_Error;
             }
 
             Button_Reset.Enabled = reset;
