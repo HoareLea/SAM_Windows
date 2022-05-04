@@ -1402,12 +1402,15 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             TextBox_Heating_ProfileName.Text = profile.Name;
-            TextBox_Heating_ProfileGuid.Text = profile.Guid.ToString();
 
             InternalCondition internalCondition = GetInternalCondition();
+            LoadInternalCondition(internalCondition);
+            //TextBox_Heating_ProfileGuid.Text = profile.Guid.ToString();
 
-            double @double = Analytical.Query.HeatingDesignTemperature(internalCondition, profileLibrary);
-            TextBox_Heating_DesignTemperature.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+            //InternalCondition internalCondition = GetInternalCondition();
+
+            //double @double = Analytical.Query.HeatingDesignTemperature(internalCondition, profileLibrary);
+            //TextBox_Heating_DesignTemperature.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
         private void Button_CoolingProfile_Click(object sender, System.EventArgs e)
@@ -1455,7 +1458,6 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             TextBox_Occupancy_SensibleGainPerPerson.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
-
         }
 
         private void Button_LightingProfile_Click(object sender, System.EventArgs e)

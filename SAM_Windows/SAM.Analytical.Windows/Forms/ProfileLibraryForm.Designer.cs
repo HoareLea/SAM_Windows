@@ -67,7 +67,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Cancel.UseVisualStyleBackColor = true;
             this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
-            // DataGridView_Constructions
+            // DataGridView_Profiles
             // 
             this.DataGridView_Profiles.AllowUserToAddRows = false;
             this.DataGridView_Profiles.AllowUserToDeleteRows = false;
@@ -83,7 +83,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Column_Type});
             this.DataGridView_Profiles.Location = new System.Drawing.Point(12, 56);
             this.DataGridView_Profiles.MultiSelect = false;
-            this.DataGridView_Profiles.Name = "DataGridView_Constructions";
+            this.DataGridView_Profiles.Name = "DataGridView_Profiles";
             this.DataGridView_Profiles.RowHeadersVisible = false;
             this.DataGridView_Profiles.RowHeadersWidth = 51;
             this.DataGridView_Profiles.RowTemplate.Height = 24;
@@ -175,6 +175,7 @@ namespace SAM.Analytical.Windows.Forms
             // 
             // ComboBox_Type
             // 
+            this.ComboBox_Type.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBox_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_Type.FormattingEnabled = true;
             this.ComboBox_Type.Location = new System.Drawing.Point(414, 27);

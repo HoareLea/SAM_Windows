@@ -1,5 +1,6 @@
 ﻿using SAM.Analytical.Windows.Forms;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -34,7 +35,10 @@ namespace SAM.Analytical.Windows
                     return null;
                 }
 
-                profileLibrary = profileLibraryForm.ProfileLibrary;
+                profileLibrary.RemoveAll();
+                List<Profile> profiles = profileLibraryForm.ProfileLibrary?.GetProfiles();
+                profiles?.ForEach(x => profileLibrary.Add(x));
+
                 result = profileLibraryForm.GetProfiles(true)?.FirstOrDefault();
             }
 
