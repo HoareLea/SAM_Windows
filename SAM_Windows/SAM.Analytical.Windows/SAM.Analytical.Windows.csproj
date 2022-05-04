@@ -40,12 +40,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SAM\build\SAM.Analytical.dll</HintPath>
     </Reference>
-    <Reference Include="SAM.Analytical.SolarCalculator">
-      <HintPath>..\..\..\SAM_SolarCalculator\build\SAM.Analytical.SolarCalculator.dll</HintPath>
-    </Reference>
-    <Reference Include="SAM.Analytical.Tas">
-      <HintPath>..\..\..\SAM_Tas\build\SAM.Analytical.Tas.dll</HintPath>
-    </Reference>
     <Reference Include="SAM.Architectural, Version=1.0.8111.18813, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SAM\build\SAM.Architectural.dll</HintPath>
@@ -53,23 +47,13 @@
     <Reference Include="SAM.Core">
       <HintPath>..\..\..\SAM\build\SAM.Core.dll</HintPath>
     </Reference>
-    <Reference Include="SAM.Core.Tas, Version=1.0.8150.20703, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\SAM_Tas\build\SAM.Core.Tas.dll</HintPath>
-    </Reference>
     <Reference Include="SAM.Geometry, Version=1.0.8131.16759, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SAM\build\SAM.Geometry.dll</HintPath>
     </Reference>
-    <Reference Include="SAM.Geometry.SolarCalculator">
-      <HintPath>..\..\..\SAM_SolarCalculator\build\SAM.Geometry.SolarCalculator.dll</HintPath>
-    </Reference>
     <Reference Include="SAM.Weather, Version=1.0.8157.19322, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SAM\build\SAM.Weather.dll</HintPath>
-    </Reference>
-    <Reference Include="SAM.Weather.Tas">
-      <HintPath>..\..\..\SAM_Tas\build\SAM.Weather.Tas.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -101,19 +85,12 @@
     <Compile Include="Controls\ProfileControl.Designer.cs">
       <DependentUpon>ProfileControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SimulateControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\SimulateControl.Designer.cs">
-      <DependentUpon>SimulateControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\SpacesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\SpacesControl.Designer.cs">
       <DependentUpon>SpacesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Enums\SolarCalculationMethod.cs" />
     <Compile Include="Forms\ApertureConstructionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,12 +181,6 @@
     <Compile Include="Forms\SetProfileValueForm.Designer.cs">
       <DependentUpon>SetProfileValueForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SimulateForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SimulateForm.designer.cs">
-      <DependentUpon>SimulateForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\SpaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,7 +196,6 @@
     <Compile Include="Modify\UpdateApertureConstructions.cs" />
     <Compile Include="Modify\UpdateConstructions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Query\DayTypes.cs" />
     <Compile Include="Query\JsonForm.cs" />
     <Compile Include="Query\Import.cs" />
     <Compile Include="Modify\SelectProfile.cs" />
@@ -237,8 +207,6 @@
     <Compile Include="Controls\SpaceControl.Designer.cs">
       <DependentUpon>SpaceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Query\Simulate.cs" />
-    <Compile Include="Query\TryGetWeatherData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SAM.Architectural.Windows\SAM.Architectural.Windows.csproj">
@@ -264,9 +232,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ProfileControl.resx">
       <DependentUpon>ProfileControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SimulateControl.resx">
-      <DependentUpon>SimulateControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SpacesControl.resx">
       <DependentUpon>SpacesControl.cs</DependentUpon>
@@ -321,9 +286,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SetProfileValueForm.resx">
       <DependentUpon>SetProfileValueForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SimulateForm.resx">
-      <DependentUpon>SimulateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SpaceForm.resx">
       <DependentUpon>SpaceForm.cs</DependentUpon>
