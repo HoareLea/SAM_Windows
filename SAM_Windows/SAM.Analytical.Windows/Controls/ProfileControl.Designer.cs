@@ -40,15 +40,19 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_SetProfile = new System.Windows.Forms.Button();
             this.Button_SetValue = new System.Windows.Forms.Button();
             this.DataGridView_Values = new System.Windows.Forms.DataGridView();
+            this.Column_Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ContextMenuStrip_DataGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItem_SelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_Copy = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_Paste = new System.Windows.Forms.ToolStripMenuItem();
             this.Chart_Main = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.SplitContainer_Main = new System.Windows.Forms.SplitContainer();
-            this.Column_Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Label_MinValue = new System.Windows.Forms.Label();
+            this.TextBox_MinValue = new System.Windows.Forms.TextBox();
+            this.TextBox_MaxValue = new System.Windows.Forms.TextBox();
+            this.Label_MaxValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Values)).BeginInit();
             this.ContextMenuStrip_DataGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).BeginInit();
@@ -71,9 +75,9 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.TextBox_Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Name.Location = new System.Drawing.Point(90, 5);
+            this.TextBox_Name.Location = new System.Drawing.Point(96, 5);
             this.TextBox_Name.Name = "TextBox_Name";
-            this.TextBox_Name.Size = new System.Drawing.Size(270, 22);
+            this.TextBox_Name.Size = new System.Drawing.Size(264, 22);
             this.TextBox_Name.TabIndex = 1;
             // 
             // Label_Category
@@ -91,9 +95,9 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBox_Category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_Category.FormattingEnabled = true;
-            this.ComboBox_Category.Location = new System.Drawing.Point(90, 33);
+            this.ComboBox_Category.Location = new System.Drawing.Point(96, 33);
             this.ComboBox_Category.Name = "ComboBox_Category";
-            this.ComboBox_Category.Size = new System.Drawing.Size(270, 24);
+            this.ComboBox_Category.Size = new System.Drawing.Size(264, 24);
             this.ComboBox_Category.TabIndex = 3;
             // 
             // Button_Remove
@@ -149,15 +153,41 @@ namespace SAM.Analytical.Windows.Controls
             this.Column_Value});
             this.DataGridView_Values.ContextMenuStrip = this.ContextMenuStrip_DataGridView;
             this.DataGridView_Values.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.DataGridView_Values.Location = new System.Drawing.Point(15, 63);
+            this.DataGridView_Values.Location = new System.Drawing.Point(15, 98);
             this.DataGridView_Values.Name = "DataGridView_Values";
             this.DataGridView_Values.RowHeadersVisible = false;
             this.DataGridView_Values.RowHeadersWidth = 51;
             this.DataGridView_Values.RowTemplate.Height = 24;
             this.DataGridView_Values.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView_Values.Size = new System.Drawing.Size(345, 390);
+            this.DataGridView_Values.Size = new System.Drawing.Size(345, 355);
             this.DataGridView_Values.TabIndex = 14;
             this.DataGridView_Values.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView_Values_EditingControlShowing);
+            // 
+            // Column_Index
+            // 
+            this.Column_Index.FillWeight = 15F;
+            this.Column_Index.HeaderText = "Index";
+            this.Column_Index.MinimumWidth = 6;
+            this.Column_Index.Name = "Column_Index";
+            this.Column_Index.ReadOnly = true;
+            this.Column_Index.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column_Name
+            // 
+            this.Column_Name.FillWeight = 60F;
+            this.Column_Name.HeaderText = "Name";
+            this.Column_Name.MinimumWidth = 6;
+            this.Column_Name.Name = "Column_Name";
+            this.Column_Name.ReadOnly = true;
+            this.Column_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column_Value
+            // 
+            this.Column_Value.FillWeight = 25F;
+            this.Column_Value.HeaderText = "Value";
+            this.Column_Value.MinimumWidth = 6;
+            this.Column_Value.Name = "Column_Value";
+            this.Column_Value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // ContextMenuStrip_DataGridView
             // 
@@ -213,6 +243,10 @@ namespace SAM.Analytical.Windows.Controls
             // 
             // SplitContainer_Main.Panel1
             // 
+            this.SplitContainer_Main.Panel1.Controls.Add(this.Label_MaxValue);
+            this.SplitContainer_Main.Panel1.Controls.Add(this.Label_MinValue);
+            this.SplitContainer_Main.Panel1.Controls.Add(this.TextBox_MaxValue);
+            this.SplitContainer_Main.Panel1.Controls.Add(this.TextBox_MinValue);
             this.SplitContainer_Main.Panel1.Controls.Add(this.DataGridView_Values);
             this.SplitContainer_Main.Panel1.Controls.Add(this.Button_Remove);
             this.SplitContainer_Main.Panel1.Controls.Add(this.Label_Name);
@@ -229,31 +263,41 @@ namespace SAM.Analytical.Windows.Controls
             this.SplitContainer_Main.SplitterDistance = 363;
             this.SplitContainer_Main.TabIndex = 19;
             // 
-            // Column_Index
+            // Label_MinValue
             // 
-            this.Column_Index.FillWeight = 15F;
-            this.Column_Index.HeaderText = "Index";
-            this.Column_Index.MinimumWidth = 6;
-            this.Column_Index.Name = "Column_Index";
-            this.Column_Index.ReadOnly = true;
-            this.Column_Index.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Label_MinValue.AutoSize = true;
+            this.Label_MinValue.Location = new System.Drawing.Point(16, 66);
+            this.Label_MinValue.Name = "Label_MinValue";
+            this.Label_MinValue.Size = new System.Drawing.Size(74, 17);
+            this.Label_MinValue.TabIndex = 18;
+            this.Label_MinValue.Text = "Min Value:";
             // 
-            // Column_Name
+            // TextBox_MinValue
             // 
-            this.Column_Name.FillWeight = 60F;
-            this.Column_Name.HeaderText = "Name";
-            this.Column_Name.MinimumWidth = 6;
-            this.Column_Name.Name = "Column_Name";
-            this.Column_Name.ReadOnly = true;
-            this.Column_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TextBox_MinValue.Location = new System.Drawing.Point(96, 63);
+            this.TextBox_MinValue.Name = "TextBox_MinValue";
+            this.TextBox_MinValue.ReadOnly = true;
+            this.TextBox_MinValue.Size = new System.Drawing.Size(70, 22);
+            this.TextBox_MinValue.TabIndex = 19;
             // 
-            // Column_Value
+            // TextBox_MaxValue
             // 
-            this.Column_Value.FillWeight = 25F;
-            this.Column_Value.HeaderText = "Value";
-            this.Column_Value.MinimumWidth = 6;
-            this.Column_Value.Name = "Column_Value";
-            this.Column_Value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TextBox_MaxValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox_MaxValue.Location = new System.Drawing.Point(290, 63);
+            this.TextBox_MaxValue.Name = "TextBox_MaxValue";
+            this.TextBox_MaxValue.ReadOnly = true;
+            this.TextBox_MaxValue.Size = new System.Drawing.Size(70, 22);
+            this.TextBox_MaxValue.TabIndex = 19;
+            // 
+            // Label_MaxValue
+            // 
+            this.Label_MaxValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_MaxValue.AutoSize = true;
+            this.Label_MaxValue.Location = new System.Drawing.Point(210, 66);
+            this.Label_MaxValue.Name = "Label_MaxValue";
+            this.Label_MaxValue.Size = new System.Drawing.Size(77, 17);
+            this.Label_MaxValue.TabIndex = 18;
+            this.Label_MaxValue.Text = "Max Value:";
             // 
             // ProfileControl
             // 
@@ -293,5 +337,9 @@ namespace SAM.Analytical.Windows.Controls
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Index;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Value;
+        private System.Windows.Forms.Label Label_MaxValue;
+        private System.Windows.Forms.Label Label_MinValue;
+        private System.Windows.Forms.TextBox TextBox_MaxValue;
+        private System.Windows.Forms.TextBox TextBox_MinValue;
     }
 }

@@ -114,6 +114,9 @@ namespace SAM.Analytical.Windows.Controls
                 DataGridView_Values.Rows.Clear();
                 int min = profile.Min;
                 int max = profile.Max;
+
+                double minValue = double.MaxValue;
+                double maxValue = double.MinValue;
                 if (min != -1 && max != -1)
                 {
                     for (int i = min; i < max + 1; i++)
@@ -128,9 +131,23 @@ namespace SAM.Analytical.Windows.Controls
                         {
                             continue;
                         }
+
+                        if (value > maxValue)
+                        {
+                            maxValue = value;
+                        }
+
+                        if(value < minValue)
+                        {
+                            minValue = value;
+                        }
+
                         DataGridView_Values.Rows[index].Tag = profile_Temp;
                     }
                 }
+
+                TextBox_MaxValue.Text = maxValue != double.MinValue ? maxValue.ToString() : string.Empty;
+                TextBox_MinValue.Text = minValue != double.MaxValue ? minValue.ToString() : string.Empty;
             }
         }
 
