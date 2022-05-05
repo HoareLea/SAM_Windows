@@ -288,7 +288,7 @@ namespace SAM.Analytical.Windows
                     {
                         tuples_All.Add(new Tuple<string, string, T>(jSAMObject.GetType().Name, ((MechanicalSystemType)jSAMObject).Name, (T)jSAMObject));
                     }
-                    else if (jSAMObject is SAMObject)
+                    else if (jSAMObject is SAMObject && !(jSAMObject is AnalyticalModel) && !(jSAMObject is AdjacencyCluster))
                     {
                         tuples_All.Add(new Tuple<string, string, T>(jSAMObject.GetType().Name, ((SAMObject)jSAMObject).Name, (T)jSAMObject));
                     }

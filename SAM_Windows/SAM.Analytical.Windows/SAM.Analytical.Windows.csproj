@@ -193,6 +193,7 @@
     <Compile Include="Modify\UpdateApertureConstructions.cs" />
     <Compile Include="Modify\UpdateConstructions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\Clean.cs" />
     <Compile Include="Query\JsonForm.cs" />
     <Compile Include="Query\Import.cs" />
     <Compile Include="Modify\SelectProfile.cs" />
