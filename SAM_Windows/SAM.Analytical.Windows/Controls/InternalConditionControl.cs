@@ -1422,12 +1422,15 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             TextBox_Cooling_ProfileName.Text = profile.Name;
-            TextBox_Cooling_ProfileGuid.Text = profile.Guid.ToString();
 
             InternalCondition internalCondition = GetInternalCondition();
+            LoadInternalCondition(internalCondition);
+            //TextBox_Cooling_ProfileGuid.Text = profile.Guid.ToString();
 
-            double @double = Analytical.Query.CoolingDesignTemperature(internalCondition, profileLibrary);
-            TextBox_Cooling_DesignTemperature.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+            //InternalCondition internalCondition = GetInternalCondition();
+
+            //double @double = Analytical.Query.CoolingDesignTemperature(internalCondition, profileLibrary);
+            //TextBox_Cooling_DesignTemperature.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
         private void Button_OccupancyProfile_Click(object sender, System.EventArgs e)
@@ -1439,25 +1442,28 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             TextBox_Occupancy_ProfileName.Text = profile.Name;
-            TextBox_Occupancy_ProfileGuid.Text = profile.Guid.ToString();
 
             InternalCondition internalCondition = GetInternalCondition();
+            LoadInternalCondition(internalCondition);
+            //TextBox_Occupancy_ProfileGuid.Text = profile.Guid.ToString();
 
-            double value;
+            //InternalCondition internalCondition = GetInternalCondition();
 
-            if (!internalCondition.TryGetValue(InternalConditionParameter.OccupancyLatentGainPerPerson, out value))
-            {
-                value = double.NaN;
-            }
+            //double value;
 
-            TextBox_Occupancy_LatentGainPerPerson.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+            //if (!internalCondition.TryGetValue(InternalConditionParameter.OccupancyLatentGainPerPerson, out value))
+            //{
+            //    value = double.NaN;
+            //}
 
-            if (!internalCondition.TryGetValue(InternalConditionParameter.OccupancySensibleGainPerPerson, out value))
-            {
-                value = double.NaN;
-            }
+            //TextBox_Occupancy_LatentGainPerPerson.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
 
-            TextBox_Occupancy_SensibleGainPerPerson.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+            //if (!internalCondition.TryGetValue(InternalConditionParameter.OccupancySensibleGainPerPerson, out value))
+            //{
+            //    value = double.NaN;
+            //}
+
+            //TextBox_Occupancy_SensibleGainPerPerson.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
         }
 
         private void Button_LightingProfile_Click(object sender, System.EventArgs e)
@@ -1469,25 +1475,28 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             TextBox_Lighting_ProfileName.Text = profile.Name;
-            TextBox_Lighting_ProfileGuid.Text = profile.Guid.ToString();
 
             InternalCondition internalCondition = GetInternalCondition();
+            LoadInternalCondition(internalCondition);
+            //TextBox_Lighting_ProfileGuid.Text = profile.Guid.ToString();
 
-            double value;
+            //InternalCondition internalCondition = GetInternalCondition();
 
-            if (!internalCondition.TryGetValue(InternalConditionParameter.LightingGain, out value))
-            {
-                value = double.NaN;
-            }
+            //double value;
 
-            TextBox_Lighting_Gain.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+            //if (!internalCondition.TryGetValue(InternalConditionParameter.LightingGain, out value))
+            //{
+            //    value = double.NaN;
+            //}
 
-            if (!internalCondition.TryGetValue(InternalConditionParameter.LightingLevel, out value))
-            {
-                value = double.NaN;
-            }
+            //TextBox_Lighting_Gain.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
 
-            TextBox_Lighting_Level.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+            //if (!internalCondition.TryGetValue(InternalConditionParameter.LightingLevel, out value))
+            //{
+            //    value = double.NaN;
+            //}
+
+            //TextBox_Lighting_Level.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
         }
 
         private void Button_EquipmentSensibleProfile_Click(object sender, System.EventArgs e)
@@ -1499,25 +1508,28 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             TextBox_Equipment_SensibleProfileName.Text = profile.Name;
-            TextBox_Equipment_SensibleProfileGuid.Text = profile.Guid.ToString();
 
             InternalCondition internalCondition = GetInternalCondition();
+            LoadInternalCondition(internalCondition);
+            //TextBox_Equipment_SensibleProfileGuid.Text = profile.Guid.ToString();
 
-            double value;
+            //InternalCondition internalCondition = GetInternalCondition();
 
-            if (!internalCondition.TryGetValue(InternalConditionParameter.EquipmentSensibleGainPerArea, out value))
-            {
-                value = double.NaN;
-            }
+            //double value;
 
-            TextBox_Equipment_SensibleGainPerArea.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+            //if (!internalCondition.TryGetValue(InternalConditionParameter.EquipmentSensibleGainPerArea, out value))
+            //{
+            //    value = double.NaN;
+            //}
 
-            if (!internalCondition.TryGetValue(InternalConditionParameter.EquipmentSensibleGain, out value))
-            {
-                value = double.NaN;
-            }
+            //TextBox_Equipment_SensibleGainPerArea.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
 
-            TextBox_Equipment_SensibleGain.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+            //if (!internalCondition.TryGetValue(InternalConditionParameter.EquipmentSensibleGain, out value))
+            //{
+            //    value = double.NaN;
+            //}
+
+            //TextBox_Equipment_SensibleGain.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
         }
 
         private void Button_EquipmentLatentProfile_Click(object sender, System.EventArgs e)
@@ -1529,25 +1541,28 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             TextBox_Equipment_LatentProfileName.Text = profile.Name;
-            TextBox_Equipment_LatentProfileGuid.Text = profile.Guid.ToString();
 
             InternalCondition internalCondition = GetInternalCondition();
+            LoadInternalCondition(internalCondition);
+            //TextBox_Equipment_LatentProfileGuid.Text = profile.Guid.ToString();
 
-            double value;
+            //InternalCondition internalCondition = GetInternalCondition();
 
-            if (!internalCondition.TryGetValue(InternalConditionParameter.EquipmentLatentGainPerArea, out value))
-            {
-                value = double.NaN;
-            }
+            //double value;
 
-            TextBox_Equipment_LatentGainPerArea.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+            //if (!internalCondition.TryGetValue(InternalConditionParameter.EquipmentLatentGainPerArea, out value))
+            //{
+            //    value = double.NaN;
+            //}
 
-            if (!internalCondition.TryGetValue(InternalConditionParameter.EquipmentLatentGain, out value))
-            {
-                value = double.NaN;
-            }
+            //TextBox_Equipment_LatentGainPerArea.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
 
-            TextBox_Equipment_LatentGain.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+            //if (!internalCondition.TryGetValue(InternalConditionParameter.EquipmentLatentGain, out value))
+            //{
+            //    value = double.NaN;
+            //}
+
+            //TextBox_Equipment_LatentGain.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
         }
 
         private void Button_HumidificationProfile_Click(object sender, System.EventArgs e)
@@ -1559,13 +1574,16 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             TextBox_Humidity_ProfileName.Text = profile.Name;
-            TextBox_Humidity_ProfileGuid.Text = profile.Guid.ToString();
 
-            double @double = profile.MaxValue;
-            if (!double.IsNaN(@double))
-            {
-                TextBox_Humidity.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
-            }
+            InternalCondition internalCondition = GetInternalCondition();
+            LoadInternalCondition(internalCondition);
+            //TextBox_Humidity_ProfileGuid.Text = profile.Guid.ToString();
+
+            //double @double = profile.MaxValue;
+            //if (!double.IsNaN(@double))
+            //{
+            //    TextBox_Humidity.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+            //}
         }
 
         private void Button_DehumidificationProfile_Click(object sender, System.EventArgs e)
@@ -1577,13 +1595,16 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             TextBox_Dehumidity_ProfileName.Text = profile.Name;
-            TextBox_Dehumidity_ProfileGuid.Text = profile.Guid.ToString();
 
-            double @double = profile.MinValue;
-            if (!double.IsNaN(@double))
-            {
-                TextBox_Dehumidity.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
-            }
+            InternalCondition internalCondition = GetInternalCondition();
+            LoadInternalCondition(internalCondition);
+            //TextBox_Dehumidity_ProfileGuid.Text = profile.Guid.ToString();
+
+            //double @double = profile.MinValue;
+            //if (!double.IsNaN(@double))
+            //{
+            //    TextBox_Dehumidity.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+            //}
         }
 
         private void Button_InfiltrationProfile_Click(object sender, System.EventArgs e)
@@ -1595,18 +1616,21 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             TextBox_Infiltration_ProfileName.Text = profile.Name;
-            TextBox_Infiltration_ProfileGuid.Text = profile.Guid.ToString();
 
             InternalCondition internalCondition = GetInternalCondition();
+            LoadInternalCondition(internalCondition);
+            //TextBox_Infiltration_ProfileGuid.Text = profile.Guid.ToString();
 
-            double value;
+            //InternalCondition internalCondition = GetInternalCondition();
 
-            if (!internalCondition.TryGetValue(InternalConditionParameter.InfiltrationAirChangesPerHour, out value))
-            {
-                value = double.NaN;
-            }
+            //double value;
 
-            TextBox_Infiltration.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
+            //if (!internalCondition.TryGetValue(InternalConditionParameter.InfiltrationAirChangesPerHour, out value))
+            //{
+            //    value = double.NaN;
+            //}
+
+            //TextBox_Infiltration.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
         }
 
         private void TextBox_Equipment_SensibleGainPerArea_TextChanged(object sender, System.EventArgs e)
