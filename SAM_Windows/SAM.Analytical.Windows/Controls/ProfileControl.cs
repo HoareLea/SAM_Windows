@@ -1,6 +1,4 @@
-﻿using LiveCharts;
-using LiveCharts.Wpf;
-using SAM.Analytical.Windows.Forms;
+﻿using SAM.Analytical.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,14 +25,6 @@ namespace SAM.Analytical.Windows.Controls
 
         private void ProfileControl_Load(object sender, EventArgs e)
         {
-            CartesianChart_Yearly.Hoverable = false;
-            CartesianChart_Yearly.DisableAnimations = true;
-            CartesianChart_Yearly.DataTooltip = null;
-
-            CartesianChart_Profile.Hoverable = false;
-            CartesianChart_Profile.DisableAnimations = true;
-            CartesianChart_Profile.DataTooltip = null;
-
             Button_SetProfile.Enabled = profileLibrary != null;
         }
 
@@ -80,8 +70,6 @@ namespace SAM.Analytical.Windows.Controls
         {
             TextBox_Name.Text = null;
             DataGridView_Values.Rows.Clear();
-            CartesianChart_Profile.Series.Clear();
-            CartesianChart_Yearly.Series.Clear();
 
             if (profile != null)
             {
@@ -98,19 +86,6 @@ namespace SAM.Analytical.Windows.Controls
                 }
 
                 ComboBox_Category.Text = Core.Query.Description(@enum);
-
-                StepLineSeries stepLineSeries = null;
-
-                stepLineSeries = new StepLineSeries();
-                stepLineSeries.PointGeometry = null;
-                stepLineSeries.Values = new ChartValues<double>(profile.GetValues());
-                stepLineSeries.Name = "Profile";
-                CartesianChart_Profile.Series.Add(stepLineSeries);
-
-                stepLineSeries = new StepLineSeries();
-                stepLineSeries.PointGeometry = null;
-                stepLineSeries.Values = new ChartValues<double>(profile.GetYearlyValues());
-                CartesianChart_Yearly.Series.Add(stepLineSeries);
 
                 DataGridView_Values.Rows.Clear();
                 int min = profile.Min;

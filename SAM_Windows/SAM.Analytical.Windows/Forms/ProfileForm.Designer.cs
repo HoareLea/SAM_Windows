@@ -37,7 +37,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_OK
             // 
             this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(283, 618);
+            this.Button_OK.Location = new System.Drawing.Point(283, 669);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 28);
             this.Button_OK.TabIndex = 8;
@@ -49,7 +49,7 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(364, 618);
+            this.Button_Cancel.Location = new System.Drawing.Point(364, 669);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
             this.Button_Cancel.TabIndex = 7;
@@ -64,7 +64,8 @@ namespace SAM.Analytical.Windows.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProfileControl_Main.Location = new System.Drawing.Point(12, 12);
             this.ProfileControl_Main.Name = "ProfileControl_Main";
-            this.ProfileControl_Main.Size = new System.Drawing.Size(427, 582);
+            this.ProfileControl_Main.ProfileLibrary = null;
+            this.ProfileControl_Main.Size = new System.Drawing.Size(427, 633);
             this.ProfileControl_Main.TabIndex = 0;
             // 
             // ProfileForm
@@ -72,7 +73,7 @@ namespace SAM.Analytical.Windows.Forms
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(451, 658);
+            this.ClientSize = new System.Drawing.Size(451, 709);
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.Button_Cancel);
             this.Controls.Add(this.ProfileControl_Main);
