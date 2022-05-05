@@ -29,6 +29,8 @@ namespace SAM.Analytical.Windows.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Label_Name = new System.Windows.Forms.Label();
             this.TextBox_Name = new System.Windows.Forms.TextBox();
             this.Label_Category = new System.Windows.Forms.Label();
@@ -40,13 +42,20 @@ namespace SAM.Analytical.Windows.Controls
             this.Column_Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Chart_Main = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.SplitContainer_Main = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Values)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_Main)).BeginInit();
+            this.SplitContainer_Main.Panel1.SuspendLayout();
+            this.SplitContainer_Main.Panel2.SuspendLayout();
+            this.SplitContainer_Main.SuspendLayout();
             this.SuspendLayout();
             // 
             // Label_Name
             // 
             this.Label_Name.AutoSize = true;
-            this.Label_Name.Location = new System.Drawing.Point(3, 6);
+            this.Label_Name.Location = new System.Drawing.Point(15, 8);
             this.Label_Name.Name = "Label_Name";
             this.Label_Name.Size = new System.Drawing.Size(49, 17);
             this.Label_Name.TabIndex = 0;
@@ -56,15 +65,15 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.TextBox_Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Name.Location = new System.Drawing.Point(78, 3);
+            this.TextBox_Name.Location = new System.Drawing.Point(90, 5);
             this.TextBox_Name.Name = "TextBox_Name";
-            this.TextBox_Name.Size = new System.Drawing.Size(282, 22);
+            this.TextBox_Name.Size = new System.Drawing.Size(270, 22);
             this.TextBox_Name.TabIndex = 1;
             // 
             // Label_Category
             // 
             this.Label_Category.AutoSize = true;
-            this.Label_Category.Location = new System.Drawing.Point(3, 34);
+            this.Label_Category.Location = new System.Drawing.Point(15, 36);
             this.Label_Category.Name = "Label_Category";
             this.Label_Category.Size = new System.Drawing.Size(69, 17);
             this.Label_Category.TabIndex = 2;
@@ -76,16 +85,16 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBox_Category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_Category.FormattingEnabled = true;
-            this.ComboBox_Category.Location = new System.Drawing.Point(78, 31);
+            this.ComboBox_Category.Location = new System.Drawing.Point(90, 33);
             this.ComboBox_Category.Name = "ComboBox_Category";
-            this.ComboBox_Category.Size = new System.Drawing.Size(282, 24);
+            this.ComboBox_Category.Size = new System.Drawing.Size(270, 24);
             this.ComboBox_Category.TabIndex = 3;
             // 
             // Button_Remove
             // 
             this.Button_Remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Remove.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_Remove.Location = new System.Drawing.Point(60, 460);
+            this.Button_Remove.Location = new System.Drawing.Point(60, 459);
             this.Button_Remove.Name = "Button_Remove";
             this.Button_Remove.Size = new System.Drawing.Size(96, 23);
             this.Button_Remove.TabIndex = 17;
@@ -97,7 +106,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_SetProfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_SetProfile.Enabled = false;
             this.Button_SetProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_SetProfile.Location = new System.Drawing.Point(162, 460);
+            this.Button_SetProfile.Location = new System.Drawing.Point(162, 459);
             this.Button_SetProfile.Name = "Button_SetProfile";
             this.Button_SetProfile.Size = new System.Drawing.Size(96, 23);
             this.Button_SetProfile.TabIndex = 16;
@@ -129,14 +138,14 @@ namespace SAM.Analytical.Windows.Controls
             this.Column_Index,
             this.Column_Name,
             this.Column_Value});
-            this.DataGridView_Values.Location = new System.Drawing.Point(3, 61);
+            this.DataGridView_Values.Location = new System.Drawing.Point(15, 63);
             this.DataGridView_Values.Name = "DataGridView_Values";
             this.DataGridView_Values.ReadOnly = true;
             this.DataGridView_Values.RowHeadersVisible = false;
             this.DataGridView_Values.RowHeadersWidth = 51;
             this.DataGridView_Values.RowTemplate.Height = 24;
             this.DataGridView_Values.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView_Values.Size = new System.Drawing.Size(357, 393);
+            this.DataGridView_Values.Size = new System.Drawing.Size(345, 390);
             this.DataGridView_Values.TabIndex = 14;
             // 
             // Column_Index
@@ -163,23 +172,60 @@ namespace SAM.Analytical.Windows.Controls
             this.Column_Value.Name = "Column_Value";
             this.Column_Value.ReadOnly = true;
             // 
+            // Chart_Main
+            // 
+            this.Chart_Main.BackColor = System.Drawing.SystemColors.Control;
+            chartArea1.Name = "ChartArea1";
+            this.Chart_Main.ChartAreas.Add(chartArea1);
+            this.Chart_Main.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Chart_Main.Location = new System.Drawing.Point(0, 0);
+            this.Chart_Main.Name = "Chart_Main";
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            this.Chart_Main.Series.Add(series1);
+            this.Chart_Main.Size = new System.Drawing.Size(407, 485);
+            this.Chart_Main.TabIndex = 18;
+            // 
+            // SplitContainer_Main
+            // 
+            this.SplitContainer_Main.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SplitContainer_Main.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.SplitContainer_Main.Location = new System.Drawing.Point(0, 0);
+            this.SplitContainer_Main.Name = "SplitContainer_Main";
+            // 
+            // SplitContainer_Main.Panel1
+            // 
+            this.SplitContainer_Main.Panel1.Controls.Add(this.DataGridView_Values);
+            this.SplitContainer_Main.Panel1.Controls.Add(this.Button_Remove);
+            this.SplitContainer_Main.Panel1.Controls.Add(this.Label_Name);
+            this.SplitContainer_Main.Panel1.Controls.Add(this.Button_SetProfile);
+            this.SplitContainer_Main.Panel1.Controls.Add(this.TextBox_Name);
+            this.SplitContainer_Main.Panel1.Controls.Add(this.Button_SetValue);
+            this.SplitContainer_Main.Panel1.Controls.Add(this.Label_Category);
+            this.SplitContainer_Main.Panel1.Controls.Add(this.ComboBox_Category);
+            // 
+            // SplitContainer_Main.Panel2
+            // 
+            this.SplitContainer_Main.Panel2.Controls.Add(this.Chart_Main);
+            this.SplitContainer_Main.Size = new System.Drawing.Size(774, 485);
+            this.SplitContainer_Main.SplitterDistance = 363;
+            this.SplitContainer_Main.TabIndex = 19;
+            // 
             // ProfileControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.Button_Remove);
-            this.Controls.Add(this.Button_SetProfile);
-            this.Controls.Add(this.Button_SetValue);
-            this.Controls.Add(this.DataGridView_Values);
-            this.Controls.Add(this.ComboBox_Category);
-            this.Controls.Add(this.Label_Category);
-            this.Controls.Add(this.TextBox_Name);
-            this.Controls.Add(this.Label_Name);
+            this.Controls.Add(this.SplitContainer_Main);
             this.Name = "ProfileControl";
-            this.Size = new System.Drawing.Size(363, 485);
+            this.Size = new System.Drawing.Size(774, 485);
             this.Load += new System.EventHandler(this.ProfileControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Values)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).EndInit();
+            this.SplitContainer_Main.Panel1.ResumeLayout(false);
+            this.SplitContainer_Main.Panel1.PerformLayout();
+            this.SplitContainer_Main.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_Main)).EndInit();
+            this.SplitContainer_Main.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -196,5 +242,7 @@ namespace SAM.Analytical.Windows.Controls
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Index;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Value;
+        private System.Windows.Forms.DataVisualization.Charting.Chart Chart_Main;
+        private System.Windows.Forms.SplitContainer SplitContainer_Main;
     }
 }

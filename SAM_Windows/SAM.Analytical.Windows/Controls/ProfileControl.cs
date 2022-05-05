@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SAM.Analytical.Windows.Controls
 {
@@ -86,6 +87,26 @@ namespace SAM.Analytical.Windows.Controls
                 }
 
                 ComboBox_Category.Text = Core.Query.Description(@enum);
+
+                Chart_Main.Series.Clear();
+
+                Series series = Chart_Main.Series.Add(profile.Name);
+                Chart_Main.ChartAreas[series.ChartArea].AxisX.IsMarginVisible = false;
+                Chart_Main.ChartAreas[series.ChartArea].AxisX.Interval = 1;
+                Chart_Main.ChartAreas[series.ChartArea].AxisX.LabelStyle.IsStaggered = false;
+                Chart_Main.ChartAreas[series.ChartArea].AxisX.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+                Chart_Main.ChartAreas[series.ChartArea].AxisX.InterlacedColor = System.Drawing.Color.LightGray;
+                Chart_Main.ChartAreas[series.ChartArea].AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+                Chart_Main.ChartAreas[series.ChartArea].AxisY.InterlacedColor = System.Drawing.Color.LightGray;
+
+                double[] values = profile.GetDailyValues();
+                if(values != null)
+                {
+                    for(int i =0; i < values.Length; i++)
+                    {
+                        series.Points.Add(values[i], i);
+                    }
+                }
 
                 DataGridView_Values.Rows.Clear();
                 int min = profile.Min;
