@@ -126,7 +126,7 @@ namespace SAM.Analytical.Windows.Controls
                             continue;
                         }
 
-                        int index = DataGridView_Values.Rows.Add(i, profile_Temp?.Name, value);
+                        int index = DataGridView_Values.Rows.Add(i, value, profile_Temp?.Name);
                         if (index == -1)
                         {
                             continue;
@@ -150,7 +150,7 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_MinValue.Text = minValue != double.MaxValue ? minValue.ToString() : string.Empty;
 
                 Profile[] profiles = profile.GetProfiles();
-                DataGridView_Values.Columns[1].Visible = profiles != null && profiles.Length != 0;
+                DataGridView_Values.Columns[2].Visible = profiles != null && profiles.Length != 0;
             }
         }
 
@@ -429,8 +429,7 @@ namespace SAM.Analytical.Windows.Controls
                 {
                     if (Core.Query.TryConvert(stringValues[0], out index))
                     {
-                        int rowIndex = stringValues.Length == 2 ? 1 : 2;
-                        if (Core.Query.TryConvert(stringValues[rowIndex], out value))
+                        if (Core.Query.TryConvert(stringValues[1], out value))
                         {
 
                         }
@@ -464,7 +463,7 @@ namespace SAM.Analytical.Windows.Controls
         {
             e.Control.KeyPress -= new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
             DataGridView_Values.CellValueChanged -= new DataGridViewCellEventHandler(this.DataGridView_Values_CellValueChanged);
-            if (DataGridView_Values.CurrentCell.ColumnIndex == 2)
+            if (DataGridView_Values.CurrentCell.ColumnIndex == 1)
             {
                 TextBox textBox = e.Control as TextBox;
                 if (textBox != null)
@@ -484,7 +483,7 @@ namespace SAM.Analytical.Windows.Controls
                 return;
             }
 
-            if (!Core.Query.TryConvert(DataGridView_Values.Rows[e.RowIndex].Cells[2].Value, out double value))
+            if (!Core.Query.TryConvert(DataGridView_Values.Rows[e.RowIndex].Cells[1].Value, out double value))
             {
                 return;
             }
