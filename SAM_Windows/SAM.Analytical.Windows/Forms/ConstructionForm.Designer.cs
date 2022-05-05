@@ -34,6 +34,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_OK = new System.Windows.Forms.Button();
             this.Button_Cancel = new System.Windows.Forms.Button();
             this.MaterialLayersControl_Main = new SAM.Architectural.Windows.MaterialLayersControl();
+            this.Button_CopyFromConstruction = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Label_Name
@@ -86,12 +87,24 @@ namespace SAM.Analytical.Windows.Forms
             this.MaterialLayersControl_Main.TabIndex = 9;
             this.MaterialLayersControl_Main.Load += new System.EventHandler(this.MaterialLayersControl_Main_Load);
             // 
+            // Button_CopyFromConstruction
+            // 
+            this.Button_CopyFromConstruction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Button_CopyFromConstruction.Location = new System.Drawing.Point(15, 413);
+            this.Button_CopyFromConstruction.Name = "Button_CopyFromConstruction";
+            this.Button_CopyFromConstruction.Size = new System.Drawing.Size(174, 28);
+            this.Button_CopyFromConstruction.TabIndex = 10;
+            this.Button_CopyFromConstruction.Text = "Copy From Construction";
+            this.Button_CopyFromConstruction.UseVisualStyleBackColor = true;
+            this.Button_CopyFromConstruction.Click += new System.EventHandler(this.Button_CopyFromConstruction_Click);
+            // 
             // ConstructionForm
             // 
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(482, 453);
+            this.Controls.Add(this.Button_CopyFromConstruction);
             this.Controls.Add(this.MaterialLayersControl_Main);
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.Button_Cancel);
@@ -119,5 +132,6 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.Button Button_OK;
         private System.Windows.Forms.Button Button_Cancel;
         private Architectural.Windows.MaterialLayersControl MaterialLayersControl_Main;
+        private System.Windows.Forms.Button Button_CopyFromConstruction;
     }
 }

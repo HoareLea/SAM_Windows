@@ -1,4 +1,5 @@
 ﻿using SAM.Core;
+using SAM.Core.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -34,6 +35,11 @@ namespace SAM.Analytical.Windows.Forms
                 TextBox_Name.Text = construction.Name;
 
                 MaterialLayersControl_Main.MaterialLayers = construction.ConstructionLayers?.ConvertAll(x => x as Architectural.MaterialLayer);
+            }
+
+            if(constructionLibrary == null)
+            {
+                Button_CopyFromConstruction.Visible = false;
             }
         }
 
@@ -127,6 +133,27 @@ namespace SAM.Analytical.Windows.Forms
         private void MaterialLayersControl_Main_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Button_CopyFromConstruction_Click(object sender, EventArgs e)
+        {
+            List<Construction> constructions = constructionLibrary?.GetConstructions();
+            if(constructions == null || constructions.Count == 0)
+            {
+                return;
+            }
+
+            using (ComboBoxForm<Construction> comboBoxForm = new ComboBoxForm<Construction>("Select Construction", constructions, (Construction x) => x?.Name))
+            {
+                if(comboBoxForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    Construction construction = comboBoxForm.SelectedItem;
+                    if(construction != null)
+                    {
+                        MaterialLayersControl_Main.MaterialLayers = construction.ConstructionLayers?.ConvertAll(x => x as Architectural.MaterialLayer);
+                    }
+                }
+            }
         }
     }
 }
