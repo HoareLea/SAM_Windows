@@ -99,6 +99,9 @@ namespace SAM.Analytical.Windows.Controls
                 Chart_Main.ChartAreas[series.ChartArea].AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;
                 Chart_Main.ChartAreas[series.ChartArea].AxisY.InterlacedColor = System.Drawing.Color.LightGray;
 
+                Chart_Main.ChartAreas[series.ChartArea].AxisX.LabelStyle.Font = Font;
+                Chart_Main.ChartAreas[series.ChartArea].AxisY.LabelStyle.Font = Font;
+
                 double[] values = profile.GetDailyValues();
                 if(values != null)
                 {

@@ -100,6 +100,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_Remove.TabIndex = 17;
             this.Button_Remove.Text = "Remove";
             this.Button_Remove.UseVisualStyleBackColor = true;
+            this.Button_Remove.Click += new System.EventHandler(this.Button_Remove_Click);
             // 
             // Button_SetProfile
             // 
@@ -112,6 +113,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_SetProfile.TabIndex = 16;
             this.Button_SetProfile.Text = "Set Profile";
             this.Button_SetProfile.UseVisualStyleBackColor = true;
+            this.Button_SetProfile.Click += new System.EventHandler(this.Button_SetProfile_Click);
             // 
             // Button_SetValue
             // 
@@ -123,6 +125,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_SetValue.TabIndex = 15;
             this.Button_SetValue.Text = "Set Value";
             this.Button_SetValue.UseVisualStyleBackColor = true;
+            this.Button_SetValue.Click += new System.EventHandler(this.Button_SetValue_Click);
             // 
             // DataGridView_Values
             // 
