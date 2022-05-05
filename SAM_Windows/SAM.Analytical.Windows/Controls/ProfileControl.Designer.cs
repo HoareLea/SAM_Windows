@@ -40,15 +40,15 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_SetProfile = new System.Windows.Forms.Button();
             this.Button_SetValue = new System.Windows.Forms.Button();
             this.DataGridView_Values = new System.Windows.Forms.DataGridView();
-            this.Column_Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ContextMenuStrip_DataGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItem_SelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_Copy = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_Paste = new System.Windows.Forms.ToolStripMenuItem();
             this.Chart_Main = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.SplitContainer_Main = new System.Windows.Forms.SplitContainer();
+            this.Column_Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Values)).BeginInit();
             this.ContextMenuStrip_DataGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).BeginInit();
@@ -159,29 +159,6 @@ namespace SAM.Analytical.Windows.Controls
             this.DataGridView_Values.TabIndex = 14;
             this.DataGridView_Values.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView_Values_EditingControlShowing);
             // 
-            // Column_Index
-            // 
-            this.Column_Index.FillWeight = 15F;
-            this.Column_Index.HeaderText = "Index";
-            this.Column_Index.MinimumWidth = 6;
-            this.Column_Index.Name = "Column_Index";
-            this.Column_Index.ReadOnly = true;
-            // 
-            // Column_Name
-            // 
-            this.Column_Name.FillWeight = 60F;
-            this.Column_Name.HeaderText = "Name";
-            this.Column_Name.MinimumWidth = 6;
-            this.Column_Name.Name = "Column_Name";
-            this.Column_Name.ReadOnly = true;
-            // 
-            // Column_Value
-            // 
-            this.Column_Value.FillWeight = 25F;
-            this.Column_Value.HeaderText = "Value";
-            this.Column_Value.MinimumWidth = 6;
-            this.Column_Value.Name = "Column_Value";
-            // 
             // ContextMenuStrip_DataGridView
             // 
             this.ContextMenuStrip_DataGridView.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -251,6 +228,32 @@ namespace SAM.Analytical.Windows.Controls
             this.SplitContainer_Main.Size = new System.Drawing.Size(774, 485);
             this.SplitContainer_Main.SplitterDistance = 363;
             this.SplitContainer_Main.TabIndex = 19;
+            // 
+            // Column_Index
+            // 
+            this.Column_Index.FillWeight = 15F;
+            this.Column_Index.HeaderText = "Index";
+            this.Column_Index.MinimumWidth = 6;
+            this.Column_Index.Name = "Column_Index";
+            this.Column_Index.ReadOnly = true;
+            this.Column_Index.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column_Name
+            // 
+            this.Column_Name.FillWeight = 60F;
+            this.Column_Name.HeaderText = "Name";
+            this.Column_Name.MinimumWidth = 6;
+            this.Column_Name.Name = "Column_Name";
+            this.Column_Name.ReadOnly = true;
+            this.Column_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column_Value
+            // 
+            this.Column_Value.FillWeight = 25F;
+            this.Column_Value.HeaderText = "Value";
+            this.Column_Value.MinimumWidth = 6;
+            this.Column_Value.Name = "Column_Value";
+            this.Column_Value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // ProfileControl
             // 
