@@ -29,6 +29,7 @@ namespace SAM.Analytical.Windows.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Label_Name = new System.Windows.Forms.Label();
@@ -42,9 +43,14 @@ namespace SAM.Analytical.Windows.Controls
             this.Column_Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContextMenuStrip_DataGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ToolStripMenuItem_SelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_Copy = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_Paste = new System.Windows.Forms.ToolStripMenuItem();
             this.Chart_Main = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.SplitContainer_Main = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Values)).BeginInit();
+            this.ContextMenuStrip_DataGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_Main)).BeginInit();
             this.SplitContainer_Main.Panel1.SuspendLayout();
@@ -141,15 +147,17 @@ namespace SAM.Analytical.Windows.Controls
             this.Column_Index,
             this.Column_Name,
             this.Column_Value});
+            this.DataGridView_Values.ContextMenuStrip = this.ContextMenuStrip_DataGridView;
+            this.DataGridView_Values.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.DataGridView_Values.Location = new System.Drawing.Point(15, 63);
             this.DataGridView_Values.Name = "DataGridView_Values";
-            this.DataGridView_Values.ReadOnly = true;
             this.DataGridView_Values.RowHeadersVisible = false;
             this.DataGridView_Values.RowHeadersWidth = 51;
             this.DataGridView_Values.RowTemplate.Height = 24;
             this.DataGridView_Values.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridView_Values.Size = new System.Drawing.Size(345, 390);
             this.DataGridView_Values.TabIndex = 14;
+            this.DataGridView_Values.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView_Values_EditingControlShowing);
             // 
             // Column_Index
             // 
@@ -173,7 +181,37 @@ namespace SAM.Analytical.Windows.Controls
             this.Column_Value.HeaderText = "Value";
             this.Column_Value.MinimumWidth = 6;
             this.Column_Value.Name = "Column_Value";
-            this.Column_Value.ReadOnly = true;
+            // 
+            // ContextMenuStrip_DataGridView
+            // 
+            this.ContextMenuStrip_DataGridView.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ContextMenuStrip_DataGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem_SelectAll,
+            this.ToolStripMenuItem_Copy,
+            this.ToolStripMenuItem_Paste});
+            this.ContextMenuStrip_DataGridView.Name = "ContextMenuStrip_DataGridView";
+            this.ContextMenuStrip_DataGridView.Size = new System.Drawing.Size(141, 76);
+            // 
+            // ToolStripMenuItem_SelectAll
+            // 
+            this.ToolStripMenuItem_SelectAll.Name = "ToolStripMenuItem_SelectAll";
+            this.ToolStripMenuItem_SelectAll.Size = new System.Drawing.Size(140, 24);
+            this.ToolStripMenuItem_SelectAll.Text = "Select All";
+            this.ToolStripMenuItem_SelectAll.Click += new System.EventHandler(this.ToolStripMenuItem_SelectAll_Click);
+            // 
+            // ToolStripMenuItem_Copy
+            // 
+            this.ToolStripMenuItem_Copy.Name = "ToolStripMenuItem_Copy";
+            this.ToolStripMenuItem_Copy.Size = new System.Drawing.Size(140, 24);
+            this.ToolStripMenuItem_Copy.Text = "Copy";
+            this.ToolStripMenuItem_Copy.Click += new System.EventHandler(this.ToolStripMenuItem_Copy_Click);
+            // 
+            // ToolStripMenuItem_Paste
+            // 
+            this.ToolStripMenuItem_Paste.Name = "ToolStripMenuItem_Paste";
+            this.ToolStripMenuItem_Paste.Size = new System.Drawing.Size(140, 24);
+            this.ToolStripMenuItem_Paste.Text = "Paste";
+            this.ToolStripMenuItem_Paste.Click += new System.EventHandler(this.ToolStripMenuItem_Paste_Click);
             // 
             // Chart_Main
             // 
@@ -222,6 +260,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Size = new System.Drawing.Size(774, 485);
             this.Load += new System.EventHandler(this.ProfileControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Values)).EndInit();
+            this.ContextMenuStrip_DataGridView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).EndInit();
             this.SplitContainer_Main.Panel1.ResumeLayout(false);
             this.SplitContainer_Main.Panel1.PerformLayout();
@@ -242,10 +281,14 @@ namespace SAM.Analytical.Windows.Controls
         private System.Windows.Forms.Button Button_SetProfile;
         private System.Windows.Forms.Button Button_SetValue;
         private System.Windows.Forms.DataGridView DataGridView_Values;
+        private System.Windows.Forms.DataVisualization.Charting.Chart Chart_Main;
+        private System.Windows.Forms.SplitContainer SplitContainer_Main;
+        private System.Windows.Forms.ContextMenuStrip ContextMenuStrip_DataGridView;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_Copy;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_Paste;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_SelectAll;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Index;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Value;
-        private System.Windows.Forms.DataVisualization.Charting.Chart Chart_Main;
-        private System.Windows.Forms.SplitContainer SplitContainer_Main;
     }
 }

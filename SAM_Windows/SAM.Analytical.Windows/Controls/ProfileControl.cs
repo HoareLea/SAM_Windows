@@ -31,7 +31,7 @@ namespace SAM.Analytical.Windows.Controls
 
         private void UpdateProfileValues(Profile profile)
         {
-            if(profile == null)
+            if (profile == null)
             {
                 return;
             }
@@ -50,12 +50,12 @@ namespace SAM.Analytical.Windows.Controls
                 }
 
                 Profile profile_DataGridViewRow = dataGridViewRow.Tag as Profile;
-                if(profile_DataGridViewRow == null)
+                if (profile_DataGridViewRow == null)
                 {
                     profile_Temp = null;
                     profile.Add(index, value);
                 }
-                else if(profile_Temp == profile_DataGridViewRow)
+                else if (profile_Temp == profile_DataGridViewRow)
                 {
                     continue;
                 }
@@ -103,9 +103,9 @@ namespace SAM.Analytical.Windows.Controls
                 Chart_Main.ChartAreas[series.ChartArea].AxisY.LabelStyle.Font = Font;
 
                 double[] values = profile.GetDailyValues();
-                if(values != null)
+                if (values != null)
                 {
-                    for(int i =0; i < values.Length; i++)
+                    for (int i = 0; i < values.Length; i++)
                     {
                         series.Points.Add(values[i], i);
                     }
@@ -128,7 +128,6 @@ namespace SAM.Analytical.Windows.Controls
                         {
                             continue;
                         }
-
                         DataGridView_Values.Rows[index].Tag = profile_Temp;
                     }
                 }
@@ -171,7 +170,7 @@ namespace SAM.Analytical.Windows.Controls
         private void Button_SetValue_Click(object sender, EventArgs e)
         {
             Profile profile = Profile;
-            if(profile == null)
+            if (profile == null)
             {
                 return;
             }
@@ -224,7 +223,7 @@ namespace SAM.Analytical.Windows.Controls
                 count = setProfileValueForm.Count;
                 value = setProfileValueForm.Value;
 
-                if(!setProfileValueForm.Append)
+                if (!setProfileValueForm.Append)
                 {
                     startIndex = setProfileValueForm.StartIndex;
                 }
@@ -232,7 +231,7 @@ namespace SAM.Analytical.Windows.Controls
                 {
                     startIndex = profile.Max + 1;
                 }
-                
+
             }
 
             if (value == null || !value.HasValue)
@@ -247,7 +246,7 @@ namespace SAM.Analytical.Windows.Controls
 
         private void Button_Remove_Click(object sender, EventArgs e)
         {
-            if(DataGridView_Values.SelectedRows == null || DataGridView_Values.SelectedRows.Count == 0)
+            if (DataGridView_Values.SelectedRows == null || DataGridView_Values.SelectedRows.Count == 0)
             {
                 return;
             }
@@ -282,7 +281,7 @@ namespace SAM.Analytical.Windows.Controls
                 }
             }
 
-            if(startIndex + count - 1 == profile.Max)
+            if (startIndex + count - 1 == profile.Max)
             {
                 profile.Remove(count);
             }
@@ -302,14 +301,14 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             List<Profile> profiles = profileLibrary?.GetProfiles(profile.ProfileGroup, true);
-            if(profiles == null)
+            if (profiles == null)
             {
                 return;
             }
 
             profiles.RemoveAll(x => x.Guid == profile.Guid);
 
-            if(profiles.Count == 0)
+            if (profiles.Count == 0)
             {
                 return;
             }
@@ -332,14 +331,14 @@ namespace SAM.Analytical.Windows.Controls
 
             using (SetProfileForm setProfileForm = new SetProfileForm(startIndex, profiles))
             {
-                if(setProfileForm.ShowDialog(this) != DialogResult.OK)
+                if (setProfileForm.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
                 }
 
                 profile_ToBeAdded = setProfileForm.Profile;
 
-                if(!setProfileForm.Append)
+                if (!setProfileForm.Append)
                 {
                     startIndex = setProfileForm.StartIndex;
                 }
@@ -353,6 +352,129 @@ namespace SAM.Analytical.Windows.Controls
             profile.Update(startIndex, profile_ToBeAdded);
 
             LoadProfile(profile);
+        }
+
+        private void ToolStripMenuItem_Copy_Click(object sender, EventArgs e)
+        {
+            DataObject dataObject = DataGridView_Values.GetClipboardContent();
+            Clipboard.SetDataObject(dataObject);
+        }
+
+        private void ToolStripMenuItem_Paste_Click(object sender, EventArgs e)
+        {
+            string text = Clipboard.GetText();
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return;
+            }
+
+            string[] lines = text.Split('\n');
+            if (lines == null || lines.Length == 0)
+            {
+                return;
+            }
+
+            Profile profile = Profile;
+
+            int startIndex = 0;
+            if (DataGridView_Values.SelectedRows != null && DataGridView_Values.SelectedRows.Count != 0)
+            {
+                if (Core.Query.TryConvert(DataGridView_Values.SelectedRows[DataGridView_Values.SelectedRows.Count - 1].Cells[0].Value, out int startIndex_Temp))
+                {
+                    startIndex = startIndex_Temp;
+                }
+            }
+
+            bool updated = false;
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i];
+
+                string[] stringValues = line.Split('\t');
+                if (stringValues == null || stringValues.Length == 0)
+                {
+                    continue;
+                }
+
+                int index = -1;
+                double value = double.NaN; ;
+                if (stringValues.Length == 1)
+                {
+                    if (Core.Query.TryConvert(stringValues[0], out value))
+                    {
+                        index = startIndex + i;
+                    }
+                }
+                else
+                {
+                    if (Core.Query.TryConvert(stringValues[0], out index))
+                    {
+                        int rowIndex = stringValues.Length == 2 ? 1 : 2;
+                        if (Core.Query.TryConvert(stringValues[rowIndex], out value))
+                        {
+
+                        }
+                    }
+                }
+
+                if (index == -1 || double.IsNaN(value))
+                {
+                    continue;
+                }
+
+                if (profile.Update(index, value))
+                {
+                    updated = true;
+                }
+            }
+
+            if (updated)
+            {
+                LoadProfile(profile);
+            }
+
+        }
+
+        private void ToolStripMenuItem_SelectAll_Click(object sender, EventArgs e)
+        {
+            DataGridView_Values.SelectAll();
+        }
+
+        private void DataGridView_Values_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            e.Control.KeyPress -= new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            DataGridView_Values.CellValueChanged -= new DataGridViewCellEventHandler(this.DataGridView_Values_CellValueChanged);
+            if (DataGridView_Values.CurrentCell.ColumnIndex == 2)
+            {
+                TextBox textBox = e.Control as TextBox;
+                if (textBox != null)
+                {
+                    textBox.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+                    DataGridView_Values.CellValueChanged += new DataGridViewCellEventHandler(this.DataGridView_Values_CellValueChanged);
+                }
+            }
+        }
+
+        private void DataGridView_Values_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView_Values.CellValueChanged -= new DataGridViewCellEventHandler(this.DataGridView_Values_CellValueChanged);
+
+            if (!Core.Query.TryConvert(DataGridView_Values.Rows[e.RowIndex].Cells[0].Value, out int index))
+            {
+                return;
+            }
+
+            if (!Core.Query.TryConvert(DataGridView_Values.Rows[e.RowIndex].Cells[2].Value, out double value))
+            {
+                return;
+            }
+
+
+            Profile profile = Profile;
+            if(profile.Update(index, value))
+            {
+                LoadProfile(profile);
+            }
         }
     }
 }
