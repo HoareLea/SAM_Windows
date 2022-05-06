@@ -43,6 +43,30 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
+        public ProfileLibrary ProfileLibrary
+        {
+            get
+            {
+                return SpaceControl_Main.ProfileLibrary;
+            }
+            set
+            {
+                SpaceControl_Main.ProfileLibrary = value;
+            }
+        }
+
+        public AdjacencyCluster AdjacencyCluster
+        {
+            get
+            {
+                return SpaceControl_Main.AdjacencyCluster;
+            }
+            set
+            {
+                SpaceControl_Main.AdjacencyCluster = value;
+            }
+        }
+
         private void Button_Cancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
