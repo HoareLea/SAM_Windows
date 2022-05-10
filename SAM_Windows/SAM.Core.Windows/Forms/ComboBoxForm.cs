@@ -83,6 +83,11 @@ namespace SAM.Core.Windows.Forms
             {
                 return ComboBoxControl_Main.GetSelectedItem<T>();
             }
+
+            set
+            {
+                ComboBoxControl_Main.SetSelectedItem(value);
+            }
         }
 
         public string Description
