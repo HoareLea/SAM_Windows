@@ -7,6 +7,8 @@ namespace SAM.Core.Windows
 {
     public partial class ComboBoxControl : UserControl
     {
+        public System.EventHandler SelectedIndexChanged;
+
         public ComboBoxControl()
         {
             InitializeComponent();
@@ -115,6 +117,20 @@ namespace SAM.Core.Windows
             }
 
             return result;
+        }
+
+        public void ClearItems()
+        {
+            ComboBox_Main.Items.Clear();
+        }
+
+        private void ComboBox_Main_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            System.EventHandler eventHandler = SelectedIndexChanged;
+            if (eventHandler != null)
+            {
+                eventHandler(this, e);
+            }
         }
     }
 }

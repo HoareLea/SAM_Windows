@@ -43,6 +43,7 @@ namespace SAM.Core.Windows
             this.ComboBox_Main.Name = "ComboBox_Main";
             this.ComboBox_Main.Size = new System.Drawing.Size(191, 24);
             this.ComboBox_Main.TabIndex = 5;
+            this.ComboBox_Main.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Main_SelectedIndexChanged);
             // 
             // Label_Description
             // 
