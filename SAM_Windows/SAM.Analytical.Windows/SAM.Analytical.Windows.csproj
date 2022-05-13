@@ -88,6 +88,12 @@
     <Compile Include="Controls\SpacesControl.Designer.cs">
       <DependentUpon>SpacesControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AnalyticalModelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AnalyticalModelForm.Designer.cs">
+      <DependentUpon>AnalyticalModelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ApertureConstructionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\InternalConditionControl.resx">
       <DependentUpon>InternalConditionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AnalyticalModelForm.resx">
+      <DependentUpon>AnalyticalModelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ApertureConstructionForm.resx">
       <DependentUpon>ApertureConstructionForm.cs</DependentUpon>
