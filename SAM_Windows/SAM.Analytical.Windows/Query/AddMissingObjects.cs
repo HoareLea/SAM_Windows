@@ -27,15 +27,15 @@ namespace SAM.Analytical.Windows
             List<string> names_Material = null;
             Dictionary<ProfileType, List<string>> dictionary_ProfileName = null;
 
-            using (SimpleProgressForm simpleProgressForm = new SimpleProgressForm("Collecting Data", string.Empty, 3))
+            using (Core.Windows.Forms.ProgressForm progressForm = new Core.Windows.Forms.ProgressForm("Collecting Data", 3))
             {
-                simpleProgressForm.Increment("Internal Conditions");
+                progressForm.Update("Internal Conditions");
                 names_InternalCondition = analyticalModel.MissingInternalConditionsNames();
 
-                simpleProgressForm.Increment("Materials");
+                progressForm.Update("Materials");
                 names_Material = analyticalModel.MissingMaterialsNames();
 
-                simpleProgressForm.Increment("Profiles");
+                progressForm.Update("Profiles");
                 dictionary_ProfileName = analyticalModel.MissingProfileNameDictionary();
             }
 
@@ -55,9 +55,9 @@ namespace SAM.Analytical.Windows
 
             jSAMObejcts = new List<IJSAMObject>();
 
-            using (SimpleProgressForm simpleProgressForm = new SimpleProgressForm("Processing Data", string.Empty, 5))
+            using (Core.Windows.Forms.ProgressForm progressForm = new Core.Windows.Forms.ProgressForm("Processing Data", 5))
             {
-                simpleProgressForm.Increment("Paths");
+                progressForm.Update("Paths");
 
                 HashSet<string> paths_Temp = new HashSet<string>();
                 foreach (string path in paths)
@@ -80,7 +80,7 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
-                simpleProgressForm.Increment("Extracting Objects");
+                progressForm.Update("Extracting Objects");
 
                 List<Tuple<string, IJSAMObject>> jSAMObjects_Temp = new List<Tuple<string, IJSAMObject>>();
                 foreach (string path in paths_Temp)
@@ -99,7 +99,7 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
-                simpleProgressForm.Increment("Internal Conditions");
+                progressForm.Update("Internal Conditions");
                 if (names_InternalCondition != null && names_InternalCondition.Count != 0)
                 {
                     List<InternalCondition> internalConditions = jSAMObjects_Temp.FindAll(x => x.Item2 is InternalCondition).ConvertAll(x => (InternalCondition)x.Item2);
@@ -119,7 +119,7 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
-                simpleProgressForm.Increment("Materials");
+                progressForm.Update("Materials");
                 if (names_Material != null && names_Material.Count != 0)
                 {
                     List<IMaterial> materials = jSAMObjects_Temp.FindAll(x => x.Item2 is IMaterial).ConvertAll(x => (IMaterial)x.Item2);
@@ -139,7 +139,7 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
-                simpleProgressForm.Increment("Profiles");
+                progressForm.Update("Profiles");
                 if (dictionary_ProfileName != null && dictionary_ProfileName.Count != 0)
                 {
                     List<Profile> profiles = jSAMObjects_Temp.FindAll(x => x.Item2 is Profile).ConvertAll(x => (Profile)x.Item2);

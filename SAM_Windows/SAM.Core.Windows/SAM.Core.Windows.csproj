@@ -108,6 +108,12 @@
     <Compile Include="Forms\JsonForm.Designer.cs">
       <DependentUpon>JsonForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MarqueeProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MarqueeProgressForm.Designer.cs">
+      <DependentUpon>MarqueeProgressForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectMaterialForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,11 +138,11 @@
     <Compile Include="Forms\SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SimpleProgressForm.cs">
+    <Compile Include="Forms\ProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SimpleProgressForm.designer.cs">
-      <DependentUpon>SimpleProgressForm.cs</DependentUpon>
+    <Compile Include="Forms\ProgressForm.designer.cs">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\TextBoxForm.cs">
       <SubType>Form</SubType>
@@ -224,6 +230,9 @@
     <EmbeddedResource Include="Forms\JsonForm.resx">
       <DependentUpon>JsonForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MarqueeProgressForm.resx">
+      <DependentUpon>MarqueeProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectMaterialForm.resx">
       <DependentUpon>SelectMaterialForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,8 +245,8 @@
     <EmbeddedResource Include="Forms\SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SimpleProgressForm.resx">
-      <DependentUpon>SimpleProgressForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ProgressForm.resx">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TextBoxForm.resx">
       <DependentUpon>TextBoxForm.cs</DependentUpon>

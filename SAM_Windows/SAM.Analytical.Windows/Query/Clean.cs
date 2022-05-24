@@ -24,9 +24,9 @@ namespace SAM.Analytical.Windows
 
             MaterialLibrary materialLibrary = null;
 
-            using (SimpleProgressForm simpleProgressForm = new SimpleProgressForm("Collecting Data", string.Empty, 4))
+            using (ProgressForm simpleProgressForm = new ProgressForm("Collecting Data", 4))
             {
-                simpleProgressForm.Increment("Extracting Data");
+                simpleProgressForm.Update("Extracting Data");
 
                 profileLibrary = analyticalModel.ProfileLibrary;
 
@@ -41,7 +41,7 @@ namespace SAM.Analytical.Windows
 
                 List<Panel> panels = adjacencyCluster.GetPanels();
 
-                simpleProgressForm.Increment("Spaces");
+                simpleProgressForm.Update("Spaces");
                 if (spaces != null)
                 {
                     foreach (Space space in spaces)
@@ -63,7 +63,7 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
-                simpleProgressForm.Increment("Constructions");
+                simpleProgressForm.Update("Constructions");
                 if (constructions != null)
                 {
                     foreach (Construction construction in constructions)
@@ -79,7 +79,7 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
-                simpleProgressForm.Increment("Panels");
+                simpleProgressForm.Update("Panels");
                 if (panels != null)
                 {
                     foreach (Panel panel in panels)
@@ -135,14 +135,14 @@ namespace SAM.Analytical.Windows
             profileLibrary = analyticalModel.ProfileLibrary;
             materialLibrary = analyticalModel.MaterialLibrary;
 
-            using (SimpleProgressForm simpleProgressForm = new SimpleProgressForm("Removing Elements", string.Empty, jSAMObjects.Count))
+            using (ProgressForm simpleProgressForm = new ProgressForm("Removing Elements", jSAMObjects.Count))
             {
                 foreach (IJSAMObject jSAMObject in jSAMObjects)
                 {
                     string name = (jSAMObject as SAMObject)?.Name;
                     name = string.IsNullOrWhiteSpace(name) ? "???" : name;
 
-                    simpleProgressForm.Increment(name);
+                    simpleProgressForm.Update(name);
 
                     if (jSAMObject is Profile)
                     {

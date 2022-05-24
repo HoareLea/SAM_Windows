@@ -408,11 +408,11 @@ namespace SAM.Analytical.Windows
             List<Construction> constructions = new List<Construction>();
             List<ApertureConstruction> apertureConstructions = new List<ApertureConstruction>();
             List<InternalCondition> internalConditions = new List<InternalCondition>();
-            using (SimpleProgressForm simpleProgressForm = new SimpleProgressForm("Import", string.Empty, jSAMObjects.Count() + 4))
+            using (ProgressForm progressForm = new ProgressForm("Import", jSAMObjects.Count() + 4))
             {
                 foreach (T jSAMObject in jSAMObjects)
                 {
-                    simpleProgressForm.Increment(jSAMObject is SAMObject ? ((SAMObject)(object)jSAMObject).Name : "???");
+                    progressForm.Update(jSAMObject is SAMObject ? ((SAMObject)(object)jSAMObject).Name : "???");
 
                     if (jSAMObject == null)
                     {
@@ -445,21 +445,21 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
-                simpleProgressForm.Increment("Constructions");
+                progressForm.Update("Constructions");
 
                 if (constructions != null && constructions.Count != 0)
                 {
                     adjacencyCluster.UpdateConstructions(constructions);
                 }
 
-                simpleProgressForm.Increment("ApertureConstructions");
+                progressForm.Update("ApertureConstructions");
 
                 if (apertureConstructions != null && apertureConstructions.Count != 0)
                 {
                     adjacencyCluster.UpdateApertureConstructions(apertureConstructions);
                 }
 
-                simpleProgressForm.Increment("Missing Materials");
+                progressForm.Update("Missing Materials");
 
                 if (apertureConstructions != null || constructions != null)
                 {
@@ -538,7 +538,7 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
-                simpleProgressForm.Increment("Internal Conditions");
+                progressForm.Update("Internal Conditions");
 
                 if (internalConditions != null)
                 {
