@@ -1,6 +1,7 @@
 ﻿using SAM.Analytical.Windows.Forms;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -154,6 +155,9 @@ namespace SAM.Analytical.Windows.Controls
             }
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Profile Profile
         {
             get
@@ -173,6 +177,9 @@ namespace SAM.Analytical.Windows.Controls
             }
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ProfileLibrary ProfileLibrary
         {
             get
