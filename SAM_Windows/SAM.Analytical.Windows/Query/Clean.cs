@@ -24,9 +24,9 @@ namespace SAM.Analytical.Windows
 
             MaterialLibrary materialLibrary = null;
 
-            using (ProgressForm simpleProgressForm = new ProgressForm("Collecting Data", 4))
+            using (ProgressForm progressForm = new ProgressForm("Collecting Data", 4))
             {
-                simpleProgressForm.Update("Extracting Data");
+                progressForm.Update("Extracting Data");
 
                 profileLibrary = analyticalModel.ProfileLibrary;
 
@@ -41,7 +41,7 @@ namespace SAM.Analytical.Windows
 
                 List<Panel> panels = adjacencyCluster.GetPanels();
 
-                simpleProgressForm.Update("Spaces");
+                progressForm.Update("Spaces");
                 if (spaces != null)
                 {
                     foreach (Space space in spaces)
@@ -63,7 +63,7 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
-                simpleProgressForm.Update("Constructions");
+                progressForm.Update("Constructions");
                 if (constructions != null)
                 {
                     foreach (Construction construction in constructions)
@@ -79,7 +79,7 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
-                simpleProgressForm.Update("Panels");
+                progressForm.Update("Panels");
                 if (panels != null)
                 {
                     foreach (Panel panel in panels)

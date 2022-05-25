@@ -52,5 +52,16 @@ namespace SAM.Core.Windows.Forms
                 }
             }
         }
+
+        public static void Show(string name, Action action, IWin32Window owner)
+        {
+            using (MarqueeProgressForm marqueeProgressForm = new MarqueeProgressForm(name, action))
+            {
+                if (marqueeProgressForm.ShowDialog(owner) == DialogResult.OK)
+                {
+
+                }
+            }
+        }
     }
 }
