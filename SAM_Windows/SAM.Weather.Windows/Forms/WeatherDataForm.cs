@@ -22,7 +22,7 @@ namespace SAM.Weather.Windows.Forms
             WeatherDataControl_Main.Enums = enums?.ToList();
 
             marqueeProgressForm = new Core.Windows.Forms.MarqueeProgressForm("Loading Data");
-            marqueeProgressForm.ShowDialog(this);
+            marqueeProgressForm.Show();
         }
 
         public WeatherData WeatherData

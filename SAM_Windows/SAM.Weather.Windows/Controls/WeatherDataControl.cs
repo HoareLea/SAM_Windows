@@ -112,7 +112,7 @@ namespace SAM.Weather.Windows.Controls
             {
                 int index = DataGridView_Main.Rows.Add();
 
-                DataGridView_Main.Rows[index].Cells["Date"].Value = keyValuePair_DateTime.Key;
+                DataGridView_Main.Rows[index].Cells["Date"].Value = keyValuePair_DateTime.Key.ToString("yyyy-MM-dd HH:mm");
 
                 foreach (KeyValuePair<WeatherDataType, double> keyValuePair_WeatherDataType in keyValuePair_DateTime.Value)
                 {
@@ -183,7 +183,5 @@ namespace SAM.Weather.Windows.Controls
                 LoadWeatherData(weatherData);
             }
         }
-
-
     }
 }
