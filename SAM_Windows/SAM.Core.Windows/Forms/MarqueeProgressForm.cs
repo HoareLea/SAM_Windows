@@ -9,6 +9,16 @@ namespace SAM.Core.Windows.Forms
         private readonly BackgroundWorker backgroundWorker = new BackgroundWorker();
         private Action action;
 
+        public MarqueeProgressForm(string name)
+        {
+            InitializeComponent();
+
+            Text = name;
+
+            ProgressBar_Main.Style = ProgressBarStyle.Marquee;
+            ProgressBar_Main.MarqueeAnimationSpeed = 30;
+        }
+
         public MarqueeProgressForm(string name, Action action)
         {
             InitializeComponent();
