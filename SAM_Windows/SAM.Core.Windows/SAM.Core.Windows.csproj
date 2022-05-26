@@ -108,6 +108,12 @@
     <Compile Include="Forms\JsonForm.Designer.cs">
       <DependentUpon>JsonForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LogForm.Designer.cs">
+      <DependentUpon>LogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MarqueeProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,10 +173,16 @@
     <Compile Include="Modify\SetValues.cs" />
     <Compile Include="Modify\HidePropertyPages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Query\Controls.cs" />
     <Compile Include="Query\DropDownWidth.cs" />
     <Compile Include="Query\LockingProcesses.cs" />
     <Compile Include="Query\Material.cs" />
+    <Compile Include="Query\Bitmap.cs" />
     <Compile Include="Query\Size.cs" />
     <Compile Include="Controls\SearchControl.cs">
       <SubType>UserControl</SubType>
@@ -230,6 +242,9 @@
     <EmbeddedResource Include="Forms\JsonForm.resx">
       <DependentUpon>JsonForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogForm.resx">
+      <DependentUpon>LogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MarqueeProgressForm.resx">
       <DependentUpon>MarqueeProgressForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -254,6 +269,19 @@
     <EmbeddedResource Include="Forms\TreeViewForm.resx">
       <DependentUpon>TreeViewForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAM_Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAM_Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAM_Information.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

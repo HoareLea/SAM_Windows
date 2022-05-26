@@ -57,7 +57,7 @@ namespace SAM.Core.Windows.Forms
         /// This gives us the ability to resize the borderless from any borders instead of just the lower right corner
         /// </summary>
         /// <param name="m">Message</param>
-        protected override void WndProc(ref Message m)
+        protected override void WndProc(ref global::System.Windows.Forms.Message m)
         {
             if(!@fixed)
             {

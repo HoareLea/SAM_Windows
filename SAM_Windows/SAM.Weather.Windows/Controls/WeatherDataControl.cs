@@ -82,6 +82,12 @@ namespace SAM.Weather.Windows.Controls
                 series.ChartType = SeriesChartType.Line;
                 series.ChartArea = chartArea.Name;
 
+                System.Drawing.Color color = Query.Color(weatherDataType);
+                if(color != System.Drawing.Color.Empty)
+                {
+                    series.Color = color;
+                }
+
                 weatherDataTypes.Add(weatherDataType);
                 foreach (KeyValuePair<DateTime, double> keyValuePair in dictionary)
                 {
