@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace SAM.Analytical.Windows.Forms
@@ -36,6 +37,9 @@ namespace SAM.Analytical.Windows.Forms
 
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ProfileLibrary ProfileLibrary
         {
             get
@@ -49,6 +53,9 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Profile Profile
         {
             get
