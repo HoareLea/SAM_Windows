@@ -492,13 +492,13 @@ namespace SAM.Analytical.Windows.Controls
 
                 if (space != null)
                 {
-                    @double = Analytical.Query.SupplyAirFlow(space);
+                    @double = Analytical.Query.CalculatedSupplyAirFlow(space);
                     if (!double.IsNaN(@double))
                     {
                         TextBox_SupplyUnit_AirFlow.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
                     }
 
-                    @double = Analytical.Query.ExhaustAirFlow(space);
+                    @double = Analytical.Query.CalculatedExhaustAirFlow(space);
                     if (!double.IsNaN(@double))
                     {
                         TextBox_ExhaustUnit_AirFlow.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
