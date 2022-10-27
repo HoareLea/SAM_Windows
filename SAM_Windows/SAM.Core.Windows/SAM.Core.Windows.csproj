@@ -57,6 +57,7 @@
     <Compile Include="Classes\File\FileLockWrapper.cs" />
     <Compile Include="Classes\IdleTimer.cs" />
     <Compile Include="Classes\CustomParameterDescriptor.cs" />
+    <Compile Include="Classes\ThreadExecutionHandler.cs" />
     <Compile Include="Classes\WindowHandle.cs" />
     <Compile Include="Controls\ComboBoxControl.cs">
       <SubType>UserControl</SubType>
