@@ -185,6 +185,7 @@
     <Compile Include="Query\LockingProcesses.cs" />
     <Compile Include="Query\Material.cs" />
     <Compile Include="Query\Bitmap.cs" />
+    <Compile Include="Query\Width.cs" />
     <Compile Include="Query\Size.cs" />
     <Compile Include="Controls\SearchControl.cs">
       <SubType>UserControl</SubType>
