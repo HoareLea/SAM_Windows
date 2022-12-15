@@ -1,5 +1,7 @@
 ﻿using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace SAM.Core.Windows
 {
@@ -19,6 +21,11 @@ namespace SAM.Core.Windows
             string text = (sender as Control)?.Text;
             if ((e.KeyChar == separator) && !string.IsNullOrWhiteSpace(text) && (text.IndexOf(separator) > -1))
                 e.Handled = true;
+        }
+
+        public static void ControlText_NumberOnly(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9.-]+").IsMatch(e.Text);
         }
 
     }
