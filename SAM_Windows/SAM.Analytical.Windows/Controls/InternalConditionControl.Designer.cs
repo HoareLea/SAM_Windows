@@ -170,6 +170,15 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_AreaPerPerson = new System.Windows.Forms.TextBox();
             this.Label_AreaPerPerson_Unit = new System.Windows.Forms.Label();
             this.Button_Reset = new System.Windows.Forms.Button();
+            this.Button_HeatingProfile_View = new System.Windows.Forms.Button();
+            this.Button_CoolinProfile_View = new System.Windows.Forms.Button();
+            this.Button_OccupancyProfile_View = new System.Windows.Forms.Button();
+            this.Button_EquipmentSensibleProfile_View = new System.Windows.Forms.Button();
+            this.Button_HumidificationProfile_View = new System.Windows.Forms.Button();
+            this.Button_InfiltrationProfile_View = new System.Windows.Forms.Button();
+            this.Button_LightingProfile_View = new System.Windows.Forms.Button();
+            this.Button_EquipmentLatentProfile_View = new System.Windows.Forms.Button();
+            this.Button_DehumidificationProfile_View = new System.Windows.Forms.Button();
             this.GroupBox_Infiltration.SuspendLayout();
             this.GroupBox_Occupancy.SuspendLayout();
             this.GroupBox_EquipmentLatent.SuspendLayout();
@@ -190,6 +199,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             // GroupBox_Infiltration
             // 
+            this.GroupBox_Infiltration.Controls.Add(this.Button_InfiltrationProfile_View);
             this.GroupBox_Infiltration.Controls.Add(this.Label_Infiltration_Unit);
             this.GroupBox_Infiltration.Controls.Add(this.Button_InfiltrationProfile);
             this.GroupBox_Infiltration.Controls.Add(this.Label_Infiltartion_ProfileName);
@@ -204,7 +214,7 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Infiltration.Size = new System.Drawing.Size(417, 128);
             this.GroupBox_Infiltration.TabIndex = 0;
             this.GroupBox_Infiltration.TabStop = false;
-            this.GroupBox_Infiltration.Text = "Infiltration";
+            this.GroupBox_Infiltration.Text = "Infiltration Profile";
             // 
             // Label_Infiltration_Unit
             // 
@@ -220,9 +230,9 @@ namespace SAM.Analytical.Windows.Controls
             // Button_InfiltrationProfile
             // 
             this.Button_InfiltrationProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_InfiltrationProfile.Location = new System.Drawing.Point(336, 29);
+            this.Button_InfiltrationProfile.Location = new System.Drawing.Point(355, 29);
             this.Button_InfiltrationProfile.Name = "Button_InfiltrationProfile";
-            this.Button_InfiltrationProfile.Size = new System.Drawing.Size(75, 23);
+            this.Button_InfiltrationProfile.Size = new System.Drawing.Size(56, 23);
             this.Button_InfiltrationProfile.TabIndex = 14;
             this.Button_InfiltrationProfile.Text = "Select";
             this.Button_InfiltrationProfile.UseVisualStyleBackColor = true;
@@ -234,9 +244,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Infiltartion_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Infiltartion_ProfileName.Location = new System.Drawing.Point(8, 32);
             this.Label_Infiltartion_ProfileName.Name = "Label_Infiltartion_ProfileName";
-            this.Label_Infiltartion_ProfileName.Size = new System.Drawing.Size(93, 17);
+            this.Label_Infiltartion_ProfileName.Size = new System.Drawing.Size(49, 17);
             this.Label_Infiltartion_ProfileName.TabIndex = 2;
-            this.Label_Infiltartion_ProfileName.Text = "Profile Name:";
+            this.Label_Infiltartion_ProfileName.Text = "Name:";
             // 
             // TextBox_Infiltration_ProfileName
             // 
@@ -244,10 +254,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Infiltration_ProfileName.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Infiltration_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Infiltration_ProfileName.Location = new System.Drawing.Point(117, 29);
+            this.TextBox_Infiltration_ProfileName.Location = new System.Drawing.Point(90, 29);
             this.TextBox_Infiltration_ProfileName.Name = "TextBox_Infiltration_ProfileName";
             this.TextBox_Infiltration_ProfileName.ReadOnly = true;
-            this.TextBox_Infiltration_ProfileName.Size = new System.Drawing.Size(213, 22);
+            this.TextBox_Infiltration_ProfileName.Size = new System.Drawing.Size(259, 22);
             this.TextBox_Infiltration_ProfileName.TabIndex = 3;
             this.TextBox_Infiltration_ProfileName.TabStop = false;
             // 
@@ -257,9 +267,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Infiltration_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Infiltration_ProfileGuid.Location = new System.Drawing.Point(8, 60);
             this.Label_Infiltration_ProfileGuid.Name = "Label_Infiltration_ProfileGuid";
-            this.Label_Infiltration_ProfileGuid.Size = new System.Drawing.Size(86, 17);
+            this.Label_Infiltration_ProfileGuid.Size = new System.Drawing.Size(42, 17);
             this.Label_Infiltration_ProfileGuid.TabIndex = 2;
-            this.Label_Infiltration_ProfileGuid.Text = "Profile Guid:";
+            this.Label_Infiltration_ProfileGuid.Text = "Guid:";
             // 
             // TextBox_Infiltration_ProfileGuid
             // 
@@ -267,10 +277,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Infiltration_ProfileGuid.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Infiltration_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Infiltration_ProfileGuid.Location = new System.Drawing.Point(117, 57);
+            this.TextBox_Infiltration_ProfileGuid.Location = new System.Drawing.Point(90, 57);
             this.TextBox_Infiltration_ProfileGuid.Name = "TextBox_Infiltration_ProfileGuid";
             this.TextBox_Infiltration_ProfileGuid.ReadOnly = true;
-            this.TextBox_Infiltration_ProfileGuid.Size = new System.Drawing.Size(294, 22);
+            this.TextBox_Infiltration_ProfileGuid.Size = new System.Drawing.Size(260, 22);
             this.TextBox_Infiltration_ProfileGuid.TabIndex = 3;
             this.TextBox_Infiltration_ProfileGuid.TabStop = false;
             // 
@@ -296,6 +306,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             // GroupBox_Occupancy
             // 
+            this.GroupBox_Occupancy.Controls.Add(this.Button_OccupancyProfile_View);
             this.GroupBox_Occupancy.Controls.Add(this.Button_OccupancyProfile);
             this.GroupBox_Occupancy.Controls.Add(this.Label_Occupancy_LatentGain_Wp);
             this.GroupBox_Occupancy.Controls.Add(this.Label_Occupancy_SensibleGain_Wp);
@@ -317,14 +328,14 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Occupancy.Size = new System.Drawing.Size(417, 149);
             this.GroupBox_Occupancy.TabIndex = 4;
             this.GroupBox_Occupancy.TabStop = false;
-            this.GroupBox_Occupancy.Text = "Occupancy";
+            this.GroupBox_Occupancy.Text = "Occupancy Profile";
             // 
             // Button_OccupancyProfile
             // 
             this.Button_OccupancyProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_OccupancyProfile.Location = new System.Drawing.Point(336, 29);
+            this.Button_OccupancyProfile.Location = new System.Drawing.Point(355, 29);
             this.Button_OccupancyProfile.Name = "Button_OccupancyProfile";
-            this.Button_OccupancyProfile.Size = new System.Drawing.Size(75, 23);
+            this.Button_OccupancyProfile.Size = new System.Drawing.Size(56, 23);
             this.Button_OccupancyProfile.TabIndex = 5;
             this.Button_OccupancyProfile.Text = "Select";
             this.Button_OccupancyProfile.UseVisualStyleBackColor = true;
@@ -398,9 +409,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Occupancy_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Occupancy_ProfileName.Location = new System.Drawing.Point(8, 32);
             this.Label_Occupancy_ProfileName.Name = "Label_Occupancy_ProfileName";
-            this.Label_Occupancy_ProfileName.Size = new System.Drawing.Size(93, 17);
+            this.Label_Occupancy_ProfileName.Size = new System.Drawing.Size(49, 17);
             this.Label_Occupancy_ProfileName.TabIndex = 2;
-            this.Label_Occupancy_ProfileName.Text = "Profile Name:";
+            this.Label_Occupancy_ProfileName.Text = "Name:";
             // 
             // TextBox_Occupancy_ProfileName
             // 
@@ -408,10 +419,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Occupancy_ProfileName.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Occupancy_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Occupancy_ProfileName.Location = new System.Drawing.Point(114, 29);
+            this.TextBox_Occupancy_ProfileName.Location = new System.Drawing.Point(90, 29);
             this.TextBox_Occupancy_ProfileName.Name = "TextBox_Occupancy_ProfileName";
             this.TextBox_Occupancy_ProfileName.ReadOnly = true;
-            this.TextBox_Occupancy_ProfileName.Size = new System.Drawing.Size(216, 22);
+            this.TextBox_Occupancy_ProfileName.Size = new System.Drawing.Size(259, 22);
             this.TextBox_Occupancy_ProfileName.TabIndex = 3;
             this.TextBox_Occupancy_ProfileName.TabStop = false;
             // 
@@ -421,9 +432,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Occupancy_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Occupancy_ProfileGuid.Location = new System.Drawing.Point(8, 60);
             this.Label_Occupancy_ProfileGuid.Name = "Label_Occupancy_ProfileGuid";
-            this.Label_Occupancy_ProfileGuid.Size = new System.Drawing.Size(86, 17);
+            this.Label_Occupancy_ProfileGuid.Size = new System.Drawing.Size(42, 17);
             this.Label_Occupancy_ProfileGuid.TabIndex = 2;
-            this.Label_Occupancy_ProfileGuid.Text = "Profile Guid:";
+            this.Label_Occupancy_ProfileGuid.Text = "Guid:";
             // 
             // TextBox_Occupancy_ProfileGuid
             // 
@@ -431,10 +442,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Occupancy_ProfileGuid.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Occupancy_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Occupancy_ProfileGuid.Location = new System.Drawing.Point(114, 57);
+            this.TextBox_Occupancy_ProfileGuid.Location = new System.Drawing.Point(90, 57);
             this.TextBox_Occupancy_ProfileGuid.Name = "TextBox_Occupancy_ProfileGuid";
             this.TextBox_Occupancy_ProfileGuid.ReadOnly = true;
-            this.TextBox_Occupancy_ProfileGuid.Size = new System.Drawing.Size(297, 22);
+            this.TextBox_Occupancy_ProfileGuid.Size = new System.Drawing.Size(260, 22);
             this.TextBox_Occupancy_ProfileGuid.TabIndex = 3;
             this.TextBox_Occupancy_ProfileGuid.TabStop = false;
             // 
@@ -480,6 +491,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             // GroupBox_EquipmentLatent
             // 
+            this.GroupBox_EquipmentLatent.Controls.Add(this.Button_EquipmentLatentProfile_View);
             this.GroupBox_EquipmentLatent.Controls.Add(this.Button_EquipmentLatentProfile);
             this.GroupBox_EquipmentLatent.Controls.Add(this.TextBox_Equipment_LatentProfileName);
             this.GroupBox_EquipmentLatent.Controls.Add(this.Label_Equipment_LatentGain_W);
@@ -498,14 +510,14 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_EquipmentLatent.Size = new System.Drawing.Size(417, 122);
             this.GroupBox_EquipmentLatent.TabIndex = 9;
             this.GroupBox_EquipmentLatent.TabStop = false;
-            this.GroupBox_EquipmentLatent.Text = "Equipment Latent";
+            this.GroupBox_EquipmentLatent.Text = "Equipment Latent Profile";
             // 
             // Button_EquipmentLatentProfile
             // 
             this.Button_EquipmentLatentProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_EquipmentLatentProfile.Location = new System.Drawing.Point(335, 21);
+            this.Button_EquipmentLatentProfile.Location = new System.Drawing.Point(354, 21);
             this.Button_EquipmentLatentProfile.Name = "Button_EquipmentLatentProfile";
-            this.Button_EquipmentLatentProfile.Size = new System.Drawing.Size(75, 23);
+            this.Button_EquipmentLatentProfile.Size = new System.Drawing.Size(56, 23);
             this.Button_EquipmentLatentProfile.TabIndex = 24;
             this.Button_EquipmentLatentProfile.Text = "Select";
             this.Button_EquipmentLatentProfile.UseVisualStyleBackColor = true;
@@ -517,10 +529,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Equipment_LatentProfileName.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Equipment_LatentProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Equipment_LatentProfileName.Location = new System.Drawing.Point(102, 21);
+            this.TextBox_Equipment_LatentProfileName.Location = new System.Drawing.Point(88, 21);
             this.TextBox_Equipment_LatentProfileName.Name = "TextBox_Equipment_LatentProfileName";
             this.TextBox_Equipment_LatentProfileName.ReadOnly = true;
-            this.TextBox_Equipment_LatentProfileName.Size = new System.Drawing.Size(227, 22);
+            this.TextBox_Equipment_LatentProfileName.Size = new System.Drawing.Size(260, 22);
             this.TextBox_Equipment_LatentProfileName.TabIndex = 3;
             this.TextBox_Equipment_LatentProfileName.TabStop = false;
             // 
@@ -572,10 +584,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Equipment_LatentProfileGuid.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Equipment_LatentProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Equipment_LatentProfileGuid.Location = new System.Drawing.Point(102, 49);
+            this.TextBox_Equipment_LatentProfileGuid.Location = new System.Drawing.Point(88, 49);
             this.TextBox_Equipment_LatentProfileGuid.Name = "TextBox_Equipment_LatentProfileGuid";
             this.TextBox_Equipment_LatentProfileGuid.ReadOnly = true;
-            this.TextBox_Equipment_LatentProfileGuid.Size = new System.Drawing.Size(309, 22);
+            this.TextBox_Equipment_LatentProfileGuid.Size = new System.Drawing.Size(260, 22);
             this.TextBox_Equipment_LatentProfileGuid.TabIndex = 3;
             this.TextBox_Equipment_LatentProfileGuid.TabStop = false;
             // 
@@ -605,9 +617,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_LatentProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_LatentProfileGuid.Location = new System.Drawing.Point(3, 52);
             this.Label_Equipment_LatentProfileGuid.Name = "Label_Equipment_LatentProfileGuid";
-            this.Label_Equipment_LatentProfileGuid.Size = new System.Drawing.Size(86, 17);
+            this.Label_Equipment_LatentProfileGuid.Size = new System.Drawing.Size(42, 17);
             this.Label_Equipment_LatentProfileGuid.TabIndex = 2;
-            this.Label_Equipment_LatentProfileGuid.Text = "Profile Guid:";
+            this.Label_Equipment_LatentProfileGuid.Text = "Guid:";
             // 
             // Label_Equipment_LatentProfileName
             // 
@@ -615,9 +627,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_LatentProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_LatentProfileName.Location = new System.Drawing.Point(3, 24);
             this.Label_Equipment_LatentProfileName.Name = "Label_Equipment_LatentProfileName";
-            this.Label_Equipment_LatentProfileName.Size = new System.Drawing.Size(93, 17);
+            this.Label_Equipment_LatentProfileName.Size = new System.Drawing.Size(49, 17);
             this.Label_Equipment_LatentProfileName.TabIndex = 2;
-            this.Label_Equipment_LatentProfileName.Text = "Profile Name:";
+            this.Label_Equipment_LatentProfileName.Text = "Name:";
             // 
             // TextBox_Equipment_LatentGainPerArea
             // 
@@ -631,6 +643,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             // GroupBox_Equipment_Sensible
             // 
+            this.GroupBox_Equipment_Sensible.Controls.Add(this.Button_EquipmentSensibleProfile_View);
             this.GroupBox_Equipment_Sensible.Controls.Add(this.Button_EquipmentSensibleProfile);
             this.GroupBox_Equipment_Sensible.Controls.Add(this.TextBox_Equipment_SensibleProfileName);
             this.GroupBox_Equipment_Sensible.Controls.Add(this.Label_Equipment_SensibleGain_W);
@@ -649,14 +662,14 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Equipment_Sensible.Size = new System.Drawing.Size(417, 122);
             this.GroupBox_Equipment_Sensible.TabIndex = 10;
             this.GroupBox_Equipment_Sensible.TabStop = false;
-            this.GroupBox_Equipment_Sensible.Text = "Equipment Sensible";
+            this.GroupBox_Equipment_Sensible.Text = "Equipment Sensible Profile";
             // 
             // Button_EquipmentSensibleProfile
             // 
             this.Button_EquipmentSensibleProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_EquipmentSensibleProfile.Location = new System.Drawing.Point(336, 21);
+            this.Button_EquipmentSensibleProfile.Location = new System.Drawing.Point(356, 21);
             this.Button_EquipmentSensibleProfile.Name = "Button_EquipmentSensibleProfile";
-            this.Button_EquipmentSensibleProfile.Size = new System.Drawing.Size(75, 23);
+            this.Button_EquipmentSensibleProfile.Size = new System.Drawing.Size(55, 23);
             this.Button_EquipmentSensibleProfile.TabIndex = 10;
             this.Button_EquipmentSensibleProfile.Text = "Select";
             this.Button_EquipmentSensibleProfile.UseVisualStyleBackColor = true;
@@ -668,10 +681,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Equipment_SensibleProfileName.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Equipment_SensibleProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Equipment_SensibleProfileName.Location = new System.Drawing.Point(109, 21);
+            this.TextBox_Equipment_SensibleProfileName.Location = new System.Drawing.Point(90, 21);
             this.TextBox_Equipment_SensibleProfileName.Name = "TextBox_Equipment_SensibleProfileName";
             this.TextBox_Equipment_SensibleProfileName.ReadOnly = true;
-            this.TextBox_Equipment_SensibleProfileName.Size = new System.Drawing.Size(221, 22);
+            this.TextBox_Equipment_SensibleProfileName.Size = new System.Drawing.Size(259, 22);
             this.TextBox_Equipment_SensibleProfileName.TabIndex = 3;
             this.TextBox_Equipment_SensibleProfileName.TabStop = false;
             // 
@@ -723,10 +736,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Equipment_SensibleProfileGuid.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Equipment_SensibleProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Equipment_SensibleProfileGuid.Location = new System.Drawing.Point(109, 49);
+            this.TextBox_Equipment_SensibleProfileGuid.Location = new System.Drawing.Point(90, 49);
             this.TextBox_Equipment_SensibleProfileGuid.Name = "TextBox_Equipment_SensibleProfileGuid";
             this.TextBox_Equipment_SensibleProfileGuid.ReadOnly = true;
-            this.TextBox_Equipment_SensibleProfileGuid.Size = new System.Drawing.Size(302, 22);
+            this.TextBox_Equipment_SensibleProfileGuid.Size = new System.Drawing.Size(259, 22);
             this.TextBox_Equipment_SensibleProfileGuid.TabIndex = 3;
             this.TextBox_Equipment_SensibleProfileGuid.TabStop = false;
             // 
@@ -756,9 +769,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equimpent_SensibleProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equimpent_SensibleProfileGuid.Location = new System.Drawing.Point(3, 52);
             this.Label_Equimpent_SensibleProfileGuid.Name = "Label_Equimpent_SensibleProfileGuid";
-            this.Label_Equimpent_SensibleProfileGuid.Size = new System.Drawing.Size(86, 17);
+            this.Label_Equimpent_SensibleProfileGuid.Size = new System.Drawing.Size(42, 17);
             this.Label_Equimpent_SensibleProfileGuid.TabIndex = 2;
-            this.Label_Equimpent_SensibleProfileGuid.Text = "Profile Guid:";
+            this.Label_Equimpent_SensibleProfileGuid.Text = "Guid:";
             // 
             // Label_Equipment_SensibleProfileName
             // 
@@ -766,9 +779,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_SensibleProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_SensibleProfileName.Location = new System.Drawing.Point(3, 24);
             this.Label_Equipment_SensibleProfileName.Name = "Label_Equipment_SensibleProfileName";
-            this.Label_Equipment_SensibleProfileName.Size = new System.Drawing.Size(93, 17);
+            this.Label_Equipment_SensibleProfileName.Size = new System.Drawing.Size(49, 17);
             this.Label_Equipment_SensibleProfileName.TabIndex = 2;
-            this.Label_Equipment_SensibleProfileName.Text = "Profile Name:";
+            this.Label_Equipment_SensibleProfileName.Text = "Name:";
             // 
             // TextBox_Equipment_SensibleGainPerArea
             // 
@@ -782,6 +795,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             // GroupBox_Lighting
             // 
+            this.GroupBox_Lighting.Controls.Add(this.Button_LightingProfile_View);
             this.GroupBox_Lighting.Controls.Add(this.Button_LightingProfile);
             this.GroupBox_Lighting.Controls.Add(this.Label_Lighting_Level);
             this.GroupBox_Lighting.Controls.Add(this.TextBox_Lighting_ProfileName);
@@ -803,14 +817,14 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Lighting.Size = new System.Drawing.Size(417, 149);
             this.GroupBox_Lighting.TabIndex = 11;
             this.GroupBox_Lighting.TabStop = false;
-            this.GroupBox_Lighting.Text = "Lighting";
+            this.GroupBox_Lighting.Text = "Lighting Profile";
             // 
             // Button_LightingProfile
             // 
             this.Button_LightingProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_LightingProfile.Location = new System.Drawing.Point(335, 21);
+            this.Button_LightingProfile.Location = new System.Drawing.Point(354, 21);
             this.Button_LightingProfile.Name = "Button_LightingProfile";
-            this.Button_LightingProfile.Size = new System.Drawing.Size(75, 23);
+            this.Button_LightingProfile.Size = new System.Drawing.Size(56, 23);
             this.Button_LightingProfile.TabIndex = 21;
             this.Button_LightingProfile.Text = "Select";
             this.Button_LightingProfile.UseVisualStyleBackColor = true;
@@ -832,10 +846,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Lighting_ProfileName.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Lighting_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Lighting_ProfileName.Location = new System.Drawing.Point(112, 21);
+            this.TextBox_Lighting_ProfileName.Location = new System.Drawing.Point(88, 21);
             this.TextBox_Lighting_ProfileName.Name = "TextBox_Lighting_ProfileName";
             this.TextBox_Lighting_ProfileName.ReadOnly = true;
-            this.TextBox_Lighting_ProfileName.Size = new System.Drawing.Size(218, 22);
+            this.TextBox_Lighting_ProfileName.Size = new System.Drawing.Size(260, 22);
             this.TextBox_Lighting_ProfileName.TabIndex = 3;
             this.TextBox_Lighting_ProfileName.TabStop = false;
             // 
@@ -906,10 +920,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Lighting_ProfileGuid.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Lighting_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Lighting_ProfileGuid.Location = new System.Drawing.Point(112, 49);
+            this.TextBox_Lighting_ProfileGuid.Location = new System.Drawing.Point(88, 49);
             this.TextBox_Lighting_ProfileGuid.Name = "TextBox_Lighting_ProfileGuid";
             this.TextBox_Lighting_ProfileGuid.ReadOnly = true;
-            this.TextBox_Lighting_ProfileGuid.Size = new System.Drawing.Size(299, 22);
+            this.TextBox_Lighting_ProfileGuid.Size = new System.Drawing.Size(260, 22);
             this.TextBox_Lighting_ProfileGuid.TabIndex = 3;
             this.TextBox_Lighting_ProfileGuid.TabStop = false;
             // 
@@ -929,9 +943,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Lighting_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Lighting_ProfileGuid.Location = new System.Drawing.Point(3, 52);
             this.Label_Lighting_ProfileGuid.Name = "Label_Lighting_ProfileGuid";
-            this.Label_Lighting_ProfileGuid.Size = new System.Drawing.Size(86, 17);
+            this.Label_Lighting_ProfileGuid.Size = new System.Drawing.Size(42, 17);
             this.Label_Lighting_ProfileGuid.TabIndex = 2;
-            this.Label_Lighting_ProfileGuid.Text = "Profile Guid:";
+            this.Label_Lighting_ProfileGuid.Text = "Guid:";
             // 
             // Label_Lighting_ProfileName
             // 
@@ -939,9 +953,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Lighting_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Lighting_ProfileName.Location = new System.Drawing.Point(3, 24);
             this.Label_Lighting_ProfileName.Name = "Label_Lighting_ProfileName";
-            this.Label_Lighting_ProfileName.Size = new System.Drawing.Size(93, 17);
+            this.Label_Lighting_ProfileName.Size = new System.Drawing.Size(49, 17);
             this.Label_Lighting_ProfileName.TabIndex = 2;
-            this.Label_Lighting_ProfileName.Text = "Profile Name:";
+            this.Label_Lighting_ProfileName.Text = "Name:";
             // 
             // TextBox_Lighting_Level
             // 
@@ -964,6 +978,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             // GroupBox_Heating
             // 
+            this.GroupBox_Heating.Controls.Add(this.Button_HeatingProfile_View);
             this.GroupBox_Heating.Controls.Add(this.Button_HeatingProfile);
             this.GroupBox_Heating.Controls.Add(this.Label_Heating_DesignTemperature_C);
             this.GroupBox_Heating.Controls.Add(this.Label_Heating_ProfileName);
@@ -978,14 +993,14 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Heating.Size = new System.Drawing.Size(417, 128);
             this.GroupBox_Heating.TabIndex = 12;
             this.GroupBox_Heating.TabStop = false;
-            this.GroupBox_Heating.Text = "Heating";
+            this.GroupBox_Heating.Text = "Heating Profile";
             // 
             // Button_HeatingProfile
             // 
             this.Button_HeatingProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_HeatingProfile.Location = new System.Drawing.Point(336, 29);
+            this.Button_HeatingProfile.Location = new System.Drawing.Point(355, 29);
             this.Button_HeatingProfile.Name = "Button_HeatingProfile";
-            this.Button_HeatingProfile.Size = new System.Drawing.Size(75, 23);
+            this.Button_HeatingProfile.Size = new System.Drawing.Size(56, 23);
             this.Button_HeatingProfile.TabIndex = 4;
             this.Button_HeatingProfile.Text = "Select";
             this.Button_HeatingProfile.UseVisualStyleBackColor = true;
@@ -1008,9 +1023,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Heating_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Heating_ProfileName.Location = new System.Drawing.Point(8, 32);
             this.Label_Heating_ProfileName.Name = "Label_Heating_ProfileName";
-            this.Label_Heating_ProfileName.Size = new System.Drawing.Size(93, 17);
+            this.Label_Heating_ProfileName.Size = new System.Drawing.Size(49, 17);
             this.Label_Heating_ProfileName.TabIndex = 2;
-            this.Label_Heating_ProfileName.Text = "Profile Name:";
+            this.Label_Heating_ProfileName.Text = "Name:";
             // 
             // TextBox_Heating_ProfileName
             // 
@@ -1018,10 +1033,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Heating_ProfileName.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Heating_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Heating_ProfileName.Location = new System.Drawing.Point(117, 29);
+            this.TextBox_Heating_ProfileName.Location = new System.Drawing.Point(90, 31);
             this.TextBox_Heating_ProfileName.Name = "TextBox_Heating_ProfileName";
             this.TextBox_Heating_ProfileName.ReadOnly = true;
-            this.TextBox_Heating_ProfileName.Size = new System.Drawing.Size(213, 22);
+            this.TextBox_Heating_ProfileName.Size = new System.Drawing.Size(260, 22);
             this.TextBox_Heating_ProfileName.TabIndex = 3;
             this.TextBox_Heating_ProfileName.TabStop = false;
             // 
@@ -1031,9 +1046,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Heating_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Heating_ProfileGuid.Location = new System.Drawing.Point(8, 60);
             this.Label_Heating_ProfileGuid.Name = "Label_Heating_ProfileGuid";
-            this.Label_Heating_ProfileGuid.Size = new System.Drawing.Size(86, 17);
+            this.Label_Heating_ProfileGuid.Size = new System.Drawing.Size(42, 17);
             this.Label_Heating_ProfileGuid.TabIndex = 2;
-            this.Label_Heating_ProfileGuid.Text = "Profile Guid:";
+            this.Label_Heating_ProfileGuid.Text = "Guid:";
             // 
             // TextBox_Heating_ProfileGuid
             // 
@@ -1041,10 +1056,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Heating_ProfileGuid.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Heating_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Heating_ProfileGuid.Location = new System.Drawing.Point(117, 57);
+            this.TextBox_Heating_ProfileGuid.Location = new System.Drawing.Point(90, 59);
             this.TextBox_Heating_ProfileGuid.Name = "TextBox_Heating_ProfileGuid";
             this.TextBox_Heating_ProfileGuid.ReadOnly = true;
-            this.TextBox_Heating_ProfileGuid.Size = new System.Drawing.Size(294, 22);
+            this.TextBox_Heating_ProfileGuid.Size = new System.Drawing.Size(259, 22);
             this.TextBox_Heating_ProfileGuid.TabIndex = 3;
             this.TextBox_Heating_ProfileGuid.TabStop = false;
             // 
@@ -1073,6 +1088,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             // GroupBox_Cooling
             // 
+            this.GroupBox_Cooling.Controls.Add(this.Button_CoolinProfile_View);
             this.GroupBox_Cooling.Controls.Add(this.Button_CoolingProfile);
             this.GroupBox_Cooling.Controls.Add(this.Label_Cooling_DesignTemperature_C);
             this.GroupBox_Cooling.Controls.Add(this.Label_Cooling_ProfileName);
@@ -1087,14 +1103,14 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Cooling.Size = new System.Drawing.Size(417, 122);
             this.GroupBox_Cooling.TabIndex = 13;
             this.GroupBox_Cooling.TabStop = false;
-            this.GroupBox_Cooling.Text = "Cooling";
+            this.GroupBox_Cooling.Text = "Cooling Profile";
             // 
             // Button_CoolingProfile
             // 
             this.Button_CoolingProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_CoolingProfile.Location = new System.Drawing.Point(335, 29);
+            this.Button_CoolingProfile.Location = new System.Drawing.Point(354, 29);
             this.Button_CoolingProfile.Name = "Button_CoolingProfile";
-            this.Button_CoolingProfile.Size = new System.Drawing.Size(75, 23);
+            this.Button_CoolingProfile.Size = new System.Drawing.Size(56, 23);
             this.Button_CoolingProfile.TabIndex = 20;
             this.Button_CoolingProfile.Text = "Select";
             this.Button_CoolingProfile.UseVisualStyleBackColor = true;
@@ -1117,9 +1133,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Cooling_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Cooling_ProfileName.Location = new System.Drawing.Point(8, 32);
             this.Label_Cooling_ProfileName.Name = "Label_Cooling_ProfileName";
-            this.Label_Cooling_ProfileName.Size = new System.Drawing.Size(93, 17);
+            this.Label_Cooling_ProfileName.Size = new System.Drawing.Size(49, 17);
             this.Label_Cooling_ProfileName.TabIndex = 2;
-            this.Label_Cooling_ProfileName.Text = "Profile Name:";
+            this.Label_Cooling_ProfileName.Text = "Name:";
             // 
             // TextBox_Cooling_ProfileName
             // 
@@ -1127,10 +1143,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Cooling_ProfileName.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Cooling_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Cooling_ProfileName.Location = new System.Drawing.Point(117, 29);
+            this.TextBox_Cooling_ProfileName.Location = new System.Drawing.Point(88, 29);
             this.TextBox_Cooling_ProfileName.Name = "TextBox_Cooling_ProfileName";
             this.TextBox_Cooling_ProfileName.ReadOnly = true;
-            this.TextBox_Cooling_ProfileName.Size = new System.Drawing.Size(213, 22);
+            this.TextBox_Cooling_ProfileName.Size = new System.Drawing.Size(260, 22);
             this.TextBox_Cooling_ProfileName.TabIndex = 3;
             this.TextBox_Cooling_ProfileName.TabStop = false;
             // 
@@ -1140,9 +1156,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Cooling_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Cooling_ProfileGuid.Location = new System.Drawing.Point(8, 60);
             this.Label_Cooling_ProfileGuid.Name = "Label_Cooling_ProfileGuid";
-            this.Label_Cooling_ProfileGuid.Size = new System.Drawing.Size(86, 17);
+            this.Label_Cooling_ProfileGuid.Size = new System.Drawing.Size(42, 17);
             this.Label_Cooling_ProfileGuid.TabIndex = 2;
-            this.Label_Cooling_ProfileGuid.Text = "Profile Guid:";
+            this.Label_Cooling_ProfileGuid.Text = "Guid:";
             // 
             // TextBox_Cooling_ProfileGuid
             // 
@@ -1150,10 +1166,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Cooling_ProfileGuid.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Cooling_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Cooling_ProfileGuid.Location = new System.Drawing.Point(117, 57);
+            this.TextBox_Cooling_ProfileGuid.Location = new System.Drawing.Point(88, 57);
             this.TextBox_Cooling_ProfileGuid.Name = "TextBox_Cooling_ProfileGuid";
             this.TextBox_Cooling_ProfileGuid.ReadOnly = true;
-            this.TextBox_Cooling_ProfileGuid.Size = new System.Drawing.Size(294, 22);
+            this.TextBox_Cooling_ProfileGuid.Size = new System.Drawing.Size(260, 22);
             this.TextBox_Cooling_ProfileGuid.TabIndex = 3;
             this.TextBox_Cooling_ProfileGuid.TabStop = false;
             // 
@@ -1182,6 +1198,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             // GroupBox_Humidity
             // 
+            this.GroupBox_Humidity.Controls.Add(this.Button_HumidificationProfile_View);
             this.GroupBox_Humidity.Controls.Add(this.Button_HumidificationProfile);
             this.GroupBox_Humidity.Controls.Add(this.Label_Humidity_Unit);
             this.GroupBox_Humidity.Controls.Add(this.Label_Humidity_ProfileName);
@@ -1196,14 +1213,14 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Humidity.Size = new System.Drawing.Size(417, 122);
             this.GroupBox_Humidity.TabIndex = 14;
             this.GroupBox_Humidity.TabStop = false;
-            this.GroupBox_Humidity.Text = "Humidification";
+            this.GroupBox_Humidity.Text = "Humidification Profile";
             // 
             // Button_HumidificationProfile
             // 
             this.Button_HumidificationProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_HumidificationProfile.Location = new System.Drawing.Point(336, 29);
+            this.Button_HumidificationProfile.Location = new System.Drawing.Point(356, 29);
             this.Button_HumidificationProfile.Name = "Button_HumidificationProfile";
-            this.Button_HumidificationProfile.Size = new System.Drawing.Size(75, 23);
+            this.Button_HumidificationProfile.Size = new System.Drawing.Size(55, 23);
             this.Button_HumidificationProfile.TabIndex = 13;
             this.Button_HumidificationProfile.Text = "Select";
             this.Button_HumidificationProfile.UseVisualStyleBackColor = true;
@@ -1226,9 +1243,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Humidity_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Humidity_ProfileName.Location = new System.Drawing.Point(8, 32);
             this.Label_Humidity_ProfileName.Name = "Label_Humidity_ProfileName";
-            this.Label_Humidity_ProfileName.Size = new System.Drawing.Size(93, 17);
+            this.Label_Humidity_ProfileName.Size = new System.Drawing.Size(49, 17);
             this.Label_Humidity_ProfileName.TabIndex = 2;
-            this.Label_Humidity_ProfileName.Text = "Profile Name:";
+            this.Label_Humidity_ProfileName.Text = "Name:";
             // 
             // TextBox_Humidity_ProfileName
             // 
@@ -1236,10 +1253,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Humidity_ProfileName.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Humidity_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Humidity_ProfileName.Location = new System.Drawing.Point(117, 29);
+            this.TextBox_Humidity_ProfileName.Location = new System.Drawing.Point(90, 29);
             this.TextBox_Humidity_ProfileName.Name = "TextBox_Humidity_ProfileName";
             this.TextBox_Humidity_ProfileName.ReadOnly = true;
-            this.TextBox_Humidity_ProfileName.Size = new System.Drawing.Size(213, 22);
+            this.TextBox_Humidity_ProfileName.Size = new System.Drawing.Size(259, 22);
             this.TextBox_Humidity_ProfileName.TabIndex = 3;
             this.TextBox_Humidity_ProfileName.TabStop = false;
             // 
@@ -1249,9 +1266,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Humidity_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Humidity_ProfileGuid.Location = new System.Drawing.Point(8, 60);
             this.Label_Humidity_ProfileGuid.Name = "Label_Humidity_ProfileGuid";
-            this.Label_Humidity_ProfileGuid.Size = new System.Drawing.Size(86, 17);
+            this.Label_Humidity_ProfileGuid.Size = new System.Drawing.Size(42, 17);
             this.Label_Humidity_ProfileGuid.TabIndex = 2;
-            this.Label_Humidity_ProfileGuid.Text = "Profile Guid:";
+            this.Label_Humidity_ProfileGuid.Text = "Guid:";
             // 
             // TextBox_Humidity_ProfileGuid
             // 
@@ -1259,10 +1276,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Humidity_ProfileGuid.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Humidity_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Humidity_ProfileGuid.Location = new System.Drawing.Point(117, 57);
+            this.TextBox_Humidity_ProfileGuid.Location = new System.Drawing.Point(90, 57);
             this.TextBox_Humidity_ProfileGuid.Name = "TextBox_Humidity_ProfileGuid";
             this.TextBox_Humidity_ProfileGuid.ReadOnly = true;
-            this.TextBox_Humidity_ProfileGuid.Size = new System.Drawing.Size(294, 22);
+            this.TextBox_Humidity_ProfileGuid.Size = new System.Drawing.Size(259, 22);
             this.TextBox_Humidity_ProfileGuid.TabIndex = 3;
             this.TextBox_Humidity_ProfileGuid.TabStop = false;
             // 
@@ -1291,6 +1308,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             // GroupBox_Dehumidification
             // 
+            this.GroupBox_Dehumidification.Controls.Add(this.Button_DehumidificationProfile_View);
             this.GroupBox_Dehumidification.Controls.Add(this.Button_DehumidificationProfile);
             this.GroupBox_Dehumidification.Controls.Add(this.Label_Dehumidity_Unit);
             this.GroupBox_Dehumidification.Controls.Add(this.Label_Dehumidity_ProfileName);
@@ -1305,14 +1323,14 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Dehumidification.Size = new System.Drawing.Size(417, 122);
             this.GroupBox_Dehumidification.TabIndex = 15;
             this.GroupBox_Dehumidification.TabStop = false;
-            this.GroupBox_Dehumidification.Text = "Dehumidification";
+            this.GroupBox_Dehumidification.Text = "Dehumidification Profile";
             // 
             // Button_DehumidificationProfile
             // 
             this.Button_DehumidificationProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_DehumidificationProfile.Location = new System.Drawing.Point(336, 29);
+            this.Button_DehumidificationProfile.Location = new System.Drawing.Point(354, 29);
             this.Button_DehumidificationProfile.Name = "Button_DehumidificationProfile";
-            this.Button_DehumidificationProfile.Size = new System.Drawing.Size(75, 23);
+            this.Button_DehumidificationProfile.Size = new System.Drawing.Size(57, 23);
             this.Button_DehumidificationProfile.TabIndex = 27;
             this.Button_DehumidificationProfile.Text = "Select";
             this.Button_DehumidificationProfile.UseVisualStyleBackColor = true;
@@ -1335,9 +1353,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Dehumidity_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Dehumidity_ProfileName.Location = new System.Drawing.Point(8, 32);
             this.Label_Dehumidity_ProfileName.Name = "Label_Dehumidity_ProfileName";
-            this.Label_Dehumidity_ProfileName.Size = new System.Drawing.Size(93, 17);
+            this.Label_Dehumidity_ProfileName.Size = new System.Drawing.Size(49, 17);
             this.Label_Dehumidity_ProfileName.TabIndex = 2;
-            this.Label_Dehumidity_ProfileName.Text = "Profile Name:";
+            this.Label_Dehumidity_ProfileName.Text = "Name:";
             // 
             // TextBox_Dehumidity_ProfileName
             // 
@@ -1345,10 +1363,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Dehumidity_ProfileName.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Dehumidity_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Dehumidity_ProfileName.Location = new System.Drawing.Point(107, 29);
+            this.TextBox_Dehumidity_ProfileName.Location = new System.Drawing.Point(88, 29);
             this.TextBox_Dehumidity_ProfileName.Name = "TextBox_Dehumidity_ProfileName";
             this.TextBox_Dehumidity_ProfileName.ReadOnly = true;
-            this.TextBox_Dehumidity_ProfileName.Size = new System.Drawing.Size(223, 22);
+            this.TextBox_Dehumidity_ProfileName.Size = new System.Drawing.Size(261, 22);
             this.TextBox_Dehumidity_ProfileName.TabIndex = 3;
             this.TextBox_Dehumidity_ProfileName.TabStop = false;
             // 
@@ -1358,9 +1376,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Dehumidity_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Dehumidity_ProfileGuid.Location = new System.Drawing.Point(8, 60);
             this.Label_Dehumidity_ProfileGuid.Name = "Label_Dehumidity_ProfileGuid";
-            this.Label_Dehumidity_ProfileGuid.Size = new System.Drawing.Size(86, 17);
+            this.Label_Dehumidity_ProfileGuid.Size = new System.Drawing.Size(42, 17);
             this.Label_Dehumidity_ProfileGuid.TabIndex = 2;
-            this.Label_Dehumidity_ProfileGuid.Text = "Profile Guid:";
+            this.Label_Dehumidity_ProfileGuid.Text = "Guid:";
             // 
             // TextBox_Dehumidity_ProfileGuid
             // 
@@ -1368,10 +1386,10 @@ namespace SAM.Analytical.Windows.Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Dehumidity_ProfileGuid.BackColor = System.Drawing.SystemColors.Control;
             this.TextBox_Dehumidity_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Dehumidity_ProfileGuid.Location = new System.Drawing.Point(107, 57);
+            this.TextBox_Dehumidity_ProfileGuid.Location = new System.Drawing.Point(88, 57);
             this.TextBox_Dehumidity_ProfileGuid.Name = "TextBox_Dehumidity_ProfileGuid";
             this.TextBox_Dehumidity_ProfileGuid.ReadOnly = true;
-            this.TextBox_Dehumidity_ProfileGuid.Size = new System.Drawing.Size(304, 22);
+            this.TextBox_Dehumidity_ProfileGuid.Size = new System.Drawing.Size(261, 22);
             this.TextBox_Dehumidity_ProfileGuid.TabIndex = 3;
             this.TextBox_Dehumidity_ProfileGuid.TabStop = false;
             // 
@@ -1835,6 +1853,105 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_Reset.UseVisualStyleBackColor = true;
             this.Button_Reset.Click += new System.EventHandler(this.Button_Reset_Click);
             // 
+            // Button_HeatingProfile_View
+            // 
+            this.Button_HeatingProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_HeatingProfile_View.Location = new System.Drawing.Point(355, 58);
+            this.Button_HeatingProfile_View.Name = "Button_HeatingProfile_View";
+            this.Button_HeatingProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_HeatingProfile_View.TabIndex = 8;
+            this.Button_HeatingProfile_View.Text = "View";
+            this.Button_HeatingProfile_View.UseVisualStyleBackColor = true;
+            this.Button_HeatingProfile_View.Click += new System.EventHandler(this.Button_HeatingProfile_View_Click);
+            // 
+            // Button_CoolinProfile_View
+            // 
+            this.Button_CoolinProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_CoolinProfile_View.Location = new System.Drawing.Point(354, 57);
+            this.Button_CoolinProfile_View.Name = "Button_CoolinProfile_View";
+            this.Button_CoolinProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_CoolinProfile_View.TabIndex = 9;
+            this.Button_CoolinProfile_View.Text = "View";
+            this.Button_CoolinProfile_View.UseVisualStyleBackColor = true;
+            this.Button_CoolinProfile_View.Click += new System.EventHandler(this.Button_CoolinProfile_View_Click);
+            // 
+            // Button_OccupancyProfile_View
+            // 
+            this.Button_OccupancyProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_OccupancyProfile_View.Location = new System.Drawing.Point(356, 57);
+            this.Button_OccupancyProfile_View.Name = "Button_OccupancyProfile_View";
+            this.Button_OccupancyProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_OccupancyProfile_View.TabIndex = 9;
+            this.Button_OccupancyProfile_View.Text = "View";
+            this.Button_OccupancyProfile_View.UseVisualStyleBackColor = true;
+            this.Button_OccupancyProfile_View.Click += new System.EventHandler(this.Button_OccupancyProfile_View_Click);
+            // 
+            // Button_EquipmentSensibleProfile_View
+            // 
+            this.Button_EquipmentSensibleProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_EquipmentSensibleProfile_View.Location = new System.Drawing.Point(355, 49);
+            this.Button_EquipmentSensibleProfile_View.Name = "Button_EquipmentSensibleProfile_View";
+            this.Button_EquipmentSensibleProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_EquipmentSensibleProfile_View.TabIndex = 10;
+            this.Button_EquipmentSensibleProfile_View.Text = "View";
+            this.Button_EquipmentSensibleProfile_View.UseVisualStyleBackColor = true;
+            this.Button_EquipmentSensibleProfile_View.Click += new System.EventHandler(this.Button_EquipmentSensibleProfile_View_Click);
+            // 
+            // Button_HumidificationProfile_View
+            // 
+            this.Button_HumidificationProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_HumidificationProfile_View.Location = new System.Drawing.Point(355, 57);
+            this.Button_HumidificationProfile_View.Name = "Button_HumidificationProfile_View";
+            this.Button_HumidificationProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_HumidificationProfile_View.TabIndex = 13;
+            this.Button_HumidificationProfile_View.Text = "View";
+            this.Button_HumidificationProfile_View.UseVisualStyleBackColor = true;
+            this.Button_HumidificationProfile_View.Click += new System.EventHandler(this.Button_HumidificationProfile_View_Click);
+            // 
+            // Button_InfiltrationProfile_View
+            // 
+            this.Button_InfiltrationProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_InfiltrationProfile_View.Location = new System.Drawing.Point(355, 57);
+            this.Button_InfiltrationProfile_View.Name = "Button_InfiltrationProfile_View";
+            this.Button_InfiltrationProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_InfiltrationProfile_View.TabIndex = 14;
+            this.Button_InfiltrationProfile_View.Text = "View";
+            this.Button_InfiltrationProfile_View.UseVisualStyleBackColor = true;
+            this.Button_InfiltrationProfile_View.Click += new System.EventHandler(this.Button_InfiltrationProfile_View_Click);
+            // 
+            // Button_LightingProfile_View
+            // 
+            this.Button_LightingProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_LightingProfile_View.Location = new System.Drawing.Point(354, 49);
+            this.Button_LightingProfile_View.Name = "Button_LightingProfile_View";
+            this.Button_LightingProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_LightingProfile_View.TabIndex = 21;
+            this.Button_LightingProfile_View.Text = "View";
+            this.Button_LightingProfile_View.UseVisualStyleBackColor = true;
+            this.Button_LightingProfile_View.Click += new System.EventHandler(this.Button_LightingProfile_View_Click);
+            // 
+            // Button_EquipmentLatentProfile_View
+            // 
+            this.Button_EquipmentLatentProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_EquipmentLatentProfile_View.Location = new System.Drawing.Point(354, 49);
+            this.Button_EquipmentLatentProfile_View.Name = "Button_EquipmentLatentProfile_View";
+            this.Button_EquipmentLatentProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_EquipmentLatentProfile_View.TabIndex = 24;
+            this.Button_EquipmentLatentProfile_View.Text = "View";
+            this.Button_EquipmentLatentProfile_View.UseVisualStyleBackColor = true;
+            this.Button_EquipmentLatentProfile_View.Click += new System.EventHandler(this.Button_EquipmentLatentProfile_View_Click);
+            // 
+            // Button_DehumidificationProfile_View
+            // 
+            this.Button_DehumidificationProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_DehumidificationProfile_View.Location = new System.Drawing.Point(355, 57);
+            this.Button_DehumidificationProfile_View.Name = "Button_DehumidificationProfile_View";
+            this.Button_DehumidificationProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_DehumidificationProfile_View.TabIndex = 27;
+            this.Button_DehumidificationProfile_View.Text = "View";
+            this.Button_DehumidificationProfile_View.UseVisualStyleBackColor = true;
+            this.Button_DehumidificationProfile_View.Click += new System.EventHandler(this.Button_DehumidificationProfile_View_Click);
+            // 
             // InternalConditionControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2038,5 +2155,14 @@ namespace SAM.Analytical.Windows.Controls
         private System.Windows.Forms.Label Label_Lighting_GainPerArea_Wm2;
         private System.Windows.Forms.Label Label_Lighting_GainCalculated_W;
         private System.Windows.Forms.TextBox TextBox_Lighting_GainPerArea;
+        private System.Windows.Forms.Button Button_HeatingProfile_View;
+        private System.Windows.Forms.Button Button_CoolinProfile_View;
+        private System.Windows.Forms.Button Button_OccupancyProfile_View;
+        private System.Windows.Forms.Button Button_EquipmentSensibleProfile_View;
+        private System.Windows.Forms.Button Button_HumidificationProfile_View;
+        private System.Windows.Forms.Button Button_InfiltrationProfile_View;
+        private System.Windows.Forms.Button Button_LightingProfile_View;
+        private System.Windows.Forms.Button Button_EquipmentLatentProfile_View;
+        private System.Windows.Forms.Button Button_DehumidificationProfile_View;
     }
 }

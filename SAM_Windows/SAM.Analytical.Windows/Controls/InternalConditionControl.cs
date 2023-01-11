@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SAM.Analytical.Windows.Forms;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
@@ -1787,6 +1788,70 @@ namespace SAM.Analytical.Windows.Controls
             @double = Analytical.Query.OccupancyLatentGain(space);
 
             TextBox_Occupancy_LatentGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void ViewProfile(ProfileType profileType)
+        {
+            InternalCondition internalCondition = GetInternalCondition();
+
+            Profile profile = internalCondition.GetProfile(profileType, profileLibrary);
+            if (profile == null)
+            {
+                return;
+            }
+
+            using (ProfileForm profileForm = new ProfileForm(profile, false))
+            {
+                if (profileForm.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+            }
+        }
+
+        private void Button_HeatingProfile_View_Click(object sender, System.EventArgs e)
+        {
+            ViewProfile(ProfileType.Heating);
+        }
+
+        private void Button_CoolinProfile_View_Click(object sender, System.EventArgs e)
+        {
+            ViewProfile(ProfileType.Cooling);
+        }
+
+        private void Button_OccupancyProfile_View_Click(object sender, System.EventArgs e)
+        {
+            ViewProfile(ProfileType.Occupancy);
+        }
+
+        private void Button_EquipmentSensibleProfile_View_Click(object sender, System.EventArgs e)
+        {
+            ViewProfile(ProfileType.EquipmentSensible);
+        }
+
+        private void Button_HumidificationProfile_View_Click(object sender, System.EventArgs e)
+        {
+            ViewProfile(ProfileType.Humidification);
+        }
+
+        private void Button_InfiltrationProfile_View_Click(object sender, System.EventArgs e)
+        {
+            ViewProfile(ProfileType.Infiltration);
+        }
+
+        private void Button_LightingProfile_View_Click(object sender, System.EventArgs e)
+        {
+            ViewProfile(ProfileType.Lighting);
+        }
+
+        private void Button_EquipmentLatentProfile_View_Click(object sender, System.EventArgs e)
+        {
+            ViewProfile(ProfileType.EquipmentLatent);
+        }
+
+        private void Button_DehumidificationProfile_View_Click(object sender, System.EventArgs e)
+        {
+            ViewProfile(ProfileType.Dehumidification);
         }
     }
 }

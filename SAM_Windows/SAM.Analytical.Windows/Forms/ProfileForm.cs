@@ -11,11 +11,13 @@ namespace SAM.Analytical.Windows.Forms
             InitializeComponent();
         }
 
-        public ProfileForm(Profile profile)
+        public ProfileForm(Profile profile, bool editable = true)
         {
             InitializeComponent();
 
             ProfileControl_Main.Profile = profile;
+
+            Editable = editable;
         }
 
         private void Button_OK_Click(object sender, EventArgs e)
@@ -66,6 +68,19 @@ namespace SAM.Analytical.Windows.Forms
             set
             {
                 ProfileControl_Main.Profile = value;
+            }
+        }
+
+        public bool Editable
+        {
+            get
+            {
+                return ProfileControl_Main.Editable;
+            }
+
+            set
+            {
+                ProfileControl_Main.Editable = value;
             }
         }
     }

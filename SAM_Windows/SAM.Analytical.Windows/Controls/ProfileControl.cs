@@ -18,11 +18,12 @@ namespace SAM.Analytical.Windows.Controls
             InitializeComponent();
         }
 
-        public ProfileControl(Profile profile)
+        public ProfileControl(Profile profile, bool editable = true)
         {
             InitializeComponent();
 
             this.profile = profile;
+            Editable = editable;
         }
 
         private void ProfileControl_Load(object sender, EventArgs e)
@@ -500,6 +501,25 @@ namespace SAM.Analytical.Windows.Controls
             if(profile.Update(index, value))
             {
                 LoadProfile(profile);
+            }
+        }
+
+        public bool Editable
+        {
+            get
+            {
+                return TextBox_Name.ReadOnly;
+            }
+
+            set
+            {
+                TextBox_Name.Enabled = value;
+                ComboBox_Category.Enabled = value;
+                DataGridView_Values.ReadOnly = value;
+                DataGridView_Values.Columns[1].ReadOnly = value;
+                Button_Remove.Enabled = value;
+                Button_SetProfile.Enabled = value;
+                Button_SetValue.Enabled = value;
             }
         }
     }
