@@ -1395,7 +1395,7 @@ namespace SAM.Analytical.Windows.Controls
 
         private void Button_HeatingProfile_Click(object sender, System.EventArgs e)
         {
-            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Thermostat);
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Heating);
             if (profile == null)
             {
                 return;
@@ -1415,7 +1415,7 @@ namespace SAM.Analytical.Windows.Controls
 
         private void Button_CoolingProfile_Click(object sender, System.EventArgs e)
         {
-            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Thermostat);
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Cooling);
             if (profile == null)
             {
                 return;
@@ -1435,7 +1435,7 @@ namespace SAM.Analytical.Windows.Controls
 
         private void Button_OccupancyProfile_Click(object sender, System.EventArgs e)
         {
-            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Gain);
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Occupancy);
             if (profile == null)
             {
                 return;
@@ -1468,7 +1468,7 @@ namespace SAM.Analytical.Windows.Controls
 
         private void Button_LightingProfile_Click(object sender, System.EventArgs e)
         {
-            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Gain);
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Lighting);
             if (profile == null)
             {
                 return;
@@ -1501,7 +1501,7 @@ namespace SAM.Analytical.Windows.Controls
 
         private void Button_EquipmentSensibleProfile_Click(object sender, System.EventArgs e)
         {
-            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Gain);
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.EquipmentSensible);
             if (profile == null)
             {
                 return;
@@ -1534,7 +1534,7 @@ namespace SAM.Analytical.Windows.Controls
 
         private void Button_EquipmentLatentProfile_Click(object sender, System.EventArgs e)
         {
-            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Gain);
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.EquipmentLatent);
             if (profile == null)
             {
                 return;
@@ -1567,7 +1567,7 @@ namespace SAM.Analytical.Windows.Controls
 
         private void Button_HumidificationProfile_Click(object sender, System.EventArgs e)
         {
-            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Humidistat);
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Humidification);
             if (profile == null)
             {
                 return;
@@ -1588,7 +1588,7 @@ namespace SAM.Analytical.Windows.Controls
 
         private void Button_DehumidificationProfile_Click(object sender, System.EventArgs e)
         {
-            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Humidistat);
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Dehumidification);
             if (profile == null)
             {
                 return;
@@ -1609,7 +1609,7 @@ namespace SAM.Analytical.Windows.Controls
 
         private void Button_InfiltrationProfile_Click(object sender, System.EventArgs e)
         {
-            Profile profile = Modify.SelectProfile(profileLibrary, ProfileGroup.Gain);
+            Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Infiltration);
             if (profile == null)
             {
                 return;

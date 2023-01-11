@@ -184,15 +184,26 @@ namespace SAM.Analytical.Windows.Forms
             {
                 if (!type.Equals(type_Selected))
                 {
-                    if (type is ProfileType)
+                    if (type_Selected is ProfileType)
                     {
-                        return false;
-                    }
-                    else if (type is ProfileGroup)
-                    {
-                        if (type_Selected is ProfileType)
+                        if(!(type is ProfileGroup))
                         {
-                            if (!((ProfileGroup)type).Equals(((ProfileType)type_Selected).ProfileGroup()))
+                            return false;
+                        }
+
+                        ProfileGroup profileGroup = (ProfileGroup)type;
+                        ProfileType profileType = (ProfileType)type_Selected;
+                        if (!profileGroup.Equals(profileType.ProfileGroup()))
+                        {
+                            return false;
+                        }
+
+                    }
+                    else if (type_Selected is ProfileGroup)
+                    {
+                        if (type is ProfileType)
+                        {
+                            if (!((ProfileGroup)type_Selected).Equals(((ProfileType)type).ProfileGroup()))
                             {
                                 return false;
                             }
