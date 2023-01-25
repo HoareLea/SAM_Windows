@@ -37,6 +37,7 @@ namespace SAM.Analytical.Windows
             this.Label_InternalCondition = new System.Windows.Forms.Label();
             this.TextBox_InternalCondition = new System.Windows.Forms.TextBox();
             this.Button_ModifyInternalCondition = new System.Windows.Forms.Button();
+            this.Button_RemoveInternalCondition = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // PropertyGrid_Main
@@ -118,18 +119,32 @@ namespace SAM.Analytical.Windows
             // 
             this.Button_ModifyInternalCondition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_ModifyInternalCondition.Location = new System.Drawing.Point(127, 80);
+            this.Button_ModifyInternalCondition.Location = new System.Drawing.Point(205, 80);
             this.Button_ModifyInternalCondition.Margin = new System.Windows.Forms.Padding(2);
             this.Button_ModifyInternalCondition.Name = "Button_ModifyInternalCondition";
-            this.Button_ModifyInternalCondition.Size = new System.Drawing.Size(229, 27);
+            this.Button_ModifyInternalCondition.Size = new System.Drawing.Size(151, 27);
             this.Button_ModifyInternalCondition.TabIndex = 1;
-            this.Button_ModifyInternalCondition.Text = "Modify Internal Condition";
+            this.Button_ModifyInternalCondition.Text = "Modify";
             this.Button_ModifyInternalCondition.UseVisualStyleBackColor = true;
             this.Button_ModifyInternalCondition.Click += new System.EventHandler(this.Button_ModifyInternalCondition_Click);
+            // 
+            // Button_RemoveInternalCondition
+            // 
+            this.Button_RemoveInternalCondition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_RemoveInternalCondition.Location = new System.Drawing.Point(127, 80);
+            this.Button_RemoveInternalCondition.Margin = new System.Windows.Forms.Padding(2);
+            this.Button_RemoveInternalCondition.Name = "Button_RemoveInternalCondition";
+            this.Button_RemoveInternalCondition.Size = new System.Drawing.Size(74, 27);
+            this.Button_RemoveInternalCondition.TabIndex = 5;
+            this.Button_RemoveInternalCondition.Text = "Remove";
+            this.Button_RemoveInternalCondition.UseVisualStyleBackColor = true;
+            this.Button_RemoveInternalCondition.Click += new System.EventHandler(this.Button_RemoveInternalCondition_Click);
             // 
             // SpaceControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.Button_RemoveInternalCondition);
             this.Controls.Add(this.Button_ModifyInternalCondition);
             this.Controls.Add(this.PropertyGrid_Main);
             this.Controls.Add(this.TextBox_InternalCondition);
@@ -157,5 +172,6 @@ namespace SAM.Analytical.Windows
         private System.Windows.Forms.Label Label_InternalCondition;
         private System.Windows.Forms.TextBox TextBox_InternalCondition;
         private System.Windows.Forms.Button Button_ModifyInternalCondition;
+        private System.Windows.Forms.Button Button_RemoveInternalCondition;
     }
 }

@@ -165,8 +165,21 @@ namespace SAM.Analytical.Windows
                 profileLibrary = internalConditionForm.ProfileLibrary;
 
                 space.InternalCondition = internalConditionForm.InternalCondition;
-                Space = space;
+                Space = internalConditionForm.Space;
             }
+        }
+
+        private void Button_RemoveInternalCondition_Click(object sender, EventArgs e)
+        {
+            if (space == null)
+            {
+                return;
+            }
+
+            Space space_Temp = new Space(space);
+
+            space_Temp.InternalCondition = null;
+            Space = space_Temp;
         }
     }
 }

@@ -15,6 +15,11 @@
                 return false;
             }
 
+            if(customParameter.Value == null)
+            {
+                return sAMObject.RemoveValue(enumParameterData.Enum);
+            }
+
             return sAMObject.SetValue(enumParameterData.Enum, customParameter.Value);
         }
 

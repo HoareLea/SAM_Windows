@@ -30,6 +30,7 @@ namespace SAM.Analytical.Windows.Controls
         private void InitializeComponent()
         {
             this.GroupBox_Infiltration = new System.Windows.Forms.GroupBox();
+            this.Button_InfiltrationProfile_View = new System.Windows.Forms.Button();
             this.Label_Infiltration_Unit = new System.Windows.Forms.Label();
             this.Button_InfiltrationProfile = new System.Windows.Forms.Button();
             this.Label_Infiltartion_ProfileName = new System.Windows.Forms.Label();
@@ -39,6 +40,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Infiltration = new System.Windows.Forms.Label();
             this.TextBox_Infiltration = new System.Windows.Forms.TextBox();
             this.GroupBox_Occupancy = new System.Windows.Forms.GroupBox();
+            this.Button_OccupancyProfile_View = new System.Windows.Forms.Button();
             this.Button_OccupancyProfile = new System.Windows.Forms.Button();
             this.Label_Occupancy_LatentGain_Wp = new System.Windows.Forms.Label();
             this.Label_Occupancy_SensibleGain_Wp = new System.Windows.Forms.Label();
@@ -55,6 +57,7 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Occupancy_LatentGain_Calculated = new System.Windows.Forms.TextBox();
             this.TextBox_Occupancy_SensibleGain_Calculated = new System.Windows.Forms.TextBox();
             this.GroupBox_EquipmentLatent = new System.Windows.Forms.GroupBox();
+            this.Button_EquipmentLatentProfile_View = new System.Windows.Forms.Button();
             this.Button_EquipmentLatentProfile = new System.Windows.Forms.Button();
             this.TextBox_Equipment_LatentProfileName = new System.Windows.Forms.TextBox();
             this.Label_Equipment_LatentGain_W = new System.Windows.Forms.Label();
@@ -68,6 +71,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_LatentProfileName = new System.Windows.Forms.Label();
             this.TextBox_Equipment_LatentGainPerArea = new System.Windows.Forms.TextBox();
             this.GroupBox_Equipment_Sensible = new System.Windows.Forms.GroupBox();
+            this.Button_EquipmentSensibleProfile_View = new System.Windows.Forms.Button();
             this.Button_EquipmentSensibleProfile = new System.Windows.Forms.Button();
             this.TextBox_Equipment_SensibleProfileName = new System.Windows.Forms.TextBox();
             this.Label_Equipment_SensibleGain_W = new System.Windows.Forms.Label();
@@ -81,6 +85,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_SensibleProfileName = new System.Windows.Forms.Label();
             this.TextBox_Equipment_SensibleGainPerArea = new System.Windows.Forms.TextBox();
             this.GroupBox_Lighting = new System.Windows.Forms.GroupBox();
+            this.Button_LightingProfile_View = new System.Windows.Forms.Button();
             this.Button_LightingProfile = new System.Windows.Forms.Button();
             this.Label_Lighting_Level = new System.Windows.Forms.Label();
             this.TextBox_Lighting_ProfileName = new System.Windows.Forms.TextBox();
@@ -97,6 +102,7 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Lighting_Level = new System.Windows.Forms.TextBox();
             this.TextBox_Lighting_GainPerArea = new System.Windows.Forms.TextBox();
             this.GroupBox_Heating = new System.Windows.Forms.GroupBox();
+            this.Button_HeatingProfile_View = new System.Windows.Forms.Button();
             this.Button_HeatingProfile = new System.Windows.Forms.Button();
             this.Label_Heating_DesignTemperature_C = new System.Windows.Forms.Label();
             this.Label_Heating_ProfileName = new System.Windows.Forms.Label();
@@ -106,6 +112,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Heating_DesignTemperature = new System.Windows.Forms.Label();
             this.TextBox_Heating_DesignTemperature = new System.Windows.Forms.TextBox();
             this.GroupBox_Cooling = new System.Windows.Forms.GroupBox();
+            this.Button_CoolinProfile_View = new System.Windows.Forms.Button();
             this.Button_CoolingProfile = new System.Windows.Forms.Button();
             this.Label_Cooling_DesignTemperature_C = new System.Windows.Forms.Label();
             this.Label_Cooling_ProfileName = new System.Windows.Forms.Label();
@@ -115,6 +122,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Cooling_DesignTemperature = new System.Windows.Forms.Label();
             this.TextBox_Cooling_DesignTemperature = new System.Windows.Forms.TextBox();
             this.GroupBox_Humidity = new System.Windows.Forms.GroupBox();
+            this.Button_HumidificationProfile_View = new System.Windows.Forms.Button();
             this.Button_HumidificationProfile = new System.Windows.Forms.Button();
             this.Label_Humidity_Unit = new System.Windows.Forms.Label();
             this.Label_Humidity_ProfileName = new System.Windows.Forms.Label();
@@ -124,6 +132,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Humidity = new System.Windows.Forms.Label();
             this.TextBox_Humidity = new System.Windows.Forms.TextBox();
             this.GroupBox_Dehumidification = new System.Windows.Forms.GroupBox();
+            this.Button_DehumidificationProfile_View = new System.Windows.Forms.Button();
             this.Button_DehumidificationProfile = new System.Windows.Forms.Button();
             this.Label_Dehumidity_Unit = new System.Windows.Forms.Label();
             this.Label_Dehumidity_ProfileName = new System.Windows.Forms.Label();
@@ -170,15 +179,8 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_AreaPerPerson = new System.Windows.Forms.TextBox();
             this.Label_AreaPerPerson_Unit = new System.Windows.Forms.Label();
             this.Button_Reset = new System.Windows.Forms.Button();
-            this.Button_HeatingProfile_View = new System.Windows.Forms.Button();
-            this.Button_CoolinProfile_View = new System.Windows.Forms.Button();
-            this.Button_OccupancyProfile_View = new System.Windows.Forms.Button();
-            this.Button_EquipmentSensibleProfile_View = new System.Windows.Forms.Button();
-            this.Button_HumidificationProfile_View = new System.Windows.Forms.Button();
-            this.Button_InfiltrationProfile_View = new System.Windows.Forms.Button();
-            this.Button_LightingProfile_View = new System.Windows.Forms.Button();
-            this.Button_EquipmentLatentProfile_View = new System.Windows.Forms.Button();
-            this.Button_DehumidificationProfile_View = new System.Windows.Forms.Button();
+            this.Label_Color = new System.Windows.Forms.Label();
+            this.Button_Color = new System.Windows.Forms.Button();
             this.GroupBox_Infiltration.SuspendLayout();
             this.GroupBox_Occupancy.SuspendLayout();
             this.GroupBox_EquipmentLatent.SuspendLayout();
@@ -215,6 +217,17 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Infiltration.TabIndex = 0;
             this.GroupBox_Infiltration.TabStop = false;
             this.GroupBox_Infiltration.Text = "Infiltration Profile";
+            // 
+            // Button_InfiltrationProfile_View
+            // 
+            this.Button_InfiltrationProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_InfiltrationProfile_View.Location = new System.Drawing.Point(355, 57);
+            this.Button_InfiltrationProfile_View.Name = "Button_InfiltrationProfile_View";
+            this.Button_InfiltrationProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_InfiltrationProfile_View.TabIndex = 14;
+            this.Button_InfiltrationProfile_View.Text = "View";
+            this.Button_InfiltrationProfile_View.UseVisualStyleBackColor = true;
+            this.Button_InfiltrationProfile_View.Click += new System.EventHandler(this.Button_InfiltrationProfile_View_Click);
             // 
             // Label_Infiltration_Unit
             // 
@@ -329,6 +342,17 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Occupancy.TabIndex = 4;
             this.GroupBox_Occupancy.TabStop = false;
             this.GroupBox_Occupancy.Text = "Occupancy Profile";
+            // 
+            // Button_OccupancyProfile_View
+            // 
+            this.Button_OccupancyProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_OccupancyProfile_View.Location = new System.Drawing.Point(356, 57);
+            this.Button_OccupancyProfile_View.Name = "Button_OccupancyProfile_View";
+            this.Button_OccupancyProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_OccupancyProfile_View.TabIndex = 9;
+            this.Button_OccupancyProfile_View.Text = "View";
+            this.Button_OccupancyProfile_View.UseVisualStyleBackColor = true;
+            this.Button_OccupancyProfile_View.Click += new System.EventHandler(this.Button_OccupancyProfile_View_Click);
             // 
             // Button_OccupancyProfile
             // 
@@ -512,6 +536,17 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_EquipmentLatent.TabStop = false;
             this.GroupBox_EquipmentLatent.Text = "Equipment Latent Profile";
             // 
+            // Button_EquipmentLatentProfile_View
+            // 
+            this.Button_EquipmentLatentProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_EquipmentLatentProfile_View.Location = new System.Drawing.Point(354, 49);
+            this.Button_EquipmentLatentProfile_View.Name = "Button_EquipmentLatentProfile_View";
+            this.Button_EquipmentLatentProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_EquipmentLatentProfile_View.TabIndex = 24;
+            this.Button_EquipmentLatentProfile_View.Text = "View";
+            this.Button_EquipmentLatentProfile_View.UseVisualStyleBackColor = true;
+            this.Button_EquipmentLatentProfile_View.Click += new System.EventHandler(this.Button_EquipmentLatentProfile_View_Click);
+            // 
             // Button_EquipmentLatentProfile
             // 
             this.Button_EquipmentLatentProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -663,6 +698,17 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Equipment_Sensible.TabIndex = 10;
             this.GroupBox_Equipment_Sensible.TabStop = false;
             this.GroupBox_Equipment_Sensible.Text = "Equipment Sensible Profile";
+            // 
+            // Button_EquipmentSensibleProfile_View
+            // 
+            this.Button_EquipmentSensibleProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_EquipmentSensibleProfile_View.Location = new System.Drawing.Point(355, 49);
+            this.Button_EquipmentSensibleProfile_View.Name = "Button_EquipmentSensibleProfile_View";
+            this.Button_EquipmentSensibleProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_EquipmentSensibleProfile_View.TabIndex = 10;
+            this.Button_EquipmentSensibleProfile_View.Text = "View";
+            this.Button_EquipmentSensibleProfile_View.UseVisualStyleBackColor = true;
+            this.Button_EquipmentSensibleProfile_View.Click += new System.EventHandler(this.Button_EquipmentSensibleProfile_View_Click);
             // 
             // Button_EquipmentSensibleProfile
             // 
@@ -818,6 +864,17 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Lighting.TabIndex = 11;
             this.GroupBox_Lighting.TabStop = false;
             this.GroupBox_Lighting.Text = "Lighting Profile";
+            // 
+            // Button_LightingProfile_View
+            // 
+            this.Button_LightingProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_LightingProfile_View.Location = new System.Drawing.Point(354, 49);
+            this.Button_LightingProfile_View.Name = "Button_LightingProfile_View";
+            this.Button_LightingProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_LightingProfile_View.TabIndex = 21;
+            this.Button_LightingProfile_View.Text = "View";
+            this.Button_LightingProfile_View.UseVisualStyleBackColor = true;
+            this.Button_LightingProfile_View.Click += new System.EventHandler(this.Button_LightingProfile_View_Click);
             // 
             // Button_LightingProfile
             // 
@@ -995,6 +1052,17 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Heating.TabStop = false;
             this.GroupBox_Heating.Text = "Heating Profile";
             // 
+            // Button_HeatingProfile_View
+            // 
+            this.Button_HeatingProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_HeatingProfile_View.Location = new System.Drawing.Point(355, 58);
+            this.Button_HeatingProfile_View.Name = "Button_HeatingProfile_View";
+            this.Button_HeatingProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_HeatingProfile_View.TabIndex = 8;
+            this.Button_HeatingProfile_View.Text = "View";
+            this.Button_HeatingProfile_View.UseVisualStyleBackColor = true;
+            this.Button_HeatingProfile_View.Click += new System.EventHandler(this.Button_HeatingProfile_View_Click);
+            // 
             // Button_HeatingProfile
             // 
             this.Button_HeatingProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1104,6 +1172,17 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Cooling.TabIndex = 13;
             this.GroupBox_Cooling.TabStop = false;
             this.GroupBox_Cooling.Text = "Cooling Profile";
+            // 
+            // Button_CoolinProfile_View
+            // 
+            this.Button_CoolinProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_CoolinProfile_View.Location = new System.Drawing.Point(354, 57);
+            this.Button_CoolinProfile_View.Name = "Button_CoolinProfile_View";
+            this.Button_CoolinProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_CoolinProfile_View.TabIndex = 9;
+            this.Button_CoolinProfile_View.Text = "View";
+            this.Button_CoolinProfile_View.UseVisualStyleBackColor = true;
+            this.Button_CoolinProfile_View.Click += new System.EventHandler(this.Button_CoolinProfile_View_Click);
             // 
             // Button_CoolingProfile
             // 
@@ -1215,6 +1294,17 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Humidity.TabStop = false;
             this.GroupBox_Humidity.Text = "Humidification Profile";
             // 
+            // Button_HumidificationProfile_View
+            // 
+            this.Button_HumidificationProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_HumidificationProfile_View.Location = new System.Drawing.Point(355, 57);
+            this.Button_HumidificationProfile_View.Name = "Button_HumidificationProfile_View";
+            this.Button_HumidificationProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_HumidificationProfile_View.TabIndex = 13;
+            this.Button_HumidificationProfile_View.Text = "View";
+            this.Button_HumidificationProfile_View.UseVisualStyleBackColor = true;
+            this.Button_HumidificationProfile_View.Click += new System.EventHandler(this.Button_HumidificationProfile_View_Click);
+            // 
             // Button_HumidificationProfile
             // 
             this.Button_HumidificationProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1324,6 +1414,17 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Dehumidification.TabIndex = 15;
             this.GroupBox_Dehumidification.TabStop = false;
             this.GroupBox_Dehumidification.Text = "Dehumidification Profile";
+            // 
+            // Button_DehumidificationProfile_View
+            // 
+            this.Button_DehumidificationProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_DehumidificationProfile_View.Location = new System.Drawing.Point(355, 57);
+            this.Button_DehumidificationProfile_View.Name = "Button_DehumidificationProfile_View";
+            this.Button_DehumidificationProfile_View.Size = new System.Drawing.Size(56, 23);
+            this.Button_DehumidificationProfile_View.TabIndex = 27;
+            this.Button_DehumidificationProfile_View.Text = "View";
+            this.Button_DehumidificationProfile_View.UseVisualStyleBackColor = true;
+            this.Button_DehumidificationProfile_View.Click += new System.EventHandler(this.Button_DehumidificationProfile_View_Click);
             // 
             // Button_DehumidificationProfile
             // 
@@ -1853,108 +1954,32 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_Reset.UseVisualStyleBackColor = true;
             this.Button_Reset.Click += new System.EventHandler(this.Button_Reset_Click);
             // 
-            // Button_HeatingProfile_View
+            // Label_Color
             // 
-            this.Button_HeatingProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_HeatingProfile_View.Location = new System.Drawing.Point(355, 58);
-            this.Button_HeatingProfile_View.Name = "Button_HeatingProfile_View";
-            this.Button_HeatingProfile_View.Size = new System.Drawing.Size(56, 23);
-            this.Button_HeatingProfile_View.TabIndex = 8;
-            this.Button_HeatingProfile_View.Text = "View";
-            this.Button_HeatingProfile_View.UseVisualStyleBackColor = true;
-            this.Button_HeatingProfile_View.Click += new System.EventHandler(this.Button_HeatingProfile_View_Click);
+            this.Label_Color.AutoSize = true;
+            this.Label_Color.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Color.Location = new System.Drawing.Point(343, 37);
+            this.Label_Color.Name = "Label_Color";
+            this.Label_Color.Size = new System.Drawing.Size(45, 17);
+            this.Label_Color.TabIndex = 27;
+            this.Label_Color.Text = "Color:";
             // 
-            // Button_CoolinProfile_View
+            // Button_Color
             // 
-            this.Button_CoolinProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_CoolinProfile_View.Location = new System.Drawing.Point(354, 57);
-            this.Button_CoolinProfile_View.Name = "Button_CoolinProfile_View";
-            this.Button_CoolinProfile_View.Size = new System.Drawing.Size(56, 23);
-            this.Button_CoolinProfile_View.TabIndex = 9;
-            this.Button_CoolinProfile_View.Text = "View";
-            this.Button_CoolinProfile_View.UseVisualStyleBackColor = true;
-            this.Button_CoolinProfile_View.Click += new System.EventHandler(this.Button_CoolinProfile_View_Click);
-            // 
-            // Button_OccupancyProfile_View
-            // 
-            this.Button_OccupancyProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_OccupancyProfile_View.Location = new System.Drawing.Point(356, 57);
-            this.Button_OccupancyProfile_View.Name = "Button_OccupancyProfile_View";
-            this.Button_OccupancyProfile_View.Size = new System.Drawing.Size(56, 23);
-            this.Button_OccupancyProfile_View.TabIndex = 9;
-            this.Button_OccupancyProfile_View.Text = "View";
-            this.Button_OccupancyProfile_View.UseVisualStyleBackColor = true;
-            this.Button_OccupancyProfile_View.Click += new System.EventHandler(this.Button_OccupancyProfile_View_Click);
-            // 
-            // Button_EquipmentSensibleProfile_View
-            // 
-            this.Button_EquipmentSensibleProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_EquipmentSensibleProfile_View.Location = new System.Drawing.Point(355, 49);
-            this.Button_EquipmentSensibleProfile_View.Name = "Button_EquipmentSensibleProfile_View";
-            this.Button_EquipmentSensibleProfile_View.Size = new System.Drawing.Size(56, 23);
-            this.Button_EquipmentSensibleProfile_View.TabIndex = 10;
-            this.Button_EquipmentSensibleProfile_View.Text = "View";
-            this.Button_EquipmentSensibleProfile_View.UseVisualStyleBackColor = true;
-            this.Button_EquipmentSensibleProfile_View.Click += new System.EventHandler(this.Button_EquipmentSensibleProfile_View_Click);
-            // 
-            // Button_HumidificationProfile_View
-            // 
-            this.Button_HumidificationProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_HumidificationProfile_View.Location = new System.Drawing.Point(355, 57);
-            this.Button_HumidificationProfile_View.Name = "Button_HumidificationProfile_View";
-            this.Button_HumidificationProfile_View.Size = new System.Drawing.Size(56, 23);
-            this.Button_HumidificationProfile_View.TabIndex = 13;
-            this.Button_HumidificationProfile_View.Text = "View";
-            this.Button_HumidificationProfile_View.UseVisualStyleBackColor = true;
-            this.Button_HumidificationProfile_View.Click += new System.EventHandler(this.Button_HumidificationProfile_View_Click);
-            // 
-            // Button_InfiltrationProfile_View
-            // 
-            this.Button_InfiltrationProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_InfiltrationProfile_View.Location = new System.Drawing.Point(355, 57);
-            this.Button_InfiltrationProfile_View.Name = "Button_InfiltrationProfile_View";
-            this.Button_InfiltrationProfile_View.Size = new System.Drawing.Size(56, 23);
-            this.Button_InfiltrationProfile_View.TabIndex = 14;
-            this.Button_InfiltrationProfile_View.Text = "View";
-            this.Button_InfiltrationProfile_View.UseVisualStyleBackColor = true;
-            this.Button_InfiltrationProfile_View.Click += new System.EventHandler(this.Button_InfiltrationProfile_View_Click);
-            // 
-            // Button_LightingProfile_View
-            // 
-            this.Button_LightingProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_LightingProfile_View.Location = new System.Drawing.Point(354, 49);
-            this.Button_LightingProfile_View.Name = "Button_LightingProfile_View";
-            this.Button_LightingProfile_View.Size = new System.Drawing.Size(56, 23);
-            this.Button_LightingProfile_View.TabIndex = 21;
-            this.Button_LightingProfile_View.Text = "View";
-            this.Button_LightingProfile_View.UseVisualStyleBackColor = true;
-            this.Button_LightingProfile_View.Click += new System.EventHandler(this.Button_LightingProfile_View_Click);
-            // 
-            // Button_EquipmentLatentProfile_View
-            // 
-            this.Button_EquipmentLatentProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_EquipmentLatentProfile_View.Location = new System.Drawing.Point(354, 49);
-            this.Button_EquipmentLatentProfile_View.Name = "Button_EquipmentLatentProfile_View";
-            this.Button_EquipmentLatentProfile_View.Size = new System.Drawing.Size(56, 23);
-            this.Button_EquipmentLatentProfile_View.TabIndex = 24;
-            this.Button_EquipmentLatentProfile_View.Text = "View";
-            this.Button_EquipmentLatentProfile_View.UseVisualStyleBackColor = true;
-            this.Button_EquipmentLatentProfile_View.Click += new System.EventHandler(this.Button_EquipmentLatentProfile_View_Click);
-            // 
-            // Button_DehumidificationProfile_View
-            // 
-            this.Button_DehumidificationProfile_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_DehumidificationProfile_View.Location = new System.Drawing.Point(355, 57);
-            this.Button_DehumidificationProfile_View.Name = "Button_DehumidificationProfile_View";
-            this.Button_DehumidificationProfile_View.Size = new System.Drawing.Size(56, 23);
-            this.Button_DehumidificationProfile_View.TabIndex = 27;
-            this.Button_DehumidificationProfile_View.Text = "View";
-            this.Button_DehumidificationProfile_View.UseVisualStyleBackColor = true;
-            this.Button_DehumidificationProfile_View.Click += new System.EventHandler(this.Button_DehumidificationProfile_View_Click);
+            this.Button_Color.BackColor = System.Drawing.Color.Transparent;
+            this.Button_Color.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_Color.Location = new System.Drawing.Point(394, 34);
+            this.Button_Color.Name = "Button_Color";
+            this.Button_Color.Size = new System.Drawing.Size(75, 23);
+            this.Button_Color.TabIndex = 28;
+            this.Button_Color.UseVisualStyleBackColor = false;
+            this.Button_Color.Click += new System.EventHandler(this.Button_Color_Click);
             // 
             // InternalConditionControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.Button_Color);
+            this.Controls.Add(this.Label_Color);
             this.Controls.Add(this.Button_Reset);
             this.Controls.Add(this.Label_AreaPerPerson_Unit);
             this.Controls.Add(this.Label_AreaPerPerson);
@@ -2164,5 +2189,7 @@ namespace SAM.Analytical.Windows.Controls
         private System.Windows.Forms.Button Button_LightingProfile_View;
         private System.Windows.Forms.Button Button_EquipmentLatentProfile_View;
         private System.Windows.Forms.Button Button_DehumidificationProfile_View;
+        private System.Windows.Forms.Label Label_Color;
+        private System.Windows.Forms.Button Button_Color;
     }
 }

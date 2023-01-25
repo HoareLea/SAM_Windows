@@ -1,6 +1,7 @@
 ﻿using SAM.Analytical.Windows.Forms;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -254,6 +255,13 @@ namespace SAM.Analytical.Windows.Controls
                 double @double = double.NaN;
                 string @string = null;
                 Profile profile = null;
+                Color color = Color.Transparent;
+
+                Button_Color.BackColor = Color.Transparent;
+                if(internalCondition.TryGetValue(InternalConditionParameter.Color, out color))
+                {
+                    Button_Color.BackColor = color;
+                }
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.AreaPerPerson, out @double) && !double.IsNaN(@double))
                 {
@@ -570,6 +578,17 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             result = result == null ? new InternalCondition(TextBox_Name.Text) : new InternalCondition(TextBox_Name.Text, result);
+
+            Color color = Button_Color.BackColor;
+            if(color != Color.Transparent)
+            {
+                result.SetValue(InternalConditionParameter.Color, color);
+            }
+            else
+            {
+                result.RemoveValue(InternalConditionParameter.Color);
+            }
+
 
             double @double;
 
@@ -1852,6 +1871,22 @@ namespace SAM.Analytical.Windows.Controls
         private void Button_DehumidificationProfile_View_Click(object sender, System.EventArgs e)
         {
             ViewProfile(ProfileType.Dehumidification);
+        }
+
+        private void Button_Color_Click(object sender, System.EventArgs e)
+        {
+            using (ColorDialog colorDialog = new ColorDialog())
+            {
+                colorDialog.Color = Button_Color.BackColor;
+                if(colorDialog.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                Button_Color.BackColor = colorDialog.Color;
+            }
+
+            
         }
     }
 }
