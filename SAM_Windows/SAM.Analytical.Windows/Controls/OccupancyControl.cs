@@ -44,6 +44,17 @@ namespace SAM.Analytical.Windows.Controls
             else
             {
                 result.SetValue(SpaceParameter.Occupancy, occupancy);
+
+                if(!double.IsNaN(occupancy) && space.TryGetValue(SpaceParameter.Area, out double area) && !double.IsNaN(area) && area > 0)
+                {
+                    InternalCondition internalCondition = space.InternalCondition;
+                    if (internalCondition != null)
+                    {
+                        internalCondition.SetValue(InternalConditionParameter.AreaPerPerson, occupancy == 0 ? 0 : area / occupancy);
+                        result.InternalCondition = internalCondition;
+                    }
+                }
+
             }
 
             return result;
@@ -156,7 +167,7 @@ namespace SAM.Analytical.Windows.Controls
                 {
                     if(internalCondition.TryGetValue(InternalConditionParameter.AreaPerPerson, out double areaPerPerson) && !double.IsNaN(areaPerPerson))
                     {
-                        TextBox_AreaPerPerson.Text = Core.Query.Round(areaPerPerson, SAM.Core.Tolerance.MacroDistance).ToString();
+                        TextBox_AreaPerPerson.Text = Core.Query.Round(areaPerPerson, Core.Tolerance.MacroDistance).ToString();
                     }
                 }
             }
