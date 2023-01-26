@@ -1,4 +1,6 @@
 ﻿using SAM.Analytical.Windows.Forms;
+using SAM.Core.Windows.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -1415,19 +1417,58 @@ namespace SAM.Analytical.Windows.Controls
 
         private void Button_Reset_Click(object sender, System.EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to reset values", "Reset", MessageBoxButtons.YesNo);
-            if(dialogResult != DialogResult.Yes)
-            {
-                return;
-            }
-
             InternalCondition internalCondition_Template = adjacencyCluster?.GetInternalConditions(false, true)?.ToList().Find(x => x.Name == TextBox_Name.Text);
             if (internalCondition_Template == null)
             {
                 return;
             }
 
-            LoadInternalCondition(internalCondition_Template);
+            List<Enum> enums = Core.Query.Enums(internalCondition_Template);
+            if(enums == null || enums.Count == 0)
+            {
+                return;
+            }
+
+            List<Tuple<Enum, Core.Attributes.ParameterProperties>> tuples = enums.ConvertAll(x => new Tuple<Enum, Core.Attributes.ParameterProperties>( x,Core.Attributes.ParameterProperties.Get(x)));
+            tuples.RemoveAll(x => x == null || x.Item2 == null || string.IsNullOrWhiteSpace( x.Item2.Name));
+            tuples.Sort((x, y) => x.Item2.Name.CompareTo(y.Item2.Name));
+
+            using (TreeViewForm<Tuple<Enum, Core.Attributes.ParameterProperties>> treeViewForm = new TreeViewForm<Tuple<Enum, Core.Attributes.ParameterProperties>>("Select Parameters", tuples, x => x.Item2.Name))
+            {
+                if (treeViewForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                tuples = treeViewForm.SelectedItems;
+            }
+
+            if(tuples == null || tuples.Count == 0)
+            {
+                return;
+            }
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to reset values", "Reset", MessageBoxButtons.YesNo);
+            if(dialogResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            InternalCondition internalCondition = GetInternalCondition();
+
+            foreach(Tuple<Enum, Core.Attributes.ParameterProperties> tuple in tuples)
+            {
+                if(internalCondition_Template.TryGetValue(tuple.Item1, out object value))
+                {
+                    internalCondition.SetValue(tuple.Item1, value);
+                }
+                else
+                {
+                    internalCondition.RemoveValue(tuple.Item1);
+                }
+            }
+
+            LoadInternalCondition(internalCondition);
         }
 
         private void Button_HeatingProfile_Click(object sender, System.EventArgs e)
