@@ -48,7 +48,7 @@ namespace SAM.Core.Windows
             // Label_Description
             // 
             this.Label_Description.AutoSize = true;
-            this.Label_Description.Location = new System.Drawing.Point(3, 4);
+            this.Label_Description.Location = new System.Drawing.Point(3, 1);
             this.Label_Description.Name = "Label_Description";
             this.Label_Description.Size = new System.Drawing.Size(0, 17);
             this.Label_Description.TabIndex = 6;
