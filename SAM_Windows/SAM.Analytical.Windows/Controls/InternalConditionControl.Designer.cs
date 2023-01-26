@@ -181,6 +181,9 @@ namespace SAM.Analytical.Windows.Controls
             this.Button_Reset = new System.Windows.Forms.Button();
             this.Label_Color = new System.Windows.Forms.Label();
             this.Button_Color = new System.Windows.Forms.Button();
+            this.Label_Occupancy_Unit = new System.Windows.Forms.Label();
+            this.Label_Occupancy = new System.Windows.Forms.Label();
+            this.TextBox_Occupancy = new System.Windows.Forms.TextBox();
             this.GroupBox_Infiltration.SuspendLayout();
             this.GroupBox_Occupancy.SuspendLayout();
             this.GroupBox_EquipmentLatent.SuspendLayout();
@@ -1878,7 +1881,7 @@ namespace SAM.Analytical.Windows.Controls
             // Button_Select
             // 
             this.Button_Select.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_Select.Location = new System.Drawing.Point(394, 6);
+            this.Button_Select.Location = new System.Drawing.Point(6, 34);
             this.Button_Select.Name = "Button_Select";
             this.Button_Select.Size = new System.Drawing.Size(75, 23);
             this.Button_Select.TabIndex = 1;
@@ -1907,7 +1910,7 @@ namespace SAM.Analytical.Windows.Controls
             // Button_Create
             // 
             this.Button_Create.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_Create.Location = new System.Drawing.Point(475, 5);
+            this.Button_Create.Location = new System.Drawing.Point(87, 33);
             this.Button_Create.Name = "Button_Create";
             this.Button_Create.Size = new System.Drawing.Size(75, 23);
             this.Button_Create.TabIndex = 2;
@@ -1918,7 +1921,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.Label_AreaPerPerson.AutoSize = true;
             this.Label_AreaPerPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_AreaPerPerson.Location = new System.Drawing.Point(3, 37);
+            this.Label_AreaPerPerson.Location = new System.Drawing.Point(439, 9);
             this.Label_AreaPerPerson.Name = "Label_AreaPerPerson";
             this.Label_AreaPerPerson.Size = new System.Drawing.Size(117, 17);
             this.Label_AreaPerPerson.TabIndex = 23;
@@ -1927,7 +1930,7 @@ namespace SAM.Analytical.Windows.Controls
             // TextBox_AreaPerPerson
             // 
             this.TextBox_AreaPerPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_AreaPerPerson.Location = new System.Drawing.Point(172, 34);
+            this.TextBox_AreaPerPerson.Location = new System.Drawing.Point(558, 6);
             this.TextBox_AreaPerPerson.Name = "TextBox_AreaPerPerson";
             this.TextBox_AreaPerPerson.Size = new System.Drawing.Size(55, 22);
             this.TextBox_AreaPerPerson.TabIndex = 3;
@@ -1937,7 +1940,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.Label_AreaPerPerson_Unit.AutoSize = true;
             this.Label_AreaPerPerson_Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_AreaPerPerson_Unit.Location = new System.Drawing.Point(233, 37);
+            this.Label_AreaPerPerson_Unit.Location = new System.Drawing.Point(619, 9);
             this.Label_AreaPerPerson_Unit.Name = "Label_AreaPerPerson_Unit";
             this.Label_AreaPerPerson_Unit.Size = new System.Drawing.Size(47, 17);
             this.Label_AreaPerPerson_Unit.TabIndex = 25;
@@ -1946,7 +1949,7 @@ namespace SAM.Analytical.Windows.Controls
             // Button_Reset
             // 
             this.Button_Reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_Reset.Location = new System.Drawing.Point(556, 6);
+            this.Button_Reset.Location = new System.Drawing.Point(168, 34);
             this.Button_Reset.Name = "Button_Reset";
             this.Button_Reset.Size = new System.Drawing.Size(75, 23);
             this.Button_Reset.TabIndex = 26;
@@ -1958,7 +1961,7 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.Label_Color.AutoSize = true;
             this.Label_Color.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Color.Location = new System.Drawing.Point(343, 37);
+            this.Label_Color.Location = new System.Drawing.Point(720, 9);
             this.Label_Color.Name = "Label_Color";
             this.Label_Color.Size = new System.Drawing.Size(45, 17);
             this.Label_Color.TabIndex = 27;
@@ -1968,16 +1971,48 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.Button_Color.BackColor = System.Drawing.Color.Transparent;
             this.Button_Color.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_Color.Location = new System.Drawing.Point(394, 34);
+            this.Button_Color.Location = new System.Drawing.Point(771, 6);
             this.Button_Color.Name = "Button_Color";
             this.Button_Color.Size = new System.Drawing.Size(75, 23);
             this.Button_Color.TabIndex = 28;
             this.Button_Color.UseVisualStyleBackColor = false;
             this.Button_Color.Click += new System.EventHandler(this.Button_Color_Click);
             // 
+            // Label_Occupancy_Unit
+            // 
+            this.Label_Occupancy_Unit.AutoSize = true;
+            this.Label_Occupancy_Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Occupancy_Unit.Location = new System.Drawing.Point(619, 37);
+            this.Label_Occupancy_Unit.Name = "Label_Occupancy_Unit";
+            this.Label_Occupancy_Unit.Size = new System.Drawing.Size(24, 17);
+            this.Label_Occupancy_Unit.TabIndex = 31;
+            this.Label_Occupancy_Unit.Text = "[p]";
+            // 
+            // Label_Occupancy
+            // 
+            this.Label_Occupancy.AutoSize = true;
+            this.Label_Occupancy.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Occupancy.Location = new System.Drawing.Point(439, 37);
+            this.Label_Occupancy.Name = "Label_Occupancy";
+            this.Label_Occupancy.Size = new System.Drawing.Size(83, 17);
+            this.Label_Occupancy.TabIndex = 30;
+            this.Label_Occupancy.Text = "Occupancy:";
+            // 
+            // TextBox_Occupancy
+            // 
+            this.TextBox_Occupancy.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Occupancy.Location = new System.Drawing.Point(558, 34);
+            this.TextBox_Occupancy.Name = "TextBox_Occupancy";
+            this.TextBox_Occupancy.ReadOnly = true;
+            this.TextBox_Occupancy.Size = new System.Drawing.Size(55, 22);
+            this.TextBox_Occupancy.TabIndex = 29;
+            // 
             // InternalConditionControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.Label_Occupancy_Unit);
+            this.Controls.Add(this.Label_Occupancy);
+            this.Controls.Add(this.TextBox_Occupancy);
             this.Controls.Add(this.Button_Color);
             this.Controls.Add(this.Label_Color);
             this.Controls.Add(this.Button_Reset);
@@ -2191,5 +2226,8 @@ namespace SAM.Analytical.Windows.Controls
         private System.Windows.Forms.Button Button_DehumidificationProfile_View;
         private System.Windows.Forms.Label Label_Color;
         private System.Windows.Forms.Button Button_Color;
+        private System.Windows.Forms.Label Label_Occupancy_Unit;
+        private System.Windows.Forms.Label Label_Occupancy;
+        private System.Windows.Forms.TextBox TextBox_Occupancy;
     }
 }

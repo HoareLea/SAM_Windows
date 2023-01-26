@@ -4,7 +4,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using SAM.Core.Windows;
 
 namespace SAM.Analytical.Windows
 {

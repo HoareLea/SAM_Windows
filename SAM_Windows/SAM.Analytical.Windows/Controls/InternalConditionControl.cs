@@ -168,6 +168,9 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_SupplyUnit_AirFlow.Visible = false;
                 Label_ExhaustUnit_AirFlow.Visible = false;
                 TextBox_ExhaustUnit_AirFlow.Visible = false;
+                Label_Occupancy.Visible = false;
+                TextBox_Occupancy.Visible = false;
+                Label_Occupancy_Unit.Visible = false;
             }
             else
             {
@@ -187,6 +190,10 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_SupplyUnit_AirFlow.Visible = true;
                 Label_ExhaustUnit_AirFlow.Visible = true;
                 TextBox_ExhaustUnit_AirFlow.Visible = true;
+
+                Label_Occupancy.Visible = true;
+                TextBox_Occupancy.Visible = true;
+                Label_Occupancy_Unit.Visible = true;
             }
 
             Button_Reset.Enabled = internalCondition_Template != null;
@@ -247,6 +254,16 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_SupplyUnit_AirFlow.Text = null;
             TextBox_ExhaustUnit_AirFlow.Text = null;
 
+            TextBox_Occupancy.Text = null;
+
+            if(space != null)
+            {
+                double @double = Analytical.Query.CalculatedOccupancy(space);
+                if (!double.IsNaN(@double))
+                {
+                    TextBox_Occupancy.Text = Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+                }
+            }
 
             if (internalCondition != null)
             {

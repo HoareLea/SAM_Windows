@@ -77,6 +77,12 @@
     <Compile Include="Controls\MechanicalSystemControl.Designer.cs">
       <DependentUpon>MechanicalSystemControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\OccupancyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\OccupancyControl.Designer.cs">
+      <DependentUpon>OccupancyControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ProfileControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -130,6 +136,12 @@
     </Compile>
     <Compile Include="Forms\NewAnalyticalModelForm.Designer.cs">
       <DependentUpon>NewAnalyticalModelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OccupancyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OccupancyForm.Designer.cs">
+      <DependentUpon>OccupancyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ProfileForm.cs">
       <SubType>Form</SubType>
@@ -239,6 +251,9 @@
     <EmbeddedResource Include="Controls\MechanicalSystemControl.resx">
       <DependentUpon>MechanicalSystemControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\OccupancyControl.resx">
+      <DependentUpon>OccupancyControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ProfileControl.resx">
       <DependentUpon>ProfileControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewAnalyticalModelForm.resx">
       <DependentUpon>NewAnalyticalModelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OccupancyForm.resx">
+      <DependentUpon>OccupancyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>

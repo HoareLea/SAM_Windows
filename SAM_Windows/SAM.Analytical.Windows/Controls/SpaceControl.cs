@@ -181,5 +181,25 @@ namespace SAM.Analytical.Windows
             space_Temp.InternalCondition = null;
             Space = space_Temp;
         }
+
+        private void Button_Occupancy_Click(object sender, EventArgs e)
+        {
+            Space space = GetSpace();
+            if(space == null)
+            {
+                return;
+            }
+
+            using (OccupancyForm occupancyForm = new OccupancyForm())
+            {
+                occupancyForm.Space = space;
+                if (occupancyForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                Space = occupancyForm.Space;
+            }
+        }
     }
 }
