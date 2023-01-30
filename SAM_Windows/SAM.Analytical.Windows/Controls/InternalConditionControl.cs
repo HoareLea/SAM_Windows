@@ -1319,6 +1319,28 @@ namespace SAM.Analytical.Windows.Controls
 
         private void InternalConditionControl_Load(object sender, System.EventArgs e)
         {
+            TextBox_Occupancy.Enabled = true;
+            if (@object is Space)
+            {
+                Space space = ((Space)@object);
+                if(space.TryGetValue(SpaceParameter.Occupancy, out double occupancy) && !double.IsNaN(occupancy))
+                {
+                    TextBox_Occupancy.Enabled = false;
+                    TextBox_Occupancy.Text = occupancy.ToString();
+
+                }
+
+                if (TextBox_Occupancy.Enabled)
+                {
+                    if (space.TryGetValue(SpaceParameter.Area, out double area) && !double.IsNaN(area))
+                    {
+                        TextBox_Occupancy.TextChanged += TextBox_Occupancy_TextChanged;
+                        TextBox_Occupancy.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+                    }
+                }
+            }
+
+
             TextBox_AreaPerPerson.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
 
             TextBox_Infiltration.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
@@ -1801,28 +1823,6 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Lighting_GainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void TextBox_AreaPerPerson_TextChanged(object sender, System.EventArgs e)
-        {
-            Space space = Space;
-            if (space == null)
-            {
-                return;
-            }
-
-            space = new Space(space);
-            space.InternalCondition = GetInternalCondition();
-
-            double @double;
-
-            @double = Analytical.Query.OccupancySensibleGain(space);
-
-            TextBox_Occupancy_SensibleGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
-
-            @double = Analytical.Query.OccupancyLatentGain(space);
-
-            TextBox_Occupancy_LatentGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
-        }
-
         private void TextBox_Occupancy_SensibleGainPerPerson_TextChanged(object sender, System.EventArgs e)
         {
             Space space = Space;
@@ -1945,6 +1945,76 @@ namespace SAM.Analytical.Windows.Controls
             }
 
             
+        }
+
+        private void TextBox_Occupancy_TextChanged(object sender, EventArgs e)
+        {
+            Space space = Space;
+            if (space == null)
+            {
+                return;
+            }
+
+            if (!Core.Query.TryConvert(TextBox_Occupancy.Text, out double occupancy) || double.IsNaN(occupancy))
+            {
+                return;
+            }
+
+            if (space.TryGetValue(SpaceParameter.Area, out double area) && !double.IsNaN(area))
+            {
+                TextBox_AreaPerPerson.TextChanged -= TextBox_AreaPerPerson_TextChanged;
+                TextBox_AreaPerPerson.Text = occupancy <= 0 ? 0.ToString() : Core.Query.Round(area / occupancy, Core.Tolerance.MacroDistance).ToString();
+                TextBox_AreaPerPerson.TextChanged += TextBox_AreaPerPerson_TextChanged;
+            }
+
+            space = new Space(space);
+            space.InternalCondition = GetInternalCondition();
+
+            double @double;
+
+            @double = Analytical.Query.OccupancySensibleGain(space);
+
+            TextBox_Occupancy_SensibleGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+
+            @double = Analytical.Query.OccupancyLatentGain(space);
+
+            TextBox_Occupancy_LatentGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+        }
+
+        private void TextBox_AreaPerPerson_TextChanged(object sender, System.EventArgs e)
+        {
+            Space space = Space;
+            if (space == null)
+            {
+                return;
+            }
+
+            if (TextBox_Occupancy.Enabled)
+            {
+                if (Core.Query.TryConvert(TextBox_AreaPerPerson.Text, out double areaPerPerson) && !double.IsNaN(areaPerPerson))
+                {
+                    if (space.TryGetValue(SpaceParameter.Area, out double area) && !double.IsNaN(area))
+                    {
+                        TextBox_Occupancy.TextChanged -= TextBox_Occupancy_TextChanged;
+                        TextBox_Occupancy.TextChanged -= TextBox_Occupancy_TextChanged;
+                        TextBox_Occupancy.Text = areaPerPerson <= 0 ? 0.ToString() : Core.Query.Round(area / areaPerPerson, Core.Tolerance.MacroDistance).ToString();
+                        TextBox_Occupancy.TextChanged += TextBox_Occupancy_TextChanged;
+                    }
+                }
+            }
+
+            space = new Space(space);
+            space.InternalCondition = GetInternalCondition();
+
+            double @double;
+
+            @double = Analytical.Query.OccupancySensibleGain(space);
+
+            TextBox_Occupancy_SensibleGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
+
+            @double = Analytical.Query.OccupancyLatentGain(space);
+
+            TextBox_Occupancy_LatentGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
     }
 }

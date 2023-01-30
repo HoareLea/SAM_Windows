@@ -215,6 +215,8 @@
     <Compile Include="Forms\SpacesForm.Designer.cs">
       <DependentUpon>SpacesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modify\UpdateAreaPerPerson.cs" />
+    <Compile Include="Modify\UpdateOccupancy.cs" />
     <Compile Include="Modify\Duplicate.cs" />
     <Compile Include="Modify\UpdateApertureConstructions.cs" />
     <Compile Include="Modify\UpdateConstructions.cs" />

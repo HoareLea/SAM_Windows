@@ -29,6 +29,7 @@ namespace SAM.Analytical.Windows.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.GroupBox_Infiltration = new System.Windows.Forms.GroupBox();
             this.Button_InfiltrationProfile_View = new System.Windows.Forms.Button();
             this.Label_Infiltration_Unit = new System.Windows.Forms.Label();
@@ -184,6 +185,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Occupancy_Unit = new System.Windows.Forms.Label();
             this.Label_Occupancy = new System.Windows.Forms.Label();
             this.TextBox_Occupancy = new System.Windows.Forms.TextBox();
+            this.toolTip_Main = new System.Windows.Forms.ToolTip(this.components);
             this.GroupBox_Infiltration.SuspendLayout();
             this.GroupBox_Occupancy.SuspendLayout();
             this.GroupBox_EquipmentLatent.SuspendLayout();
@@ -2003,7 +2005,6 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Occupancy.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox_Occupancy.Location = new System.Drawing.Point(558, 34);
             this.TextBox_Occupancy.Name = "TextBox_Occupancy";
-            this.TextBox_Occupancy.ReadOnly = true;
             this.TextBox_Occupancy.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Occupancy.TabIndex = 29;
             // 
@@ -2229,5 +2230,6 @@ namespace SAM.Analytical.Windows.Controls
         private System.Windows.Forms.Label Label_Occupancy_Unit;
         private System.Windows.Forms.Label Label_Occupancy;
         private System.Windows.Forms.TextBox TextBox_Occupancy;
+        private System.Windows.Forms.ToolTip toolTip_Main;
     }
 }

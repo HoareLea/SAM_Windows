@@ -37,26 +37,13 @@ namespace SAM.Analytical.Windows.Controls
 
             Space result = new Space(space);
 
-            if(!Core.Query.TryConvert(TextBox_CalculatedOccupancy.Text, out double occupancy))
+            double occupancy = double.NaN;
+            if(!Core.Query.TryConvert(TextBox_CalculatedOccupancy.Text, out occupancy) || double.IsNaN(occupancy))
             {
-                result.RemoveValue(SpaceParameter.Occupancy);
-            }
-            else
-            {
-                result.SetValue(SpaceParameter.Occupancy, occupancy);
-
-                if(!double.IsNaN(occupancy) && space.TryGetValue(SpaceParameter.Area, out double area) && !double.IsNaN(area) && area > 0)
-                {
-                    InternalCondition internalCondition = space.InternalCondition;
-                    if (internalCondition != null)
-                    {
-                        internalCondition.SetValue(InternalConditionParameter.AreaPerPerson, occupancy == 0 ? 0 : area / occupancy);
-                        result.InternalCondition = internalCondition;
-                    }
-                }
-
+                occupancy = double.NaN;
             }
 
+            result.UpdateOccupancy(occupancy);
             return result;
         }
 

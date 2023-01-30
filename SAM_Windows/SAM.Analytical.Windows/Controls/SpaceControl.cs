@@ -148,12 +148,13 @@ namespace SAM.Analytical.Windows
 
         private void Button_ModifyInternalCondition_Click(object sender, EventArgs e)
         {
-            if(space == null)
+            Space space = GetSpace();
+            if (space == null)
             {
                 return;
             }
 
-            using (InternalConditionForm internalConditionForm = new InternalConditionForm(new Space(space), profileLibrary, adjacencyCluster))
+            using (InternalConditionForm internalConditionForm = new InternalConditionForm(space, profileLibrary, adjacencyCluster))
             {
                 internalConditionForm.UseColors = true;
                 if (internalConditionForm.ShowDialog(this) != DialogResult.OK)
