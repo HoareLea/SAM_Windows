@@ -42,13 +42,13 @@ namespace SAM.Weather.Windows.Forms
             this.WeatherDataControl_Main.Enums = null;
             this.WeatherDataControl_Main.Location = new System.Drawing.Point(0, 0);
             this.WeatherDataControl_Main.Name = "WeatherDataControl_Main";
-            this.WeatherDataControl_Main.Size = new System.Drawing.Size(782, 487);
+            this.WeatherDataControl_Main.Size = new System.Drawing.Size(1342, 655);
             this.WeatherDataControl_Main.TabIndex = 0;
             // 
             // Button_OK
             // 
             this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(614, 513);
+            this.Button_OK.Location = new System.Drawing.Point(1174, 681);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 28);
             this.Button_OK.TabIndex = 8;
@@ -60,7 +60,7 @@ namespace SAM.Weather.Windows.Forms
             // 
             this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(695, 513);
+            this.Button_Cancel.Location = new System.Drawing.Point(1255, 681);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
             this.Button_Cancel.TabIndex = 7;
@@ -73,7 +73,7 @@ namespace SAM.Weather.Windows.Forms
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(782, 553);
+            this.ClientSize = new System.Drawing.Size(1342, 721);
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.Button_Cancel);
             this.Controls.Add(this.WeatherDataControl_Main);

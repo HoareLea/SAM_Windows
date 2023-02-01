@@ -834,9 +834,9 @@ namespace SAM.Analytical.Windows.Controls
                 return;
             }
 
-            System.Drawing.Color color_Modified = System.Drawing.Color.LightYellow;
-            System.Drawing.Color color_Existing = System.Drawing.Color.LightGreen;
-            System.Drawing.Color color_Error = System.Drawing.Color.Tomato;
+            Color color_Modified = System.Drawing.Color.LightYellow;
+            Color color_Existing = System.Drawing.Color.LightGreen;
+            Color color_Error = System.Drawing.Color.Tomato;
 
             bool reset = false;
 
@@ -1317,7 +1317,7 @@ namespace SAM.Analytical.Windows.Controls
 
         }
 
-        private void InternalConditionControl_Load(object sender, System.EventArgs e)
+        private void InternalConditionControl_Load(object sender, EventArgs e)
         {
             TextBox_Occupancy.Enabled = true;
             if (@object is Space)
@@ -1404,17 +1404,17 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_ExhaustUnit_Name.TextChanged += TextBox_TextChanged;
         }
 
-        private void TextBox_TextChanged(object sender, System.EventArgs e)
+        private void TextBox_TextChanged(object sender, EventArgs e)
         {
             ApplyColors();
         }
 
-        private void Button_Select_Click(object sender, System.EventArgs e)
+        private void Button_Select_Click(object sender, EventArgs e)
         {
             InternalConditionLibrary internalConditionLibrary = new InternalConditionLibrary("Internal Condition Library");
             adjacencyCluster?.GetInternalConditions(false, true)?.ToList().ForEach(x => internalConditionLibrary.Add(x));
 
-            using (Forms.InternalConditionLibraryForm internalConditionForm = new Forms.InternalConditionLibraryForm(internalConditionLibrary, profileLibrary, adjacencyCluster, InternalCondition))
+            using (InternalConditionLibraryForm internalConditionForm = new InternalConditionLibraryForm(internalConditionLibrary, profileLibrary, adjacencyCluster, InternalCondition))
             {
                 if (internalConditionForm.ShowDialog(this) != DialogResult.OK)
                 {
@@ -1437,7 +1437,7 @@ namespace SAM.Analytical.Windows.Controls
             }
         }
 
-        private void Button_Reset_Click(object sender, System.EventArgs e)
+        private void Button_Reset_Click(object sender, EventArgs e)
         {
             InternalCondition internalCondition_Template = adjacencyCluster?.GetInternalConditions(false, true)?.ToList().Find(x => x.Name == TextBox_Name.Text);
             if (internalCondition_Template == null)
@@ -1493,7 +1493,7 @@ namespace SAM.Analytical.Windows.Controls
             LoadInternalCondition(internalCondition);
         }
 
-        private void Button_HeatingProfile_Click(object sender, System.EventArgs e)
+        private void Button_HeatingProfile_Click(object sender, EventArgs e)
         {
             Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Heating);
             if (profile == null)
@@ -1513,7 +1513,7 @@ namespace SAM.Analytical.Windows.Controls
             //TextBox_Heating_DesignTemperature.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void Button_CoolingProfile_Click(object sender, System.EventArgs e)
+        private void Button_CoolingProfile_Click(object sender, EventArgs e)
         {
             Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Cooling);
             if (profile == null)
@@ -1533,7 +1533,7 @@ namespace SAM.Analytical.Windows.Controls
             //TextBox_Cooling_DesignTemperature.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void Button_OccupancyProfile_Click(object sender, System.EventArgs e)
+        private void Button_OccupancyProfile_Click(object sender, EventArgs e)
         {
             Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Occupancy);
             if (profile == null)
@@ -1566,7 +1566,7 @@ namespace SAM.Analytical.Windows.Controls
             //TextBox_Occupancy_SensibleGainPerPerson.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void Button_LightingProfile_Click(object sender, System.EventArgs e)
+        private void Button_LightingProfile_Click(object sender, EventArgs e)
         {
             Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Lighting);
             if (profile == null)
@@ -1599,7 +1599,7 @@ namespace SAM.Analytical.Windows.Controls
             //TextBox_Lighting_Level.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void Button_EquipmentSensibleProfile_Click(object sender, System.EventArgs e)
+        private void Button_EquipmentSensibleProfile_Click(object sender, EventArgs e)
         {
             Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.EquipmentSensible);
             if (profile == null)
@@ -1632,7 +1632,7 @@ namespace SAM.Analytical.Windows.Controls
             //TextBox_Equipment_SensibleGain.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void Button_EquipmentLatentProfile_Click(object sender, System.EventArgs e)
+        private void Button_EquipmentLatentProfile_Click(object sender, EventArgs e)
         {
             Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.EquipmentLatent);
             if (profile == null)
@@ -1665,7 +1665,7 @@ namespace SAM.Analytical.Windows.Controls
             //TextBox_Equipment_LatentGain.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void Button_HumidificationProfile_Click(object sender, System.EventArgs e)
+        private void Button_HumidificationProfile_Click(object sender, EventArgs e)
         {
             Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Humidification);
             if (profile == null)
@@ -1686,7 +1686,7 @@ namespace SAM.Analytical.Windows.Controls
             //}
         }
 
-        private void Button_DehumidificationProfile_Click(object sender, System.EventArgs e)
+        private void Button_DehumidificationProfile_Click(object sender, EventArgs e)
         {
             Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Dehumidification);
             if (profile == null)
@@ -1707,7 +1707,7 @@ namespace SAM.Analytical.Windows.Controls
             //}
         }
 
-        private void Button_InfiltrationProfile_Click(object sender, System.EventArgs e)
+        private void Button_InfiltrationProfile_Click(object sender, EventArgs e)
         {
             Profile profile = Modify.SelectProfile(profileLibrary, ProfileType.Infiltration);
             if (profile == null)
@@ -1733,7 +1733,7 @@ namespace SAM.Analytical.Windows.Controls
             //TextBox_Infiltration.Text = double.IsNaN(value) ? null : Core.Query.Round(value, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void TextBox_Equipment_SensibleGainPerArea_TextChanged(object sender, System.EventArgs e)
+        private void TextBox_Equipment_SensibleGainPerArea_TextChanged(object sender, EventArgs e)
         {
             Space space = Space;
             if(space == null)
@@ -1748,7 +1748,7 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Equipment_SensibleGainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void TextBox_Equipment_SensibleGain_TextChanged(object sender, System.EventArgs e)
+        private void TextBox_Equipment_SensibleGain_TextChanged(object sender, EventArgs e)
         {
             Space space = Space;
             if (space == null)
@@ -1763,7 +1763,7 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Equipment_SensibleGainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void TextBox_Equipment_LatentGainPerArea_TextChanged(object sender, System.EventArgs e)
+        private void TextBox_Equipment_LatentGainPerArea_TextChanged(object sender, EventArgs e)
         {
             Space space = Space;
             if (space == null)
@@ -1778,7 +1778,7 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Equipment_LatentGainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void TextBox_Equipment_LatentGain_TextChanged(object sender, System.EventArgs e)
+        private void TextBox_Equipment_LatentGain_TextChanged(object sender, EventArgs e)
         {
             Space space = Space;
             if (space == null)
@@ -1793,7 +1793,7 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Equipment_LatentGainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void TextBox_Lighting_GainPerArea_TextChanged(object sender, System.EventArgs e)
+        private void TextBox_Lighting_GainPerArea_TextChanged(object sender, EventArgs e)
         {
             Space space = Space;
             if (space == null)
@@ -1808,7 +1808,7 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Lighting_GainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void TextBox_Lighting_Gain_TextChanged(object sender, System.EventArgs e)
+        private void TextBox_Lighting_Gain_TextChanged(object sender, EventArgs e)
         {
             Space space = Space;
             if (space == null)
@@ -1823,7 +1823,7 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Lighting_GainCalculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void TextBox_Occupancy_SensibleGainPerPerson_TextChanged(object sender, System.EventArgs e)
+        private void TextBox_Occupancy_SensibleGainPerPerson_TextChanged(object sender, EventArgs e)
         {
             Space space = Space;
             if (space == null)
@@ -1845,7 +1845,7 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Occupancy_LatentGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void TextBox_Occupancy_LatentGainPerPerson_TextChanged(object sender, System.EventArgs e)
+        private void TextBox_Occupancy_LatentGainPerPerson_TextChanged(object sender, EventArgs e)
         {
             Space space = Space;
             if (space == null)
@@ -1886,52 +1886,52 @@ namespace SAM.Analytical.Windows.Controls
             }
         }
 
-        private void Button_HeatingProfile_View_Click(object sender, System.EventArgs e)
+        private void Button_HeatingProfile_View_Click(object sender, EventArgs e)
         {
             ViewProfile(ProfileType.Heating);
         }
 
-        private void Button_CoolinProfile_View_Click(object sender, System.EventArgs e)
+        private void Button_CoolinProfile_View_Click(object sender, EventArgs e)
         {
             ViewProfile(ProfileType.Cooling);
         }
 
-        private void Button_OccupancyProfile_View_Click(object sender, System.EventArgs e)
+        private void Button_OccupancyProfile_View_Click(object sender, EventArgs e)
         {
             ViewProfile(ProfileType.Occupancy);
         }
 
-        private void Button_EquipmentSensibleProfile_View_Click(object sender, System.EventArgs e)
+        private void Button_EquipmentSensibleProfile_View_Click(object sender, EventArgs e)
         {
             ViewProfile(ProfileType.EquipmentSensible);
         }
 
-        private void Button_HumidificationProfile_View_Click(object sender, System.EventArgs e)
+        private void Button_HumidificationProfile_View_Click(object sender, EventArgs e)
         {
             ViewProfile(ProfileType.Humidification);
         }
 
-        private void Button_InfiltrationProfile_View_Click(object sender, System.EventArgs e)
+        private void Button_InfiltrationProfile_View_Click(object sender, EventArgs e)
         {
             ViewProfile(ProfileType.Infiltration);
         }
 
-        private void Button_LightingProfile_View_Click(object sender, System.EventArgs e)
+        private void Button_LightingProfile_View_Click(object sender, EventArgs e)
         {
             ViewProfile(ProfileType.Lighting);
         }
 
-        private void Button_EquipmentLatentProfile_View_Click(object sender, System.EventArgs e)
+        private void Button_EquipmentLatentProfile_View_Click(object sender, EventArgs e)
         {
             ViewProfile(ProfileType.EquipmentLatent);
         }
 
-        private void Button_DehumidificationProfile_View_Click(object sender, System.EventArgs e)
+        private void Button_DehumidificationProfile_View_Click(object sender, EventArgs e)
         {
             ViewProfile(ProfileType.Dehumidification);
         }
 
-        private void Button_Color_Click(object sender, System.EventArgs e)
+        private void Button_Color_Click(object sender, EventArgs e)
         {
             using (ColorDialog colorDialog = new ColorDialog())
             {
@@ -1981,7 +1981,7 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Occupancy_LatentGain_Calculated.Text = double.IsNaN(@double) ? null : Core.Query.Round(@double, Core.Tolerance.MacroDistance).ToString();
         }
 
-        private void TextBox_AreaPerPerson_TextChanged(object sender, System.EventArgs e)
+        private void TextBox_AreaPerPerson_TextChanged(object sender, EventArgs e)
         {
             Space space = Space;
             if (space == null)

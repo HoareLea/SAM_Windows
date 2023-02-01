@@ -9,7 +9,7 @@ namespace SAM.Core.Windows
     /// </summary>
     public static class ThreadExecutionHandler 
     {
-        [FlagsAttribute]
+        [Flags]
         private enum EXECUTION_STATE : uint
         {
             ES_AWAYMODE_REQUIRED = 0x00000040,

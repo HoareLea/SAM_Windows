@@ -29,8 +29,8 @@ namespace SAM.Weather.Windows.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Chart_Main = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.PropertyGrid_Main = new System.Windows.Forms.PropertyGrid();
             this.TextBox_Guid = new System.Windows.Forms.TextBox();
@@ -60,16 +60,16 @@ namespace SAM.Weather.Windows.Controls
             // Chart_Main
             // 
             this.Chart_Main.BackColor = System.Drawing.SystemColors.Control;
-            chartArea2.Name = "ChartArea1";
-            this.Chart_Main.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.Chart_Main.ChartAreas.Add(chartArea1);
             this.Chart_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Chart_Main.Location = new System.Drawing.Point(3, 3);
             this.Chart_Main.Name = "Chart_Main";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Name = "Series1";
-            this.Chart_Main.Series.Add(series2);
-            this.Chart_Main.Size = new System.Drawing.Size(786, 226);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Name = "Series1";
+            this.Chart_Main.Series.Add(series1);
+            this.Chart_Main.Size = new System.Drawing.Size(1346, 301);
             this.Chart_Main.TabIndex = 19;
             this.Chart_Main.Click += new System.EventHandler(this.Chart_Main_Click);
             // 
@@ -81,7 +81,7 @@ namespace SAM.Weather.Windows.Controls
             this.PropertyGrid_Main.Location = new System.Drawing.Point(15, 87);
             this.PropertyGrid_Main.Margin = new System.Windows.Forms.Padding(2);
             this.PropertyGrid_Main.Name = "PropertyGrid_Main";
-            this.PropertyGrid_Main.Size = new System.Drawing.Size(359, 229);
+            this.PropertyGrid_Main.Size = new System.Drawing.Size(303, 322);
             this.PropertyGrid_Main.TabIndex = 21;
             // 
             // TextBox_Guid
@@ -92,7 +92,7 @@ namespace SAM.Weather.Windows.Controls
             this.TextBox_Guid.Margin = new System.Windows.Forms.Padding(2);
             this.TextBox_Guid.Name = "TextBox_Guid";
             this.TextBox_Guid.ReadOnly = true;
-            this.TextBox_Guid.Size = new System.Drawing.Size(316, 22);
+            this.TextBox_Guid.Size = new System.Drawing.Size(260, 22);
             this.TextBox_Guid.TabIndex = 24;
             this.TextBox_Guid.TabStop = false;
             // 
@@ -113,7 +113,7 @@ namespace SAM.Weather.Windows.Controls
             this.TextBox_Name.Location = new System.Drawing.Point(57, 15);
             this.TextBox_Name.Margin = new System.Windows.Forms.Padding(2);
             this.TextBox_Name.Name = "TextBox_Name";
-            this.TextBox_Name.Size = new System.Drawing.Size(317, 22);
+            this.TextBox_Name.Size = new System.Drawing.Size(261, 22);
             this.TextBox_Name.TabIndex = 20;
             // 
             // Label_Name
@@ -143,8 +143,8 @@ namespace SAM.Weather.Windows.Controls
             // SplitContainer_Main.Panel2
             // 
             this.SplitContainer_Main.Panel2.Controls.Add(this.TabControl_Main);
-            this.SplitContainer_Main.Size = new System.Drawing.Size(800, 600);
-            this.SplitContainer_Main.SplitterDistance = 335;
+            this.SplitContainer_Main.Size = new System.Drawing.Size(1360, 768);
+            this.SplitContainer_Main.SplitterDistance = 428;
             this.SplitContainer_Main.TabIndex = 25;
             // 
             // SplitContainer_Top
@@ -168,8 +168,8 @@ namespace SAM.Weather.Windows.Controls
             this.SplitContainer_Top.Panel2.Controls.Add(this.DataGridView_Main);
             this.SplitContainer_Top.Panel2.Margin = new System.Windows.Forms.Padding(5);
             this.SplitContainer_Top.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.SplitContainer_Top.Size = new System.Drawing.Size(800, 335);
-            this.SplitContainer_Top.SplitterDistance = 391;
+            this.SplitContainer_Top.Size = new System.Drawing.Size(1360, 428);
+            this.SplitContainer_Top.SplitterDistance = 335;
             this.SplitContainer_Top.TabIndex = 25;
             // 
             // DataGridView_Main
@@ -186,7 +186,7 @@ namespace SAM.Weather.Windows.Controls
             this.DataGridView_Main.RowHeadersWidth = 51;
             this.DataGridView_Main.RowTemplate.Height = 24;
             this.DataGridView_Main.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView_Main.Size = new System.Drawing.Size(395, 325);
+            this.DataGridView_Main.Size = new System.Drawing.Size(1011, 418);
             this.DataGridView_Main.TabIndex = 0;
             // 
             // TabControl_Main
@@ -197,7 +197,7 @@ namespace SAM.Weather.Windows.Controls
             this.TabControl_Main.Location = new System.Drawing.Point(0, 0);
             this.TabControl_Main.Name = "TabControl_Main";
             this.TabControl_Main.SelectedIndex = 0;
-            this.TabControl_Main.Size = new System.Drawing.Size(800, 261);
+            this.TabControl_Main.Size = new System.Drawing.Size(1360, 336);
             this.TabControl_Main.TabIndex = 20;
             // 
             // tabPage1
@@ -206,7 +206,7 @@ namespace SAM.Weather.Windows.Controls
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 232);
+            this.tabPage1.Size = new System.Drawing.Size(1352, 307);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -216,7 +216,7 @@ namespace SAM.Weather.Windows.Controls
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 232);
+            this.tabPage2.Size = new System.Drawing.Size(1352, 307);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -226,7 +226,7 @@ namespace SAM.Weather.Windows.Controls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.SplitContainer_Main);
             this.Name = "WeatherDataControl";
-            this.Size = new System.Drawing.Size(800, 600);
+            this.Size = new System.Drawing.Size(1360, 768);
             ((System.ComponentModel.ISupportInitialize)(this.Chart_Main)).EndInit();
             this.SplitContainer_Main.Panel1.ResumeLayout(false);
             this.SplitContainer_Main.Panel2.ResumeLayout(false);

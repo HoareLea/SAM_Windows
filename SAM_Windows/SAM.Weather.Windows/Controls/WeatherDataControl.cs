@@ -32,21 +32,27 @@ namespace SAM.Weather.Windows.Controls
         {
             TextBox_Name.Text = null;
             TextBox_Guid.Text = null;
-            
-            
-            if(weatherData == null)
-            {
-                return;
-            }
 
-            TextBox_Name.Text = weatherData.Name;
-            TextBox_Guid.Text = weatherData.Guid.ToString();
+            TextBox_Name.Text = weatherData?.Name;
+            TextBox_Guid.Text = weatherData?.Guid.ToString();
 
             LoadParameters();
 
             TabControl_Main.TabPages.Clear();
 
-            //Chart_Main.Series.Clear();
+            if(weatherData == null)
+            {
+                foreach (WeatherDataType weatherDataType in Enum.GetValues(typeof(WeatherDataType)))
+                {
+                    string name = Core.Query.Description(weatherDataType);
+
+                    TabPage tabPage = new TabPage(name);
+
+                    TabControl_Main.TabPages.Add(tabPage);
+                }
+
+                return;
+            }
 
             Dictionary<DateTime, Dictionary<WeatherDataType, double>> dictionary_Values = new Dictionary<DateTime, Dictionary<WeatherDataType, double>>();
             List<WeatherDataType> weatherDataTypes = new List<WeatherDataType>();
@@ -71,7 +77,6 @@ namespace SAM.Weather.Windows.Controls
 
                 Chart chart = new Chart();
 
-                //chart.Parent = tabPage;
                 tabPage.Controls.Add(chart);
 
                 chart.Dock = DockStyle.Fill;

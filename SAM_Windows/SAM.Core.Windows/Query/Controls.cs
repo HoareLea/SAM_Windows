@@ -66,7 +66,7 @@ namespace SAM.Core.Windows
             }
 
             List<T> controls = new List<T>();
-            Controls<T>(control, ref controls);
+            Controls(control, ref controls);
 
             List<T> result = new List<T>();
             if(controls == null || controls.Count == 0)

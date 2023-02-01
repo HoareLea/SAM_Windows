@@ -156,12 +156,12 @@ namespace SAM.Core.Windows
 
         }
 
-        private void Button_SelectAll_Click(object sender, System.EventArgs e)
+        private void Button_SelectAll_Click(object sender, EventArgs e)
         {
             ChangeCheckedForAll(true);
         }
 
-        private void Button_SelectNone_Click(object sender, System.EventArgs e)
+        private void Button_SelectNone_Click(object sender, EventArgs e)
         {
             ChangeCheckedForAll(false);
         }

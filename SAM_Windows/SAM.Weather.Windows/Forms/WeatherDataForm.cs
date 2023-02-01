@@ -12,6 +12,12 @@ namespace SAM.Weather.Windows.Forms
         public WeatherDataForm()
         {
             InitializeComponent();
+
+            WeatherDataControl_Main.WeatherData = null;
+            WeatherDataControl_Main.Enums = Core.Query.Enums(typeof(WeatherData));
+
+            marqueeProgressForm = new Core.Windows.Forms.MarqueeProgressForm("Loading Data");
+            marqueeProgressForm.Show();
         }
 
         public WeatherDataForm(WeatherData weatherData, IEnumerable<Enum> enums)
@@ -38,14 +44,14 @@ namespace SAM.Weather.Windows.Forms
             }
         }
 
-        private void Button_OK_Click(object sender, System.EventArgs e)
+        private void Button_OK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
 
             Close();
         }
 
-        private void Button_Cancel_Click(object sender, System.EventArgs e)
+        private void Button_Cancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
 

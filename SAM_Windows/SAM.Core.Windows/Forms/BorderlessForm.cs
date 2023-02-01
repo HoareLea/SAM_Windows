@@ -9,9 +9,9 @@ namespace SAM.Core.Windows.Forms
     {
         private bool @fixed;
         
-        [DllImportAttribute("user32.dll")]
+        [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int LPAR);
-        [DllImportAttribute("user32.dll")]
+        [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
         private const int WM_NCLBUTTONDOWN = 0xA1;
@@ -51,7 +51,7 @@ namespace SAM.Core.Windows.Forms
         /// This gives us the ability to resize the borderless from any borders instead of just the lower right corner
         /// </summary>
         /// <param name="m">Message</param>
-        protected override void WndProc(ref global::System.Windows.Forms.Message m)
+        protected override void WndProc(ref System.Windows.Forms.Message m)
         {
             if(!@fixed)
             {
