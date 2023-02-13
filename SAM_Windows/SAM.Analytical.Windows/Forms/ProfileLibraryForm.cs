@@ -480,7 +480,7 @@ namespace SAM.Analytical.Windows.Forms
             }
 
             profileLibrary?.Add(profile);
-            Add(ProfileLibrary);
+            Add(profileLibrary);
         }
 
         private void DataGridView_Profiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
