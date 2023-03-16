@@ -43,7 +43,7 @@ namespace SAM.Core.Windows
             this.ListBox_Texts.Location = new System.Drawing.Point(3, 31);
             this.ListBox_Texts.Name = "ListBox_Texts";
             this.ListBox_Texts.Size = new System.Drawing.Size(194, 260);
-            this.ListBox_Texts.TabIndex = 3;
+            this.ListBox_Texts.TabIndex = 1;
             this.ListBox_Texts.SelectedIndexChanged += new System.EventHandler(this.ListBox_Texts_SelectedIndexChanged);
             this.ListBox_Texts.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListBox_Texts_MouseDoubleClick);
             // 
@@ -54,7 +54,7 @@ namespace SAM.Core.Windows
             this.TextBox_Text.Location = new System.Drawing.Point(3, 3);
             this.TextBox_Text.Name = "TextBox_Text";
             this.TextBox_Text.Size = new System.Drawing.Size(194, 22);
-            this.TextBox_Text.TabIndex = 2;
+            this.TextBox_Text.TabIndex = 0;
             this.TextBox_Text.TextChanged += new System.EventHandler(this.TextBox_Text_TextChanged);
             this.TextBox_Text.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_Text_KeyDown);
             // 
@@ -65,6 +65,7 @@ namespace SAM.Core.Windows
             this.Controls.Add(this.TextBox_Text);
             this.Name = "SearchControl";
             this.Size = new System.Drawing.Size(200, 300);
+            this.Load += new System.EventHandler(this.SearchControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -185,5 +185,10 @@ namespace SAM.Core.Windows
         {
             Search();
         }
+
+        private void SearchControl_Load(object sender, EventArgs e)
+        {
+            TextBox_Text.Focus();
+        }
     }
 }

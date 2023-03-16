@@ -64,8 +64,8 @@ namespace SAM.Core.Windows.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchControl_Main.Location = new System.Drawing.Point(12, 7);
             this.SearchControl_Main.Name = "SearchControl_Main";
-            this.SearchControl_Main.SearchText = "";
             this.SearchControl_Main.SearchObjectWrapper = null;
+            this.SearchControl_Main.SearchText = "";
             this.SearchControl_Main.SelectionMode = System.Windows.Forms.SelectionMode.One;
             this.SearchControl_Main.Size = new System.Drawing.Size(208, 300);
             this.SearchControl_Main.TabIndex = 7;
