@@ -87,6 +87,7 @@ namespace SAM.Core.Windows.Forms
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "SearchForm";
+            this.Shown += new System.EventHandler(this.SearchForm_Shown);
             this.ResumeLayout(false);
 
         }

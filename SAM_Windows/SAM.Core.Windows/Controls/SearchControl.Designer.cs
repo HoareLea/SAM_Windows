@@ -65,7 +65,6 @@ namespace SAM.Core.Windows
             this.Controls.Add(this.TextBox_Text);
             this.Name = "SearchControl";
             this.Size = new System.Drawing.Size(200, 300);
-            this.Load += new System.EventHandler(this.SearchControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -74,5 +74,10 @@ namespace SAM.Core.Windows.Forms
                 Close();
             }
         }
+
+        private void SearchForm_Shown(object sender, EventArgs e)
+        {
+            SearchControl_Main.Focus();
+        }
     }
 }
