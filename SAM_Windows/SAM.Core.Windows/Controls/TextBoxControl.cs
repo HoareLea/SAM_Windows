@@ -5,28 +5,13 @@ namespace SAM.Core.Windows
 {
     public partial class TextBoxControl : UserControl
     {
-        [Browsable(true), Category("Key")]
-        public new event KeyPressEventHandler TextBoxKeyPress;
         public TextBoxControl()
         {
             InitializeComponent();
         }
 
-        private void TextBox_Main_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            OnTextBoxKeyPress(e);
-        }
-
-        private void OnTextBoxKeyPress(KeyPressEventArgs e)
-        {
-            KeyPressEventHandler keyPressEventHandler;
-
-            keyPressEventHandler = TextBoxKeyPress;
-            if (keyPressEventHandler != null)
-            {
-                keyPressEventHandler(this, e);
-            }
-        }
+        [Browsable(true), Category("Key")]
+        public new event KeyPressEventHandler TextBoxKeyPress;
 
         [Description("Description for value"), Category("Data")]
         public string Description
@@ -40,6 +25,16 @@ namespace SAM.Core.Windows
             {
                 Label_Description.Text = value;
             }
+        }
+
+        public T GetValue<T>()
+        {
+            if (!Core.Query.TryConvert(TextBox_Main.Text, out T result))
+            {
+                return default;
+            }
+
+            return result;
         }
 
         public void SetValue<T>(T value)
@@ -60,14 +55,25 @@ namespace SAM.Core.Windows
             }
         }
 
-        public T GetValue<T>()
+        private void OnTextBoxKeyPress(KeyPressEventArgs e)
         {
-            if (!Core.Query.TryConvert(TextBox_Main.Text, out T result))
-            {
-                return default;
-            }
+            KeyPressEventHandler keyPressEventHandler;
 
-            return result;
+            keyPressEventHandler = TextBoxKeyPress;
+            if (keyPressEventHandler != null)
+            {
+                keyPressEventHandler(this, e);
+            }
+        }
+
+        private void TextBox_Main_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnTextBoxKeyPress(e);
+        }
+        
+        private void TextBoxControl_Load(object sender, System.EventArgs e)
+        {
+            TextBox_Main.Focus();
         }
     }
 }

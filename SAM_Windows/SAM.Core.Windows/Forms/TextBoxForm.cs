@@ -5,8 +5,6 @@ namespace SAM.Core.Windows.Forms
 {
     public partial class TextBoxForm<T> : Form
     {
-        public new event KeyPressEventHandler TextBoxKeyPress;
-        
         public TextBoxForm()
         {
             InitializeComponent();
@@ -20,6 +18,7 @@ namespace SAM.Core.Windows.Forms
             TextBoxControl_Main.Description = description;
         }
 
+        public new event KeyPressEventHandler TextBoxKeyPress;
         public T Value
         {
             get
@@ -33,18 +32,18 @@ namespace SAM.Core.Windows.Forms
             }
         }
 
-        private void Button_OK_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
         private void Button_Cancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
+        private void Button_OK_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+        
         private void OnTextBoxKeyPress(KeyPressEventArgs e)
         {
             KeyPressEventHandler keyPressEventHandler;
@@ -56,14 +55,19 @@ namespace SAM.Core.Windows.Forms
             }
         }
 
+        private void TextBoxControl_Main_TextBoxKeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnTextBoxKeyPress(e);
+        }
+
         private void TextBoxForm_Load(object sender, EventArgs e)
         {
             TextBoxControl_Main.TextBoxKeyPress += TextBoxControl_Main_TextBoxKeyPress;
         }
 
-        private void TextBoxControl_Main_TextBoxKeyPress(object sender, KeyPressEventArgs e)
+        private void TextBoxForm_Shown(object sender, EventArgs e)
         {
-            OnTextBoxKeyPress(e);
+            TextBoxControl_Main.Focus();
         }
     }
 }

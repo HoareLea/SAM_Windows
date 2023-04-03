@@ -58,6 +58,7 @@ namespace SAM.Core.Windows
             this.Controls.Add(this.TextBox_Main);
             this.Name = "TextBoxControl";
             this.Size = new System.Drawing.Size(197, 57);
+            this.Load += new System.EventHandler(this.TextBoxControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

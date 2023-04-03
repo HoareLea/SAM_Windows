@@ -69,7 +69,9 @@ namespace SAM.Core.Windows.Forms
             // 
             // TextBoxForm
             // 
+            this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(268, 130);
             this.Controls.Add(this.TextBoxControl_Main);
             this.Controls.Add(this.Button_OK);
@@ -82,6 +84,7 @@ namespace SAM.Core.Windows.Forms
             this.ShowInTaskbar = false;
             this.Text = "TextBoxForm";
             this.Load += new System.EventHandler(this.TextBoxForm_Load);
+            this.Shown += new System.EventHandler(this.TextBoxForm_Shown);
             this.ResumeLayout(false);
 
         }
