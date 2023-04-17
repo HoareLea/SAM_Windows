@@ -74,6 +74,11 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Name.Text = null;
             DataGridView_Values.Rows.Clear();
 
+            if (ComboBox_Category.Items == null || ComboBox_Category.Items.Count == 0)
+            {
+                Query.CategoryEnums()?.ForEach(x => ComboBox_Category.Items.Add(Core.Query.Description(x)));
+            }
+
             if (profile != null)
             {
                 TextBox_Name.Text = profile.Name;
@@ -81,11 +86,6 @@ namespace SAM.Analytical.Windows.Controls
                 if ((ProfileType)@enum == ProfileType.Undefined)
                 {
                     @enum = profile.ProfileGroup;
-                }
-
-                if (ComboBox_Category.Items == null || ComboBox_Category.Items.Count == 0)
-                {
-                    Query.CategoryEnums()?.ForEach(x => ComboBox_Category.Items.Add(Core.Query.Description(x)));
                 }
 
                 ComboBox_Category.Text = Core.Query.Description(@enum);
