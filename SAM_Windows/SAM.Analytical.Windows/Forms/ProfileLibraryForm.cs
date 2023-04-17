@@ -74,7 +74,7 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
-        private void Add(ProfileLibrary profileLibrary)
+        private void SetProfileLibrary(ProfileLibrary profileLibrary)
         {
             List<string> uniqueIds = new List<string>();
             if (DataGridView_Profiles.SelectedRows != null && DataGridView_Profiles.SelectedRows.Count != 0)
@@ -273,7 +273,7 @@ namespace SAM.Analytical.Windows.Forms
                 if (value == null && ComboBox_Type.Text != string.Empty)
                 {
                     ComboBox_Type.Text = string.Empty;
-                    Add(profileLibrary);
+                    SetProfileLibrary(profileLibrary);
                 }
                 else if (value is ProfileType || value is ProfileGroup)
                 {
@@ -281,7 +281,7 @@ namespace SAM.Analytical.Windows.Forms
                     if (ComboBox_Type.Text != text)
                     {
                         ComboBox_Type.Text = text;
-                        Add(profileLibrary);
+                        SetProfileLibrary(profileLibrary);
                     }
                 }
             }
@@ -415,7 +415,7 @@ namespace SAM.Analytical.Windows.Forms
             }
 
             profileLibrary?.Add(profile);
-            Add(profileLibrary);
+            SetProfileLibrary(profileLibrary);
         }
 
         private void Button_Remove_Click(object sender, EventArgs e)
@@ -434,7 +434,7 @@ namespace SAM.Analytical.Windows.Forms
 
             }
 
-            Add(profileLibrary);
+            SetProfileLibrary(profileLibrary);
         }
 
         private void Button_Duplicate_Click(object sender, EventArgs e)
@@ -480,7 +480,7 @@ namespace SAM.Analytical.Windows.Forms
             }
 
             profileLibrary?.Add(profile);
-            Add(profileLibrary);
+            SetProfileLibrary(profileLibrary);
         }
 
         private void DataGridView_Profiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -496,6 +496,8 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
 
+            string uniqueId = ProfileLibrary?.GetUniqueId(profile);
+
             using (ProfileForm profileForm = new ProfileForm(new Profile(profile)))
             {
                 profileForm.ProfileLibrary = ProfileLibrary;
@@ -508,14 +510,21 @@ namespace SAM.Analytical.Windows.Forms
                 profileLibrary = profileForm.ProfileLibrary;
             }
 
+            if(string.IsNullOrWhiteSpace(uniqueId))
+            {
+                profileLibrary?.Add(profile);
+            }
+            else
+            {
+                profileLibrary?.Replace(uniqueId, profile);
+            }
 
-            profileLibrary?.Add(profile);
-            Add(profileLibrary);
+            SetProfileLibrary(profileLibrary);
         }
 
         private void TextBox_Search_TextChanged(object sender, EventArgs e)
         {
-            Add(profileLibrary);
+            SetProfileLibrary(profileLibrary);
         }
 
         private void ProfileLibraryForm_KeyDown(object sender, KeyEventArgs e)
@@ -541,12 +550,12 @@ namespace SAM.Analytical.Windows.Forms
             }
 
             profiles.ForEach(x => profileLibrary?.Add(x));
-            Add(profileLibrary);
+            SetProfileLibrary(profileLibrary);
         }
 
         private void ComboBox_Type_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Add(profileLibrary);
+            SetProfileLibrary(profileLibrary);
         }
     }
 }

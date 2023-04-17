@@ -164,8 +164,9 @@ namespace SAM.Analytical.Windows.Controls
             get
             {
                 string category = ComboBox_Category.Text;
+                string name = TextBox_Name.Text;
 
-                Profile result = profile == null ? new Profile(TextBox_Name.Name, category) : new Profile(profile.Guid, profile, category);
+                Profile result = profile == null ? new Profile(name, category) : new Profile(profile.Guid, profile, name, category);
                 UpdateProfileValues(result);
 
                 return result;
