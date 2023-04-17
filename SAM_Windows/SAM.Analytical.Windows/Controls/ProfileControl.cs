@@ -151,6 +151,17 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_MaxValue.Text = maxValue != double.MinValue ? maxValue.ToString() : string.Empty;
                 TextBox_MinValue.Text = minValue != double.MaxValue ? minValue.ToString() : string.Empty;
 
+                if(maxValue != double.MinValue)
+                {
+                    Chart_Main.ChartAreas[series.ChartArea].AxisY.Maximum = maxValue < 0 ? 0 : maxValue;
+                }
+
+                if (minValue != double.MaxValue)
+                {
+                    Chart_Main.ChartAreas[series.ChartArea].AxisY.Minimum = minValue > 0 ? 0 : minValue;
+                }
+
+
                 Profile[] profiles = profile.GetProfiles();
                 DataGridView_Values.Columns[2].Visible = profiles != null && profiles.Length != 0;
             }
