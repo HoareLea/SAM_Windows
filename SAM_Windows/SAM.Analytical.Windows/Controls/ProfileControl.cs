@@ -207,6 +207,24 @@ namespace SAM.Analytical.Windows.Controls
             }
         }
 
+        public string Category
+        {
+            get
+            {
+                return ComboBox_Category?.SelectedItem?.ToString();
+            }
+
+            set
+            {
+                if (ComboBox_Category.Items == null || ComboBox_Category.Items.Count == 0)
+                {
+                    Query.CategoryEnums()?.ForEach(x => ComboBox_Category.Items.Add(Core.Query.Description(x)));
+                }
+
+                ComboBox_Category.Text = value;
+            }
+        }
+
         private void Button_SetValue_Click(object sender, EventArgs e)
         {
             Profile profile = Profile;

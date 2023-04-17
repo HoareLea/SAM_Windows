@@ -83,5 +83,18 @@ namespace SAM.Analytical.Windows.Forms
                 ProfileControl_Main.Editable = value;
             }
         }
+
+        public string Category
+        {
+            get
+            {
+                return ProfileControl_Main.Category;
+            }
+
+            set
+            {
+                ProfileControl_Main.Category = value;
+            }
+        }
     }
 }

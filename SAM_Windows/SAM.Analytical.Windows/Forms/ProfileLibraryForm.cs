@@ -400,6 +400,7 @@ namespace SAM.Analytical.Windows.Forms
             using (ProfileForm profileForm = new ProfileForm(profile))
             {
                 profileForm.ProfileLibrary = ProfileLibrary;
+                profileForm.Category = ComboBox_Type.Text;
                 if (profileForm.ShowDialog() != DialogResult.OK)
                 {
                     return;
@@ -416,6 +417,26 @@ namespace SAM.Analytical.Windows.Forms
 
             profileLibrary?.Add(profile);
             SetProfileLibrary(profileLibrary);
+
+            string uniqueId = profileLibrary?.GetUniqueId(profile);
+            if(!string.IsNullOrWhiteSpace(uniqueId))
+            {
+                foreach (DataGridViewRow dataGridViewRow in DataGridView_Profiles.Rows)
+                {
+                    string uniqueId_Temp = profileLibrary?.GetUniqueId(dataGridViewRow.Tag as Profile);
+                    if (string.IsNullOrWhiteSpace(uniqueId_Temp))
+                    {
+                        continue;
+                    }
+
+                    if(uniqueId_Temp == uniqueId)
+                    {
+                        dataGridViewRow.Selected = true;
+                        break;
+                    }
+                }
+            }
+
         }
 
         private void Button_Remove_Click(object sender, EventArgs e)
