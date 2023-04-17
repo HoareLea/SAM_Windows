@@ -81,6 +81,8 @@ namespace SAM.Analytical.Windows.Forms
             TextBox_Value.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
             TextBox_StartIndex.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_IntegerOnly);
             TextBox_Count.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_IntegerOnly);
+
+            TextBox_Value.Focus();
         }
 
         private void Button_OK_Click(object sender, System.EventArgs e)

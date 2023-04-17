@@ -39,7 +39,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_OK
             // 
             this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(39, 129);
+            this.Button_OK.Location = new System.Drawing.Point(64, 133);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 28);
             this.Button_OK.TabIndex = 10;
@@ -51,7 +51,7 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(120, 129);
+            this.Button_Cancel.Location = new System.Drawing.Point(145, 133);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
             this.Button_Cancel.TabIndex = 9;
@@ -66,24 +66,24 @@ namespace SAM.Analytical.Windows.Forms
             this.ComboBoxControl_Profile.Description = "Profile:";
             this.ComboBoxControl_Profile.Location = new System.Drawing.Point(8, 69);
             this.ComboBoxControl_Profile.Name = "ComboBoxControl_Profile";
-            this.ComboBoxControl_Profile.Size = new System.Drawing.Size(187, 54);
+            this.ComboBoxControl_Profile.Size = new System.Drawing.Size(212, 54);
             this.ComboBoxControl_Profile.TabIndex = 13;
             // 
             // TextBoxControl_StartIndex
             // 
             this.TextBoxControl_StartIndex.Description = "Start Index:";
             this.TextBoxControl_StartIndex.Location = new System.Drawing.Point(8, 11);
-            this.TextBoxControl_StartIndex.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxControl_StartIndex.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxControl_StartIndex.Name = "TextBoxControl_StartIndex";
-            this.TextBoxControl_StartIndex.Size = new System.Drawing.Size(119, 46);
+            this.TextBoxControl_StartIndex.Size = new System.Drawing.Size(119, 53);
             this.TextBoxControl_StartIndex.TabIndex = 14;
             // 
             // CheckBox_Append
             // 
             this.CheckBox_Append.AutoSize = true;
-            this.CheckBox_Append.Location = new System.Drawing.Point(132, 36);
+            this.CheckBox_Append.Location = new System.Drawing.Point(133, 40);
             this.CheckBox_Append.Name = "CheckBox_Append";
-            this.CheckBox_Append.Size = new System.Drawing.Size(63, 17);
+            this.CheckBox_Append.Size = new System.Drawing.Size(79, 21);
             this.CheckBox_Append.TabIndex = 15;
             this.CheckBox_Append.Text = "Append";
             this.CheckBox_Append.UseVisualStyleBackColor = true;
@@ -94,7 +94,7 @@ namespace SAM.Analytical.Windows.Forms
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(207, 169);
+            this.ClientSize = new System.Drawing.Size(232, 173);
             this.Controls.Add(this.CheckBox_Append);
             this.Controls.Add(this.TextBoxControl_StartIndex);
             this.Controls.Add(this.ComboBoxControl_Profile);
