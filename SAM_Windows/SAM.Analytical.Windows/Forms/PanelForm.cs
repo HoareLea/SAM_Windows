@@ -61,6 +61,14 @@ namespace SAM.Analytical.Windows.Forms
 
                 TextBox_Area.Text = Math.Round(panel.GetArea(), 1).ToString();
                 TextBox_NetArea.Text = Math.Round(panel.GetAreaNet(), 1).ToString();
+
+                Range<double> elevationRange = panel.GetElevationRange();
+                if(elevationRange != null)
+                {
+                    TextBox_MinElevation.Text = Math.Round(elevationRange.Min, 2).ToString();
+                    TextBox_MaxElevation.Text = Math.Round(elevationRange.Max, 2).ToString();
+                }
+
             }
 
             if(constructionLibrary == null)

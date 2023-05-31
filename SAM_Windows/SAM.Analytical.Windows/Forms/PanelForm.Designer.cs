@@ -45,6 +45,10 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Area = new System.Windows.Forms.Label();
             this.Label_NetArea = new System.Windows.Forms.Label();
             this.TextBox_NetArea = new System.Windows.Forms.TextBox();
+            this.TextBox_MaxElevation = new System.Windows.Forms.TextBox();
+            this.Label_MaxElevation = new System.Windows.Forms.Label();
+            this.TextBox_MinElevation = new System.Windows.Forms.TextBox();
+            this.Label_MinElevation = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // PropertyGrid_Parameters
@@ -52,9 +56,9 @@ namespace SAM.Analytical.Windows.Forms
             this.PropertyGrid_Parameters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PropertyGrid_Parameters.Location = new System.Drawing.Point(15, 188);
+            this.PropertyGrid_Parameters.Location = new System.Drawing.Point(15, 219);
             this.PropertyGrid_Parameters.Name = "PropertyGrid_Parameters";
-            this.PropertyGrid_Parameters.Size = new System.Drawing.Size(355, 319);
+            this.PropertyGrid_Parameters.Size = new System.Drawing.Size(355, 388);
             this.PropertyGrid_Parameters.TabIndex = 0;
             // 
             // Label_Name
@@ -79,7 +83,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_OK
             // 
             this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(214, 513);
+            this.Button_OK.Location = new System.Drawing.Point(214, 613);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 28);
             this.Button_OK.TabIndex = 6;
@@ -91,7 +95,7 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(295, 513);
+            this.Button_Cancel.Location = new System.Drawing.Point(295, 613);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
             this.Button_Cancel.TabIndex = 5;
@@ -201,12 +205,50 @@ namespace SAM.Analytical.Windows.Forms
             this.TextBox_NetArea.Size = new System.Drawing.Size(70, 22);
             this.TextBox_NetArea.TabIndex = 14;
             // 
+            // TextBox_MaxElevation
+            // 
+            this.TextBox_MaxElevation.Location = new System.Drawing.Point(300, 191);
+            this.TextBox_MaxElevation.Name = "TextBox_MaxElevation";
+            this.TextBox_MaxElevation.ReadOnly = true;
+            this.TextBox_MaxElevation.Size = new System.Drawing.Size(70, 22);
+            this.TextBox_MaxElevation.TabIndex = 17;
+            // 
+            // Label_MaxElevation
+            // 
+            this.Label_MaxElevation.AutoSize = true;
+            this.Label_MaxElevation.Location = new System.Drawing.Point(195, 194);
+            this.Label_MaxElevation.Name = "Label_MaxElevation";
+            this.Label_MaxElevation.Size = new System.Drawing.Size(99, 17);
+            this.Label_MaxElevation.TabIndex = 15;
+            this.Label_MaxElevation.Text = "Max Elevation:";
+            // 
+            // TextBox_MinElevation
+            // 
+            this.TextBox_MinElevation.Location = new System.Drawing.Point(118, 191);
+            this.TextBox_MinElevation.Name = "TextBox_MinElevation";
+            this.TextBox_MinElevation.ReadOnly = true;
+            this.TextBox_MinElevation.Size = new System.Drawing.Size(69, 22);
+            this.TextBox_MinElevation.TabIndex = 18;
+            // 
+            // Label_MinElevation
+            // 
+            this.Label_MinElevation.AutoSize = true;
+            this.Label_MinElevation.Location = new System.Drawing.Point(13, 194);
+            this.Label_MinElevation.Name = "Label_MinElevation";
+            this.Label_MinElevation.Size = new System.Drawing.Size(96, 17);
+            this.Label_MinElevation.TabIndex = 16;
+            this.Label_MinElevation.Text = "Min Elevation:";
+            // 
             // PanelForm
             // 
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(382, 553);
+            this.ClientSize = new System.Drawing.Size(382, 653);
+            this.Controls.Add(this.TextBox_MaxElevation);
+            this.Controls.Add(this.Label_MaxElevation);
+            this.Controls.Add(this.TextBox_MinElevation);
+            this.Controls.Add(this.Label_MinElevation);
             this.Controls.Add(this.TextBox_NetArea);
             this.Controls.Add(this.Label_NetArea);
             this.Controls.Add(this.TextBox_Area);
@@ -225,7 +267,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Controls.Add(this.PropertyGrid_Parameters);
             this.KeyPreview = true;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(800, 600);
+            this.MaximumSize = new System.Drawing.Size(800, 700);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 500);
             this.Name = "PanelForm";
@@ -256,5 +298,9 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.Label Label_Area;
         private System.Windows.Forms.Label Label_NetArea;
         private System.Windows.Forms.TextBox TextBox_NetArea;
+        private System.Windows.Forms.TextBox TextBox_MaxElevation;
+        private System.Windows.Forms.Label Label_MaxElevation;
+        private System.Windows.Forms.TextBox TextBox_MinElevation;
+        private System.Windows.Forms.Label Label_MinElevation;
     }
 }
