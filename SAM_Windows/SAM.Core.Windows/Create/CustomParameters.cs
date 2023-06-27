@@ -59,7 +59,14 @@ namespace SAM.Core.Windows
 
                 object value = sAMObject.GetValue(@enum);
 
-                result.Add(new CustomParameter(enumParameterData, @enum.GetType().Assembly.Name(),value));
+                string category = SAM.Core.Query.Category(@enum);
+                if(string.IsNullOrWhiteSpace(category))
+                {
+                    category = @enum.GetType().Assembly.Name();
+                }
+                
+
+                result.Add(new CustomParameter(enumParameterData, category, value));
             }
 
             return result;
