@@ -98,7 +98,7 @@ namespace SAM.Core.Windows
             return TypeDescriptor.GetProperties(this, true);
 
         }
-        public object GetPropertyOwner(PropertyDescriptor pd)
+        public object GetPropertyOwner(PropertyDescriptor propertyDescriptor)
         {
             return this;
         }
