@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -7,7 +8,7 @@ namespace SAM.Core.Windows.Forms
     public partial class MarqueeProgressForm : Form
     {
         private readonly BackgroundWorker backgroundWorker = new BackgroundWorker();
-        private Action action;
+        private List<Tuple<Action, string>> tuples;
 
         public MarqueeProgressForm(string name)
         {
@@ -22,10 +23,34 @@ namespace SAM.Core.Windows.Forms
         public MarqueeProgressForm(string name, Action action)
         {
             InitializeComponent();
+            
+            if(action != null)
+            {
+                tuples = new List<Tuple<Action, string>>() { new Tuple<Action, string>(action, name) };
+            }
 
-            Text = name;
+            if(tuples != null && tuples.Count != 0)
+            {
+                Text = tuples[0].Item2;
+            }
 
-            this.action = action;
+            backgroundWorker.DoWork += BackgroundWorker_DoWork;
+            backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+
+            backgroundWorker.RunWorkerAsync();
+        }
+
+        public MarqueeProgressForm(IEnumerable<Tuple<Action, string>> actions)
+        {
+            InitializeComponent();
+
+            tuples = actions == null ? null : new List<Tuple<Action, string>>(actions);
+
+
+            if (tuples != null && tuples.Count != 0)
+            {
+                Text = tuples[0].Item2;
+            }
 
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
@@ -46,9 +71,18 @@ namespace SAM.Core.Windows.Forms
             ProgressBar_Main.Style = ProgressBarStyle.Marquee;
             ProgressBar_Main.MarqueeAnimationSpeed = 30;
 
-            if(action != null)
+            if(tuples != null)
             {
-                action.Invoke();
+                foreach(Tuple<Action, string> tuple in tuples)
+                {
+                    Text = tuple.Item2;
+                    if(tuple.Item1 != null)
+                    {
+                        tuple.Item1.Invoke();
+                    }
+                }
+
+                
             }
         }
 
@@ -63,9 +97,31 @@ namespace SAM.Core.Windows.Forms
             }
         }
 
+        public static void Show(IEnumerable<Tuple<Action, string>> actions)
+        {
+            using (MarqueeProgressForm marqueeProgressForm = new MarqueeProgressForm(actions))
+            {
+                if (marqueeProgressForm.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+            }
+        }
+
         public static void Show(string name, Action action, IWin32Window owner)
         {
             using (MarqueeProgressForm marqueeProgressForm = new MarqueeProgressForm(name, action))
+            {
+                if (marqueeProgressForm.ShowDialog(owner) == DialogResult.OK)
+                {
+
+                }
+            }
+        }
+
+        public static void Show(IEnumerable<Tuple<Action, string>> actions, IWin32Window owner)
+        {
+            using (MarqueeProgressForm marqueeProgressForm = new MarqueeProgressForm(actions))
             {
                 if (marqueeProgressForm.ShowDialog(owner) == DialogResult.OK)
                 {
