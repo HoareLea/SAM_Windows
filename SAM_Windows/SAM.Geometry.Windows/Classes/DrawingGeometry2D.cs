@@ -69,6 +69,7 @@ namespace SAM.Geometry.Windows
                     graphics.DrawLine(pen, point2D_1.ToDrawing(), point2D_2.ToDrawing());
                 }
 
+                return true;
             }
 
             return false;
