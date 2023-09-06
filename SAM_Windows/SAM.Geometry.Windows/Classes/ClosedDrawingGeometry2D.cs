@@ -24,13 +24,13 @@ namespace SAM.Geometry.Windows
 
         public override bool Draw(Graphics graphics)
         {
-            bool result = base.Draw(graphics);
-            if (!result)
+            ISAMGeometry2D sAMGeometry2D = GetSAMGeometry2D<ISAMGeometry2D>();
+            if(sAMGeometry2D == null)
             {
-                return result;
+                return false;
             }
 
-            ISAMGeometry2D sAMGeometry2D = GetSAMGeometry2D<ISAMGeometry2D>();
+            bool result = false;
 
             if (sAMGeometry2D is ISegmentable2D)
             {
@@ -54,11 +54,16 @@ namespace SAM.Geometry.Windows
                 if(pointFs != null && pointFs.Count != 0)
                 {
                     graphics.FillPolygon(brush, pointFs.ToArray());
-                    return true;
+                    result = true;
                 }
             }
 
-            return false;
+            if(result)
+            {
+                base.Draw(graphics);
+            }
+
+            return result;
         }
     }
 }

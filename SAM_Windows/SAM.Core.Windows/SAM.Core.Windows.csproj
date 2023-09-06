@@ -58,6 +58,7 @@
     <Compile Include="Classes\IdleTimer.cs" />
     <Compile Include="Classes\CustomParameterDescriptor.cs" />
     <Compile Include="Classes\ThreadExecutionHandler.cs" />
+    <Compile Include="Classes\DisplayObject.cs" />
     <Compile Include="Classes\WindowHandle.cs" />
     <Compile Include="Controls\ComboBoxControl.cs">
       <SubType>UserControl</SubType>
@@ -82,6 +83,7 @@
     </Compile>
     <Compile Include="Convert\ToBitmapSource\BitmapSource.cs" />
     <Compile Include="Convert\ToBitmap\Bitmap.cs" />
+    <Compile Include="Create\DisplayObject.cs" />
     <Compile Include="Create\Material.cs" />
     <Compile Include="Create\CustomParameters.cs" />
     <Compile Include="EventHandler\ControlText_IntegerOnly.cs" />

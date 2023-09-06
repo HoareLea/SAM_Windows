@@ -48,9 +48,9 @@ namespace SAM.Geometry.Windows
                 if (boundingBox2D != null)
                 {
                     Point2D point2D_Centroid_PictureBox = new Point2D(width / 2, height / 2);
-                    Point2D point2D_Centroid_BoudingBox = boundingBox2D.GetCentroid();
+                    Point2D point2D_Centroid_BoundingBox = boundingBox2D.GetCentroid();
 
-                    Vector2D vector2D = new Vector2D(point2D_Centroid_BoudingBox, point2D_Centroid_PictureBox);
+                    Vector2D vector2D = new Vector2D(point2D_Centroid_BoundingBox, point2D_Centroid_PictureBox);
 
                     double factor_Width = (width - drawingObjectUIDrawOptions_Temp.Offset) / boundingBox2D.Width;
                     double factor_Height = (height - drawingObjectUIDrawOptions_Temp.Offset) / boundingBox2D.Height;
@@ -63,7 +63,7 @@ namespace SAM.Geometry.Windows
                         if (sAMGeometry2D is IBoundable2D)
                         {
                             IBoundable2D boundable2D = (IBoundable2D)sAMGeometry2D.Clone();
-                            boundable2D = boundable2D.Scale(factor) as IBoundable2D;
+                            boundable2D = boundable2D.Scale(point2D_Centroid_BoundingBox, factor) as IBoundable2D;
                             boundable2D = boundable2D.Move(vector2D);
 
                             if(drawingGeometry2Ds_Temp[i] is ClosedDrawingGeometry2D)
