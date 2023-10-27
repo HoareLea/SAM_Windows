@@ -440,6 +440,7 @@ namespace SAM.Analytical.Windows.Forms
                 saveFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
                 saveFileDialog.FilterIndex = 1;
                 saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.FileName = "SAM_InternalConditionLibrary_CustomVer00.json";
                 if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
