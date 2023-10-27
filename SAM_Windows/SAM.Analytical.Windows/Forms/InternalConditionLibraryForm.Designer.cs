@@ -32,13 +32,14 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_OK = new System.Windows.Forms.Button();
             this.Button_Cancel = new System.Windows.Forms.Button();
             this.DataGridView_Constructions = new System.Windows.Forms.DataGridView();
-            this.Column_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TextBox_Search = new System.Windows.Forms.TextBox();
             this.Label_Search = new System.Windows.Forms.Label();
             this.Button_Remove = new System.Windows.Forms.Button();
             this.Button_Add = new System.Windows.Forms.Button();
             this.Button_Duplicate = new System.Windows.Forms.Button();
             this.Button_Import = new System.Windows.Forms.Button();
+            this.Button_Export = new System.Windows.Forms.Button();
+            this.Column_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Constructions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,6 +70,7 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.DataGridView_Constructions.AllowUserToAddRows = false;
             this.DataGridView_Constructions.AllowUserToDeleteRows = false;
+            this.DataGridView_Constructions.AllowUserToResizeColumns = false;
             this.DataGridView_Constructions.AllowUserToResizeRows = false;
             this.DataGridView_Constructions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -90,14 +92,6 @@ namespace SAM.Analytical.Windows.Forms
             this.DataGridView_Constructions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellContentClick);
             this.DataGridView_Constructions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellDoubleClick);
             // 
-            // Column_Name
-            // 
-            this.Column_Name.FillWeight = 60F;
-            this.Column_Name.HeaderText = "Name";
-            this.Column_Name.MinimumWidth = 6;
-            this.Column_Name.Name = "Column_Name";
-            this.Column_Name.ReadOnly = true;
-            // 
             // TextBox_Search
             // 
             this.TextBox_Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -113,7 +107,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Search.AutoSize = true;
             this.Label_Search.Location = new System.Drawing.Point(12, 31);
             this.Label_Search.Name = "Label_Search";
-            this.Label_Search.Size = new System.Drawing.Size(53, 17);
+            this.Label_Search.Size = new System.Drawing.Size(50, 16);
             this.Label_Search.TabIndex = 9;
             this.Label_Search.Text = "Search";
             // 
@@ -161,12 +155,33 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Import.UseVisualStyleBackColor = true;
             this.Button_Import.Click += new System.EventHandler(this.Button_Import_Click);
             // 
+            // Button_Export
+            // 
+            this.Button_Export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Export.Location = new System.Drawing.Point(171, 338);
+            this.Button_Export.Name = "Button_Export";
+            this.Button_Export.Size = new System.Drawing.Size(75, 28);
+            this.Button_Export.TabIndex = 13;
+            this.Button_Export.Text = "Export";
+            this.Button_Export.UseVisualStyleBackColor = true;
+            this.Button_Export.Click += new System.EventHandler(this.Button_Export_Click);
+            // 
+            // Column_Name
+            // 
+            this.Column_Name.FillWeight = 60F;
+            this.Column_Name.HeaderText = "Name";
+            this.Column_Name.MinimumWidth = 6;
+            this.Column_Name.Name = "Column_Name";
+            this.Column_Name.ReadOnly = true;
+            this.Column_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // InternalConditionLibraryForm
             // 
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(582, 453);
+            this.Controls.Add(this.Button_Export);
             this.Controls.Add(this.Button_Import);
             this.Controls.Add(this.Button_Duplicate);
             this.Controls.Add(this.Button_Remove);
@@ -201,7 +216,8 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.Button Button_Remove;
         private System.Windows.Forms.Button Button_Add;
         private System.Windows.Forms.Button Button_Duplicate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_Name;
         private System.Windows.Forms.Button Button_Import;
+        private System.Windows.Forms.Button Button_Export;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_Name;
     }
 }

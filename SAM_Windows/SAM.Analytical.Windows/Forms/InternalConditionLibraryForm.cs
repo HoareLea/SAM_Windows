@@ -1,4 +1,5 @@
 ﻿using SAM.Core;
+using SAM.Core.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,8 @@ namespace SAM.Analytical.Windows.Forms
 
             if (internalConditions != null)
             {
+                internalConditions.Sort((x, y) => x.Name.CompareTo(y.Name));
+
                 int index = -1;
                 foreach (InternalCondition internalCondition_Temp in internalConditions)
                 {
@@ -89,6 +92,8 @@ namespace SAM.Analytical.Windows.Forms
             {
                 return;
             }
+
+            internalConditions.Sort((x, y) => x.Name.CompareTo(y.Name));
 
             if (!string.IsNullOrWhiteSpace(TextBox_Search.Text))
             {
@@ -419,6 +424,43 @@ namespace SAM.Analytical.Windows.Forms
             }
 
             Add(internalConditionLibrary);
+        }
+
+        private void Button_Export_Click(object sender, EventArgs e)
+        {
+            List<InternalCondition> internalConditions = GetInternalConditions(false);
+            if(internalConditions == null || internalConditions.Count == 0)
+            {
+                return;
+            }
+
+            string path = null;
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+                if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                path = saveFileDialog.FileName;
+            }
+
+            string name = System.IO.Path.GetFileNameWithoutExtension(path);
+
+            InternalConditionLibrary internalConditionLibrary = new InternalConditionLibrary(name);
+            internalConditions.ForEach(x => internalConditionLibrary.Add(x));
+
+            bool result = Core.Convert.ToFile(internalConditionLibrary, path);
+            if (result)
+            {
+                MessageBox.Show("Library exported successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Library could not be exported.");
+            }
         }
     }
 }
