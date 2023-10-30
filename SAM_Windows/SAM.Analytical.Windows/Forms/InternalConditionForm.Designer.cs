@@ -37,7 +37,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_OK
             // 
             this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(1126, 755);
+            this.Button_OK.Location = new System.Drawing.Point(1134, 813);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 28);
             this.Button_OK.TabIndex = 6;
@@ -49,7 +49,7 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(1207, 755);
+            this.Button_Cancel.Location = new System.Drawing.Point(1215, 813);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
             this.Button_Cancel.TabIndex = 5;
@@ -59,14 +59,12 @@ namespace SAM.Analytical.Windows.Forms
             // 
             // InternalConditionControl_Main
             // 
-            this.InternalConditionControl_Main.AdjacencyCluster = null;
             this.InternalConditionControl_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InternalConditionControl_Main.Location = new System.Drawing.Point(12, 12);
             this.InternalConditionControl_Main.Name = "InternalConditionControl_Main";
-            this.InternalConditionControl_Main.ProfileLibrary = null;
-            this.InternalConditionControl_Main.Size = new System.Drawing.Size(1270, 737);
+            this.InternalConditionControl_Main.Size = new System.Drawing.Size(1278, 795);
             this.InternalConditionControl_Main.Space = null;
             this.InternalConditionControl_Main.TabIndex = 0;
             this.InternalConditionControl_Main.UseColors = false;
@@ -76,7 +74,7 @@ namespace SAM.Analytical.Windows.Forms
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(1294, 795);
+            this.ClientSize = new System.Drawing.Size(1302, 853);
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.Button_Cancel);
             this.Controls.Add(this.InternalConditionControl_Main);

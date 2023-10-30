@@ -139,6 +139,9 @@ namespace SAM.Analytical.Windows.Controls
                 Button_EquipmentLatentProfile.Enabled = false;
                 Button_HumidificationProfile.Enabled = false;
                 Button_DehumidificationProfile.Enabled = false;
+                Button_InfiltrationProfile.Enabled = false;
+
+                TextBox_Occupancy.Enabled = false;
             }
             else
             {
@@ -150,13 +153,16 @@ namespace SAM.Analytical.Windows.Controls
                 Button_EquipmentLatentProfile.Enabled = true;
                 Button_HumidificationProfile.Enabled = true;
                 Button_DehumidificationProfile.Enabled = true;
+                Button_InfiltrationProfile.Enabled = true;
+
+                TextBox_Occupancy.Enabled = true;
             }
 
             if (space == null)
             {
-                Button_Select.Visible = false;
-                Button_Create.Visible = false;
-                Button_Reset.Visible = false;
+                Button_Select.Enabled = false;
+                Button_Create.Enabled = false;
+                Button_Reset.Enabled = false;
                 TextBox_Occupancy_SensibleGain_Calculated.Visible = false;
                 Label_Occupancy_SensibleGain_W.Visible = false;
                 TextBox_Occupancy_LatentGain_Calculated.Visible = false;
@@ -170,15 +176,15 @@ namespace SAM.Analytical.Windows.Controls
                 TextBox_SupplyUnit_AirFlow.Visible = false;
                 Label_ExhaustUnit_AirFlow.Visible = false;
                 TextBox_ExhaustUnit_AirFlow.Visible = false;
-                Label_Occupancy.Visible = false;
-                TextBox_Occupancy.Visible = false;
-                Label_Occupancy_Unit.Visible = false;
+                Label_Occupancy.Enabled = false;
+                TextBox_Occupancy.Enabled = false;
+                Label_Occupancy_Unit.Enabled = false;
             }
             else
             {
-                Button_Select.Visible = true;
-                Button_Create.Visible = true;
-                Button_Reset.Visible = true;
+                Button_Select.Enabled = true;
+                Button_Create.Enabled = true;
+                Button_Reset.Enabled = true;
                 TextBox_Occupancy_SensibleGain_Calculated.Visible = true;
                 Label_Occupancy_SensibleGain_W.Visible = true;
                 TextBox_Occupancy_LatentGain_Calculated.Visible = true;
@@ -193,9 +199,9 @@ namespace SAM.Analytical.Windows.Controls
                 Label_ExhaustUnit_AirFlow.Visible = true;
                 TextBox_ExhaustUnit_AirFlow.Visible = true;
 
-                Label_Occupancy.Visible = true;
-                TextBox_Occupancy.Visible = true;
-                Label_Occupancy_Unit.Visible = true;
+                Label_Occupancy.Enabled = true;
+                TextBox_Occupancy.Enabled = true;
+                Label_Occupancy_Unit.Enabled = true;
             }
 
             Button_Reset.Enabled = internalCondition_Template != null;
@@ -280,6 +286,11 @@ namespace SAM.Analytical.Windows.Controls
                 if(internalCondition.TryGetValue(InternalConditionParameter.Color, out color))
                 {
                     Button_Color.BackColor = color;
+                }
+
+                if (internalCondition.TryGetValue(InternalConditionParameter.Description, out string description))
+                {
+                    TextBox_Description.Text = description;
                 }
 
                 if (internalCondition.TryGetValue(InternalConditionParameter.AreaPerPerson, out @double) && !double.IsNaN(@double))
@@ -608,6 +619,15 @@ namespace SAM.Analytical.Windows.Controls
                 result.RemoveValue(InternalConditionParameter.Color);
             }
 
+            string description = TextBox_Description.Text;
+            if(string.IsNullOrEmpty(description))
+            {
+                result.RemoveValue(InternalConditionParameter.Description);
+            }
+            else
+            {
+                result.SetValue(InternalConditionParameter.Description, description);
+            }
 
             double @double;
 
@@ -1339,6 +1359,10 @@ namespace SAM.Analytical.Windows.Controls
                     }
                 }
             }
+            else
+            {
+                TextBox_Occupancy.Enabled = false;
+            }
 
 
             TextBox_AreaPerPerson.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
@@ -1358,6 +1382,7 @@ namespace SAM.Analytical.Windows.Controls
             TextBox_Lighting_Gain.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
             TextBox_Lighting_GainPerArea.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
             TextBox_Lighting_Level.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
+            TextBox_Occupancy.KeyPress += new KeyPressEventHandler(Core.Windows.EventHandler.ControlText_NumberOnly);
 
 
             TextBox_Name.TextChanged += TextBox_TextChanged;

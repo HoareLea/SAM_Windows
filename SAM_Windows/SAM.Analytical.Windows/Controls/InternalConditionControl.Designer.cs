@@ -40,7 +40,7 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Infiltration_ProfileGuid = new System.Windows.Forms.TextBox();
             this.Label_Infiltration = new System.Windows.Forms.Label();
             this.TextBox_Infiltration = new System.Windows.Forms.TextBox();
-            this.GroupBox_Occupancy = new System.Windows.Forms.GroupBox();
+            this.GroupBox_OccupancyProfile = new System.Windows.Forms.GroupBox();
             this.Button_OccupancyProfile_View = new System.Windows.Forms.Button();
             this.Button_OccupancyProfile = new System.Windows.Forms.Button();
             this.Label_Occupancy_LatentGain_Wp = new System.Windows.Forms.Label();
@@ -186,8 +186,11 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Occupancy = new System.Windows.Forms.Label();
             this.TextBox_Occupancy = new System.Windows.Forms.TextBox();
             this.toolTip_Main = new System.Windows.Forms.ToolTip(this.components);
+            this.GroupBox_Occupancy = new System.Windows.Forms.GroupBox();
+            this.Label_Description = new System.Windows.Forms.Label();
+            this.TextBox_Description = new System.Windows.Forms.TextBox();
             this.GroupBox_Infiltration.SuspendLayout();
-            this.GroupBox_Occupancy.SuspendLayout();
+            this.GroupBox_OccupancyProfile.SuspendLayout();
             this.GroupBox_EquipmentLatent.SuspendLayout();
             this.GroupBox_Equipment_Sensible.SuspendLayout();
             this.GroupBox_Lighting.SuspendLayout();
@@ -202,6 +205,7 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Systems.SuspendLayout();
             this.GroupBox_ExhaustUnit.SuspendLayout();
             this.GroupBox_SupplyUnit.SuspendLayout();
+            this.GroupBox_Occupancy.SuspendLayout();
             this.SuspendLayout();
             // 
             // GroupBox_Infiltration
@@ -216,7 +220,7 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Infiltration.Controls.Add(this.Label_Infiltration);
             this.GroupBox_Infiltration.Controls.Add(this.TextBox_Infiltration);
             this.GroupBox_Infiltration.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox_Infiltration.Location = new System.Drawing.Point(6, 607);
+            this.GroupBox_Infiltration.Location = new System.Drawing.Point(4, 535);
             this.GroupBox_Infiltration.Name = "GroupBox_Infiltration";
             this.GroupBox_Infiltration.Size = new System.Drawing.Size(417, 128);
             this.GroupBox_Infiltration.TabIndex = 0;
@@ -241,7 +245,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Infiltration_Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Infiltration_Unit.Location = new System.Drawing.Point(178, 88);
             this.Label_Infiltration_Unit.Name = "Label_Infiltration_Unit";
-            this.Label_Infiltration_Unit.Size = new System.Drawing.Size(44, 17);
+            this.Label_Infiltration_Unit.Size = new System.Drawing.Size(43, 16);
             this.Label_Infiltration_Unit.TabIndex = 23;
             this.Label_Infiltration_Unit.Text = "[ACH]";
             // 
@@ -262,7 +266,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Infiltartion_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Infiltartion_ProfileName.Location = new System.Drawing.Point(8, 32);
             this.Label_Infiltartion_ProfileName.Name = "Label_Infiltartion_ProfileName";
-            this.Label_Infiltartion_ProfileName.Size = new System.Drawing.Size(49, 17);
+            this.Label_Infiltartion_ProfileName.Size = new System.Drawing.Size(47, 16);
             this.Label_Infiltartion_ProfileName.TabIndex = 2;
             this.Label_Infiltartion_ProfileName.Text = "Name:";
             // 
@@ -285,7 +289,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Infiltration_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Infiltration_ProfileGuid.Location = new System.Drawing.Point(8, 60);
             this.Label_Infiltration_ProfileGuid.Name = "Label_Infiltration_ProfileGuid";
-            this.Label_Infiltration_ProfileGuid.Size = new System.Drawing.Size(42, 17);
+            this.Label_Infiltration_ProfileGuid.Size = new System.Drawing.Size(38, 16);
             this.Label_Infiltration_ProfileGuid.TabIndex = 2;
             this.Label_Infiltration_ProfileGuid.Text = "Guid:";
             // 
@@ -308,7 +312,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Infiltration.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Infiltration.Location = new System.Drawing.Point(8, 88);
             this.Label_Infiltration.Name = "Label_Infiltration";
-            this.Label_Infiltration.Size = new System.Drawing.Size(73, 17);
+            this.Label_Infiltration.Size = new System.Drawing.Size(65, 16);
             this.Label_Infiltration.TabIndex = 1;
             this.Label_Infiltration.Text = "Infiltration:";
             // 
@@ -322,31 +326,31 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Infiltration.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Infiltration.TabIndex = 15;
             // 
-            // GroupBox_Occupancy
+            // GroupBox_OccupancyProfile
             // 
-            this.GroupBox_Occupancy.Controls.Add(this.Button_OccupancyProfile_View);
-            this.GroupBox_Occupancy.Controls.Add(this.Button_OccupancyProfile);
-            this.GroupBox_Occupancy.Controls.Add(this.Label_Occupancy_LatentGain_Wp);
-            this.GroupBox_Occupancy.Controls.Add(this.Label_Occupancy_SensibleGain_Wp);
-            this.GroupBox_Occupancy.Controls.Add(this.Label_Occupancy_LatentGain_W);
-            this.GroupBox_Occupancy.Controls.Add(this.TextBox_Occupancy_LatentGainPerPerson);
-            this.GroupBox_Occupancy.Controls.Add(this.TextBox_Occupancy_SensibleGainPerPerson);
-            this.GroupBox_Occupancy.Controls.Add(this.Label_Occupancy_SensibleGain_W);
-            this.GroupBox_Occupancy.Controls.Add(this.Label_Occupancy_ProfileName);
-            this.GroupBox_Occupancy.Controls.Add(this.TextBox_Occupancy_ProfileName);
-            this.GroupBox_Occupancy.Controls.Add(this.Label_Occupancy_ProfileGuid);
-            this.GroupBox_Occupancy.Controls.Add(this.TextBox_Occupancy_ProfileGuid);
-            this.GroupBox_Occupancy.Controls.Add(this.Label_LatentGain);
-            this.GroupBox_Occupancy.Controls.Add(this.Label_Occupancy_SensibleGain);
-            this.GroupBox_Occupancy.Controls.Add(this.TextBox_Occupancy_LatentGain_Calculated);
-            this.GroupBox_Occupancy.Controls.Add(this.TextBox_Occupancy_SensibleGain_Calculated);
-            this.GroupBox_Occupancy.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox_Occupancy.Location = new System.Drawing.Point(6, 196);
-            this.GroupBox_Occupancy.Name = "GroupBox_Occupancy";
-            this.GroupBox_Occupancy.Size = new System.Drawing.Size(417, 149);
-            this.GroupBox_Occupancy.TabIndex = 4;
-            this.GroupBox_Occupancy.TabStop = false;
-            this.GroupBox_Occupancy.Text = "Occupancy Profile";
+            this.GroupBox_OccupancyProfile.Controls.Add(this.Button_OccupancyProfile_View);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.Button_OccupancyProfile);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.Label_Occupancy_LatentGain_Wp);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.Label_Occupancy_SensibleGain_Wp);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.Label_Occupancy_LatentGain_W);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.TextBox_Occupancy_LatentGainPerPerson);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.TextBox_Occupancy_SensibleGainPerPerson);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.Label_Occupancy_SensibleGain_W);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.Label_Occupancy_ProfileName);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.TextBox_Occupancy_ProfileName);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.Label_Occupancy_ProfileGuid);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.TextBox_Occupancy_ProfileGuid);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.Label_LatentGain);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.Label_Occupancy_SensibleGain);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.TextBox_Occupancy_LatentGain_Calculated);
+            this.GroupBox_OccupancyProfile.Controls.Add(this.TextBox_Occupancy_SensibleGain_Calculated);
+            this.GroupBox_OccupancyProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBox_OccupancyProfile.Location = new System.Drawing.Point(7, 252);
+            this.GroupBox_OccupancyProfile.Name = "GroupBox_OccupancyProfile";
+            this.GroupBox_OccupancyProfile.Size = new System.Drawing.Size(417, 149);
+            this.GroupBox_OccupancyProfile.TabIndex = 4;
+            this.GroupBox_OccupancyProfile.TabStop = false;
+            this.GroupBox_OccupancyProfile.Text = "Occupancy Profile";
             // 
             // Button_OccupancyProfile_View
             // 
@@ -377,7 +381,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Occupancy_LatentGain_Wp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Occupancy_LatentGain_Wp.Location = new System.Drawing.Point(175, 116);
             this.Label_Occupancy_LatentGain_Wp.Name = "Label_Occupancy_LatentGain_Wp";
-            this.Label_Occupancy_LatentGain_Wp.Size = new System.Drawing.Size(41, 17);
+            this.Label_Occupancy_LatentGain_Wp.Size = new System.Drawing.Size(40, 16);
             this.Label_Occupancy_LatentGain_Wp.TabIndex = 6;
             this.Label_Occupancy_LatentGain_Wp.Text = "[W/p]";
             // 
@@ -388,7 +392,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Occupancy_SensibleGain_Wp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Occupancy_SensibleGain_Wp.Location = new System.Drawing.Point(175, 88);
             this.Label_Occupancy_SensibleGain_Wp.Name = "Label_Occupancy_SensibleGain_Wp";
-            this.Label_Occupancy_SensibleGain_Wp.Size = new System.Drawing.Size(41, 17);
+            this.Label_Occupancy_SensibleGain_Wp.Size = new System.Drawing.Size(40, 16);
             this.Label_Occupancy_SensibleGain_Wp.TabIndex = 6;
             this.Label_Occupancy_SensibleGain_Wp.Text = "[W/p]";
             // 
@@ -398,7 +402,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Occupancy_LatentGain_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Occupancy_LatentGain_W.Location = new System.Drawing.Point(382, 116);
             this.Label_Occupancy_LatentGain_W.Name = "Label_Occupancy_LatentGain_W";
-            this.Label_Occupancy_LatentGain_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_Occupancy_LatentGain_W.Size = new System.Drawing.Size(28, 16);
             this.Label_Occupancy_LatentGain_W.TabIndex = 4;
             this.Label_Occupancy_LatentGain_W.Text = "[W]";
             // 
@@ -428,7 +432,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Occupancy_SensibleGain_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Occupancy_SensibleGain_W.Location = new System.Drawing.Point(382, 88);
             this.Label_Occupancy_SensibleGain_W.Name = "Label_Occupancy_SensibleGain_W";
-            this.Label_Occupancy_SensibleGain_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_Occupancy_SensibleGain_W.Size = new System.Drawing.Size(28, 16);
             this.Label_Occupancy_SensibleGain_W.TabIndex = 4;
             this.Label_Occupancy_SensibleGain_W.Text = "[W]";
             // 
@@ -438,7 +442,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Occupancy_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Occupancy_ProfileName.Location = new System.Drawing.Point(8, 32);
             this.Label_Occupancy_ProfileName.Name = "Label_Occupancy_ProfileName";
-            this.Label_Occupancy_ProfileName.Size = new System.Drawing.Size(49, 17);
+            this.Label_Occupancy_ProfileName.Size = new System.Drawing.Size(47, 16);
             this.Label_Occupancy_ProfileName.TabIndex = 2;
             this.Label_Occupancy_ProfileName.Text = "Name:";
             // 
@@ -461,7 +465,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Occupancy_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Occupancy_ProfileGuid.Location = new System.Drawing.Point(8, 60);
             this.Label_Occupancy_ProfileGuid.Name = "Label_Occupancy_ProfileGuid";
-            this.Label_Occupancy_ProfileGuid.Size = new System.Drawing.Size(42, 17);
+            this.Label_Occupancy_ProfileGuid.Size = new System.Drawing.Size(38, 16);
             this.Label_Occupancy_ProfileGuid.TabIndex = 2;
             this.Label_Occupancy_ProfileGuid.Text = "Guid:";
             // 
@@ -484,7 +488,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_LatentGain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_LatentGain.Location = new System.Drawing.Point(8, 116);
             this.Label_LatentGain.Name = "Label_LatentGain";
-            this.Label_LatentGain.Size = new System.Drawing.Size(86, 17);
+            this.Label_LatentGain.Size = new System.Drawing.Size(77, 16);
             this.Label_LatentGain.TabIndex = 1;
             this.Label_LatentGain.Text = "Latent Gain:";
             // 
@@ -494,7 +498,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Occupancy_SensibleGain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Occupancy_SensibleGain.Location = new System.Drawing.Point(8, 88);
             this.Label_Occupancy_SensibleGain.Name = "Label_Occupancy_SensibleGain";
-            this.Label_Occupancy_SensibleGain.Size = new System.Drawing.Size(100, 17);
+            this.Label_Occupancy_SensibleGain.Size = new System.Drawing.Size(94, 16);
             this.Label_Occupancy_SensibleGain.TabIndex = 1;
             this.Label_Occupancy_SensibleGain.Text = "Sensible Gain:";
             // 
@@ -534,7 +538,7 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_EquipmentLatent.Controls.Add(this.Label_Equipment_LatentProfileName);
             this.GroupBox_EquipmentLatent.Controls.Add(this.TextBox_Equipment_LatentGainPerArea);
             this.GroupBox_EquipmentLatent.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox_EquipmentLatent.Location = new System.Drawing.Point(428, 351);
+            this.GroupBox_EquipmentLatent.Location = new System.Drawing.Point(429, 407);
             this.GroupBox_EquipmentLatent.Name = "GroupBox_EquipmentLatent";
             this.GroupBox_EquipmentLatent.Size = new System.Drawing.Size(417, 122);
             this.GroupBox_EquipmentLatent.TabIndex = 9;
@@ -583,7 +587,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_LatentGain_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_LatentGain_W.Location = new System.Drawing.Point(282, 80);
             this.Label_Equipment_LatentGain_W.Name = "Label_Equipment_LatentGain_W";
-            this.Label_Equipment_LatentGain_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_Equipment_LatentGain_W.Size = new System.Drawing.Size(28, 16);
             this.Label_Equipment_LatentGain_W.TabIndex = 6;
             this.Label_Equipment_LatentGain_W.Text = "[W]";
             // 
@@ -604,7 +608,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_LatentGain_Wm2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_LatentGain_Wm2.Location = new System.Drawing.Point(163, 80);
             this.Label_Equipment_LatentGain_Wm2.Name = "Label_Equipment_LatentGain_Wm2";
-            this.Label_Equipment_LatentGain_Wm2.Size = new System.Drawing.Size(52, 17);
+            this.Label_Equipment_LatentGain_Wm2.Size = new System.Drawing.Size(50, 16);
             this.Label_Equipment_LatentGain_Wm2.TabIndex = 6;
             this.Label_Equipment_LatentGain_Wm2.Text = "[W/m2]";
             // 
@@ -614,7 +618,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_Latent.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_Latent.Location = new System.Drawing.Point(3, 80);
             this.Label_Equipment_Latent.Name = "Label_Equipment_Latent";
-            this.Label_Equipment_Latent.Size = new System.Drawing.Size(86, 17);
+            this.Label_Equipment_Latent.Size = new System.Drawing.Size(77, 16);
             this.Label_Equipment_Latent.TabIndex = 1;
             this.Label_Equipment_Latent.Text = "Latent Gain:";
             // 
@@ -637,7 +641,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_LatentGainCalculated_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_LatentGainCalculated_W.Location = new System.Drawing.Point(382, 80);
             this.Label_Equipment_LatentGainCalculated_W.Name = "Label_Equipment_LatentGainCalculated_W";
-            this.Label_Equipment_LatentGainCalculated_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_Equipment_LatentGainCalculated_W.Size = new System.Drawing.Size(28, 16);
             this.Label_Equipment_LatentGainCalculated_W.TabIndex = 4;
             this.Label_Equipment_LatentGainCalculated_W.Text = "[W]";
             // 
@@ -657,7 +661,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_LatentProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_LatentProfileGuid.Location = new System.Drawing.Point(3, 52);
             this.Label_Equipment_LatentProfileGuid.Name = "Label_Equipment_LatentProfileGuid";
-            this.Label_Equipment_LatentProfileGuid.Size = new System.Drawing.Size(42, 17);
+            this.Label_Equipment_LatentProfileGuid.Size = new System.Drawing.Size(38, 16);
             this.Label_Equipment_LatentProfileGuid.TabIndex = 2;
             this.Label_Equipment_LatentProfileGuid.Text = "Guid:";
             // 
@@ -667,7 +671,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_LatentProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_LatentProfileName.Location = new System.Drawing.Point(3, 24);
             this.Label_Equipment_LatentProfileName.Name = "Label_Equipment_LatentProfileName";
-            this.Label_Equipment_LatentProfileName.Size = new System.Drawing.Size(49, 17);
+            this.Label_Equipment_LatentProfileName.Size = new System.Drawing.Size(47, 16);
             this.Label_Equipment_LatentProfileName.TabIndex = 2;
             this.Label_Equipment_LatentProfileName.Text = "Name:";
             // 
@@ -697,7 +701,7 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Equipment_Sensible.Controls.Add(this.Label_Equipment_SensibleProfileName);
             this.GroupBox_Equipment_Sensible.Controls.Add(this.TextBox_Equipment_SensibleGainPerArea);
             this.GroupBox_Equipment_Sensible.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox_Equipment_Sensible.Location = new System.Drawing.Point(6, 351);
+            this.GroupBox_Equipment_Sensible.Location = new System.Drawing.Point(7, 407);
             this.GroupBox_Equipment_Sensible.Name = "GroupBox_Equipment_Sensible";
             this.GroupBox_Equipment_Sensible.Size = new System.Drawing.Size(417, 122);
             this.GroupBox_Equipment_Sensible.TabIndex = 10;
@@ -746,7 +750,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_SensibleGain_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_SensibleGain_W.Location = new System.Drawing.Point(288, 80);
             this.Label_Equipment_SensibleGain_W.Name = "Label_Equipment_SensibleGain_W";
-            this.Label_Equipment_SensibleGain_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_Equipment_SensibleGain_W.Size = new System.Drawing.Size(28, 16);
             this.Label_Equipment_SensibleGain_W.TabIndex = 6;
             this.Label_Equipment_SensibleGain_W.Text = "[W]";
             // 
@@ -767,7 +771,7 @@ namespace SAM.Analytical.Windows.Controls
             this.TextBox_Equipment_SensibleGain_Wm2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox_Equipment_SensibleGain_Wm2.Location = new System.Drawing.Point(169, 80);
             this.TextBox_Equipment_SensibleGain_Wm2.Name = "TextBox_Equipment_SensibleGain_Wm2";
-            this.TextBox_Equipment_SensibleGain_Wm2.Size = new System.Drawing.Size(52, 17);
+            this.TextBox_Equipment_SensibleGain_Wm2.Size = new System.Drawing.Size(50, 16);
             this.TextBox_Equipment_SensibleGain_Wm2.TabIndex = 6;
             this.TextBox_Equipment_SensibleGain_Wm2.Text = "[W/m2]";
             // 
@@ -777,7 +781,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_SensibleGain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_SensibleGain.Location = new System.Drawing.Point(3, 80);
             this.Label_Equipment_SensibleGain.Name = "Label_Equipment_SensibleGain";
-            this.Label_Equipment_SensibleGain.Size = new System.Drawing.Size(100, 17);
+            this.Label_Equipment_SensibleGain.Size = new System.Drawing.Size(94, 16);
             this.Label_Equipment_SensibleGain.TabIndex = 1;
             this.Label_Equipment_SensibleGain.Text = "Sensible Gain:";
             // 
@@ -810,7 +814,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_SensibleGainCalculated_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_SensibleGainCalculated_W.Location = new System.Drawing.Point(382, 80);
             this.Label_Equipment_SensibleGainCalculated_W.Name = "Label_Equipment_SensibleGainCalculated_W";
-            this.Label_Equipment_SensibleGainCalculated_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_Equipment_SensibleGainCalculated_W.Size = new System.Drawing.Size(28, 16);
             this.Label_Equipment_SensibleGainCalculated_W.TabIndex = 4;
             this.Label_Equipment_SensibleGainCalculated_W.Text = "[W]";
             // 
@@ -820,7 +824,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equimpent_SensibleProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equimpent_SensibleProfileGuid.Location = new System.Drawing.Point(3, 52);
             this.Label_Equimpent_SensibleProfileGuid.Name = "Label_Equimpent_SensibleProfileGuid";
-            this.Label_Equimpent_SensibleProfileGuid.Size = new System.Drawing.Size(42, 17);
+            this.Label_Equimpent_SensibleProfileGuid.Size = new System.Drawing.Size(38, 16);
             this.Label_Equimpent_SensibleProfileGuid.TabIndex = 2;
             this.Label_Equimpent_SensibleProfileGuid.Text = "Guid:";
             // 
@@ -830,7 +834,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Equipment_SensibleProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Equipment_SensibleProfileName.Location = new System.Drawing.Point(3, 24);
             this.Label_Equipment_SensibleProfileName.Name = "Label_Equipment_SensibleProfileName";
-            this.Label_Equipment_SensibleProfileName.Size = new System.Drawing.Size(49, 17);
+            this.Label_Equipment_SensibleProfileName.Size = new System.Drawing.Size(47, 16);
             this.Label_Equipment_SensibleProfileName.TabIndex = 2;
             this.Label_Equipment_SensibleProfileName.Text = "Name:";
             // 
@@ -863,7 +867,7 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Lighting.Controls.Add(this.TextBox_Lighting_Level);
             this.GroupBox_Lighting.Controls.Add(this.TextBox_Lighting_GainPerArea);
             this.GroupBox_Lighting.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox_Lighting.Location = new System.Drawing.Point(428, 196);
+            this.GroupBox_Lighting.Location = new System.Drawing.Point(429, 252);
             this.GroupBox_Lighting.Name = "GroupBox_Lighting";
             this.GroupBox_Lighting.Size = new System.Drawing.Size(417, 149);
             this.GroupBox_Lighting.TabIndex = 11;
@@ -898,7 +902,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Lighting_Level.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Lighting_Level.Location = new System.Drawing.Point(3, 111);
             this.Label_Lighting_Level.Name = "Label_Lighting_Level";
-            this.Label_Lighting_Level.Size = new System.Drawing.Size(100, 17);
+            this.Label_Lighting_Level.Size = new System.Drawing.Size(92, 16);
             this.Label_Lighting_Level.TabIndex = 7;
             this.Label_Lighting_Level.Text = "Lighting Level:";
             // 
@@ -941,7 +945,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Lighting_GainPerArea_Wm2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Lighting_GainPerArea_Wm2.Location = new System.Drawing.Point(172, 80);
             this.Label_Lighting_GainPerArea_Wm2.Name = "Label_Lighting_GainPerArea_Wm2";
-            this.Label_Lighting_GainPerArea_Wm2.Size = new System.Drawing.Size(52, 17);
+            this.Label_Lighting_GainPerArea_Wm2.Size = new System.Drawing.Size(50, 16);
             this.Label_Lighting_GainPerArea_Wm2.TabIndex = 6;
             this.Label_Lighting_GainPerArea_Wm2.Text = "[W/m2]";
             // 
@@ -952,7 +956,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Lighting_Level_Lux.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Lighting_Level_Lux.Location = new System.Drawing.Point(170, 111);
             this.Label_Lighting_Level_Lux.Name = "Label_Lighting_Level_Lux";
-            this.Label_Lighting_Level_Lux.Size = new System.Drawing.Size(33, 17);
+            this.Label_Lighting_Level_Lux.Size = new System.Drawing.Size(31, 16);
             this.Label_Lighting_Level_Lux.TabIndex = 6;
             this.Label_Lighting_Level_Lux.Text = "[lux]";
             // 
@@ -962,7 +966,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_LightingGain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_LightingGain.Location = new System.Drawing.Point(3, 80);
             this.Label_LightingGain.Name = "Label_LightingGain";
-            this.Label_LightingGain.Size = new System.Drawing.Size(96, 17);
+            this.Label_LightingGain.Size = new System.Drawing.Size(87, 16);
             this.Label_LightingGain.TabIndex = 1;
             this.Label_LightingGain.Text = "Lighting Gain:";
             // 
@@ -972,7 +976,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Lighting_GainCalculated_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Lighting_GainCalculated_W.Location = new System.Drawing.Point(385, 80);
             this.Label_Lighting_GainCalculated_W.Name = "Label_Lighting_GainCalculated_W";
-            this.Label_Lighting_GainCalculated_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_Lighting_GainCalculated_W.Size = new System.Drawing.Size(28, 16);
             this.Label_Lighting_GainCalculated_W.TabIndex = 4;
             this.Label_Lighting_GainCalculated_W.Text = "[W]";
             // 
@@ -995,7 +999,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_LightingGain_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_LightingGain_W.Location = new System.Drawing.Point(292, 80);
             this.Label_LightingGain_W.Name = "Label_LightingGain_W";
-            this.Label_LightingGain_W.Size = new System.Drawing.Size(29, 17);
+            this.Label_LightingGain_W.Size = new System.Drawing.Size(28, 16);
             this.Label_LightingGain_W.TabIndex = 4;
             this.Label_LightingGain_W.Text = "[W]";
             // 
@@ -1005,7 +1009,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Lighting_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Lighting_ProfileGuid.Location = new System.Drawing.Point(3, 52);
             this.Label_Lighting_ProfileGuid.Name = "Label_Lighting_ProfileGuid";
-            this.Label_Lighting_ProfileGuid.Size = new System.Drawing.Size(42, 17);
+            this.Label_Lighting_ProfileGuid.Size = new System.Drawing.Size(38, 16);
             this.Label_Lighting_ProfileGuid.TabIndex = 2;
             this.Label_Lighting_ProfileGuid.Text = "Guid:";
             // 
@@ -1015,7 +1019,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Lighting_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Lighting_ProfileName.Location = new System.Drawing.Point(3, 24);
             this.Label_Lighting_ProfileName.Name = "Label_Lighting_ProfileName";
-            this.Label_Lighting_ProfileName.Size = new System.Drawing.Size(49, 17);
+            this.Label_Lighting_ProfileName.Size = new System.Drawing.Size(47, 16);
             this.Label_Lighting_ProfileName.TabIndex = 2;
             this.Label_Lighting_ProfileName.Text = "Name:";
             // 
@@ -1050,9 +1054,9 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Heating.Controls.Add(this.Label_Heating_DesignTemperature);
             this.GroupBox_Heating.Controls.Add(this.TextBox_Heating_DesignTemperature);
             this.GroupBox_Heating.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox_Heating.Location = new System.Drawing.Point(6, 62);
+            this.GroupBox_Heating.Location = new System.Drawing.Point(7, 124);
             this.GroupBox_Heating.Name = "GroupBox_Heating";
-            this.GroupBox_Heating.Size = new System.Drawing.Size(417, 128);
+            this.GroupBox_Heating.Size = new System.Drawing.Size(417, 122);
             this.GroupBox_Heating.TabIndex = 12;
             this.GroupBox_Heating.TabStop = false;
             this.GroupBox_Heating.Text = "Heating Profile";
@@ -1086,7 +1090,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Heating_DesignTemperature_C.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Heating_DesignTemperature_C.Location = new System.Drawing.Point(217, 88);
             this.Label_Heating_DesignTemperature_C.Name = "Label_Heating_DesignTemperature_C";
-            this.Label_Heating_DesignTemperature_C.Size = new System.Drawing.Size(25, 17);
+            this.Label_Heating_DesignTemperature_C.Size = new System.Drawing.Size(24, 16);
             this.Label_Heating_DesignTemperature_C.TabIndex = 7;
             this.Label_Heating_DesignTemperature_C.Text = "[C]";
             // 
@@ -1096,7 +1100,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Heating_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Heating_ProfileName.Location = new System.Drawing.Point(8, 32);
             this.Label_Heating_ProfileName.Name = "Label_Heating_ProfileName";
-            this.Label_Heating_ProfileName.Size = new System.Drawing.Size(49, 17);
+            this.Label_Heating_ProfileName.Size = new System.Drawing.Size(47, 16);
             this.Label_Heating_ProfileName.TabIndex = 2;
             this.Label_Heating_ProfileName.Text = "Name:";
             // 
@@ -1119,7 +1123,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Heating_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Heating_ProfileGuid.Location = new System.Drawing.Point(8, 60);
             this.Label_Heating_ProfileGuid.Name = "Label_Heating_ProfileGuid";
-            this.Label_Heating_ProfileGuid.Size = new System.Drawing.Size(42, 17);
+            this.Label_Heating_ProfileGuid.Size = new System.Drawing.Size(38, 16);
             this.Label_Heating_ProfileGuid.TabIndex = 2;
             this.Label_Heating_ProfileGuid.Text = "Guid:";
             // 
@@ -1142,7 +1146,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Heating_DesignTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Heating_DesignTemperature.Location = new System.Drawing.Point(8, 88);
             this.Label_Heating_DesignTemperature.Name = "Label_Heating_DesignTemperature";
-            this.Label_Heating_DesignTemperature.Size = new System.Drawing.Size(142, 17);
+            this.Label_Heating_DesignTemperature.Size = new System.Drawing.Size(134, 16);
             this.Label_Heating_DesignTemperature.TabIndex = 1;
             this.Label_Heating_DesignTemperature.Text = "Design Temperature:";
             // 
@@ -1171,7 +1175,7 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Cooling.Controls.Add(this.Label_Cooling_DesignTemperature);
             this.GroupBox_Cooling.Controls.Add(this.TextBox_Cooling_DesignTemperature);
             this.GroupBox_Cooling.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox_Cooling.Location = new System.Drawing.Point(428, 68);
+            this.GroupBox_Cooling.Location = new System.Drawing.Point(429, 124);
             this.GroupBox_Cooling.Name = "GroupBox_Cooling";
             this.GroupBox_Cooling.Size = new System.Drawing.Size(417, 122);
             this.GroupBox_Cooling.TabIndex = 13;
@@ -1207,7 +1211,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Cooling_DesignTemperature_C.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Cooling_DesignTemperature_C.Location = new System.Drawing.Point(220, 88);
             this.Label_Cooling_DesignTemperature_C.Name = "Label_Cooling_DesignTemperature_C";
-            this.Label_Cooling_DesignTemperature_C.Size = new System.Drawing.Size(25, 17);
+            this.Label_Cooling_DesignTemperature_C.Size = new System.Drawing.Size(24, 16);
             this.Label_Cooling_DesignTemperature_C.TabIndex = 7;
             this.Label_Cooling_DesignTemperature_C.Text = "[C]";
             // 
@@ -1217,7 +1221,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Cooling_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Cooling_ProfileName.Location = new System.Drawing.Point(8, 32);
             this.Label_Cooling_ProfileName.Name = "Label_Cooling_ProfileName";
-            this.Label_Cooling_ProfileName.Size = new System.Drawing.Size(49, 17);
+            this.Label_Cooling_ProfileName.Size = new System.Drawing.Size(47, 16);
             this.Label_Cooling_ProfileName.TabIndex = 2;
             this.Label_Cooling_ProfileName.Text = "Name:";
             // 
@@ -1240,7 +1244,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Cooling_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Cooling_ProfileGuid.Location = new System.Drawing.Point(8, 60);
             this.Label_Cooling_ProfileGuid.Name = "Label_Cooling_ProfileGuid";
-            this.Label_Cooling_ProfileGuid.Size = new System.Drawing.Size(42, 17);
+            this.Label_Cooling_ProfileGuid.Size = new System.Drawing.Size(38, 16);
             this.Label_Cooling_ProfileGuid.TabIndex = 2;
             this.Label_Cooling_ProfileGuid.Text = "Guid:";
             // 
@@ -1263,7 +1267,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Cooling_DesignTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Cooling_DesignTemperature.Location = new System.Drawing.Point(8, 88);
             this.Label_Cooling_DesignTemperature.Name = "Label_Cooling_DesignTemperature";
-            this.Label_Cooling_DesignTemperature.Size = new System.Drawing.Size(142, 17);
+            this.Label_Cooling_DesignTemperature.Size = new System.Drawing.Size(134, 16);
             this.Label_Cooling_DesignTemperature.TabIndex = 1;
             this.Label_Cooling_DesignTemperature.Text = "Design Temperature:";
             // 
@@ -1292,7 +1296,7 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Humidity.Controls.Add(this.Label_Humidity);
             this.GroupBox_Humidity.Controls.Add(this.TextBox_Humidity);
             this.GroupBox_Humidity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox_Humidity.Location = new System.Drawing.Point(6, 479);
+            this.GroupBox_Humidity.Location = new System.Drawing.Point(7, 669);
             this.GroupBox_Humidity.Name = "GroupBox_Humidity";
             this.GroupBox_Humidity.Size = new System.Drawing.Size(417, 122);
             this.GroupBox_Humidity.TabIndex = 14;
@@ -1328,7 +1332,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Humidity_Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Humidity_Unit.Location = new System.Drawing.Point(178, 88);
             this.Label_Humidity_Unit.Name = "Label_Humidity_Unit";
-            this.Label_Humidity_Unit.Size = new System.Drawing.Size(21, 17);
+            this.Label_Humidity_Unit.Size = new System.Drawing.Size(19, 16);
             this.Label_Humidity_Unit.TabIndex = 7;
             this.Label_Humidity_Unit.Text = "[-]";
             // 
@@ -1338,7 +1342,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Humidity_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Humidity_ProfileName.Location = new System.Drawing.Point(8, 32);
             this.Label_Humidity_ProfileName.Name = "Label_Humidity_ProfileName";
-            this.Label_Humidity_ProfileName.Size = new System.Drawing.Size(49, 17);
+            this.Label_Humidity_ProfileName.Size = new System.Drawing.Size(47, 16);
             this.Label_Humidity_ProfileName.TabIndex = 2;
             this.Label_Humidity_ProfileName.Text = "Name:";
             // 
@@ -1361,7 +1365,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Humidity_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Humidity_ProfileGuid.Location = new System.Drawing.Point(8, 60);
             this.Label_Humidity_ProfileGuid.Name = "Label_Humidity_ProfileGuid";
-            this.Label_Humidity_ProfileGuid.Size = new System.Drawing.Size(42, 17);
+            this.Label_Humidity_ProfileGuid.Size = new System.Drawing.Size(38, 16);
             this.Label_Humidity_ProfileGuid.TabIndex = 2;
             this.Label_Humidity_ProfileGuid.Text = "Guid:";
             // 
@@ -1384,7 +1388,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Humidity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Humidity.Location = new System.Drawing.Point(8, 88);
             this.Label_Humidity.Name = "Label_Humidity";
-            this.Label_Humidity.Size = new System.Drawing.Size(66, 17);
+            this.Label_Humidity.Size = new System.Drawing.Size(62, 16);
             this.Label_Humidity.TabIndex = 1;
             this.Label_Humidity.Text = "Humidity:";
             // 
@@ -1413,7 +1417,7 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Dehumidification.Controls.Add(this.Label_Dehumidity);
             this.GroupBox_Dehumidification.Controls.Add(this.TextBox_Dehumidity);
             this.GroupBox_Dehumidification.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox_Dehumidification.Location = new System.Drawing.Point(428, 479);
+            this.GroupBox_Dehumidification.Location = new System.Drawing.Point(429, 535);
             this.GroupBox_Dehumidification.Name = "GroupBox_Dehumidification";
             this.GroupBox_Dehumidification.Size = new System.Drawing.Size(417, 122);
             this.GroupBox_Dehumidification.TabIndex = 15;
@@ -1449,7 +1453,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Dehumidity_Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Dehumidity_Unit.Location = new System.Drawing.Point(168, 88);
             this.Label_Dehumidity_Unit.Name = "Label_Dehumidity_Unit";
-            this.Label_Dehumidity_Unit.Size = new System.Drawing.Size(21, 17);
+            this.Label_Dehumidity_Unit.Size = new System.Drawing.Size(19, 16);
             this.Label_Dehumidity_Unit.TabIndex = 7;
             this.Label_Dehumidity_Unit.Text = "[-]";
             // 
@@ -1459,7 +1463,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Dehumidity_ProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Dehumidity_ProfileName.Location = new System.Drawing.Point(8, 32);
             this.Label_Dehumidity_ProfileName.Name = "Label_Dehumidity_ProfileName";
-            this.Label_Dehumidity_ProfileName.Size = new System.Drawing.Size(49, 17);
+            this.Label_Dehumidity_ProfileName.Size = new System.Drawing.Size(47, 16);
             this.Label_Dehumidity_ProfileName.TabIndex = 2;
             this.Label_Dehumidity_ProfileName.Text = "Name:";
             // 
@@ -1482,7 +1486,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Dehumidity_ProfileGuid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Dehumidity_ProfileGuid.Location = new System.Drawing.Point(8, 60);
             this.Label_Dehumidity_ProfileGuid.Name = "Label_Dehumidity_ProfileGuid";
-            this.Label_Dehumidity_ProfileGuid.Size = new System.Drawing.Size(42, 17);
+            this.Label_Dehumidity_ProfileGuid.Size = new System.Drawing.Size(38, 16);
             this.Label_Dehumidity_ProfileGuid.TabIndex = 2;
             this.Label_Dehumidity_ProfileGuid.Text = "Guid:";
             // 
@@ -1505,7 +1509,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_Dehumidity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Dehumidity.Location = new System.Drawing.Point(8, 88);
             this.Label_Dehumidity.Name = "Label_Dehumidity";
-            this.Label_Dehumidity.Size = new System.Drawing.Size(82, 17);
+            this.Label_Dehumidity.Size = new System.Drawing.Size(77, 16);
             this.Label_Dehumidity.TabIndex = 1;
             this.Label_Dehumidity.Text = "Dehumidity:";
             // 
@@ -1528,7 +1532,7 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_SystemTypes.Controls.Add(this.GroupBox_HeatingSystem);
             this.GroupBox_SystemTypes.Controls.Add(this.GroupBox_VentilationSystem);
             this.GroupBox_SystemTypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox_SystemTypes.Location = new System.Drawing.Point(851, 62);
+            this.GroupBox_SystemTypes.Location = new System.Drawing.Point(852, 9);
             this.GroupBox_SystemTypes.Name = "GroupBox_SystemTypes";
             this.GroupBox_SystemTypes.Size = new System.Drawing.Size(416, 395);
             this.GroupBox_SystemTypes.TabIndex = 16;
@@ -1579,7 +1583,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_CoolingSystem_Guid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_CoolingSystem_Guid.Location = new System.Drawing.Point(10, 62);
             this.Label_CoolingSystem_Guid.Name = "Label_CoolingSystem_Guid";
-            this.Label_CoolingSystem_Guid.Size = new System.Drawing.Size(42, 17);
+            this.Label_CoolingSystem_Guid.Size = new System.Drawing.Size(38, 16);
             this.Label_CoolingSystem_Guid.TabIndex = 6;
             this.Label_CoolingSystem_Guid.Text = "Guid:";
             // 
@@ -1602,7 +1606,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_CoolingSystem_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_CoolingSystem_Name.Location = new System.Drawing.Point(10, 34);
             this.Label_CoolingSystem_Name.Name = "Label_CoolingSystem_Name";
-            this.Label_CoolingSystem_Name.Size = new System.Drawing.Size(49, 17);
+            this.Label_CoolingSystem_Name.Size = new System.Drawing.Size(47, 16);
             this.Label_CoolingSystem_Name.TabIndex = 4;
             this.Label_CoolingSystem_Name.Text = "Name:";
             // 
@@ -1650,7 +1654,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_HeatingSystem_Guid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_HeatingSystem_Guid.Location = new System.Drawing.Point(10, 62);
             this.Label_HeatingSystem_Guid.Name = "Label_HeatingSystem_Guid";
-            this.Label_HeatingSystem_Guid.Size = new System.Drawing.Size(42, 17);
+            this.Label_HeatingSystem_Guid.Size = new System.Drawing.Size(38, 16);
             this.Label_HeatingSystem_Guid.TabIndex = 6;
             this.Label_HeatingSystem_Guid.Text = "Guid:";
             // 
@@ -1673,7 +1677,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_HeatingSystem_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_HeatingSystem_Name.Location = new System.Drawing.Point(10, 34);
             this.Label_HeatingSystem_Name.Name = "Label_HeatingSystem_Name";
-            this.Label_HeatingSystem_Name.Size = new System.Drawing.Size(49, 17);
+            this.Label_HeatingSystem_Name.Size = new System.Drawing.Size(47, 16);
             this.Label_HeatingSystem_Name.TabIndex = 4;
             this.Label_HeatingSystem_Name.Text = "Name:";
             // 
@@ -1721,7 +1725,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_VentilationSystem_Guid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_VentilationSystem_Guid.Location = new System.Drawing.Point(10, 62);
             this.Label_VentilationSystem_Guid.Name = "Label_VentilationSystem_Guid";
-            this.Label_VentilationSystem_Guid.Size = new System.Drawing.Size(42, 17);
+            this.Label_VentilationSystem_Guid.Size = new System.Drawing.Size(38, 16);
             this.Label_VentilationSystem_Guid.TabIndex = 6;
             this.Label_VentilationSystem_Guid.Text = "Guid:";
             // 
@@ -1744,7 +1748,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_VentilationSystem_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_VentilationSystem_Name.Location = new System.Drawing.Point(10, 34);
             this.Label_VentilationSystem_Name.Name = "Label_VentilationSystem_Name";
-            this.Label_VentilationSystem_Name.Size = new System.Drawing.Size(49, 17);
+            this.Label_VentilationSystem_Name.Size = new System.Drawing.Size(47, 16);
             this.Label_VentilationSystem_Name.TabIndex = 4;
             this.Label_VentilationSystem_Name.Text = "Name:";
             // 
@@ -1753,9 +1757,9 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_Systems.Controls.Add(this.GroupBox_ExhaustUnit);
             this.GroupBox_Systems.Controls.Add(this.GroupBox_SupplyUnit);
             this.GroupBox_Systems.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox_Systems.Location = new System.Drawing.Point(851, 463);
+            this.GroupBox_Systems.Location = new System.Drawing.Point(852, 410);
             this.GroupBox_Systems.Name = "GroupBox_Systems";
-            this.GroupBox_Systems.Size = new System.Drawing.Size(416, 258);
+            this.GroupBox_Systems.Size = new System.Drawing.Size(416, 381);
             this.GroupBox_Systems.TabIndex = 17;
             this.GroupBox_Systems.TabStop = false;
             this.GroupBox_Systems.Text = "Systems";
@@ -1793,7 +1797,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_ExhaustUnit_AirFlow.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_ExhaustUnit_AirFlow.Location = new System.Drawing.Point(10, 62);
             this.Label_ExhaustUnit_AirFlow.Name = "Label_ExhaustUnit_AirFlow";
-            this.Label_ExhaustUnit_AirFlow.Size = new System.Drawing.Size(61, 17);
+            this.Label_ExhaustUnit_AirFlow.Size = new System.Drawing.Size(57, 16);
             this.Label_ExhaustUnit_AirFlow.TabIndex = 6;
             this.Label_ExhaustUnit_AirFlow.Text = "Air Flow:";
             // 
@@ -1816,7 +1820,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label__ExhaustUnit_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label__ExhaustUnit_Name.Location = new System.Drawing.Point(10, 34);
             this.Label__ExhaustUnit_Name.Name = "Label__ExhaustUnit_Name";
-            this.Label__ExhaustUnit_Name.Size = new System.Drawing.Size(49, 17);
+            this.Label__ExhaustUnit_Name.Size = new System.Drawing.Size(47, 16);
             this.Label__ExhaustUnit_Name.TabIndex = 4;
             this.Label__ExhaustUnit_Name.Text = "Name:";
             // 
@@ -1853,7 +1857,7 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_SupplyUnit_AirFlow.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_SupplyUnit_AirFlow.Location = new System.Drawing.Point(10, 62);
             this.Label_SupplyUnit_AirFlow.Name = "Label_SupplyUnit_AirFlow";
-            this.Label_SupplyUnit_AirFlow.Size = new System.Drawing.Size(61, 17);
+            this.Label_SupplyUnit_AirFlow.Size = new System.Drawing.Size(57, 16);
             this.Label_SupplyUnit_AirFlow.TabIndex = 6;
             this.Label_SupplyUnit_AirFlow.Text = "Air Flow:";
             // 
@@ -1876,16 +1880,16 @@ namespace SAM.Analytical.Windows.Controls
             this.Label_SupplyUnit_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_SupplyUnit_Name.Location = new System.Drawing.Point(10, 34);
             this.Label_SupplyUnit_Name.Name = "Label_SupplyUnit_Name";
-            this.Label_SupplyUnit_Name.Size = new System.Drawing.Size(49, 17);
+            this.Label_SupplyUnit_Name.Size = new System.Drawing.Size(47, 16);
             this.Label_SupplyUnit_Name.TabIndex = 4;
             this.Label_SupplyUnit_Name.Text = "Name:";
             // 
             // Button_Select
             // 
             this.Button_Select.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_Select.Location = new System.Drawing.Point(6, 34);
+            this.Button_Select.Location = new System.Drawing.Point(94, 34);
             this.Button_Select.Name = "Button_Select";
-            this.Button_Select.Size = new System.Drawing.Size(75, 23);
+            this.Button_Select.Size = new System.Drawing.Size(80, 23);
             this.Button_Select.TabIndex = 1;
             this.Button_Select.Text = "Select";
             this.Button_Select.UseVisualStyleBackColor = true;
@@ -1895,26 +1899,26 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.Label_internalCondition_Name.AutoSize = true;
             this.Label_internalCondition_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_internalCondition_Name.Location = new System.Drawing.Point(3, 9);
+            this.Label_internalCondition_Name.Location = new System.Drawing.Point(41, 9);
             this.Label_internalCondition_Name.Name = "Label_internalCondition_Name";
-            this.Label_internalCondition_Name.Size = new System.Drawing.Size(163, 17);
+            this.Label_internalCondition_Name.Size = new System.Drawing.Size(47, 16);
             this.Label_internalCondition_Name.TabIndex = 19;
-            this.Label_internalCondition_Name.Text = "Internal Condition Name:";
+            this.Label_internalCondition_Name.Text = "Name:";
             // 
             // TextBox_Name
             // 
             this.TextBox_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Name.Location = new System.Drawing.Point(172, 6);
+            this.TextBox_Name.Location = new System.Drawing.Point(94, 6);
             this.TextBox_Name.Name = "TextBox_Name";
-            this.TextBox_Name.Size = new System.Drawing.Size(213, 22);
+            this.TextBox_Name.Size = new System.Drawing.Size(260, 22);
             this.TextBox_Name.TabIndex = 0;
             // 
             // Button_Create
             // 
             this.Button_Create.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_Create.Location = new System.Drawing.Point(87, 33);
+            this.Button_Create.Location = new System.Drawing.Point(184, 34);
             this.Button_Create.Name = "Button_Create";
-            this.Button_Create.Size = new System.Drawing.Size(75, 23);
+            this.Button_Create.Size = new System.Drawing.Size(80, 23);
             this.Button_Create.TabIndex = 2;
             this.Button_Create.Text = "Create";
             this.Button_Create.UseVisualStyleBackColor = true;
@@ -1923,16 +1927,16 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.Label_AreaPerPerson.AutoSize = true;
             this.Label_AreaPerPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_AreaPerPerson.Location = new System.Drawing.Point(439, 9);
+            this.Label_AreaPerPerson.Location = new System.Drawing.Point(9, 31);
             this.Label_AreaPerPerson.Name = "Label_AreaPerPerson";
-            this.Label_AreaPerPerson.Size = new System.Drawing.Size(117, 17);
+            this.Label_AreaPerPerson.Size = new System.Drawing.Size(109, 16);
             this.Label_AreaPerPerson.TabIndex = 23;
             this.Label_AreaPerPerson.Text = "Area Per Person:";
             // 
             // TextBox_AreaPerPerson
             // 
             this.TextBox_AreaPerPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_AreaPerPerson.Location = new System.Drawing.Point(558, 6);
+            this.TextBox_AreaPerPerson.Location = new System.Drawing.Point(128, 28);
             this.TextBox_AreaPerPerson.Name = "TextBox_AreaPerPerson";
             this.TextBox_AreaPerPerson.Size = new System.Drawing.Size(55, 22);
             this.TextBox_AreaPerPerson.TabIndex = 3;
@@ -1942,18 +1946,18 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.Label_AreaPerPerson_Unit.AutoSize = true;
             this.Label_AreaPerPerson_Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_AreaPerPerson_Unit.Location = new System.Drawing.Point(619, 9);
+            this.Label_AreaPerPerson_Unit.Location = new System.Drawing.Point(189, 31);
             this.Label_AreaPerPerson_Unit.Name = "Label_AreaPerPerson_Unit";
-            this.Label_AreaPerPerson_Unit.Size = new System.Drawing.Size(47, 17);
+            this.Label_AreaPerPerson_Unit.Size = new System.Drawing.Size(45, 16);
             this.Label_AreaPerPerson_Unit.TabIndex = 25;
             this.Label_AreaPerPerson_Unit.Text = "[m2/p]";
             // 
             // Button_Reset
             // 
             this.Button_Reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_Reset.Location = new System.Drawing.Point(168, 34);
+            this.Button_Reset.Location = new System.Drawing.Point(273, 33);
             this.Button_Reset.Name = "Button_Reset";
-            this.Button_Reset.Size = new System.Drawing.Size(75, 23);
+            this.Button_Reset.Size = new System.Drawing.Size(80, 23);
             this.Button_Reset.TabIndex = 26;
             this.Button_Reset.Text = "Reset";
             this.Button_Reset.UseVisualStyleBackColor = true;
@@ -1963,9 +1967,9 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.Label_Color.AutoSize = true;
             this.Label_Color.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Color.Location = new System.Drawing.Point(720, 9);
+            this.Label_Color.Location = new System.Drawing.Point(45, 66);
             this.Label_Color.Name = "Label_Color";
-            this.Label_Color.Size = new System.Drawing.Size(45, 17);
+            this.Label_Color.Size = new System.Drawing.Size(42, 16);
             this.Label_Color.TabIndex = 27;
             this.Label_Color.Text = "Color:";
             // 
@@ -1973,9 +1977,9 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.Button_Color.BackColor = System.Drawing.Color.Transparent;
             this.Button_Color.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button_Color.Location = new System.Drawing.Point(771, 6);
+            this.Button_Color.Location = new System.Drawing.Point(93, 63);
             this.Button_Color.Name = "Button_Color";
-            this.Button_Color.Size = new System.Drawing.Size(75, 23);
+            this.Button_Color.Size = new System.Drawing.Size(263, 23);
             this.Button_Color.TabIndex = 28;
             this.Button_Color.UseVisualStyleBackColor = false;
             this.Button_Color.Click += new System.EventHandler(this.Button_Color_Click);
@@ -1984,9 +1988,9 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.Label_Occupancy_Unit.AutoSize = true;
             this.Label_Occupancy_Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Occupancy_Unit.Location = new System.Drawing.Point(619, 37);
+            this.Label_Occupancy_Unit.Location = new System.Drawing.Point(189, 59);
             this.Label_Occupancy_Unit.Name = "Label_Occupancy_Unit";
-            this.Label_Occupancy_Unit.Size = new System.Drawing.Size(24, 17);
+            this.Label_Occupancy_Unit.Size = new System.Drawing.Size(23, 16);
             this.Label_Occupancy_Unit.TabIndex = 31;
             this.Label_Occupancy_Unit.Text = "[p]";
             // 
@@ -1994,32 +1998,63 @@ namespace SAM.Analytical.Windows.Controls
             // 
             this.Label_Occupancy.AutoSize = true;
             this.Label_Occupancy.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Occupancy.Location = new System.Drawing.Point(439, 37);
+            this.Label_Occupancy.Location = new System.Drawing.Point(9, 59);
             this.Label_Occupancy.Name = "Label_Occupancy";
-            this.Label_Occupancy.Size = new System.Drawing.Size(83, 17);
+            this.Label_Occupancy.Size = new System.Drawing.Size(78, 16);
             this.Label_Occupancy.TabIndex = 30;
             this.Label_Occupancy.Text = "Occupancy:";
             // 
             // TextBox_Occupancy
             // 
             this.TextBox_Occupancy.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Occupancy.Location = new System.Drawing.Point(558, 34);
+            this.TextBox_Occupancy.Location = new System.Drawing.Point(128, 56);
             this.TextBox_Occupancy.Name = "TextBox_Occupancy";
             this.TextBox_Occupancy.Size = new System.Drawing.Size(55, 22);
             this.TextBox_Occupancy.TabIndex = 29;
             // 
+            // GroupBox_Occupancy
+            // 
+            this.GroupBox_Occupancy.Controls.Add(this.Label_Occupancy);
+            this.GroupBox_Occupancy.Controls.Add(this.Label_Occupancy_Unit);
+            this.GroupBox_Occupancy.Controls.Add(this.TextBox_AreaPerPerson);
+            this.GroupBox_Occupancy.Controls.Add(this.Label_AreaPerPerson);
+            this.GroupBox_Occupancy.Controls.Add(this.TextBox_Occupancy);
+            this.GroupBox_Occupancy.Controls.Add(this.Label_AreaPerPerson_Unit);
+            this.GroupBox_Occupancy.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBox_Occupancy.Location = new System.Drawing.Point(430, 9);
+            this.GroupBox_Occupancy.Name = "GroupBox_Occupancy";
+            this.GroupBox_Occupancy.Size = new System.Drawing.Size(416, 109);
+            this.GroupBox_Occupancy.TabIndex = 32;
+            this.GroupBox_Occupancy.TabStop = false;
+            this.GroupBox_Occupancy.Text = "Occupancy";
+            // 
+            // Label_Description
+            // 
+            this.Label_Description.AutoSize = true;
+            this.Label_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Description.Location = new System.Drawing.Point(10, 95);
+            this.Label_Description.Name = "Label_Description";
+            this.Label_Description.Size = new System.Drawing.Size(78, 16);
+            this.Label_Description.TabIndex = 34;
+            this.Label_Description.Text = "Description:";
+            // 
+            // TextBox_Description
+            // 
+            this.TextBox_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Description.Location = new System.Drawing.Point(94, 92);
+            this.TextBox_Description.Name = "TextBox_Description";
+            this.TextBox_Description.Size = new System.Drawing.Size(263, 22);
+            this.TextBox_Description.TabIndex = 33;
+            // 
             // InternalConditionControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.Label_Occupancy_Unit);
-            this.Controls.Add(this.Label_Occupancy);
-            this.Controls.Add(this.TextBox_Occupancy);
+            this.Controls.Add(this.Label_Description);
+            this.Controls.Add(this.TextBox_Description);
+            this.Controls.Add(this.GroupBox_Occupancy);
             this.Controls.Add(this.Button_Color);
             this.Controls.Add(this.Label_Color);
             this.Controls.Add(this.Button_Reset);
-            this.Controls.Add(this.Label_AreaPerPerson_Unit);
-            this.Controls.Add(this.Label_AreaPerPerson);
-            this.Controls.Add(this.TextBox_AreaPerPerson);
             this.Controls.Add(this.Button_Create);
             this.Controls.Add(this.Button_Select);
             this.Controls.Add(this.Label_internalCondition_Name);
@@ -2032,16 +2067,16 @@ namespace SAM.Analytical.Windows.Controls
             this.Controls.Add(this.GroupBox_Heating);
             this.Controls.Add(this.GroupBox_Lighting);
             this.Controls.Add(this.GroupBox_EquipmentLatent);
-            this.Controls.Add(this.GroupBox_Occupancy);
+            this.Controls.Add(this.GroupBox_OccupancyProfile);
             this.Controls.Add(this.GroupBox_Equipment_Sensible);
             this.Controls.Add(this.GroupBox_Infiltration);
             this.Name = "InternalConditionControl";
-            this.Size = new System.Drawing.Size(1271, 746);
+            this.Size = new System.Drawing.Size(1271, 800);
             this.Load += new System.EventHandler(this.InternalConditionControl_Load);
             this.GroupBox_Infiltration.ResumeLayout(false);
             this.GroupBox_Infiltration.PerformLayout();
-            this.GroupBox_Occupancy.ResumeLayout(false);
-            this.GroupBox_Occupancy.PerformLayout();
+            this.GroupBox_OccupancyProfile.ResumeLayout(false);
+            this.GroupBox_OccupancyProfile.PerformLayout();
             this.GroupBox_EquipmentLatent.ResumeLayout(false);
             this.GroupBox_EquipmentLatent.PerformLayout();
             this.GroupBox_Equipment_Sensible.ResumeLayout(false);
@@ -2068,6 +2103,8 @@ namespace SAM.Analytical.Windows.Controls
             this.GroupBox_ExhaustUnit.PerformLayout();
             this.GroupBox_SupplyUnit.ResumeLayout(false);
             this.GroupBox_SupplyUnit.PerformLayout();
+            this.GroupBox_Occupancy.ResumeLayout(false);
+            this.GroupBox_Occupancy.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2082,7 +2119,7 @@ namespace SAM.Analytical.Windows.Controls
         private System.Windows.Forms.TextBox TextBox_Infiltration_ProfileGuid;
         private System.Windows.Forms.Label Label_Infiltration;
         private System.Windows.Forms.TextBox TextBox_Infiltration;
-        private System.Windows.Forms.GroupBox GroupBox_Occupancy;
+        private System.Windows.Forms.GroupBox GroupBox_OccupancyProfile;
         private System.Windows.Forms.Label Label_Occupancy_LatentGain_Wp;
         private System.Windows.Forms.Label Label_Occupancy_SensibleGain_Wp;
         private System.Windows.Forms.Label Label_Occupancy_LatentGain_W;
@@ -2231,5 +2268,8 @@ namespace SAM.Analytical.Windows.Controls
         private System.Windows.Forms.Label Label_Occupancy;
         private System.Windows.Forms.TextBox TextBox_Occupancy;
         private System.Windows.Forms.ToolTip toolTip_Main;
+        private System.Windows.Forms.GroupBox GroupBox_Occupancy;
+        private System.Windows.Forms.Label Label_Description;
+        private System.Windows.Forms.TextBox TextBox_Description;
     }
 }
