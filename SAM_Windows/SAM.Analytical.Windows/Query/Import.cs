@@ -259,6 +259,53 @@ namespace SAM.Analytical.Windows
                     }
 
                 }
+                else if(jSAMObject is ConstructionManager)
+                {
+                    ConstructionManager constructionManager = (ConstructionManager)jSAMObject;
+
+                    List<Construction> constructions_Temp = constructionManager.Constructions;
+                    if (constructions_Temp != null)
+                    {
+                        foreach (Construction construction in constructions_Temp)
+                        {
+                            if (construction is T)
+                            {
+                                tuples_All.Add(new Tuple<string, string, T>(typeof(Construction).Name, construction.Name, (T)(object)construction));
+                            }
+
+                            jSAMObjects.Add(construction);
+                        }
+                    }
+
+                    List<ApertureConstruction> apertureConstructions_Temp = constructionManager.ApertureConstructions;
+                    if (apertureConstructions_Temp != null)
+                    {
+                        foreach (ApertureConstruction apertureConstruction in apertureConstructions_Temp)
+                        {
+                            if (apertureConstruction is T)
+                            {
+                                tuples_All.Add(new Tuple<string, string, T>(typeof(ApertureConstruction).Name, apertureConstruction.Name, (T)(object)apertureConstruction));
+                            }
+
+                            jSAMObjects.Add(apertureConstruction);
+                        }
+                    }
+
+                    List<IMaterial> materials_Temp = constructionManager.Materials;
+                    if (materials_Temp != null)
+                    {
+                        foreach (IMaterial material in materials_Temp)
+                        {
+                            if (material is T)
+                            {
+                                tuples_All.Add(new Tuple<string, string, T>(typeof(Material).Name, material.Name, (T)(object)material));
+                            }
+
+                            jSAMObjects.Add(material);
+                        }
+                    }
+
+                }
                 else if (jSAMObject is T)
                 {
                     jSAMObjects.Add(jSAMObject);

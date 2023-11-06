@@ -1,4 +1,5 @@
 ﻿using SAM.Core;
+using SAM.Core.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,14 +54,21 @@ namespace SAM.Analytical.Windows.Forms
 
             (DataGridView_Constructions.Columns[2] as DataGridViewComboBoxColumn).DataSource = panelTypes;
 
-            if (constructionLibrary == null)
+            SetConstructionLibrary(constructionLibrary);
+        }
+
+        private void SetConstructionLibrary(ConstructionLibrary constructionLibrary)
+        {
+            this.constructionLibrary = constructionLibrary;
+
+            if (this.constructionLibrary == null)
             {
-                constructionLibrary = new ConstructionLibrary("Construction Library");
+                this.constructionLibrary = new ConstructionLibrary("Construction Library");
             }
 
-            string uniqueId = constructionLibrary?.GetUniqueId(construction_Selected);
+            string uniqueId = this.constructionLibrary?.GetUniqueId(construction_Selected);
 
-            List<Construction> constructions = constructionLibrary?.GetConstructions();
+            List<Construction> constructions = this.constructionLibrary?.GetConstructions();
 
             if (constructions != null)
             {
@@ -70,7 +78,7 @@ namespace SAM.Analytical.Windows.Forms
                     DataGridViewRow dataGridViewRow = Add(construction_Temp);
                     if (uniqueId != null)
                     {
-                        string uniqueId_Temp = constructionLibrary?.GetUniqueId(construction_Temp);
+                        string uniqueId_Temp = this.constructionLibrary?.GetUniqueId(construction_Temp);
                         if (uniqueId.Equals(uniqueId_Temp))
                         {
                             index = dataGridViewRow.Index;
@@ -90,6 +98,7 @@ namespace SAM.Analytical.Windows.Forms
                 Button_Add.Visible = false;
             }
         }
+
 
         private void Add(ConstructionLibrary constructionLibrary)
         {
@@ -427,6 +436,98 @@ namespace SAM.Analytical.Windows.Forms
         private void ConstructionLibraryForm_KeyDown(object sender, KeyEventArgs e)
         {
             Query.JsonForm(ConstructionLibrary, this, e);
+        }
+
+        private void Button_Import_Click(object sender, EventArgs e)
+        {
+            AnalyticalModel analyticalModel = new AnalyticalModel(Guid.NewGuid(), "Temporary AnalyticalModel");
+
+            Func<IJSAMObject, bool> func = new Func<IJSAMObject, bool>(x => { return x is Material || x is Construction; });
+
+            analyticalModel = Query.Import(analyticalModel, func, false, this);
+            if (analyticalModel != null)
+            {
+                IEnumerable<Construction> constructions = analyticalModel.AdjacencyCluster?.GetObjects<Construction>();
+                if (constructions == null)
+                {
+                    MessageBox.Show("Construction could not be imported.");
+                    return;
+                }
+
+                using (TreeViewForm<Construction> treeViewForm = new TreeViewForm<Construction>("Select", constructions, x => string.IsNullOrWhiteSpace(x?.Name) ? "???" : x.Name))
+                {
+                    if (treeViewForm.ShowDialog() != DialogResult.OK)
+                    {
+                        return;
+                    }
+
+                    constructions = treeViewForm.SelectedItems;
+                }
+
+                if (constructions == null || constructions.Count() == 0)
+                {
+                    return;
+                }
+
+                if (materialLibrary == null)
+                {
+                    materialLibrary = new MaterialLibrary("MaterialLibrary");
+                }
+
+                analyticalModel.MaterialLibrary?.GetMaterials()?.ForEach(x => materialLibrary.Add(x));
+
+
+                if (constructionLibrary == null)
+                {
+                    constructionLibrary = new ConstructionLibrary("ConstructionLibrary");
+                }
+
+                foreach (Construction construction in constructions)
+                {
+                    constructionLibrary.Add(construction);
+
+                }
+
+                SetConstructionLibrary(constructionLibrary);
+            }
+        }
+
+        private void Button_Export_Click(object sender, EventArgs e)
+        {
+            List<Construction> constructions = GetConstructions(false);
+            if (constructions == null || constructions.Count == 0)
+            {
+                return;
+            }
+
+            string path = null;
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.FileName = "SAM_ConstructionLibrary_CustomVer00.json";
+                if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                path = saveFileDialog.FileName;
+            }
+
+            string name = System.IO.Path.GetFileNameWithoutExtension(path);
+
+            ConstructionLibrary constructionLibrary = new ConstructionLibrary(name);
+            constructions.ForEach(x => constructionLibrary.Add(x));
+
+            bool result = Core.Convert.ToFile(constructionLibrary, path);
+            if (result)
+            {
+                MessageBox.Show("Library exported successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Library could not be exported.");
+            }
         }
     }
 }
