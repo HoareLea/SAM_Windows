@@ -330,7 +330,7 @@ namespace SAM.Core.Windows.Forms
             List<IJSAMObject> sAMObjects = SAM.Core.Convert.ToSAM<IJSAMObject>(path);
             if(sAMObjects == null || sAMObjects.Count == 0)
             {
-                MessageBox.Show("No objects to import");
+                MessageBox.Show("No materials to import");
                 return;
             }
 
@@ -354,6 +354,7 @@ namespace SAM.Core.Windows.Forms
 
             if(materials == null || materials.Count == 0)
             {
+                MessageBox.Show("No materials to import.");
                 return;
             }
 
@@ -365,6 +366,8 @@ namespace SAM.Core.Windows.Forms
             materials.ForEach(x => materialLibrary.Add(x));
 
             SetMaterialLibrary(materialLibrary);
+
+            MessageBox.Show("Materials imported successfully.");
         }
     }
 }

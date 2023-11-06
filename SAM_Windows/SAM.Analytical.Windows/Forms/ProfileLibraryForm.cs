@@ -578,5 +578,43 @@ namespace SAM.Analytical.Windows.Forms
         {
             SetProfileLibrary(profileLibrary);
         }
+
+        private void Button_Export_Click(object sender, EventArgs e)
+        {
+            List<Profile> profiles = GetProfiles(false);
+            if (profiles == null || profiles.Count == 0)
+            {
+                return;
+            }
+
+            string path = null;
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.FileName = "SAM_ProfileLibrary_CustomVer00.json";
+                if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                path = saveFileDialog.FileName;
+            }
+
+            string name = System.IO.Path.GetFileNameWithoutExtension(path);
+
+            ProfileLibrary profileLibrary = new ProfileLibrary(name);
+            profiles.ForEach(x => profileLibrary.Add(x));
+
+            bool result = Core.Convert.ToFile(profileLibrary, path);
+            if (result)
+            {
+                MessageBox.Show("Library exported successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Library could not be exported.");
+            }
+        }
     }
 }
