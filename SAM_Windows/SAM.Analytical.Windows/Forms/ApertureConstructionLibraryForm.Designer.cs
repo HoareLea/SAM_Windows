@@ -41,6 +41,8 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Add = new System.Windows.Forms.Button();
             this.Button_Duplicate = new System.Windows.Forms.Button();
             this.Button_Materials = new System.Windows.Forms.Button();
+            this.Button_Export = new System.Windows.Forms.Button();
+            this.Button_Import = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Constructions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,7 +136,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Search.AutoSize = true;
             this.Label_Search.Location = new System.Drawing.Point(12, 31);
             this.Label_Search.Name = "Label_Search";
-            this.Label_Search.Size = new System.Drawing.Size(53, 17);
+            this.Label_Search.Size = new System.Drawing.Size(50, 16);
             this.Label_Search.TabIndex = 9;
             this.Label_Search.Text = "Search";
             // 
@@ -183,12 +185,36 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Materials.Visible = false;
             this.Button_Materials.Click += new System.EventHandler(this.Button_Materials_Click);
             // 
+            // Button_Export
+            // 
+            this.Button_Export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Export.Location = new System.Drawing.Point(171, 338);
+            this.Button_Export.Name = "Button_Export";
+            this.Button_Export.Size = new System.Drawing.Size(75, 28);
+            this.Button_Export.TabIndex = 15;
+            this.Button_Export.Text = "Export";
+            this.Button_Export.UseVisualStyleBackColor = true;
+            this.Button_Export.Click += new System.EventHandler(this.Button_Export_Click);
+            // 
+            // Button_Import
+            // 
+            this.Button_Import.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Import.Location = new System.Drawing.Point(252, 338);
+            this.Button_Import.Name = "Button_Import";
+            this.Button_Import.Size = new System.Drawing.Size(75, 28);
+            this.Button_Import.TabIndex = 14;
+            this.Button_Import.Text = "Import";
+            this.Button_Import.UseVisualStyleBackColor = true;
+            this.Button_Import.Click += new System.EventHandler(this.Button_Import_Click);
+            // 
             // ApertureConstructionLibraryForm
             // 
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(582, 453);
+            this.Controls.Add(this.Button_Export);
+            this.Controls.Add(this.Button_Import);
             this.Controls.Add(this.Button_Materials);
             this.Controls.Add(this.Button_Duplicate);
             this.Controls.Add(this.Button_Remove);
@@ -227,5 +253,7 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_ConstructionName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Thickness;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column_Type;
+        private System.Windows.Forms.Button Button_Export;
+        private System.Windows.Forms.Button Button_Import;
     }
 }

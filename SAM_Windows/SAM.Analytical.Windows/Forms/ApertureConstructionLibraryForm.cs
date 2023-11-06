@@ -1,7 +1,9 @@
 ﻿using SAM.Core;
+using SAM.Core.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Automation.Peers;
 using System.Windows.Forms;
 
 namespace SAM.Analytical.Windows.Forms
@@ -51,14 +53,23 @@ namespace SAM.Analytical.Windows.Forms
 
             (DataGridView_Constructions.Columns[2] as DataGridViewComboBoxColumn).DataSource = apertureTypes;
 
-            if (apertureConstructionLibrary == null)
+            SetApertureConstructionLibrary(apertureConstructionLibrary);
+        }
+
+        private void SetApertureConstructionLibrary(ApertureConstructionLibrary apertureConstructionLibrary)
+        {
+            this.apertureConstructionLibrary = apertureConstructionLibrary;
+
+            if (this.apertureConstructionLibrary == null)
             {
-                apertureConstructionLibrary = new ApertureConstructionLibrary("Aperture Construction Library");
+                this.apertureConstructionLibrary = new ApertureConstructionLibrary("Aperture Construction Library");
             }
 
-            string uniqueId = apertureConstructionLibrary?.GetUniqueId(apertureConstruction_Selected);
+            DataGridView_Constructions.Rows.Clear();
 
-            List<ApertureConstruction> apertureConstructions = apertureConstructionLibrary?.GetApertureConstructions();
+            string uniqueId = this.apertureConstructionLibrary?.GetUniqueId(apertureConstruction_Selected);
+
+            List<ApertureConstruction> apertureConstructions = this.apertureConstructionLibrary?.GetApertureConstructions();
 
             if (apertureConstructions != null)
             {
@@ -68,7 +79,7 @@ namespace SAM.Analytical.Windows.Forms
                     DataGridViewRow dataGridViewRow = Add(construction_Temp);
                     if (uniqueId != null)
                     {
-                        string uniqueId_Temp = apertureConstructionLibrary?.GetUniqueId(construction_Temp);
+                        string uniqueId_Temp = this.apertureConstructionLibrary?.GetUniqueId(construction_Temp);
                         if (uniqueId.Equals(uniqueId_Temp))
                         {
                             index = dataGridViewRow.Index;
@@ -404,6 +415,98 @@ namespace SAM.Analytical.Windows.Forms
         private void ApertureConstructionLibraryForm_KeyDown(object sender, KeyEventArgs e)
         {
             Query.JsonForm(ApertureConstructionLibrary, this, e);
+        }
+
+        private void Button_Export_Click(object sender, EventArgs e)
+        {
+            List<ApertureConstruction> apertureConstructions = GetApertureConstructions(false);
+            if (apertureConstructions == null || apertureConstructions.Count == 0)
+            {
+                return;
+            }
+
+            string path = null;
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.FileName = "SAM_ApertureConstructionLibrary_CustomVer00.json";
+                if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                path = saveFileDialog.FileName;
+            }
+
+            string name = System.IO.Path.GetFileNameWithoutExtension(path);
+
+            ApertureConstructionLibrary apertureConstructionLibrary = new ApertureConstructionLibrary(name);
+            apertureConstructions.ForEach(x => apertureConstructionLibrary.Add(x));
+
+            bool result = Core.Convert.ToFile(apertureConstructionLibrary, path);
+            if (result)
+            {
+                MessageBox.Show("Library exported successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Library could not be exported.");
+            }
+        }
+
+        private void Button_Import_Click(object sender, EventArgs e)
+        {
+            AnalyticalModel analyticalModel = new AnalyticalModel(Guid.NewGuid(), "Temporary AnalyticalModel");
+
+            Func<IJSAMObject, bool> func = new Func<IJSAMObject, bool>(x => { return x is Material || x is ApertureConstruction; });
+
+            analyticalModel = Query.Import(analyticalModel, func, false, this);
+            if (analyticalModel != null)
+            {
+                IEnumerable<ApertureConstruction> apertureConstructions = analyticalModel.AdjacencyCluster?.GetObjects<ApertureConstruction>();
+                if (apertureConstructions == null)
+                {
+                    MessageBox.Show("ApertureConstruction could not be imported.");
+                    return;
+                }
+
+                using (TreeViewForm<ApertureConstruction> treeViewForm = new TreeViewForm<ApertureConstruction>("Select", apertureConstructions, x => string.IsNullOrWhiteSpace(x?.Name) ? "???" : x.Name))
+                {
+                    if(treeViewForm.ShowDialog() != DialogResult.OK)
+                    {
+                        return;
+                    }
+
+                    apertureConstructions = treeViewForm.SelectedItems;
+                }
+
+                if(apertureConstructions == null || apertureConstructions.Count() == 0)
+                {
+                    return;
+                }
+
+                if (materialLibrary == null)
+                {
+                    materialLibrary = new MaterialLibrary("MaterialLibrary");
+                }
+
+                analyticalModel.MaterialLibrary?.GetMaterials()?.ForEach(x => materialLibrary.Add(x));
+
+
+                if (apertureConstructionLibrary == null)
+                {
+                    apertureConstructionLibrary = new ApertureConstructionLibrary("ApertureConstructionLibrary");
+                }
+
+                foreach (ApertureConstruction apertureConstruction in apertureConstructions)
+                {
+                    apertureConstructionLibrary.Add(apertureConstruction);
+
+                }
+
+                SetApertureConstructionLibrary(apertureConstructionLibrary);
+            }
         }
     }
 }
