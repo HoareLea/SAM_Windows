@@ -41,6 +41,8 @@ namespace SAM.Core.Windows
             this.Label_DisplayName = new System.Windows.Forms.Label();
             this.TextBox_Name = new System.Windows.Forms.TextBox();
             this.Label_Name = new System.Windows.Forms.Label();
+            this.Label_MaterialType = new System.Windows.Forms.Label();
+            this.ComboBox_MaterialType = new System.Windows.Forms.ComboBox();
             this.PropertyGrid_Parameters = new System.Windows.Forms.PropertyGrid();
             this.SuspendLayout();
             // 
@@ -48,7 +50,7 @@ namespace SAM.Core.Windows
             // 
             this.TextBox_Density.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Density.Location = new System.Drawing.Point(209, 143);
+            this.TextBox_Density.Location = new System.Drawing.Point(209, 171);
             this.TextBox_Density.Name = "TextBox_Density";
             this.TextBox_Density.Size = new System.Drawing.Size(138, 22);
             this.TextBox_Density.TabIndex = 23;
@@ -56,9 +58,9 @@ namespace SAM.Core.Windows
             // Label_Density
             // 
             this.Label_Density.AutoSize = true;
-            this.Label_Density.Location = new System.Drawing.Point(3, 146);
+            this.Label_Density.Location = new System.Drawing.Point(3, 174);
             this.Label_Density.Name = "Label_Density";
-            this.Label_Density.Size = new System.Drawing.Size(109, 17);
+            this.Label_Density.Size = new System.Drawing.Size(103, 16);
             this.Label_Density.TabIndex = 20;
             this.Label_Density.Text = "Density [kg/m3]:";
             // 
@@ -66,7 +68,7 @@ namespace SAM.Core.Windows
             // 
             this.TextBox_SpecificHeatCapacity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_SpecificHeatCapacity.Location = new System.Drawing.Point(209, 115);
+            this.TextBox_SpecificHeatCapacity.Location = new System.Drawing.Point(209, 143);
             this.TextBox_SpecificHeatCapacity.Name = "TextBox_SpecificHeatCapacity";
             this.TextBox_SpecificHeatCapacity.Size = new System.Drawing.Size(138, 22);
             this.TextBox_SpecificHeatCapacity.TabIndex = 24;
@@ -74,9 +76,9 @@ namespace SAM.Core.Windows
             // Label_SpecificHeatCapacity
             // 
             this.Label_SpecificHeatCapacity.AutoSize = true;
-            this.Label_SpecificHeatCapacity.Location = new System.Drawing.Point(3, 118);
+            this.Label_SpecificHeatCapacity.Location = new System.Drawing.Point(3, 146);
             this.Label_SpecificHeatCapacity.Name = "Label_SpecificHeatCapacity";
-            this.Label_SpecificHeatCapacity.Size = new System.Drawing.Size(200, 17);
+            this.Label_SpecificHeatCapacity.Size = new System.Drawing.Size(191, 16);
             this.Label_SpecificHeatCapacity.TabIndex = 21;
             this.Label_SpecificHeatCapacity.Text = "Specific Heat Capacity [J/kgK]:";
             // 
@@ -84,7 +86,7 @@ namespace SAM.Core.Windows
             // 
             this.TextBox_ThermalConductivity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_ThermalConductivity.Location = new System.Drawing.Point(209, 87);
+            this.TextBox_ThermalConductivity.Location = new System.Drawing.Point(209, 115);
             this.TextBox_ThermalConductivity.Name = "TextBox_ThermalConductivity";
             this.TextBox_ThermalConductivity.Size = new System.Drawing.Size(138, 22);
             this.TextBox_ThermalConductivity.TabIndex = 25;
@@ -92,9 +94,9 @@ namespace SAM.Core.Windows
             // Label_ThermalConductivity
             // 
             this.Label_ThermalConductivity.AutoSize = true;
-            this.Label_ThermalConductivity.Location = new System.Drawing.Point(3, 90);
+            this.Label_ThermalConductivity.Location = new System.Drawing.Point(3, 118);
             this.Label_ThermalConductivity.Name = "Label_ThermalConductivity";
-            this.Label_ThermalConductivity.Size = new System.Drawing.Size(193, 17);
+            this.Label_ThermalConductivity.Size = new System.Drawing.Size(182, 16);
             this.Label_ThermalConductivity.TabIndex = 22;
             this.Label_ThermalConductivity.Text = "Thermal Conductivity [W/mK]:";
             // 
@@ -112,7 +114,7 @@ namespace SAM.Core.Windows
             this.Label_Description.AutoSize = true;
             this.Label_Description.Location = new System.Drawing.Point(3, 62);
             this.Label_Description.Name = "Label_Description";
-            this.Label_Description.Size = new System.Drawing.Size(83, 17);
+            this.Label_Description.Size = new System.Drawing.Size(78, 16);
             this.Label_Description.TabIndex = 18;
             this.Label_Description.Text = "Description:";
             // 
@@ -130,7 +132,7 @@ namespace SAM.Core.Windows
             this.Label_DisplayName.AutoSize = true;
             this.Label_DisplayName.Location = new System.Drawing.Point(3, 34);
             this.Label_DisplayName.Name = "Label_DisplayName";
-            this.Label_DisplayName.Size = new System.Drawing.Size(99, 17);
+            this.Label_DisplayName.Size = new System.Drawing.Size(96, 16);
             this.Label_DisplayName.TabIndex = 16;
             this.Label_DisplayName.Text = "Display Name:";
             // 
@@ -148,23 +150,46 @@ namespace SAM.Core.Windows
             this.Label_Name.AutoSize = true;
             this.Label_Name.Location = new System.Drawing.Point(3, 6);
             this.Label_Name.Name = "Label_Name";
-            this.Label_Name.Size = new System.Drawing.Size(49, 17);
+            this.Label_Name.Size = new System.Drawing.Size(47, 16);
             this.Label_Name.TabIndex = 14;
             this.Label_Name.Text = "Name:";
+            // 
+            // Label_MaterialType
+            // 
+            this.Label_MaterialType.AutoSize = true;
+            this.Label_MaterialType.Location = new System.Drawing.Point(3, 90);
+            this.Label_MaterialType.Name = "Label_MaterialType";
+            this.Label_MaterialType.Size = new System.Drawing.Size(42, 16);
+            this.Label_MaterialType.TabIndex = 26;
+            this.Label_MaterialType.Text = "Type:";
+            // 
+            // ComboBox_MaterialType
+            // 
+            this.ComboBox_MaterialType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ComboBox_MaterialType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_MaterialType.Enabled = false;
+            this.ComboBox_MaterialType.FormattingEnabled = true;
+            this.ComboBox_MaterialType.Location = new System.Drawing.Point(209, 87);
+            this.ComboBox_MaterialType.Name = "ComboBox_MaterialType";
+            this.ComboBox_MaterialType.Size = new System.Drawing.Size(138, 24);
+            this.ComboBox_MaterialType.TabIndex = 28;
             // 
             // PropertyGrid_Parameters
             // 
             this.PropertyGrid_Parameters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PropertyGrid_Parameters.Location = new System.Drawing.Point(6, 171);
+            this.PropertyGrid_Parameters.Location = new System.Drawing.Point(6, 199);
             this.PropertyGrid_Parameters.Name = "PropertyGrid_Parameters";
-            this.PropertyGrid_Parameters.Size = new System.Drawing.Size(341, 276);
+            this.PropertyGrid_Parameters.Size = new System.Drawing.Size(341, 248);
             this.PropertyGrid_Parameters.TabIndex = 13;
             // 
             // MaterialControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.ComboBox_MaterialType);
+            this.Controls.Add(this.Label_MaterialType);
             this.Controls.Add(this.TextBox_Density);
             this.Controls.Add(this.Label_Density);
             this.Controls.Add(this.TextBox_SpecificHeatCapacity);
@@ -200,6 +225,8 @@ namespace SAM.Core.Windows
         private System.Windows.Forms.Label Label_DisplayName;
         private System.Windows.Forms.TextBox TextBox_Name;
         private System.Windows.Forms.Label Label_Name;
+        private System.Windows.Forms.Label Label_MaterialType;
+        private System.Windows.Forms.ComboBox ComboBox_MaterialType;
         private System.Windows.Forms.PropertyGrid PropertyGrid_Parameters;
     }
 }

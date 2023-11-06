@@ -34,6 +34,11 @@ namespace SAM.Core.Windows
 
         private void MaterialControl_Load(object sender, EventArgs e)
         {
+            foreach(MaterialType materialType in Enum.GetValues(typeof(MaterialType)))
+            {
+                ComboBox_MaterialType.Items.Add(SAM.Core.Query.Description(materialType));
+            }
+            
             PropertyGrid_Parameters.HidePropertyPages();
 
             TextBox_ThermalConductivity.KeyPress += new KeyPressEventHandler(EventHandler.ControlText_NumberOnly);
@@ -62,6 +67,8 @@ namespace SAM.Core.Windows
 
                 value = double.IsNaN(material_Temp.Density) ? null : material_Temp.Density.ToString();
                 TextBox_Density.Text = value;
+
+                ComboBox_MaterialType.Text = SAM.Core.Query.Description(Core.Query.MaterialType(material_Temp));
             }
 
             LoadParameters();

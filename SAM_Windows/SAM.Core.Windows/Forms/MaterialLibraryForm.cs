@@ -38,24 +38,31 @@ namespace SAM.Core.Windows.Forms
 
         private void MaterialLibraryForm_Load(object sender, EventArgs e)
         {
-            if (materialLibrary == null)
+            SetMaterialLibrary(materialLibrary);
+        }
+
+        private void SetMaterialLibrary(MaterialLibrary materialLibrary)
+        {
+            this.materialLibrary = materialLibrary;
+
+            if (this.materialLibrary == null)
             {
-                materialLibrary = new MaterialLibrary("Material Library");
+                this.materialLibrary = new MaterialLibrary("Material Library");
             }
 
-            string uniqueId = materialLibrary?.GetUniqueId(material_Selected);
+            string uniqueId = this.materialLibrary?.GetUniqueId(material_Selected);
 
-            List<IMaterial> constructions = materialLibrary?.GetMaterials();
+            List<IMaterial> materials = this.materialLibrary?.GetMaterials();
 
-            if (constructions != null)
+            if (materials != null)
             {
                 int index = -1;
-                foreach (IMaterial construction_Temp in constructions)
+                foreach (IMaterial material_Temp in materials)
                 {
-                    DataGridViewRow dataGridViewRow = Add(construction_Temp);
+                    DataGridViewRow dataGridViewRow = Add(material_Temp);
                     if (uniqueId != null)
                     {
-                        string uniqueId_Temp = materialLibrary?.GetUniqueId(construction_Temp);
+                        string uniqueId_Temp = this.materialLibrary?.GetUniqueId(material_Temp);
                         if (uniqueId.Equals(uniqueId_Temp))
                         {
                             index = dataGridViewRow.Index;
@@ -129,7 +136,7 @@ namespace SAM.Core.Windows.Forms
             if (material is Material)
             {
                 Material material_Temp = (Material)material;
-                index = DataGridView_Materials.Rows.Add(material_Temp.DisplayName, material_Temp.Name, material_Temp.Description);
+                index = DataGridView_Materials.Rows.Add(material_Temp.DisplayName, material_Temp.Name, material_Temp.Description, material_Temp.MaterialType().ToString());
             }
             else
             {
@@ -266,6 +273,98 @@ namespace SAM.Core.Windows.Forms
         private void MaterialLibraryForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
         {
             System.Diagnostics.Process.Start(@"https://github.com/HoareLea/SAM/wiki/Construction#materials");
+        }
+
+        private void Button_Export_Click(object sender, EventArgs e)
+        {
+            string path = null;
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.FileName = "SAM_MaterialLibrary_CustomVer00.json";
+                if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                path = saveFileDialog.FileName;
+            }
+
+            string name = System.IO.Path.GetFileNameWithoutExtension(path);
+
+            MaterialLibrary materialLibrary = this.MaterialLibrary == null ? new MaterialLibrary(name) : new MaterialLibrary(this.materialLibrary);
+
+            bool result = Core.Convert.ToFile(materialLibrary, path);
+            if (result)
+            {
+                MessageBox.Show("Library exported successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Library could not be exported.");
+            }
+        }
+
+        private void Button_Import_Click(object sender, EventArgs e)
+        {
+            string path = null;
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                string directory = Core.Query.ResourcesDirectory();
+                if (System.IO.Directory.Exists(directory))
+                {
+                    openFileDialog.InitialDirectory = directory;
+                }
+
+                openFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+                if (openFileDialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                path = openFileDialog.FileName;
+            }
+
+            List<IJSAMObject> sAMObjects = SAM.Core.Convert.ToSAM<IJSAMObject>(path);
+            if(sAMObjects == null || sAMObjects.Count == 0)
+            {
+                MessageBox.Show("No objects to import");
+                return;
+            }
+
+            List<IMaterial> materials = new List<IMaterial>();
+            foreach(IJSAMObject jSAMObject in sAMObjects)
+            {
+                if(jSAMObject is IMaterial)
+                {
+                    materials.Add((IMaterial)jSAMObject);
+                }
+                else if(jSAMObject is MaterialLibrary)
+                {
+                    List<IMaterial> materials_Temp = ((MaterialLibrary)jSAMObject).GetMaterials();
+                    if(materials_Temp == null || materials_Temp.Count == 0)
+                    {
+                        continue;
+                    }
+                    materials.AddRange(materials_Temp);
+                }
+            }
+
+            if(materials == null || materials.Count == 0)
+            {
+                return;
+            }
+
+            if(materialLibrary == null)
+            {
+                materialLibrary = new MaterialLibrary("MaterialLibrary");
+            }
+
+            materials.ForEach(x => materialLibrary.Add(x));
+
+            SetMaterialLibrary(materialLibrary);
         }
     }
 }

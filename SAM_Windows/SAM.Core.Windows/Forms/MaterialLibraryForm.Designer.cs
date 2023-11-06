@@ -35,18 +35,21 @@ namespace SAM.Core.Windows.Forms
             this.Label_Search = new System.Windows.Forms.Label();
             this.TextBox_Search = new System.Windows.Forms.TextBox();
             this.DataGridView_Materials = new System.Windows.Forms.DataGridView();
+            this.Button_OK = new System.Windows.Forms.Button();
+            this.Button_Cancel = new System.Windows.Forms.Button();
+            this.Button_Export = new System.Windows.Forms.Button();
+            this.Button_Import = new System.Windows.Forms.Button();
             this.Column_DisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Button_OK = new System.Windows.Forms.Button();
-            this.Button_Cancel = new System.Windows.Forms.Button();
+            this.Column_MaterialType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Materials)).BeginInit();
             this.SuspendLayout();
             // 
             // Button_Duplicate
             // 
             this.Button_Duplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Duplicate.Location = new System.Drawing.Point(333, 330);
+            this.Button_Duplicate.Location = new System.Drawing.Point(433, 330);
             this.Button_Duplicate.Name = "Button_Duplicate";
             this.Button_Duplicate.Size = new System.Drawing.Size(75, 28);
             this.Button_Duplicate.TabIndex = 20;
@@ -57,7 +60,7 @@ namespace SAM.Core.Windows.Forms
             // Button_Remove
             // 
             this.Button_Remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Remove.Location = new System.Drawing.Point(495, 330);
+            this.Button_Remove.Location = new System.Drawing.Point(595, 330);
             this.Button_Remove.Name = "Button_Remove";
             this.Button_Remove.Size = new System.Drawing.Size(75, 28);
             this.Button_Remove.TabIndex = 19;
@@ -68,7 +71,7 @@ namespace SAM.Core.Windows.Forms
             // Button_Add
             // 
             this.Button_Add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Add.Location = new System.Drawing.Point(414, 330);
+            this.Button_Add.Location = new System.Drawing.Point(514, 330);
             this.Button_Add.Name = "Button_Add";
             this.Button_Add.Size = new System.Drawing.Size(75, 28);
             this.Button_Add.TabIndex = 18;
@@ -81,7 +84,7 @@ namespace SAM.Core.Windows.Forms
             this.Label_Search.AutoSize = true;
             this.Label_Search.Location = new System.Drawing.Point(12, 23);
             this.Label_Search.Name = "Label_Search";
-            this.Label_Search.Size = new System.Drawing.Size(53, 17);
+            this.Label_Search.Size = new System.Drawing.Size(50, 16);
             this.Label_Search.TabIndex = 17;
             this.Label_Search.Text = "Search";
             // 
@@ -91,7 +94,7 @@ namespace SAM.Core.Windows.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Search.Location = new System.Drawing.Point(71, 20);
             this.TextBox_Search.Name = "TextBox_Search";
-            this.TextBox_Search.Size = new System.Drawing.Size(499, 22);
+            this.TextBox_Search.Size = new System.Drawing.Size(599, 22);
             this.TextBox_Search.TabIndex = 16;
             this.TextBox_Search.TextChanged += new System.EventHandler(this.TextBox_Search_TextChanged);
             // 
@@ -109,7 +112,8 @@ namespace SAM.Core.Windows.Forms
             this.DataGridView_Materials.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column_DisplayName,
             this.Column_Name,
-            this.Column_Description});
+            this.Column_Description,
+            this.Column_MaterialType});
             this.DataGridView_Materials.Location = new System.Drawing.Point(12, 48);
             this.DataGridView_Materials.MultiSelect = false;
             this.DataGridView_Materials.Name = "DataGridView_Materials";
@@ -117,9 +121,54 @@ namespace SAM.Core.Windows.Forms
             this.DataGridView_Materials.RowHeadersWidth = 51;
             this.DataGridView_Materials.RowTemplate.Height = 24;
             this.DataGridView_Materials.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView_Materials.Size = new System.Drawing.Size(558, 276);
+            this.DataGridView_Materials.Size = new System.Drawing.Size(658, 276);
             this.DataGridView_Materials.TabIndex = 15;
             this.DataGridView_Materials.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Materials_CellDoubleClick);
+            // 
+            // Button_OK
+            // 
+            this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_OK.Location = new System.Drawing.Point(514, 413);
+            this.Button_OK.Name = "Button_OK";
+            this.Button_OK.Size = new System.Drawing.Size(75, 28);
+            this.Button_OK.TabIndex = 14;
+            this.Button_OK.Text = "OK";
+            this.Button_OK.UseVisualStyleBackColor = true;
+            this.Button_OK.Click += new System.EventHandler(this.Button_OK_Click);
+            // 
+            // Button_Cancel
+            // 
+            this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Button_Cancel.Location = new System.Drawing.Point(595, 413);
+            this.Button_Cancel.Name = "Button_Cancel";
+            this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
+            this.Button_Cancel.TabIndex = 13;
+            this.Button_Cancel.Text = "Cancel";
+            this.Button_Cancel.UseVisualStyleBackColor = true;
+            this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
+            // 
+            // Button_Export
+            // 
+            this.Button_Export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Export.Location = new System.Drawing.Point(271, 330);
+            this.Button_Export.Name = "Button_Export";
+            this.Button_Export.Size = new System.Drawing.Size(75, 28);
+            this.Button_Export.TabIndex = 22;
+            this.Button_Export.Text = "Export";
+            this.Button_Export.UseVisualStyleBackColor = true;
+            this.Button_Export.Click += new System.EventHandler(this.Button_Export_Click);
+            // 
+            // Button_Import
+            // 
+            this.Button_Import.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Import.Location = new System.Drawing.Point(352, 330);
+            this.Button_Import.Name = "Button_Import";
+            this.Button_Import.Size = new System.Drawing.Size(75, 28);
+            this.Button_Import.TabIndex = 21;
+            this.Button_Import.Text = "Import";
+            this.Button_Import.UseVisualStyleBackColor = true;
+            this.Button_Import.Click += new System.EventHandler(this.Button_Import_Click);
             // 
             // Column_DisplayName
             // 
@@ -144,35 +193,22 @@ namespace SAM.Core.Windows.Forms
             this.Column_Description.MinimumWidth = 6;
             this.Column_Description.Name = "Column_Description";
             // 
-            // Button_OK
+            // Column_MaterialType
             // 
-            this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(414, 413);
-            this.Button_OK.Name = "Button_OK";
-            this.Button_OK.Size = new System.Drawing.Size(75, 28);
-            this.Button_OK.TabIndex = 14;
-            this.Button_OK.Text = "OK";
-            this.Button_OK.UseVisualStyleBackColor = true;
-            this.Button_OK.Click += new System.EventHandler(this.Button_OK_Click);
-            // 
-            // Button_Cancel
-            // 
-            this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(495, 413);
-            this.Button_Cancel.Name = "Button_Cancel";
-            this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
-            this.Button_Cancel.TabIndex = 13;
-            this.Button_Cancel.Text = "Cancel";
-            this.Button_Cancel.UseVisualStyleBackColor = true;
-            this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
+            this.Column_MaterialType.FillWeight = 20F;
+            this.Column_MaterialType.HeaderText = "Type";
+            this.Column_MaterialType.MinimumWidth = 6;
+            this.Column_MaterialType.Name = "Column_MaterialType";
+            this.Column_MaterialType.ReadOnly = true;
             // 
             // MaterialLibraryForm
             // 
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(582, 453);
+            this.ClientSize = new System.Drawing.Size(682, 453);
+            this.Controls.Add(this.Button_Export);
+            this.Controls.Add(this.Button_Import);
             this.Controls.Add(this.Button_Duplicate);
             this.Controls.Add(this.Button_Remove);
             this.Controls.Add(this.Button_Add);
@@ -184,7 +220,7 @@ namespace SAM.Core.Windows.Forms
             this.HelpButton = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(600, 500);
+            this.MinimumSize = new System.Drawing.Size(700, 500);
             this.Name = "MaterialLibraryForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -207,8 +243,11 @@ namespace SAM.Core.Windows.Forms
         private System.Windows.Forms.DataGridView DataGridView_Materials;
         private System.Windows.Forms.Button Button_OK;
         private System.Windows.Forms.Button Button_Cancel;
+        private System.Windows.Forms.Button Button_Export;
+        private System.Windows.Forms.Button Button_Import;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_DisplayName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_MaterialType;
     }
 }
