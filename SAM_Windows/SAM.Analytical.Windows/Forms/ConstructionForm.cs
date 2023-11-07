@@ -35,6 +35,13 @@ namespace SAM.Analytical.Windows.Forms
                 TextBox_Name.Text = construction.Name;
 
                 MaterialLayersControl_Main.MaterialLayers = construction.ConstructionLayers?.ConvertAll(x => x as Architectural.MaterialLayer);
+
+                if(!construction.TryGetValue(ConstructionParameter.Description, out string description))
+                {
+                    description = null;
+                }
+
+                TextBox_Description.Text = description;
             }
 
             if(constructionLibrary == null)
@@ -67,6 +74,16 @@ namespace SAM.Analytical.Windows.Forms
                     result = new Construction(TextBox_Name.Text, ConstructionLayers);
                 }
 
+                string description = TextBox_Description.Text;
+                if(string.IsNullOrEmpty(description))
+                {
+                    result.RemoveValue(ConstructionParameter.Description);
+                }
+                else
+                {
+                    result.SetValue(ConstructionParameter.Description, description);
+                }
+
                 return result;
             }
         }
@@ -79,11 +96,11 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
 
-            if(construction == null && constructionLibrary?.GetConstructions()?.Find(x => x.Name == TextBox_Name.Text) != null)
-            {
-                MessageBox.Show("Construction with the same name already exists. Provide different name");
-                return;
-            }
+            //if(construction == null && constructionLibrary?.GetConstructions()?.Find(x => x.Name == TextBox_Name.Text) != null)
+            //{
+            //    MessageBox.Show("Construction with the same name already exists. Provide different name");
+            //    return;
+            //}
 
             List<ConstructionLayer> constructionLayers = ConstructionLayers;
             if(constructionLayers == null || constructionLayers.Count == 0)

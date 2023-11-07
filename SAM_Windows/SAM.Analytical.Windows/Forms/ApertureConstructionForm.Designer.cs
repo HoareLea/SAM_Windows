@@ -40,6 +40,8 @@ namespace SAM.Analytical.Windows.Forms
             this.GroupBox_FrameConstruction = new System.Windows.Forms.GroupBox();
             this.MaterialLayersControl_Frame = new SAM.Architectural.Windows.MaterialLayersControl();
             this.SplitContainer_Construction = new System.Windows.Forms.SplitContainer();
+            this.TextBox_Description = new System.Windows.Forms.TextBox();
+            this.Label_Description = new System.Windows.Forms.Label();
             this.GroupBox_PaneConstructionLayers.SuspendLayout();
             this.GroupBox_FrameConstruction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_Construction)).BeginInit();
@@ -53,7 +55,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Name.AutoSize = true;
             this.Label_Name.Location = new System.Drawing.Point(12, 25);
             this.Label_Name.Name = "Label_Name";
-            this.Label_Name.Size = new System.Drawing.Size(49, 17);
+            this.Label_Name.Size = new System.Drawing.Size(47, 16);
             this.Label_Name.TabIndex = 0;
             this.Label_Name.Text = "Name:";
             // 
@@ -61,15 +63,15 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.TextBox_Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Name.Location = new System.Drawing.Point(67, 22);
+            this.TextBox_Name.Location = new System.Drawing.Point(96, 22);
             this.TextBox_Name.Name = "TextBox_Name";
-            this.TextBox_Name.Size = new System.Drawing.Size(403, 22);
+            this.TextBox_Name.Size = new System.Drawing.Size(374, 22);
             this.TextBox_Name.TabIndex = 1;
             // 
             // Button_OK
             // 
             this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(314, 763);
+            this.Button_OK.Location = new System.Drawing.Point(314, 813);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 28);
             this.Button_OK.TabIndex = 4;
@@ -81,7 +83,7 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(395, 763);
+            this.Button_Cancel.Location = new System.Drawing.Point(395, 813);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
             this.Button_Cancel.TabIndex = 3;
@@ -92,9 +94,9 @@ namespace SAM.Analytical.Windows.Forms
             // Label_ApertureType
             // 
             this.Label_ApertureType.AutoSize = true;
-            this.Label_ApertureType.Location = new System.Drawing.Point(12, 62);
+            this.Label_ApertureType.Location = new System.Drawing.Point(15, 81);
             this.Label_ApertureType.Name = "Label_ApertureType";
-            this.Label_ApertureType.Size = new System.Drawing.Size(103, 17);
+            this.Label_ApertureType.Size = new System.Drawing.Size(96, 16);
             this.Label_ApertureType.TabIndex = 9;
             this.Label_ApertureType.Text = "Aperture Type:";
             // 
@@ -102,7 +104,7 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.ComboBox_ApertureType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_ApertureType.FormattingEnabled = true;
-            this.ComboBox_ApertureType.Location = new System.Drawing.Point(254, 59);
+            this.ComboBox_ApertureType.Location = new System.Drawing.Point(254, 78);
             this.ComboBox_ApertureType.Name = "ComboBox_ApertureType";
             this.ComboBox_ApertureType.Size = new System.Drawing.Size(216, 24);
             this.ComboBox_ApertureType.TabIndex = 10;
@@ -156,7 +158,7 @@ namespace SAM.Analytical.Windows.Forms
             this.SplitContainer_Construction.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SplitContainer_Construction.Location = new System.Drawing.Point(12, 89);
+            this.SplitContainer_Construction.Location = new System.Drawing.Point(12, 127);
             this.SplitContainer_Construction.Name = "SplitContainer_Construction";
             this.SplitContainer_Construction.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -171,12 +173,32 @@ namespace SAM.Analytical.Windows.Forms
             this.SplitContainer_Construction.SplitterDistance = 322;
             this.SplitContainer_Construction.TabIndex = 13;
             // 
+            // TextBox_Description
+            // 
+            this.TextBox_Description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox_Description.Location = new System.Drawing.Point(96, 50);
+            this.TextBox_Description.Name = "TextBox_Description";
+            this.TextBox_Description.Size = new System.Drawing.Size(374, 22);
+            this.TextBox_Description.TabIndex = 15;
+            // 
+            // Label_Description
+            // 
+            this.Label_Description.AutoSize = true;
+            this.Label_Description.Location = new System.Drawing.Point(12, 53);
+            this.Label_Description.Name = "Label_Description";
+            this.Label_Description.Size = new System.Drawing.Size(78, 16);
+            this.Label_Description.TabIndex = 14;
+            this.Label_Description.Text = "Description:";
+            // 
             // ApertureConstructionForm
             // 
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(482, 803);
+            this.ClientSize = new System.Drawing.Size(482, 853);
+            this.Controls.Add(this.TextBox_Description);
+            this.Controls.Add(this.Label_Description);
             this.Controls.Add(this.SplitContainer_Construction);
             this.Controls.Add(this.ComboBox_ApertureType);
             this.Controls.Add(this.Label_ApertureType);
@@ -218,5 +240,7 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.SplitContainer SplitContainer_Construction;
         private Architectural.Windows.MaterialLayersControl MaterialLayersControl_Pane;
         private Architectural.Windows.MaterialLayersControl MaterialLayersControl_Frame;
+        private System.Windows.Forms.TextBox TextBox_Description;
+        private System.Windows.Forms.Label Label_Description;
     }
 }

@@ -52,6 +52,11 @@ namespace SAM.Analytical.Windows.Forms
                 MaterialLayersControl_Frame.MaterialLayers = apertureConstruction.FrameConstructionLayers?.ConvertAll(x => (Architectural.MaterialLayer)x);
 
                 ComboBox_ApertureType.Text = Core.Query.Description(apertureConstruction.ApertureType);
+
+                if(apertureConstruction.TryGetValue(ApertureConstructionParameter.Description, out string description))
+                {
+                    TextBox_Description.Text = description;
+                }
             }
         }
 
@@ -90,6 +95,16 @@ namespace SAM.Analytical.Windows.Forms
                     result = new ApertureConstruction(Guid.NewGuid(), TextBox_Name.Text, Core.Query.Enum<ApertureType>(ComboBox_ApertureType.Text), PaneConstructionLayers, FrameConstructionLayers);
                 }
 
+                string description = TextBox_Description.Text;
+                if(string.IsNullOrEmpty(description))
+                {
+                    result.RemoveValue(ApertureConstructionParameter.Description);
+                }
+                else
+                {
+                    result.SetValue(ApertureConstructionParameter.Description, description);
+                }
+
                 return result;
             }
         }
@@ -102,11 +117,11 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
 
-            if(apertureConstructionLibrary?.GetApertureConstructions()?.Find(x => x.Name == TextBox_Name.Text) != null)
-            {
-                MessageBox.Show("Construction with the same name already exists. Provide different name");
-                return;
-            }
+            //if(apertureConstructionLibrary?.GetApertureConstructions()?.Find(x => x.Name == TextBox_Name.Text) != null)
+            //{
+            //    MessageBox.Show("Construction with the same name already exists. Provide different name");
+            //    return;
+            //}
 
             List<ConstructionLayer> constructionLayers = PaneConstructionLayers;
             if(constructionLayers == null || constructionLayers.Count == 0)
@@ -139,6 +154,7 @@ namespace SAM.Analytical.Windows.Forms
 
                 ComboBox_ApertureType.Enabled = value;
                 TextBox_Name.Enabled = value;
+                TextBox_Description.Enabled = value;
             }
         }
 

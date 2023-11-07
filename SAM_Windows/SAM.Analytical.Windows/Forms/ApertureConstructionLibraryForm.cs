@@ -51,7 +51,7 @@ namespace SAM.Analytical.Windows.Forms
                 apertureTypes.Add(Core.Query.Description(apertureType));
             }
 
-            (DataGridView_Constructions.Columns[2] as DataGridViewComboBoxColumn).DataSource = apertureTypes;
+            (DataGridView_Constructions.Columns[3] as DataGridViewComboBoxColumn).DataSource = apertureTypes;
 
             SetApertureConstructionLibrary(apertureConstructionLibrary);
         }
@@ -165,7 +165,12 @@ namespace SAM.Analytical.Windows.Forms
             string name = apertureConstruction.Name;
             double thickness = Math.Round(apertureConstruction.MaxThickness(), 3);
 
-            int index = DataGridView_Constructions.Rows.Add(name, thickness, Core.Query.Description(apertureConstruction.ApertureType));
+            if(!apertureConstruction.TryGetValue(ApertureConstructionParameter.Description, out string description))
+            {
+                description = null;
+            }
+
+            int index = DataGridView_Constructions.Rows.Add(name, description, thickness, Core.Query.Description(apertureConstruction.ApertureType));
             DataGridViewRow result = DataGridView_Constructions.Rows[index];
             if (result != null)
             {
@@ -210,10 +215,22 @@ namespace SAM.Analytical.Windows.Forms
                     continue;
                 }
 
-                string value = dataGridViewRow.Cells[2].Value as string;
-                ApertureType apertureType = Core.Query.Enum<ApertureType>(value);
+                string value;
 
+                value = dataGridViewRow.Cells[3].Value as string;
+                ApertureType apertureType = Core.Query.Enum<ApertureType>(value);
+                
                 apertureConstruction = new ApertureConstruction(apertureConstruction, apertureType);
+
+                value = dataGridViewRow.Cells[1].Value as string;
+                if(string.IsNullOrEmpty(value))
+                {
+                    apertureConstruction.RemoveValue(ApertureConstructionParameter.Description);
+                }
+                else
+                {
+                    apertureConstruction.SetValue(ApertureConstructionParameter.Description, value);
+                }
 
                 result.Add(apertureConstruction);
             }
@@ -391,7 +408,13 @@ namespace SAM.Analytical.Windows.Forms
 
             DataGridView_Constructions.SelectedRows[0].Tag = apertureConstruction;
             DataGridView_Constructions.SelectedRows[0].Cells[0].Value = apertureConstruction.Name;
-            DataGridView_Constructions.SelectedRows[0].Cells[1].Value = Math.Round(apertureConstruction.MaxThickness(), 3);
+            if(!apertureConstruction.TryGetValue(ApertureConstructionParameter.Description, out string description))
+            {
+                description = null;
+            }
+
+            DataGridView_Constructions.SelectedRows[0].Cells[1].Value = description;
+            DataGridView_Constructions.SelectedRows[0].Cells[2].Value = Math.Round(apertureConstruction.MaxThickness(), 3);
         }
 
         private void TextBox_Search_TextChanged(object sender, EventArgs e)

@@ -32,9 +32,6 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_OK = new System.Windows.Forms.Button();
             this.Button_Cancel = new System.Windows.Forms.Button();
             this.DataGridView_Constructions = new System.Windows.Forms.DataGridView();
-            this.Column_ConstructionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Thickness = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Type = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TextBox_Search = new System.Windows.Forms.TextBox();
             this.Label_Search = new System.Windows.Forms.Label();
             this.Button_Remove = new System.Windows.Forms.Button();
@@ -43,13 +40,17 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Materials = new System.Windows.Forms.Button();
             this.Button_Export = new System.Windows.Forms.Button();
             this.Button_Import = new System.Windows.Forms.Button();
+            this.Column_ConstructionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Thickness = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Type = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Constructions)).BeginInit();
             this.SuspendLayout();
             // 
             // Button_OK
             // 
             this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(414, 413);
+            this.Button_OK.Location = new System.Drawing.Point(514, 413);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 28);
             this.Button_OK.TabIndex = 6;
@@ -61,7 +62,7 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(495, 413);
+            this.Button_Cancel.Location = new System.Drawing.Point(595, 413);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
             this.Button_Cancel.TabIndex = 5;
@@ -82,6 +83,7 @@ namespace SAM.Analytical.Windows.Forms
             this.DataGridView_Constructions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView_Constructions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column_ConstructionName,
+            this.Column_Description,
             this.Column_Thickness,
             this.Column_Type});
             this.DataGridView_Constructions.Location = new System.Drawing.Point(12, 56);
@@ -91,35 +93,10 @@ namespace SAM.Analytical.Windows.Forms
             this.DataGridView_Constructions.RowHeadersWidth = 51;
             this.DataGridView_Constructions.RowTemplate.Height = 24;
             this.DataGridView_Constructions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView_Constructions.Size = new System.Drawing.Size(558, 276);
+            this.DataGridView_Constructions.Size = new System.Drawing.Size(658, 276);
             this.DataGridView_Constructions.TabIndex = 7;
             this.DataGridView_Constructions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellContentClick);
             this.DataGridView_Constructions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Constructions_CellDoubleClick);
-            // 
-            // Column_ConstructionName
-            // 
-            this.Column_ConstructionName.FillWeight = 60F;
-            this.Column_ConstructionName.HeaderText = "Aperture Construction Name";
-            this.Column_ConstructionName.MinimumWidth = 6;
-            this.Column_ConstructionName.Name = "Column_ConstructionName";
-            this.Column_ConstructionName.ReadOnly = true;
-            // 
-            // Column_Thickness
-            // 
-            this.Column_Thickness.FillWeight = 15F;
-            this.Column_Thickness.HeaderText = "Thickness";
-            this.Column_Thickness.MinimumWidth = 6;
-            this.Column_Thickness.Name = "Column_Thickness";
-            this.Column_Thickness.ReadOnly = true;
-            // 
-            // Column_Type
-            // 
-            this.Column_Type.FillWeight = 25F;
-            this.Column_Type.HeaderText = "Type";
-            this.Column_Type.MinimumWidth = 6;
-            this.Column_Type.Name = "Column_Type";
-            this.Column_Type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column_Type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // TextBox_Search
             // 
@@ -127,7 +104,7 @@ namespace SAM.Analytical.Windows.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Search.Location = new System.Drawing.Point(71, 28);
             this.TextBox_Search.Name = "TextBox_Search";
-            this.TextBox_Search.Size = new System.Drawing.Size(499, 22);
+            this.TextBox_Search.Size = new System.Drawing.Size(599, 22);
             this.TextBox_Search.TabIndex = 8;
             this.TextBox_Search.TextChanged += new System.EventHandler(this.TextBox_Search_TextChanged);
             // 
@@ -143,7 +120,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_Remove
             // 
             this.Button_Remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Remove.Location = new System.Drawing.Point(495, 338);
+            this.Button_Remove.Location = new System.Drawing.Point(595, 338);
             this.Button_Remove.Name = "Button_Remove";
             this.Button_Remove.Size = new System.Drawing.Size(75, 28);
             this.Button_Remove.TabIndex = 11;
@@ -154,7 +131,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_Add
             // 
             this.Button_Add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Add.Location = new System.Drawing.Point(414, 338);
+            this.Button_Add.Location = new System.Drawing.Point(514, 338);
             this.Button_Add.Name = "Button_Add";
             this.Button_Add.Size = new System.Drawing.Size(75, 28);
             this.Button_Add.TabIndex = 10;
@@ -165,7 +142,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_Duplicate
             // 
             this.Button_Duplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Duplicate.Location = new System.Drawing.Point(333, 338);
+            this.Button_Duplicate.Location = new System.Drawing.Point(433, 338);
             this.Button_Duplicate.Name = "Button_Duplicate";
             this.Button_Duplicate.Size = new System.Drawing.Size(75, 28);
             this.Button_Duplicate.TabIndex = 12;
@@ -188,7 +165,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_Export
             // 
             this.Button_Export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Export.Location = new System.Drawing.Point(171, 338);
+            this.Button_Export.Location = new System.Drawing.Point(271, 338);
             this.Button_Export.Name = "Button_Export";
             this.Button_Export.Size = new System.Drawing.Size(75, 28);
             this.Button_Export.TabIndex = 15;
@@ -199,7 +176,7 @@ namespace SAM.Analytical.Windows.Forms
             // Button_Import
             // 
             this.Button_Import.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Import.Location = new System.Drawing.Point(252, 338);
+            this.Button_Import.Location = new System.Drawing.Point(352, 338);
             this.Button_Import.Name = "Button_Import";
             this.Button_Import.Size = new System.Drawing.Size(75, 28);
             this.Button_Import.TabIndex = 14;
@@ -207,12 +184,44 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Import.UseVisualStyleBackColor = true;
             this.Button_Import.Click += new System.EventHandler(this.Button_Import_Click);
             // 
+            // Column_ConstructionName
+            // 
+            this.Column_ConstructionName.FillWeight = 50F;
+            this.Column_ConstructionName.HeaderText = "Aperture Construction Name";
+            this.Column_ConstructionName.MinimumWidth = 6;
+            this.Column_ConstructionName.Name = "Column_ConstructionName";
+            this.Column_ConstructionName.ReadOnly = true;
+            // 
+            // Column_Description
+            // 
+            this.Column_Description.FillWeight = 40F;
+            this.Column_Description.HeaderText = "Description";
+            this.Column_Description.MinimumWidth = 6;
+            this.Column_Description.Name = "Column_Description";
+            // 
+            // Column_Thickness
+            // 
+            this.Column_Thickness.FillWeight = 15F;
+            this.Column_Thickness.HeaderText = "Thickness";
+            this.Column_Thickness.MinimumWidth = 6;
+            this.Column_Thickness.Name = "Column_Thickness";
+            this.Column_Thickness.ReadOnly = true;
+            // 
+            // Column_Type
+            // 
+            this.Column_Type.FillWeight = 25F;
+            this.Column_Type.HeaderText = "Type";
+            this.Column_Type.MinimumWidth = 6;
+            this.Column_Type.Name = "Column_Type";
+            this.Column_Type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column_Type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // ApertureConstructionLibraryForm
             // 
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(582, 453);
+            this.ClientSize = new System.Drawing.Size(682, 453);
             this.Controls.Add(this.Button_Export);
             this.Controls.Add(this.Button_Import);
             this.Controls.Add(this.Button_Materials);
@@ -250,10 +259,11 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.Button Button_Add;
         private System.Windows.Forms.Button Button_Duplicate;
         private System.Windows.Forms.Button Button_Materials;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_ConstructionName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_Thickness;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Column_Type;
         private System.Windows.Forms.Button Button_Export;
         private System.Windows.Forms.Button Button_Import;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_ConstructionName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_Thickness;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Column_Type;
     }
 }

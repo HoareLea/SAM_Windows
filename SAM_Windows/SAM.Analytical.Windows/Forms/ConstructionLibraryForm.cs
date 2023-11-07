@@ -52,7 +52,7 @@ namespace SAM.Analytical.Windows.Forms
                 panelTypes.Add(Core.Query.Description(panelType));
             }
 
-            (DataGridView_Constructions.Columns[2] as DataGridViewComboBoxColumn).DataSource = panelTypes;
+            (DataGridView_Constructions.Columns[3] as DataGridViewComboBoxColumn).DataSource = panelTypes;
 
             SetConstructionLibrary(constructionLibrary);
         }
@@ -167,6 +167,10 @@ namespace SAM.Analytical.Windows.Forms
 
             string name = construction.Name;
             double thickness = Math.Round(construction.GetThickness(), 3);
+            if(!construction.TryGetValue(ConstructionParameter.Description, out string description))
+            {
+                description = null;
+            }
 
             PanelType panelType = PanelType.Undefined;
             if (construction.TryGetValue(ConstructionParameter.DefaultPanelType, out string panelTypeString))
@@ -176,7 +180,7 @@ namespace SAM.Analytical.Windows.Forms
 
             string defaultType = panelType == PanelType.Undefined ? string.Empty : Core.Query.Description(panelType);
 
-            int index = DataGridView_Constructions.Rows.Add(name, thickness, defaultType);
+            int index = DataGridView_Constructions.Rows.Add(name, description, thickness, defaultType);
             DataGridViewRow result = DataGridView_Constructions.Rows[index];
             if (result != null)
             {
@@ -221,7 +225,9 @@ namespace SAM.Analytical.Windows.Forms
                     continue;
                 }
 
-                string value = dataGridViewRow.Cells[2].Value as string;
+                string value = null;
+
+                value = dataGridViewRow.Cells[3].Value as string;
                 PanelType panelType = Core.Query.Enum<PanelType>(value);
 
                 if (panelType == PanelType.Undefined)
@@ -231,6 +237,16 @@ namespace SAM.Analytical.Windows.Forms
                 else
                 {
                     construction.SetValue(ConstructionParameter.DefaultPanelType, panelType);
+                }
+
+                value = dataGridViewRow.Cells[1].Value as string;
+                if(string.IsNullOrEmpty(value))
+                {
+                    construction.RemoveValue(ConstructionParameter.Description);
+                }
+                else
+                {
+                    construction.SetValue(ConstructionParameter.Description, value);
                 }
 
                 result.Add(construction);
@@ -412,7 +428,13 @@ namespace SAM.Analytical.Windows.Forms
 
             DataGridView_Constructions.SelectedRows[0].Tag = construction;
             DataGridView_Constructions.SelectedRows[0].Cells[0].Value = construction.Name;
-            DataGridView_Constructions.SelectedRows[0].Cells[1].Value = Math.Round(construction.GetThickness(), 3);
+            if (!construction.TryGetValue(ConstructionParameter.Description, out string description))
+            {
+                description = null;
+            }
+
+            DataGridView_Constructions.SelectedRows[0].Cells[1].Value = description;
+            DataGridView_Constructions.SelectedRows[0].Cells[2].Value = Math.Round(construction.GetThickness(), 3);
         }
 
         private void TextBox_Search_TextChanged(object sender, EventArgs e)

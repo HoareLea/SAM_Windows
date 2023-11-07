@@ -35,6 +35,8 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_Cancel = new System.Windows.Forms.Button();
             this.MaterialLayersControl_Main = new SAM.Architectural.Windows.MaterialLayersControl();
             this.Button_CopyFromConstruction = new System.Windows.Forms.Button();
+            this.TextBox_Description = new System.Windows.Forms.TextBox();
+            this.Label_Description = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Label_Name
@@ -42,7 +44,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Name.AutoSize = true;
             this.Label_Name.Location = new System.Drawing.Point(12, 25);
             this.Label_Name.Name = "Label_Name";
-            this.Label_Name.Size = new System.Drawing.Size(49, 17);
+            this.Label_Name.Size = new System.Drawing.Size(47, 16);
             this.Label_Name.TabIndex = 0;
             this.Label_Name.Text = "Name:";
             // 
@@ -50,9 +52,9 @@ namespace SAM.Analytical.Windows.Forms
             // 
             this.TextBox_Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Name.Location = new System.Drawing.Point(12, 48);
+            this.TextBox_Name.Location = new System.Drawing.Point(96, 22);
             this.TextBox_Name.Name = "TextBox_Name";
-            this.TextBox_Name.Size = new System.Drawing.Size(458, 22);
+            this.TextBox_Name.Size = new System.Drawing.Size(374, 22);
             this.TextBox_Name.TabIndex = 1;
             // 
             // Button_OK
@@ -98,12 +100,32 @@ namespace SAM.Analytical.Windows.Forms
             this.Button_CopyFromConstruction.UseVisualStyleBackColor = true;
             this.Button_CopyFromConstruction.Click += new System.EventHandler(this.Button_CopyFromConstruction_Click);
             // 
+            // TextBox_Description
+            // 
+            this.TextBox_Description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox_Description.Location = new System.Drawing.Point(96, 48);
+            this.TextBox_Description.Name = "TextBox_Description";
+            this.TextBox_Description.Size = new System.Drawing.Size(374, 22);
+            this.TextBox_Description.TabIndex = 12;
+            // 
+            // Label_Description
+            // 
+            this.Label_Description.AutoSize = true;
+            this.Label_Description.Location = new System.Drawing.Point(12, 51);
+            this.Label_Description.Name = "Label_Description";
+            this.Label_Description.Size = new System.Drawing.Size(78, 16);
+            this.Label_Description.TabIndex = 11;
+            this.Label_Description.Text = "Description:";
+            // 
             // ConstructionForm
             // 
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(482, 453);
+            this.Controls.Add(this.TextBox_Description);
+            this.Controls.Add(this.Label_Description);
             this.Controls.Add(this.Button_CopyFromConstruction);
             this.Controls.Add(this.MaterialLayersControl_Main);
             this.Controls.Add(this.Button_OK);
@@ -133,5 +155,7 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.Button Button_Cancel;
         private Architectural.Windows.MaterialLayersControl MaterialLayersControl_Main;
         private System.Windows.Forms.Button Button_CopyFromConstruction;
+        private System.Windows.Forms.TextBox TextBox_Description;
+        private System.Windows.Forms.Label Label_Description;
     }
 }
