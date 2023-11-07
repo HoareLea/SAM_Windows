@@ -72,7 +72,7 @@ namespace SAM.Analytical.Windows.Forms
                 return result;
             }
 
-            return result.Import<IJSAMObject>(path, false, this);
+            return result.Import<IJSAMObject>(path, new ImportOptions(), this);
         }
 
 

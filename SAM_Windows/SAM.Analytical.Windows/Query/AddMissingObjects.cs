@@ -86,7 +86,7 @@ namespace SAM.Analytical.Windows
                 {
                     try
                     {
-                        Import<IJSAMObject>(path, out List<IJSAMObject> jSAMObjects_Temp_Temp, null, false, owner);
+                        Import<IJSAMObject>(path, out List<IJSAMObject> jSAMObjects_Temp_Temp, null, new ImportOptions() { SuppressMessages = true, UserSelection = false }, owner);
                         if (jSAMObjects_Temp_Temp != null)
                         {
                             jSAMObjects_Temp.AddRange(jSAMObjects_Temp_Temp.ConvertAll(x => new Tuple<string, IJSAMObject>(path, x)));

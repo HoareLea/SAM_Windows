@@ -9,7 +9,7 @@ namespace SAM.Analytical.Windows
 {
     public static partial class Query
     {
-        public static List<T> Import<T>(out List<IJSAMObject> jSAMObjects, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T: IJSAMObject
+        public static List<T> Import<T>(out List<IJSAMObject> jSAMObjects, Func<T, bool> func = null, ImportOptions importOptions = null, IWin32Window owner = null) where T: IJSAMObject
         {
             jSAMObjects = null;
 
@@ -32,16 +32,21 @@ namespace SAM.Analytical.Windows
                 path = openFileDialog.FileName;
             }
 
-            return Import(path, out jSAMObjects, func, userSelection, owner);
+            return Import(path, out jSAMObjects, func, importOptions, owner);
         }
 
-        public static List<T> Import<T>(string path, out List<IJSAMObject> jSAMObjects, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null)
+        public static List<T> Import<T>(string path, out List<IJSAMObject> jSAMObjects, Func<T, bool> func = null, ImportOptions importOptions = null, IWin32Window owner = null)
         {
             jSAMObjects = null;
 
             if (string.IsNullOrWhiteSpace(path) || !System.IO.File.Exists(path))
             {
                 return null;
+            }
+
+            if(importOptions == null)
+            {
+                importOptions = new ImportOptions();
             }
 
             List<IJSAMObject> jSAMObjects_Open = new List<IJSAMObject>();
@@ -52,14 +57,26 @@ namespace SAM.Analytical.Windows
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Cannot open file specified");
+                if (!importOptions.SuppressMessages)
+                {
+                    MessageBox.Show("Cannot open file specified");
+                }
                 return null;
             }
 
             if (jSAMObjects_Open == null || jSAMObjects_Open.Count == 0)
             {
-                MessageBox.Show("No objects to import");
+                if (!importOptions.SuppressMessages)
+                {
+                    MessageBox.Show("No objects to import");
+                }
+
                 return null;
+            }
+
+            if(importOptions == null)
+            {
+                importOptions = new ImportOptions();
             }
 
             List<Tuple<string, string, T>> tuples_All = new List<Tuple<string, string, T>>();
@@ -354,7 +371,10 @@ namespace SAM.Analytical.Windows
 
             if (tuples_All == null || tuples_All.Count == 0)
             {
-                MessageBox.Show("No objects to import");
+                if (!importOptions.SuppressMessages)
+                {
+                    MessageBox.Show("No objects to import");
+                }
                 return null;
             }
 
@@ -362,7 +382,7 @@ namespace SAM.Analytical.Windows
             tuples_All.ForEach(x => groups.Add(x.Item1));
 
             List<Tuple<string, string, T>> tuples_Selected = tuples_All;
-            if (userSelection)
+            if (importOptions.UserSelection)
             {
                 tuples_Selected = null;
 
@@ -390,55 +410,55 @@ namespace SAM.Analytical.Windows
             return tuples_Selected.ConvertAll(x => x.Item3);
         }
 
-        public static List<T> Import<T>(Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T :IJSAMObject
+        public static List<T> Import<T>(Func<T, bool> func = null, ImportOptions importOptions = null, IWin32Window owner = null) where T :IJSAMObject
         {
-            return Import(out List<IJSAMObject> jSAMObjects, func, userSelection, owner);
+            return Import(out List<IJSAMObject> jSAMObjects, func, importOptions, owner);
         }
 
-        public static List<T> Import<T>(string path, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T : IJSAMObject
+        public static List<T> Import<T>(string path, Func<T, bool> func = null, ImportOptions importOptions = null, IWin32Window owner = null) where T : IJSAMObject
         {
-            return Import(path, out List <IJSAMObject> jSAMObjects, func, userSelection, owner);
+            return Import(path, out List <IJSAMObject> jSAMObjects, func, importOptions, owner);
         }
 
-        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, string path, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T : IJSAMObject
+        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, string path, Func<T, bool> func = null, ImportOptions importOptions = null, IWin32Window owner = null) where T : IJSAMObject
         {
-            List<T> jSAMObjects = Import(path, out List<IJSAMObject> jSAMObjects_All, func, userSelection, owner);
+            List<T> jSAMObjects = Import(path, out List<IJSAMObject> jSAMObjects_All, func, importOptions, owner);
 
-            return Import(analyticalModel, jSAMObjects, jSAMObjects_All, func, userSelection, owner);
+            return Import(analyticalModel, jSAMObjects, jSAMObjects_All, func, importOptions, owner);
         }
 
-        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T: IJSAMObject
+        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, Func<T, bool> func = null, ImportOptions importOptions = null, IWin32Window owner = null) where T: IJSAMObject
         {
-            List<T> jSAMObjects = Import(out List<IJSAMObject> jSAMObjects_All,  func, userSelection, owner);
+            List<T> jSAMObjects = Import(out List<IJSAMObject> jSAMObjects_All,  func, importOptions, owner);
 
-            return Import(analyticalModel, jSAMObjects, jSAMObjects_All, func, userSelection, owner);
+            return Import(analyticalModel, jSAMObjects, jSAMObjects_All, func, importOptions, owner);
 
         }
 
-        public static AnalyticalModel Import(this AnalyticalModel analyticalModel, bool userSelection = true, IWin32Window owner = null)
+        public static AnalyticalModel Import(this AnalyticalModel analyticalModel, ImportOptions importOptions = null, IWin32Window owner = null)
         {
             Func<IJSAMObject, bool> func = null;
 
-            return Import(analyticalModel, func, userSelection, owner);
+            return Import(analyticalModel, func, importOptions, owner);
         }
 
-        public static AnalyticalModel Import(this AnalyticalModel analyticalModel, string path, bool userSelection = true, IWin32Window owner = null)
+        public static AnalyticalModel Import(this AnalyticalModel analyticalModel, string path, ImportOptions importOptions = null, IWin32Window owner = null)
         {
-            return Import<IJSAMObject>(analyticalModel, path, null, userSelection, owner);
+            return Import<IJSAMObject>(analyticalModel, path, null, importOptions, owner);
         }
 
-        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, bool userSelection = true, IWin32Window owner = null) where T: IJSAMObject
+        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, ImportOptions importOptions = null, IWin32Window owner = null) where T: IJSAMObject
         {
-            return Import(analyticalModel, (IJSAMObject x) => x is T, userSelection, owner);
+            return Import(analyticalModel, (IJSAMObject x) => x is T, importOptions, owner);
         }
 
-        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, string path, bool userSelection = true, IWin32Window owner = null) where T : IJSAMObject
+        public static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, string path, ImportOptions importOptions = null, IWin32Window owner = null) where T : IJSAMObject
         {
-            return Import(analyticalModel, path, (IJSAMObject x) => x is T, userSelection, owner);
+            return Import(analyticalModel, path, (IJSAMObject x) => x is T, importOptions, owner);
         }
 
 
-        private static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, IEnumerable<T> jSAMObjects, IEnumerable<IJSAMObject> jSAMObjects_All, Func<T, bool> func = null, bool userSelection = true, IWin32Window owner = null) where T : IJSAMObject
+        private static AnalyticalModel Import<T>(this AnalyticalModel analyticalModel, IEnumerable<T> jSAMObjects, IEnumerable<IJSAMObject> jSAMObjects_All, Func<T, bool> func = null, ImportOptions importOptions = null, IWin32Window owner = null) where T : IJSAMObject
         {
             if (jSAMObjects == null)
             {
@@ -449,6 +469,11 @@ namespace SAM.Analytical.Windows
             if (adjacencyCluster == null)
             {
                 adjacencyCluster = new AdjacencyCluster();
+            }
+
+            if(importOptions == null)
+            {
+                importOptions = new ImportOptions();
             }
 
             List<Construction> constructions = new List<Construction>();
@@ -568,7 +593,7 @@ namespace SAM.Analytical.Windows
 
                         if (names_Missing != null && names_Missing.Count != 0)
                         {
-                            DialogResult dialogResult = MessageBox.Show(owner, "Try to import missing materials?", "Materials", MessageBoxButtons.YesNo);
+                            DialogResult dialogResult = importOptions.SuppressMessages ? DialogResult.Yes : MessageBox.Show(owner, "Try to import missing materials?", "Materials", MessageBoxButtons.YesNo);
                             if (dialogResult == DialogResult.Yes)
                             {
                                 foreach (string name in names_Missing)
@@ -631,7 +656,7 @@ namespace SAM.Analytical.Windows
 
                     if (dictionary_Profile != null && dictionary_Profile.Count != 0)
                     {
-                        DialogResult dialogResult = MessageBox.Show(owner, "Try to import missing profiles?", "Profiles", MessageBoxButtons.YesNo);
+                        DialogResult dialogResult = importOptions.SuppressMessages ? DialogResult.Yes : MessageBox.Show(owner, "Try to import missing profiles?", "Profiles", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {
                             foreach (KeyValuePair<ProfileType, HashSet<string>> keyValuePair in dictionary_Profile)

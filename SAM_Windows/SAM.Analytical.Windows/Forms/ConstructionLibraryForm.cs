@@ -444,7 +444,7 @@ namespace SAM.Analytical.Windows.Forms
 
             Func<IJSAMObject, bool> func = new Func<IJSAMObject, bool>(x => { return x is Material || x is Construction; });
 
-            analyticalModel = Query.Import(analyticalModel, func, false, this);
+            analyticalModel = Query.Import(analyticalModel, func, new ImportOptions(), this);
             if (analyticalModel != null)
             {
                 IEnumerable<Construction> constructions = analyticalModel.AdjacencyCluster?.GetObjects<Construction>();

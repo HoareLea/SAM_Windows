@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ImportOptions.cs" />
     <Compile Include="Controls\InternalConditionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -330,8 +331,6 @@
       <DependentUpon>SpacesForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
