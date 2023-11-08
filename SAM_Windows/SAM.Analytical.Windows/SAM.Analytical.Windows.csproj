@@ -65,6 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\EventArgs\ConstructionManagerExportingEventArgs.cs" />
+    <Compile Include="Classes\EventArgs\ConstructionManagerImportingEventArgs.cs" />
     <Compile Include="Classes\ImportOptions.cs" />
     <Compile Include="Controls\InternalConditionControl.cs">
       <SubType>UserControl</SubType>
@@ -96,6 +98,8 @@
     <Compile Include="Controls\SpacesControl.Designer.cs">
       <DependentUpon>SpacesControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Delegates\ConstructionManagerImportingEventHandler.cs" />
+    <Compile Include="Delegates\ConstructionManagerExportingEventHandler.cs" />
     <Compile Include="Forms\AnalyticalModelForm.cs">
       <SubType>Form</SubType>
     </Compile>

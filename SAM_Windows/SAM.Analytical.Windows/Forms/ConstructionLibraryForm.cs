@@ -1,8 +1,10 @@
 ﻿using SAM.Core;
 using SAM.Core.Windows.Forms;
+using SAM.Geometry;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -10,6 +12,9 @@ namespace SAM.Analytical.Windows.Forms
 {
     public partial class ConstructionLibraryForm : Form
     {
+        public event ConstructionManagerExportingEventHandler ConstructionManagerExporting;
+        public event ConstructionManagerImportingEventHandler ConstructionManagerImporting;
+
         private MaterialLibrary materialLibrary;
         private ConstructionLibrary constructionLibrary;
 
@@ -96,6 +101,11 @@ namespace SAM.Analytical.Windows.Forms
             {
                 Button_Materials.Visible = false;
                 Button_Add.Visible = false;
+            }
+            else
+            {
+                Button_Materials.Visible = true;
+                Button_Add.Visible = true;
             }
         }
 
@@ -320,6 +330,14 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
+        public MaterialLibrary MaterialLibrary
+        {
+            get
+            {
+                return materialLibrary == null ? null : new MaterialLibrary(materialLibrary);
+            }
+        }
+
         private void Button_Add_Click(object sender, EventArgs e)
         {
             Construction construction = null;
@@ -462,56 +480,73 @@ namespace SAM.Analytical.Windows.Forms
 
         private void Button_Import_Click(object sender, EventArgs e)
         {
-            AnalyticalModel analyticalModel = new AnalyticalModel(Guid.NewGuid(), "Temporary AnalyticalModel");
+            ConstructionManager constructionManager = null;
+            bool handled = false;
 
-            Func<IJSAMObject, bool> func = new Func<IJSAMObject, bool>(x => { return x is Material || x is Construction; });
-
-            analyticalModel = Query.Import(analyticalModel, func, new ImportOptions(), this);
-            if (analyticalModel != null)
+            if(ConstructionManagerImporting != null)
             {
-                IEnumerable<Construction> constructions = analyticalModel.AdjacencyCluster?.GetObjects<Construction>();
-                if (constructions == null)
+                ConstructionManagerImportingEventArgs constructionManagerImportingEventArgs = new ConstructionManagerImportingEventArgs();
+
+                ConstructionManagerImporting.Invoke(sender, constructionManagerImportingEventArgs);
+
+                if(constructionManagerImportingEventArgs.Handled)
                 {
-                    MessageBox.Show("Construction could not be imported.");
-                    return;
+                    handled = true;
+                    constructionManager = constructionManagerImportingEventArgs.ConstructionManager;
                 }
-
-                using (TreeViewForm<Construction> treeViewForm = new TreeViewForm<Construction>("Select", constructions, x => string.IsNullOrWhiteSpace(x?.Name) ? "???" : x.Name))
-                {
-                    if (treeViewForm.ShowDialog() != DialogResult.OK)
-                    {
-                        return;
-                    }
-
-                    constructions = treeViewForm.SelectedItems;
-                }
-
-                if (constructions == null || constructions.Count() == 0)
-                {
-                    return;
-                }
-
-                if (materialLibrary == null)
-                {
-                    materialLibrary = new MaterialLibrary("MaterialLibrary");
-                }
-
-                analyticalModel.MaterialLibrary?.GetMaterials()?.ForEach(x => materialLibrary.Add(x));
-
-
-                if (constructionLibrary == null)
-                {
-                    constructionLibrary = new ConstructionLibrary("ConstructionLibrary");
-                }
-
-                foreach (Construction construction in constructions)
-                {
-                    constructionLibrary.Add(construction);
-
-                }
-
-                SetConstructionLibrary(constructionLibrary);
             }
+
+            if(!handled)
+            {
+                AnalyticalModel analyticalModel = new AnalyticalModel(Guid.NewGuid(), "Temporary AnalyticalModel");
+                Func<IJSAMObject, bool> func = new Func<IJSAMObject, bool>(x => { return x is Material || x is Construction; });
+
+                analyticalModel = Query.Import(analyticalModel, func, new ImportOptions(), this);
+                constructionManager = analyticalModel?.ConstructionManager;
+            }
+
+            IEnumerable<Construction> constructions = constructionManager?.Constructions;
+            if (constructions == null)
+            {
+                MessageBox.Show("Constructions could not be imported.");
+                return;
+            }
+
+            using (TreeViewForm<Construction> treeViewForm = new TreeViewForm<Construction>("Select", constructions, x => string.IsNullOrWhiteSpace(x?.Name) ? "???" : x.Name))
+            {
+                if (treeViewForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                constructions = treeViewForm.SelectedItems;
+            }
+
+            if (constructions == null || constructions.Count() == 0)
+            {
+                return;
+            }
+
+            if (materialLibrary == null)
+            {
+                materialLibrary = new MaterialLibrary("MaterialLibrary");
+            }
+
+            constructionManager.Materials?.ForEach(x => materialLibrary.Add(x));
+
+
+            if (constructionLibrary == null)
+            {
+                constructionLibrary = new ConstructionLibrary("ConstructionLibrary");
+            }
+
+            foreach (Construction construction in constructions)
+            {
+                constructionLibrary.Add(construction);
+
+            }
+
+            SetConstructionLibrary(constructionLibrary);
         }
 
         private void Button_Export_Click(object sender, EventArgs e)
@@ -522,13 +557,41 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
 
+            ConstructionLibrary constructionLibrary = new ConstructionLibrary("ConstructionLibrary");
+            constructions.ForEach(x => constructionLibrary.Add(x));
+
+            MaterialLibrary materialLibrary_Temp = materialLibrary == null ? null : new MaterialLibrary(materialLibrary);
+
+            ConstructionManager constructionManager = new ConstructionManager(null, constructionLibrary, materialLibrary);
+
+            if (ConstructionManagerExporting != null)
+            {
+                ConstructionManagerExportingEventArgs constructionManagerExportingEventArgs = new ConstructionManagerExportingEventArgs();
+                constructionManagerExportingEventArgs.ConstructionManager = constructionManager;
+
+                ConstructionManagerExporting.Invoke(sender, constructionManagerExportingEventArgs);
+
+                if (constructionManagerExportingEventArgs.Handled)
+                {
+                    return;
+                }
+            }
+
             string path = null;
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
                 saveFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
                 saveFileDialog.FilterIndex = 1;
-                saveFileDialog.RestoreDirectory = true;
-                saveFileDialog.FileName = "SAM_ConstructionLibrary_CustomVer00.json";
+                saveFileDialog.RestoreDirectory = true; 
+                if (materialLibrary == null || materialLibrary.GetMaterials() == null)
+                {
+                    saveFileDialog.FileName = "SAM_ConstructionLibrary_CustomVer00.json";
+                }
+                else
+                {
+                    saveFileDialog.FileName = "SAM_ConstructionManager_CustomVer00.json";
+                }
+ 
                 if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
@@ -536,19 +599,24 @@ namespace SAM.Analytical.Windows.Forms
                 path = saveFileDialog.FileName;
             }
 
-            string name = System.IO.Path.GetFileNameWithoutExtension(path);
+            bool result = false;
 
-            ConstructionLibrary constructionLibrary = new ConstructionLibrary(name);
-            constructions.ForEach(x => constructionLibrary.Add(x));
-
-            bool result = Core.Convert.ToFile(constructionLibrary, path);
-            if (result)
+            if(materialLibrary == null || materialLibrary.GetMaterials() == null)
             {
-                MessageBox.Show("Library exported successfully.");
+                result = Core.Convert.ToFile(constructionLibrary, path);
             }
             else
             {
-                MessageBox.Show("Library could not be exported.");
+                result = Core.Convert.ToFile(constructionManager, path);
+            }
+
+            if (result)
+            {
+                MessageBox.Show("Data exported successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Data could not be exported.");
             }
         }
     }
