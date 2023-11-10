@@ -146,7 +146,6 @@ namespace SAM.Analytical.Windows.Forms
 
             TextBox_Name.Text = panel.Name;
             TextBox_Construction.Text = construction.Name;
-            ComboBox_PanelType.Text = construction.PanelType().Description();
         }
 
         private void PanelForm_KeyDown(object sender, KeyEventArgs e)

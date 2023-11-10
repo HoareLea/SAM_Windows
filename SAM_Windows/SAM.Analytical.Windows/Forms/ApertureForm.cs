@@ -135,6 +135,7 @@ namespace SAM.Analytical.Windows.Forms
 
             TextBox_Name.Text = aperture.Name;
             TextBox_Construction.Text = apertureConstruction.Name;
+            ComboBox_ApertureType.Text = apertureConstruction.ApertureType.Description();
         }
 
         private void ApertureForm_KeyDown(object sender, KeyEventArgs e)
