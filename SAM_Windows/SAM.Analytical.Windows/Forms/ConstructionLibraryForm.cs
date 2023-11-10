@@ -4,6 +4,7 @@ using SAM.Geometry;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -60,6 +61,95 @@ namespace SAM.Analytical.Windows.Forms
             (DataGridView_Constructions.Columns[3] as DataGridViewComboBoxColumn).DataSource = panelTypes;
 
             SetConstructionLibrary(constructionLibrary);
+
+            DataGridView_Constructions.MouseClick += DataGridView_Constructions_MouseClick;
+        }
+
+        private void DataGridView_Constructions_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right)
+            {
+                return;
+            }
+
+            int? currentMouseOverRow = DataGridView_Constructions.HitTest(e.X, e.Y)?.RowIndex;
+            if (currentMouseOverRow == null || !currentMouseOverRow.HasValue || currentMouseOverRow.Value == -1)
+            {
+                return;
+            }
+
+            ContextMenu contextMenu = new ContextMenu();
+
+            MenuItem menuItem = new MenuItem("Change Defualt Type");
+            menuItem.Click += MenuItem_Click;
+            contextMenu.MenuItems.Add(menuItem);
+
+            contextMenu.Show(DataGridView_Constructions, new Point(e.X, e.Y));
+        }
+
+        private void MenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewSelectedRowCollection dataGridViewSelectedRowCollection = DataGridView_Constructions.SelectedRows;
+            if(dataGridViewSelectedRowCollection == null || dataGridViewSelectedRowCollection.Count == 0)
+            {
+                return;
+            }
+
+            HashSet<PanelType> panelTypes = new HashSet<PanelType>(); 
+            foreach (DataGridViewRow dataGridViewRow in dataGridViewSelectedRowCollection)
+            {
+                Construction construction = dataGridViewRow.Tag as Construction;
+                if(construction == null)
+                {
+                    continue;
+                }
+
+                if(!construction.TryGetValue(ConstructionParameter.DefaultPanelType, out string panelTypeString) || SAM.Core.Query.TryGetEnum<PanelType>(panelTypeString, out PanelType panelType_Temp))
+                {
+                    panelTypes.Add(PanelType.Undefined);
+                }
+                else
+                {
+                    panelTypes.Add(panelType_Temp);
+                }
+
+                if(panelTypes.Count > 1)
+                {
+                    break;
+                }
+            }
+
+            PanelType panelType = panelTypes.Count > 1 ? PanelType.Undefined : panelTypes.First();
+            using (ComboBoxForm<PanelType> comboBoxForm = new ComboBoxForm<PanelType>("Panel Type", Enum.GetValues(typeof(PanelType)).Cast<PanelType>(), x => x == PanelType.Undefined ? string.Empty : x.Description()))
+            {
+                comboBoxForm.SelectedItem = panelType;
+                if(comboBoxForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                panelType = comboBoxForm.SelectedItem;
+            }
+
+            foreach (DataGridViewRow dataGridViewRow in dataGridViewSelectedRowCollection)
+            {
+                Construction construction = dataGridViewRow.Tag as Construction;
+                if(construction == null)
+                {
+                    continue;
+                }
+
+                if(panelType == PanelType.Undefined)
+                {
+                    construction.RemoveValue(ConstructionParameter.DefaultPanelType);
+                }
+                else
+                {
+                    construction.SetValue(ConstructionParameter.DefaultPanelType, panelType.ToString());
+                }
+
+                Add(construction, dataGridViewRow.Index);
+            }
         }
 
         private void SetConstructionLibrary(ConstructionLibrary constructionLibrary)
@@ -168,7 +258,7 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
-        private DataGridViewRow Add(Construction construction)
+        private DataGridViewRow Add(Construction construction, int index = -1)
         {
             if (construction == null)
             {
@@ -190,7 +280,16 @@ namespace SAM.Analytical.Windows.Forms
 
             string defaultType = panelType == PanelType.Undefined ? string.Empty : Core.Query.Description(panelType);
 
-            int index = DataGridView_Constructions.Rows.Add(name, description, thickness, defaultType);
+            if(index == -1)
+            {
+                index = DataGridView_Constructions.Rows.Add();
+            }
+
+            DataGridView_Constructions.Rows[index].Cells[0].Value = name;
+            DataGridView_Constructions.Rows[index].Cells[1].Value = description;
+            DataGridView_Constructions.Rows[index].Cells[2].Value = thickness;
+            DataGridView_Constructions.Rows[index].Cells[3].Value = defaultType;
+
             DataGridViewRow result = DataGridView_Constructions.Rows[index];
             if (result != null)
             {

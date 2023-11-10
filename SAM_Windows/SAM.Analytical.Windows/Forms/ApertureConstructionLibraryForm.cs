@@ -2,6 +2,7 @@
 using SAM.Core.Windows.Forms;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Automation.Peers;
 using System.Windows.Forms;
@@ -57,6 +58,80 @@ namespace SAM.Analytical.Windows.Forms
             (DataGridView_Constructions.Columns[3] as DataGridViewComboBoxColumn).DataSource = apertureTypes;
 
             SetApertureConstructionLibrary(apertureConstructionLibrary);
+
+            DataGridView_Constructions.MouseClick += DataGridView_Constructions_MouseClick;
+        }
+
+        private void DataGridView_Constructions_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right)
+            {
+                return;
+            }
+
+            int? currentMouseOverRow = DataGridView_Constructions.HitTest(e.X, e.Y)?.RowIndex;
+            if (currentMouseOverRow == null || !currentMouseOverRow.HasValue || currentMouseOverRow.Value == -1)
+            {
+                return;
+            }
+
+            ContextMenu contextMenu = new ContextMenu();
+
+            MenuItem menuItem = new MenuItem("Change Aperture Type");
+            menuItem.Click += MenuItem_Click;
+            contextMenu.MenuItems.Add(menuItem);
+
+            contextMenu.Show(DataGridView_Constructions, new Point(e.X, e.Y));
+        }
+
+        private void MenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewSelectedRowCollection dataGridViewSelectedRowCollection = DataGridView_Constructions.SelectedRows;
+            if (dataGridViewSelectedRowCollection == null || dataGridViewSelectedRowCollection.Count == 0)
+            {
+                return;
+            }
+
+            HashSet<ApertureType> apertureTypes = new HashSet<ApertureType>();
+            foreach (DataGridViewRow dataGridViewRow in dataGridViewSelectedRowCollection)
+            {
+                ApertureConstruction apertureConstruction = dataGridViewRow.Tag as ApertureConstruction;
+                if (apertureConstruction == null)
+                {
+                    continue;
+                }
+
+                apertureTypes.Add(apertureConstruction.ApertureType);
+                if (apertureTypes.Count > 1)
+                {
+                    break;
+                }
+            }
+
+            ApertureType apertureType = apertureTypes.Count > 1 ? ApertureType.Undefined : apertureTypes.First();
+            using (ComboBoxForm<ApertureType> comboBoxForm = new ComboBoxForm<ApertureType>("Aperture Type", Enum.GetValues(typeof(ApertureType)).Cast<ApertureType>(), x => x == ApertureType.Undefined ? string.Empty : x.Description()))
+            {
+                comboBoxForm.SelectedItem = apertureType;
+                if (comboBoxForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                apertureType = comboBoxForm.SelectedItem;
+            }
+
+            foreach (DataGridViewRow dataGridViewRow in dataGridViewSelectedRowCollection)
+            {
+                ApertureConstruction apertureConstruction = dataGridViewRow.Tag as ApertureConstruction;
+                if (apertureConstruction == null)
+                {
+                    continue;
+                }
+
+                apertureConstruction = new ApertureConstruction(apertureConstruction, apertureType);
+
+                Add(apertureConstruction, dataGridViewRow.Index);
+            }
         }
 
         private void SetApertureConstructionLibrary(ApertureConstructionLibrary apertureConstructionLibrary)
@@ -158,7 +233,7 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
-        private DataGridViewRow Add(ApertureConstruction apertureConstruction)
+        private DataGridViewRow Add(ApertureConstruction apertureConstruction, int index = -1)
         {
             if (apertureConstruction == null)
             {
@@ -173,10 +248,19 @@ namespace SAM.Analytical.Windows.Forms
                 description = null;
             }
 
-            int index = DataGridView_Constructions.Rows.Add(name, description, thickness, Core.Query.Description(apertureConstruction.ApertureType));
+            if(index == -1)
+            {
+                index = DataGridView_Constructions.Rows.Add();
+            }
+
             DataGridViewRow result = DataGridView_Constructions.Rows[index];
             if (result != null)
             {
+                result.Cells[0].Value = name;
+                result.Cells[1].Value = description;
+                result.Cells[2].Value = thickness;
+                result.Cells[3].Value = Core.Query.Description(apertureConstruction.ApertureType);
+
                 result.Tag = apertureConstruction;
             }
 
