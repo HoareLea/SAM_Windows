@@ -10,6 +10,9 @@ namespace SAM.Analytical.Windows.Forms
 {
     public partial class ApertureConstructionLibraryForm : Form
     {
+        public event ConstructionManagerExportingEventHandler ConstructionManagerExporting;
+        public event ConstructionManagerImportingEventHandler ConstructionManagerImporting;
+
         private MaterialLibrary materialLibrary;
         private ApertureConstructionLibrary apertureConstructionLibrary;
 
@@ -440,6 +443,72 @@ namespace SAM.Analytical.Windows.Forms
             Query.JsonForm(ApertureConstructionLibrary, this, e);
         }
 
+        private void Button_Import_Click(object sender, EventArgs e)
+        {
+            ConstructionManager constructionManager = null;
+            bool handled = false;
+
+            if (ConstructionManagerImporting != null)
+            {
+                ConstructionManagerImportingEventArgs constructionManagerImportingEventArgs = new ConstructionManagerImportingEventArgs();
+
+                ConstructionManagerImporting.Invoke(sender, constructionManagerImportingEventArgs);
+
+                if (constructionManagerImportingEventArgs.Handled)
+                {
+                    handled = true;
+                    constructionManager = constructionManagerImportingEventArgs.ConstructionManager;
+                }
+            }
+
+            if (!handled)
+            {
+                AnalyticalModel analyticalModel = new AnalyticalModel(Guid.NewGuid(), "Temporary AnalyticalModel");
+                Func<IJSAMObject, bool> func = new Func<IJSAMObject, bool>(x => { return x is Material || x is Construction; });
+
+                analyticalModel = Query.Import(analyticalModel, func, new ImportOptions(), this);
+                constructionManager = analyticalModel?.ConstructionManager;
+
+                using (TreeViewForm<ApertureConstruction> treeViewForm = new TreeViewForm<ApertureConstruction>("Select", constructionManager?.ApertureConstructions, x => string.IsNullOrWhiteSpace(x?.Name) ? "???" : x.Name))
+                {
+                    if (treeViewForm.ShowDialog() != DialogResult.OK)
+                    {
+                        return;
+                    }
+
+                    constructionManager = constructionManager.Filter(apertureConstructions: treeViewForm.SelectedItems, removeUnusedMaterials: true);
+                }
+            }
+
+            IEnumerable<ApertureConstruction> apertureConstructions = constructionManager?.ApertureConstructions;
+            if (apertureConstructions == null || apertureConstructions.Count() == 0)
+            {
+                MessageBox.Show("Constructions could not be imported.");
+                return;
+            }
+
+            if (materialLibrary == null)
+            {
+                materialLibrary = new MaterialLibrary("MaterialLibrary");
+            }
+
+            constructionManager.Materials?.ForEach(x => materialLibrary.Add(x));
+
+
+            if (apertureConstructionLibrary == null)
+            {
+                apertureConstructionLibrary = new ApertureConstructionLibrary("ApertureConstructionLibrary");
+            }
+
+            foreach (ApertureConstruction apertureConstruction in apertureConstructions)
+            {
+                apertureConstructionLibrary.Add(apertureConstruction);
+
+            }
+
+            SetApertureConstructionLibrary(apertureConstructionLibrary);
+        }
+
         private void Button_Export_Click(object sender, EventArgs e)
         {
             List<ApertureConstruction> apertureConstructions = GetApertureConstructions(false);
@@ -448,13 +517,41 @@ namespace SAM.Analytical.Windows.Forms
                 return;
             }
 
+            ApertureConstructionLibrary apertureConstructionLibrary = new ApertureConstructionLibrary("ApertureConstructionLibrary");
+            apertureConstructions.ForEach(x => apertureConstructionLibrary.Add(x));
+
+            MaterialLibrary materialLibrary_Temp = materialLibrary == null ? null : new MaterialLibrary(materialLibrary);
+
+            ConstructionManager constructionManager = new ConstructionManager(apertureConstructionLibrary, null, materialLibrary);
+
+            if (ConstructionManagerExporting != null)
+            {
+                ConstructionManagerExportingEventArgs constructionManagerExportingEventArgs = new ConstructionManagerExportingEventArgs();
+                constructionManagerExportingEventArgs.ConstructionManager = constructionManager;
+
+                ConstructionManagerExporting.Invoke(sender, constructionManagerExportingEventArgs);
+
+                if (constructionManagerExportingEventArgs.Handled)
+                {
+                    return;
+                }
+            }
+
             string path = null;
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
                 saveFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
                 saveFileDialog.FilterIndex = 1;
                 saveFileDialog.RestoreDirectory = true;
-                saveFileDialog.FileName = "SAM_ApertureConstructionLibrary_CustomVer00.json";
+                if (materialLibrary == null || materialLibrary.GetMaterials() == null)
+                {
+                    saveFileDialog.FileName = "SAM_ApertureConstructionLibrary_CustomVer00.json";
+                }
+                else
+                {
+                    saveFileDialog.FileName = "SAM_ConstructionManager_CustomVer00.json";
+                }
+
                 if (saveFileDialog.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
@@ -462,73 +559,24 @@ namespace SAM.Analytical.Windows.Forms
                 path = saveFileDialog.FileName;
             }
 
-            string name = System.IO.Path.GetFileNameWithoutExtension(path);
+            bool result = false;
 
-            ApertureConstructionLibrary apertureConstructionLibrary = new ApertureConstructionLibrary(name);
-            apertureConstructions.ForEach(x => apertureConstructionLibrary.Add(x));
-
-            bool result = Core.Convert.ToFile(apertureConstructionLibrary, path);
-            if (result)
+            if (materialLibrary == null || materialLibrary.GetMaterials() == null)
             {
-                MessageBox.Show("Library exported successfully.");
+                result = Core.Convert.ToFile(apertureConstructionLibrary, path);
             }
             else
             {
-                MessageBox.Show("Library could not be exported.");
+                result = Core.Convert.ToFile(constructionManager, path);
             }
-        }
 
-        private void Button_Import_Click(object sender, EventArgs e)
-        {
-            AnalyticalModel analyticalModel = new AnalyticalModel(Guid.NewGuid(), "Temporary AnalyticalModel");
-
-            Func<IJSAMObject, bool> func = new Func<IJSAMObject, bool>(x => { return x is Material || x is ApertureConstruction; });
-
-            analyticalModel = Query.Import(analyticalModel, func, new ImportOptions(), this);
-            if (analyticalModel != null)
+            if (result)
             {
-                IEnumerable<ApertureConstruction> apertureConstructions = analyticalModel.AdjacencyCluster?.GetObjects<ApertureConstruction>();
-                if (apertureConstructions == null)
-                {
-                    MessageBox.Show("ApertureConstruction could not be imported.");
-                    return;
-                }
-
-                using (TreeViewForm<ApertureConstruction> treeViewForm = new TreeViewForm<ApertureConstruction>("Select", apertureConstructions, x => string.IsNullOrWhiteSpace(x?.Name) ? "???" : x.Name))
-                {
-                    if(treeViewForm.ShowDialog() != DialogResult.OK)
-                    {
-                        return;
-                    }
-
-                    apertureConstructions = treeViewForm.SelectedItems;
-                }
-
-                if(apertureConstructions == null || apertureConstructions.Count() == 0)
-                {
-                    return;
-                }
-
-                if (materialLibrary == null)
-                {
-                    materialLibrary = new MaterialLibrary("MaterialLibrary");
-                }
-
-                analyticalModel.MaterialLibrary?.GetMaterials()?.ForEach(x => materialLibrary.Add(x));
-
-
-                if (apertureConstructionLibrary == null)
-                {
-                    apertureConstructionLibrary = new ApertureConstructionLibrary("ApertureConstructionLibrary");
-                }
-
-                foreach (ApertureConstruction apertureConstruction in apertureConstructions)
-                {
-                    apertureConstructionLibrary.Add(apertureConstruction);
-
-                }
-
-                SetApertureConstructionLibrary(apertureConstructionLibrary);
+                MessageBox.Show("Data exported successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Data could not be exported.");
             }
         }
     }

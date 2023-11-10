@@ -503,27 +503,22 @@ namespace SAM.Analytical.Windows.Forms
 
                 analyticalModel = Query.Import(analyticalModel, func, new ImportOptions(), this);
                 constructionManager = analyticalModel?.ConstructionManager;
+
+                using (TreeViewForm<Construction> treeViewForm = new TreeViewForm<Construction>("Select", constructionManager?.Constructions, x => string.IsNullOrWhiteSpace(x?.Name) ? "???" : x.Name))
+                {
+                    if (treeViewForm.ShowDialog() != DialogResult.OK)
+                    {
+                        return;
+                    }
+
+                    constructionManager = constructionManager.Filter(treeViewForm.SelectedItems, removeUnusedMaterials: true);
+                }
             }
 
             IEnumerable<Construction> constructions = constructionManager?.Constructions;
-            if (constructions == null)
-            {
-                MessageBox.Show("Constructions could not be imported.");
-                return;
-            }
-
-            using (TreeViewForm<Construction> treeViewForm = new TreeViewForm<Construction>("Select", constructions, x => string.IsNullOrWhiteSpace(x?.Name) ? "???" : x.Name))
-            {
-                if (treeViewForm.ShowDialog() != DialogResult.OK)
-                {
-                    return;
-                }
-
-                constructions = treeViewForm.SelectedItems;
-            }
-
             if (constructions == null || constructions.Count() == 0)
             {
+                MessageBox.Show("Constructions could not be imported.");
                 return;
             }
 
