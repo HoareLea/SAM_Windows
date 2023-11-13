@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -89,6 +90,11 @@ namespace SAM.Core.Windows
                     CustomParameter customParameter = new CustomParameter("Dynamic Viscosity", "Dynamic Viscosity of Fluid [kg/(m*s)]", AccessType.ReadWrite, new Attributes.DoubleParameterValue(0), typeof(FluidMaterial).Assembly.Name(), fluidMaterial.DynamicViscosity);
 
                     customParameters?.Add(customParameter);
+                }
+
+                if (customParameters != null)
+                {
+                    TypeDescriptor.AddAttributes(customParameters, new Attribute[] { new ReadOnlyAttribute(!TextBox_Density.Enabled) });
                 }
 
                 PropertyGrid_Parameters.SelectedObject = customParameters;
@@ -208,7 +214,11 @@ namespace SAM.Core.Windows
                 TextBox_ThermalConductivity.Enabled = value;
                 TextBox_SpecificHeatCapacity.Enabled = value;
                 TextBox_Density.Enabled = value;
-                PropertyGrid_Parameters.Enabled = value;
+
+                if (PropertyGrid_Parameters.SelectedObject != null)
+                {
+                    TypeDescriptor.AddAttributes(PropertyGrid_Parameters.SelectedObject, new Attribute[] { new ReadOnlyAttribute(!value) });
+                }
             }
         }
     }
