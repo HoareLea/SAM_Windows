@@ -83,9 +83,14 @@ namespace SAM.Architectural.Windows
 
         private void DataGridView_Layers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(e.RowIndex == -1 || e.ColumnIndex == -1)
+            {
+                return;
+            }
+
             if (e.ColumnIndex == 0)
             {
-                IMaterial material = Core.Windows.Query.Material(materialLibrary);
+                IMaterial material = Core.Windows.Query.Material(materialLibrary, DataGridView_Layers.Rows[e.RowIndex]?.Cells[e.ColumnIndex]?.Value?.ToString());
                 if (material != null)
                 {
                     DataGridView_Layers.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = material.Name;
