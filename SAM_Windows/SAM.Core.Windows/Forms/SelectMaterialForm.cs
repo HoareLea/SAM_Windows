@@ -30,6 +30,8 @@ namespace SAM.Core.Windows.Forms
             SearchControl_Main.SelectionMode = SelectionMode.One;
             SearchControl_Main.SearchObjectWrapper = Core.Create.SearchObjectWrapper(materials, (IMaterial x) => x.Name, false);
             SearchControl_Main.SelectedIndexChanged += new System.EventHandler(ListBox_Texts_SelectedIndexChanged);
+
+            SearchControl_Main.SearchText = SearchControl_Main.SearchText;
         }
 
         public IMaterial Material
