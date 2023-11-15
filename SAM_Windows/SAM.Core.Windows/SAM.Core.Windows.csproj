@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="Classes\CustomParameters.cs" />
     <Compile Include="Classes\CustomParameter.cs" />
+    <Compile Include="Classes\EventArgs\MaterialLibraryExportingEventArgs.cs" />
+    <Compile Include="Classes\EventArgs\MaterialLibraryImportingEventArgs.cs" />
     <Compile Include="Classes\File\FileLockWrapper.cs" />
     <Compile Include="Classes\IdleTimer.cs" />
     <Compile Include="Classes\CustomParameterDescriptor.cs" />
@@ -86,6 +88,8 @@
     <Compile Include="Create\DisplayObject.cs" />
     <Compile Include="Create\Material.cs" />
     <Compile Include="Create\CustomParameters.cs" />
+    <Compile Include="Delegates\MaterialLibraryExportingEventHandler.cs" />
+    <Compile Include="Delegates\MaterialLibraryImportingEventHandler.cs" />
     <Compile Include="EventHandler\ControlText_IntegerOnly.cs" />
     <Compile Include="EventHandler\ControlText_NumberOnly.cs" />
     <Compile Include="Forms\AddressAndLocationForm.cs">

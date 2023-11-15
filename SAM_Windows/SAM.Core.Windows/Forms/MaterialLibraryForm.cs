@@ -6,6 +6,9 @@ namespace SAM.Core.Windows.Forms
 {
     public partial class MaterialLibraryForm : Form
     {
+        public event MaterialLibraryExportingEventHandler MaterialLibraryExporting;
+        public event MaterialLibraryImportingEventHandler MaterialLibraryImporting;
+
         private MaterialLibrary materialLibrary;
         private HashSet<Enum> enums;
 
@@ -277,6 +280,20 @@ namespace SAM.Core.Windows.Forms
 
         private void Button_Export_Click(object sender, EventArgs e)
         {
+            MaterialLibrary materialLibrary = this.MaterialLibrary == null ? new MaterialLibrary(string.Empty) : new MaterialLibrary(this.materialLibrary);
+            if(MaterialLibraryExporting != null)
+            {
+                MaterialLibraryExportingEventArgs materialLibraryExportingEventArgs = new MaterialLibraryExportingEventArgs();
+                materialLibraryExportingEventArgs.MaterialLibrary = materialLibrary;
+
+                MaterialLibraryExporting.Invoke(sender, materialLibraryExportingEventArgs);
+
+                if (materialLibraryExportingEventArgs.Handled)
+                {
+                    return;
+                }
+            }
+
             string path = null;
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
@@ -291,10 +308,6 @@ namespace SAM.Core.Windows.Forms
                 path = saveFileDialog.FileName;
             }
 
-            string name = System.IO.Path.GetFileNameWithoutExtension(path);
-
-            MaterialLibrary materialLibrary = this.MaterialLibrary == null ? new MaterialLibrary(name) : new MaterialLibrary(this.materialLibrary);
-
             bool result = Core.Convert.ToFile(materialLibrary, path);
             if (result)
             {
@@ -308,47 +321,67 @@ namespace SAM.Core.Windows.Forms
 
         private void Button_Import_Click(object sender, EventArgs e)
         {
-            string path = null;
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            List<IMaterial> materials = null;
+            bool handled = false;
+
+            if (MaterialLibraryImporting != null)
             {
-                string directory = Core.Query.ResourcesDirectory();
-                if (System.IO.Directory.Exists(directory))
+                MaterialLibraryImportingEventArgs materialLibraryImportingEventArgs = new MaterialLibraryImportingEventArgs();
+
+                MaterialLibraryImporting.Invoke(sender, materialLibraryImportingEventArgs);
+
+                if (materialLibraryImportingEventArgs.Handled)
                 {
-                    openFileDialog.InitialDirectory = directory;
+                    handled = true;
+                    MaterialLibrary materialLibrary_Temp = materialLibraryImportingEventArgs.MaterialLibrary;
+                    materials = materialLibrary_Temp?.GetMaterials();
+                }
+            }
+
+            if(!handled)
+            {
+                string path = null;
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    string directory = Core.Query.ResourcesDirectory();
+                    if (System.IO.Directory.Exists(directory))
+                    {
+                        openFileDialog.InitialDirectory = directory;
+                    }
+
+                    openFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+                    openFileDialog.FilterIndex = 2;
+                    openFileDialog.RestoreDirectory = true;
+                    if (openFileDialog.ShowDialog(this) != DialogResult.OK)
+                    {
+                        return;
+                    }
+                    path = openFileDialog.FileName;
                 }
 
-                openFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-                if (openFileDialog.ShowDialog(this) != DialogResult.OK)
+                List<IJSAMObject> sAMObjects = SAM.Core.Convert.ToSAM<IJSAMObject>(path);
+                if (sAMObjects == null || sAMObjects.Count == 0)
                 {
+                    MessageBox.Show("No materials to import");
                     return;
                 }
-                path = openFileDialog.FileName;
-            }
 
-            List<IJSAMObject> sAMObjects = SAM.Core.Convert.ToSAM<IJSAMObject>(path);
-            if(sAMObjects == null || sAMObjects.Count == 0)
-            {
-                MessageBox.Show("No materials to import");
-                return;
-            }
-
-            List<IMaterial> materials = new List<IMaterial>();
-            foreach(IJSAMObject jSAMObject in sAMObjects)
-            {
-                if(jSAMObject is IMaterial)
+                materials = new List<IMaterial>();
+                foreach (IJSAMObject jSAMObject in sAMObjects)
                 {
-                    materials.Add((IMaterial)jSAMObject);
-                }
-                else if(jSAMObject is MaterialLibrary)
-                {
-                    List<IMaterial> materials_Temp = ((MaterialLibrary)jSAMObject).GetMaterials();
-                    if(materials_Temp == null || materials_Temp.Count == 0)
+                    if (jSAMObject is IMaterial)
                     {
-                        continue;
+                        materials.Add((IMaterial)jSAMObject);
                     }
-                    materials.AddRange(materials_Temp);
+                    else if (jSAMObject is MaterialLibrary)
+                    {
+                        List<IMaterial> materials_Temp = ((MaterialLibrary)jSAMObject).GetMaterials();
+                        if (materials_Temp == null || materials_Temp.Count == 0)
+                        {
+                            continue;
+                        }
+                        materials.AddRange(materials_Temp);
+                    }
                 }
             }
 
