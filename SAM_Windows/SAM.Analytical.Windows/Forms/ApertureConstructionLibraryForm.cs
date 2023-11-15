@@ -387,6 +387,8 @@ namespace SAM.Analytical.Windows.Forms
             }
         }
 
+        public MaterialLibrary MaterialLibrary => (materialLibrary == null) ? null : new MaterialLibrary(materialLibrary);
+
         private void Button_Add_Click(object sender, EventArgs e)
         {
             ApertureConstruction apertureConstruction = null;
