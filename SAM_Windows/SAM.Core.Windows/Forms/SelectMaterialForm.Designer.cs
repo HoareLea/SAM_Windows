@@ -43,7 +43,7 @@ namespace SAM.Core.Windows.Forms
             // Button_OK
             // 
             this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(514, 435);
+            this.Button_OK.Location = new System.Drawing.Point(514, 613);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 28);
             this.Button_OK.TabIndex = 6;
@@ -55,7 +55,7 @@ namespace SAM.Core.Windows.Forms
             // 
             this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(595, 435);
+            this.Button_Cancel.Location = new System.Drawing.Point(595, 613);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
             this.Button_Cancel.TabIndex = 5;
@@ -69,7 +69,7 @@ namespace SAM.Core.Windows.Forms
             this.MaterialControl_Main.Enums = null;
             this.MaterialControl_Main.Location = new System.Drawing.Point(0, 0);
             this.MaterialControl_Main.Name = "MaterialControl_Main";
-            this.MaterialControl_Main.Size = new System.Drawing.Size(351, 417);
+            this.MaterialControl_Main.Size = new System.Drawing.Size(351, 595);
             this.MaterialControl_Main.TabIndex = 7;
             // 
             // SplitContainer_Main
@@ -88,7 +88,7 @@ namespace SAM.Core.Windows.Forms
             // SplitContainer_Main.Panel2
             // 
             this.SplitContainer_Main.Panel2.Controls.Add(this.MaterialControl_Main);
-            this.SplitContainer_Main.Size = new System.Drawing.Size(658, 417);
+            this.SplitContainer_Main.Size = new System.Drawing.Size(658, 595);
             this.SplitContainer_Main.SplitterDistance = 303;
             this.SplitContainer_Main.TabIndex = 8;
             // 
@@ -100,7 +100,7 @@ namespace SAM.Core.Windows.Forms
             this.SearchControl_Main.SearchObjectWrapper = null;
             this.SearchControl_Main.SearchText = "";
             this.SearchControl_Main.SelectionMode = System.Windows.Forms.SelectionMode.One;
-            this.SearchControl_Main.Size = new System.Drawing.Size(303, 417);
+            this.SearchControl_Main.Size = new System.Drawing.Size(303, 595);
             this.SearchControl_Main.TabIndex = 0;
             // 
             // SelectMaterialForm
@@ -108,13 +108,13 @@ namespace SAM.Core.Windows.Forms
             this.AcceptButton = this.Button_OK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(682, 475);
+            this.ClientSize = new System.Drawing.Size(682, 653);
             this.Controls.Add(this.SplitContainer_Main);
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.Button_Cancel);
             this.HelpButton = true;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(800, 600);
+            this.MaximumSize = new System.Drawing.Size(800, 700);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 500);
             this.Name = "SelectMaterialForm";
