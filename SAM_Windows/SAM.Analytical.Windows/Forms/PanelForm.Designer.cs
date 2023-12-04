@@ -49,6 +49,8 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_MaxElevation = new System.Windows.Forms.Label();
             this.TextBox_MinElevation = new System.Windows.Forms.TextBox();
             this.Label_MinElevation = new System.Windows.Forms.Label();
+            this.TextBox_Azimuth = new System.Windows.Forms.TextBox();
+            this.Label_Azimuth = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // PropertyGrid_Parameters
@@ -56,9 +58,9 @@ namespace SAM.Analytical.Windows.Forms
             this.PropertyGrid_Parameters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PropertyGrid_Parameters.Location = new System.Drawing.Point(15, 219);
+            this.PropertyGrid_Parameters.Location = new System.Drawing.Point(15, 258);
             this.PropertyGrid_Parameters.Name = "PropertyGrid_Parameters";
-            this.PropertyGrid_Parameters.Size = new System.Drawing.Size(355, 388);
+            this.PropertyGrid_Parameters.Size = new System.Drawing.Size(355, 349);
             this.PropertyGrid_Parameters.TabIndex = 0;
             // 
             // Label_Name
@@ -66,7 +68,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Name.AutoSize = true;
             this.Label_Name.Location = new System.Drawing.Point(12, 15);
             this.Label_Name.Name = "Label_Name";
-            this.Label_Name.Size = new System.Drawing.Size(49, 17);
+            this.Label_Name.Size = new System.Drawing.Size(47, 16);
             this.Label_Name.TabIndex = 1;
             this.Label_Name.Text = "Name:";
             // 
@@ -118,7 +120,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_DisplayName.AutoSize = true;
             this.Label_DisplayName.Location = new System.Drawing.Point(12, 43);
             this.Label_DisplayName.Name = "Label_DisplayName";
-            this.Label_DisplayName.Size = new System.Drawing.Size(42, 17);
+            this.Label_DisplayName.Size = new System.Drawing.Size(38, 16);
             this.Label_DisplayName.TabIndex = 7;
             this.Label_DisplayName.Text = "Guid:";
             // 
@@ -137,7 +139,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Construction.AutoSize = true;
             this.Label_Construction.Location = new System.Drawing.Point(12, 71);
             this.Label_Construction.Name = "Label_Construction";
-            this.Label_Construction.Size = new System.Drawing.Size(91, 17);
+            this.Label_Construction.Size = new System.Drawing.Size(83, 16);
             this.Label_Construction.TabIndex = 9;
             this.Label_Construction.Text = "Construction:";
             // 
@@ -158,7 +160,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_PanelType.AutoSize = true;
             this.Label_PanelType.Location = new System.Drawing.Point(12, 133);
             this.Label_PanelType.Name = "Label_PanelType";
-            this.Label_PanelType.Size = new System.Drawing.Size(84, 17);
+            this.Label_PanelType.Size = new System.Drawing.Size(80, 16);
             this.Label_PanelType.TabIndex = 9;
             this.Label_PanelType.Text = "Panel Type:";
             // 
@@ -184,7 +186,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Area.AutoSize = true;
             this.Label_Area.Location = new System.Drawing.Point(13, 163);
             this.Label_Area.Name = "Label_Area";
-            this.Label_Area.Size = new System.Drawing.Size(42, 17);
+            this.Label_Area.Size = new System.Drawing.Size(39, 16);
             this.Label_Area.TabIndex = 13;
             this.Label_Area.Text = "Area:";
             // 
@@ -193,7 +195,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_NetArea.AutoSize = true;
             this.Label_NetArea.Location = new System.Drawing.Point(226, 163);
             this.Label_NetArea.Name = "Label_NetArea";
-            this.Label_NetArea.Size = new System.Drawing.Size(68, 17);
+            this.Label_NetArea.Size = new System.Drawing.Size(63, 16);
             this.Label_NetArea.TabIndex = 13;
             this.Label_NetArea.Text = "Net Area:";
             // 
@@ -218,7 +220,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_MaxElevation.AutoSize = true;
             this.Label_MaxElevation.Location = new System.Drawing.Point(195, 194);
             this.Label_MaxElevation.Name = "Label_MaxElevation";
-            this.Label_MaxElevation.Size = new System.Drawing.Size(99, 17);
+            this.Label_MaxElevation.Size = new System.Drawing.Size(94, 16);
             this.Label_MaxElevation.TabIndex = 15;
             this.Label_MaxElevation.Text = "Max Elevation:";
             // 
@@ -235,9 +237,26 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_MinElevation.AutoSize = true;
             this.Label_MinElevation.Location = new System.Drawing.Point(13, 194);
             this.Label_MinElevation.Name = "Label_MinElevation";
-            this.Label_MinElevation.Size = new System.Drawing.Size(96, 17);
+            this.Label_MinElevation.Size = new System.Drawing.Size(90, 16);
             this.Label_MinElevation.TabIndex = 16;
             this.Label_MinElevation.Text = "Min Elevation:";
+            // 
+            // TextBox_Azimuth
+            // 
+            this.TextBox_Azimuth.Location = new System.Drawing.Point(117, 219);
+            this.TextBox_Azimuth.Name = "TextBox_Azimuth";
+            this.TextBox_Azimuth.ReadOnly = true;
+            this.TextBox_Azimuth.Size = new System.Drawing.Size(69, 22);
+            this.TextBox_Azimuth.TabIndex = 20;
+            // 
+            // Label_Azimuth
+            // 
+            this.Label_Azimuth.AutoSize = true;
+            this.Label_Azimuth.Location = new System.Drawing.Point(12, 222);
+            this.Label_Azimuth.Name = "Label_Azimuth";
+            this.Label_Azimuth.Size = new System.Drawing.Size(56, 16);
+            this.Label_Azimuth.TabIndex = 19;
+            this.Label_Azimuth.Text = "Azimuth:";
             // 
             // PanelForm
             // 
@@ -245,6 +264,8 @@ namespace SAM.Analytical.Windows.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(382, 653);
+            this.Controls.Add(this.TextBox_Azimuth);
+            this.Controls.Add(this.Label_Azimuth);
             this.Controls.Add(this.TextBox_MaxElevation);
             this.Controls.Add(this.Label_MaxElevation);
             this.Controls.Add(this.TextBox_MinElevation);
@@ -302,5 +323,7 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.Label Label_MaxElevation;
         private System.Windows.Forms.TextBox TextBox_MinElevation;
         private System.Windows.Forms.Label Label_MinElevation;
+        private System.Windows.Forms.TextBox TextBox_Azimuth;
+        private System.Windows.Forms.Label Label_Azimuth;
     }
 }

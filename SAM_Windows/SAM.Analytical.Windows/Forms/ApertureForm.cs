@@ -60,6 +60,8 @@ namespace SAM.Analytical.Windows.Forms
                 PropertyGrid_Parameters.SelectedObject = customParameters;
 
                 TextBox_Area.Text = Math.Round(aperture.GetArea(), 1).ToString();
+
+                TextBox_Azimuth.Text = Math.Round(aperture.Azimuth(), 2).ToString();
             }
 
             if(apertureConstructionLibrary == null)

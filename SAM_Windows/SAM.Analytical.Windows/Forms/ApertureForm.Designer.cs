@@ -43,6 +43,8 @@ namespace SAM.Analytical.Windows.Forms
             this.ComboBox_ApertureType = new System.Windows.Forms.ComboBox();
             this.TextBox_Area = new System.Windows.Forms.TextBox();
             this.Label_Area = new System.Windows.Forms.Label();
+            this.TextBox_Azimuth = new System.Windows.Forms.TextBox();
+            this.Label_Azimuth = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // PropertyGrid_Parameters
@@ -50,9 +52,9 @@ namespace SAM.Analytical.Windows.Forms
             this.PropertyGrid_Parameters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PropertyGrid_Parameters.Location = new System.Drawing.Point(15, 188);
+            this.PropertyGrid_Parameters.Location = new System.Drawing.Point(15, 216);
             this.PropertyGrid_Parameters.Name = "PropertyGrid_Parameters";
-            this.PropertyGrid_Parameters.Size = new System.Drawing.Size(355, 319);
+            this.PropertyGrid_Parameters.Size = new System.Drawing.Size(355, 291);
             this.PropertyGrid_Parameters.TabIndex = 0;
             // 
             // Label_Name
@@ -60,7 +62,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Name.AutoSize = true;
             this.Label_Name.Location = new System.Drawing.Point(12, 15);
             this.Label_Name.Name = "Label_Name";
-            this.Label_Name.Size = new System.Drawing.Size(49, 17);
+            this.Label_Name.Size = new System.Drawing.Size(47, 16);
             this.Label_Name.TabIndex = 1;
             this.Label_Name.Text = "Name:";
             // 
@@ -112,7 +114,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_DisplayName.AutoSize = true;
             this.Label_DisplayName.Location = new System.Drawing.Point(12, 43);
             this.Label_DisplayName.Name = "Label_DisplayName";
-            this.Label_DisplayName.Size = new System.Drawing.Size(42, 17);
+            this.Label_DisplayName.Size = new System.Drawing.Size(38, 16);
             this.Label_DisplayName.TabIndex = 7;
             this.Label_DisplayName.Text = "Guid:";
             // 
@@ -131,7 +133,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Construction.AutoSize = true;
             this.Label_Construction.Location = new System.Drawing.Point(12, 71);
             this.Label_Construction.Name = "Label_Construction";
-            this.Label_Construction.Size = new System.Drawing.Size(91, 17);
+            this.Label_Construction.Size = new System.Drawing.Size(83, 16);
             this.Label_Construction.TabIndex = 9;
             this.Label_Construction.Text = "Construction:";
             // 
@@ -152,7 +154,7 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_ApertureType.AutoSize = true;
             this.Label_ApertureType.Location = new System.Drawing.Point(12, 133);
             this.Label_ApertureType.Name = "Label_ApertureType";
-            this.Label_ApertureType.Size = new System.Drawing.Size(103, 17);
+            this.Label_ApertureType.Size = new System.Drawing.Size(96, 16);
             this.Label_ApertureType.TabIndex = 9;
             this.Label_ApertureType.Text = "Aperture Type:";
             // 
@@ -181,9 +183,28 @@ namespace SAM.Analytical.Windows.Forms
             this.Label_Area.AutoSize = true;
             this.Label_Area.Location = new System.Drawing.Point(13, 163);
             this.Label_Area.Name = "Label_Area";
-            this.Label_Area.Size = new System.Drawing.Size(42, 17);
+            this.Label_Area.Size = new System.Drawing.Size(39, 16);
             this.Label_Area.TabIndex = 13;
             this.Label_Area.Text = "Area:";
+            // 
+            // TextBox_Azimuth
+            // 
+            this.TextBox_Azimuth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox_Azimuth.Location = new System.Drawing.Point(121, 188);
+            this.TextBox_Azimuth.Name = "TextBox_Azimuth";
+            this.TextBox_Azimuth.ReadOnly = true;
+            this.TextBox_Azimuth.Size = new System.Drawing.Size(69, 22);
+            this.TextBox_Azimuth.TabIndex = 16;
+            // 
+            // Label_Azimuth
+            // 
+            this.Label_Azimuth.AutoSize = true;
+            this.Label_Azimuth.Location = new System.Drawing.Point(13, 191);
+            this.Label_Azimuth.Name = "Label_Azimuth";
+            this.Label_Azimuth.Size = new System.Drawing.Size(56, 16);
+            this.Label_Azimuth.TabIndex = 15;
+            this.Label_Azimuth.Text = "Azimuth:";
             // 
             // ApertureForm
             // 
@@ -191,6 +212,8 @@ namespace SAM.Analytical.Windows.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.Button_Cancel;
             this.ClientSize = new System.Drawing.Size(382, 553);
+            this.Controls.Add(this.TextBox_Azimuth);
+            this.Controls.Add(this.Label_Azimuth);
             this.Controls.Add(this.TextBox_Area);
             this.Controls.Add(this.Label_Area);
             this.Controls.Add(this.ComboBox_ApertureType);
@@ -236,5 +259,7 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.ComboBox ComboBox_ApertureType;
         private System.Windows.Forms.TextBox TextBox_Area;
         private System.Windows.Forms.Label Label_Area;
+        private System.Windows.Forms.TextBox TextBox_Azimuth;
+        private System.Windows.Forms.Label Label_Azimuth;
     }
 }

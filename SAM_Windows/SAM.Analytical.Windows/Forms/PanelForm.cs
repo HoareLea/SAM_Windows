@@ -69,6 +69,7 @@ namespace SAM.Analytical.Windows.Forms
                     TextBox_MaxElevation.Text = Math.Round(elevationRange.Max, 2).ToString();
                 }
 
+                TextBox_Azimuth.Text = Math.Round(panel.Azimuth(), 2).ToString();
             }
 
             if(constructionLibrary == null)
