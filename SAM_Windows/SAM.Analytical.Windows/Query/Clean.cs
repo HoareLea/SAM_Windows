@@ -98,6 +98,16 @@ namespace SAM.Analytical.Windows
                                 if (apertureConstruction != null)
                                 {
                                     apertureConstructions?.RemoveAll(x => x.Guid == apertureConstruction.Guid);
+
+                                    IEnumerable<IMaterial> materials = apertureConstruction.Materials(materialLibrary);
+                                    if(materials != null)
+                                    {
+                                        foreach (IMaterial material in materials)
+                                        {
+                                            materialLibrary.Remove(material);
+                                        }
+                                    }
+
                                 }
                             }
                         }
