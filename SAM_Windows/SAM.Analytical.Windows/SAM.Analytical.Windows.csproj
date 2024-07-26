@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F15C5D91-BC85-45CB-A79E-8A6B46495701}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SAM.Analytical.Windows</RootNamespace>
+    <AssemblyName>SAM.Analytical.Windows</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\build\SAM.Analytical.Windows.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SAM.Analytical, Version=1.0.8111.18813, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SAM\build\SAM.Analytical.dll</HintPath>
+    </Reference>
+    <Reference Include="SAM.Architectural, Version=1.0.8111.18813, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SAM\build\SAM.Architectural.dll</HintPath>
+    </Reference>
+    <Reference Include="SAM.Core">
+      <HintPath>..\..\..\SAM\build\SAM.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SAM.Geometry, Version=1.0.8131.16759, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SAM\build\SAM.Geometry.dll</HintPath>
+    </Reference>
+    <Reference Include="SAM.Weather, Version=1.0.8157.19322, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SAM\build\SAM.Weather.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\EventArgs\ConstructionManagerExportingEventArgs.cs" />
+    <Compile Include="Classes\EventArgs\ConstructionManagerImportingEventArgs.cs" />
+    <Compile Include="Classes\ImportOptions.cs" />
+    <Compile Include="Controls\InternalConditionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\InternalConditionControl.Designer.cs">
+      <DependentUpon>InternalConditionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MechanicalSystemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MechanicalSystemControl.Designer.cs">
+      <DependentUpon>MechanicalSystemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OccupancyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\OccupancyControl.Designer.cs">
+      <DependentUpon>OccupancyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProfileControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProfileControl.Designer.cs">
+      <DependentUpon>ProfileControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SpacesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SpacesControl.Designer.cs">
+      <DependentUpon>SpacesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delegates\ConstructionManagerImportingEventHandler.cs" />
+    <Compile Include="Delegates\ConstructionManagerExportingEventHandler.cs" />
+    <Compile Include="Forms\AnalyticalModelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AnalyticalModelForm.Designer.cs">
+      <DependentUpon>AnalyticalModelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ApertureConstructionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApertureConstructionForm.Designer.cs">
+      <DependentUpon>ApertureConstructionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InternalConditionLibraryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InternalConditionLibraryForm.Designer.cs">
+      <DependentUpon>InternalConditionLibraryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InternalConditionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InternalConditionForm.Designer.cs">
+      <DependentUpon>InternalConditionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MechanicalSystemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MechanicalSystemForm.Designer.cs">
+      <DependentUpon>MechanicalSystemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MissingObjectsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MissingObjectsForm.Designer.cs">
+      <DependentUpon>MissingObjectsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewAnalyticalModelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewAnalyticalModelForm.Designer.cs">
+      <DependentUpon>NewAnalyticalModelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OccupancyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OccupancyForm.Designer.cs">
+      <DependentUpon>OccupancyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProfileForm.Designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProfileLibraryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProfileLibraryForm.Designer.cs">
+      <DependentUpon>ProfileLibraryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConstructionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConstructionForm.Designer.cs">
+      <DependentUpon>ConstructionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ApertureConstructionLibraryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApertureConstructionLibraryForm.Designer.cs">
+      <DependentUpon>ApertureConstructionLibraryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConstructionLibraryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConstructionLibraryForm.Designer.cs">
+      <DependentUpon>ConstructionLibraryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ApertureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApertureForm.Designer.cs">
+      <DependentUpon>ApertureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PanelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PanelForm.Designer.cs">
+      <DependentUpon>PanelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RiserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RiserForm.Designer.cs">
+      <DependentUpon>RiserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SetProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SetProfileForm.Designer.cs">
+      <DependentUpon>SetProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SetProfileValueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SetProfileValueForm.Designer.cs">
+      <DependentUpon>SetProfileValueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpaceForm.Designer.cs">
+      <DependentUpon>SpaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpacesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpacesForm.Designer.cs">
+      <DependentUpon>SpacesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modify\UpdateAreaPerPerson.cs" />
+    <Compile Include="Modify\UpdateOccupancy.cs" />
+    <Compile Include="Modify\Duplicate.cs" />
+    <Compile Include="Modify\UpdateApertureConstructions.cs" />
+    <Compile Include="Modify\UpdateConstructions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\AddMissingObjects.cs" />
+    <Compile Include="Query\Clean.cs" />
+    <Compile Include="Query\JsonForm.cs" />
+    <Compile Include="Query\Import.cs" />
+    <Compile Include="Modify\SelectProfile.cs" />
+    <Compile Include="Query\CategoryEnums.cs" />
+    <Compile Include="Query\Material.cs" />
+    <Compile Include="Controls\SpaceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SpaceControl.Designer.cs">
+      <DependentUpon>SpaceControl.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SAM.Architectural.Windows\SAM.Architectural.Windows.csproj">
+      <Project>{5a1b6423-f181-400a-a27f-1b5a73c2704d}</Project>
+      <Name>SAM.Architectural.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAM.Core.Windows\SAM.Core.Windows.csproj">
+      <Project>{1f33e540-da46-411d-a1bc-6a3e554a1e63}</Project>
+      <Name>SAM.Core.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\MechanicalSystemControl.resx">
+      <DependentUpon>MechanicalSystemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\OccupancyControl.resx">
+      <DependentUpon>OccupancyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProfileControl.resx">
+      <DependentUpon>ProfileControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SpacesControl.resx">
+      <DependentUpon>SpacesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SpaceControl.resx">
+      <DependentUpon>SpaceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\InternalConditionControl.resx">
+      <DependentUpon>InternalConditionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AnalyticalModelForm.resx">
+      <DependentUpon>AnalyticalModelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ApertureConstructionForm.resx">
+      <DependentUpon>ApertureConstructionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InternalConditionLibraryForm.resx">
+      <DependentUpon>InternalConditionLibraryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InternalConditionForm.resx">
+      <DependentUpon>InternalConditionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MechanicalSystemForm.resx">
+      <DependentUpon>MechanicalSystemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MissingObjectsForm.resx">
+      <DependentUpon>MissingObjectsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewAnalyticalModelForm.resx">
+      <DependentUpon>NewAnalyticalModelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OccupancyForm.resx">
+      <DependentUpon>OccupancyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProfileLibraryForm.resx">
+      <DependentUpon>ProfileLibraryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConstructionForm.resx">
+      <DependentUpon>ConstructionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ApertureConstructionLibraryForm.resx">
+      <DependentUpon>ApertureConstructionLibraryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConstructionLibraryForm.resx">
+      <DependentUpon>ConstructionLibraryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ApertureForm.resx">
+      <DependentUpon>ApertureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PanelForm.resx">
+      <DependentUpon>PanelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RiserForm.resx">
+      <DependentUpon>RiserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SetProfileForm.resx">
+      <DependentUpon>SetProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SetProfileValueForm.resx">
+      <DependentUpon>SetProfileValueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpaceForm.resx">
+      <DependentUpon>SpaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpacesForm.resx">
+      <DependentUpon>SpacesForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
