@@ -32,6 +32,7 @@ Global
 		{F15C5D91-BC85-45CB-A79E-8A6B46495701}.net48-windows|Any CPU.ActiveCfg = net48-windows|Any CPU
 		{F15C5D91-BC85-45CB-A79E-8A6B46495701}.net48-windows|Any CPU.Build.0 = net48-windows|Any CPU
 		{F15C5D91-BC85-45CB-A79E-8A6B46495701}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15C5D91-BC85-45CB-A79E-8A6B46495701}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A1B6423-F181-400A-A27F-1B5A73C2704D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A1B6423-F181-400A-A27F-1B5A73C2704D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A1B6423-F181-400A-A27F-1B5A73C2704D}.net48-windows|Any CPU.ActiveCfg = net48-windows|Any CPU
