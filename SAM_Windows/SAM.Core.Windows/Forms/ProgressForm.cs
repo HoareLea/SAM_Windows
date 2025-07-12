@@ -14,23 +14,49 @@ namespace SAM.Core.Windows.Forms
         }
 
         public ProgressForm(string name, int max)
+            : this(name)
+        {
+            ProgressBar_Main.Maximum = max;
+        }
+
+        public ProgressForm(string name)
         {
             InitializeComponent();
             Text = name;
 
             ProgressBar_Main.Minimum = 0;
-            ProgressBar_Main.Maximum = max;
+            //ProgressBar_Main.Maximum = max;
             ProgressBar_Main.Step = 1;
             ProgressBar_Main.Value = 0;
 
             Show(new WindowHandle(System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle));
-            
+
             Application.DoEvents();
         }
 
-        private void SimpleProgressForm_Load(object sender, EventArgs e)
+        public string Caption
         {
-            ProgressBar_Main.Refresh();
+            get
+            {
+                return caption;
+            }
+            set
+            {
+                caption = value;
+            }
+        }
+
+        public int Max
+        {
+            get
+            {
+                return ProgressBar_Main.Maximum;
+            }
+
+            set
+            {
+                ProgressBar_Main.Maximum = value;
+            }
         }
 
         public void Update(string text, bool increment = true)
@@ -39,7 +65,7 @@ namespace SAM.Core.Windows.Forms
             if (text_Temp == null)
                 text_Temp = string.Empty;
 
-            if(increment)
+            if (increment)
             {
                 ProgressBar_Main.PerformStep();
                 caption = text_Temp;
@@ -64,16 +90,9 @@ namespace SAM.Core.Windows.Forms
             System.Threading.Thread.Sleep(1000);
         }
 
-        public string Caption
+        private void SimpleProgressForm_Load(object sender, EventArgs e)
         {
-            get
-            {
-                return caption;
-            }
-            set
-            {
-                caption = value;
-            }
+            ProgressBar_Main.Refresh();
         }
     }
 }
