@@ -1,3 +1,6 @@
+[![Build](https://github.com/SAM-BIM/SAM_Windows/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/SAM-BIM/SAM_Windows/actions/workflows/build.yml)
+[![Installer (latest)](https://img.shields.io/github/v/release/SAM-BIM/SAM_Deploy?label=installer)](https://github.com/SAM-BIM/SAM_Deploy/releases/latest)
+
 # SAM_Windows
 
 <a href="https://github.com/HoareLea/SAM_Excel"><img src="https://github.com/HoareLea/SAM/blob/master/Grasshopper/SAM.Core.Grasshopper/Resources/SAM_Small.png" align="left" hspace="10" vspace="6"></a>
