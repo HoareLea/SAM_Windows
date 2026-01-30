@@ -4,6 +4,8 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using SAM.Geometry.Object.Spatial;
+using SAM.Geometry.Spatial;
 
 namespace SAM.Analytical.Windows
 {
@@ -479,7 +481,8 @@ namespace SAM.Analytical.Windows
             List<Construction> constructions = new List<Construction>();
             List<ApertureConstruction> apertureConstructions = new List<ApertureConstruction>();
             List<InternalCondition> internalConditions = new List<InternalCondition>();
-            using (ProgressForm progressForm = new ProgressForm("Import", jSAMObjects.Count() + 4))
+            List<Panel> panels = new List<Panel>();
+            using (ProgressForm progressForm = new ProgressForm("Import", jSAMObjects.Count() + 5))
             {
                 foreach (T jSAMObject in jSAMObjects)
                 {
@@ -513,6 +516,24 @@ namespace SAM.Analytical.Windows
                     else if (jSAMObject is MechanicalSystemType)
                     {
                         adjacencyCluster.AddObject((MechanicalSystemType)(object)jSAMObject);
+                    }
+                    
+                    //Added 2026.01.29
+                    else if (jSAMObject is Panel panel)
+                    {
+                        panels.Add(panel);
+                        if(panel.Construction is Construction construction)
+                        {
+                            constructions.Add(construction);
+                        }
+                    }
+                    else if (jSAMObject is Space space)
+                    {
+                        adjacencyCluster.AddObject(space);
+                        if(space.InternalCondition is InternalCondition internalCondition)
+                        {
+                            internalConditions.Add(internalCondition);
+                        }
                     }
                 }
 
@@ -609,6 +630,29 @@ namespace SAM.Analytical.Windows
                     }
                 }
 
+                progressForm.Update("Panels");
+                if (panels != null)
+                {
+                    BoundingBox3D boundingBox3D = panels.BoundingBox3D();
+
+                    string name = "Unassigned";
+
+                    List<Space> spaces = adjacencyCluster.GetSpaces();
+                    if(spaces is not null && spaces.Find(x => x.Name == name) != null)
+                    {
+                        int index = 2;
+
+                        while (spaces.Find(x => x.Name == $"{name} {index}") != null)
+                        {
+                            index++;
+                        }
+
+                        name = $"{name} {index}";
+                    }
+
+                    adjacencyCluster.AddSpace(new(name, null), panels);
+                }
+
                 progressForm.Update("Internal Conditions");
 
                 if (internalConditions != null)
@@ -673,6 +717,8 @@ namespace SAM.Analytical.Windows
                         }
                     }
                 }
+
+
             }
 
             analyticalModel = new AnalyticalModel(analyticalModel);
