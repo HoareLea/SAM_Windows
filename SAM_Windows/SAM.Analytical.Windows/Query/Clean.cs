@@ -40,11 +40,19 @@ namespace SAM.Analytical.Windows
 
                 List<Panel> panels = adjacencyCluster.GetPanels();
 
+                List<Space> spaces_Unassigned = []; 
+
                 progressForm.Update("Spaces");
                 if (spaces != null)
                 {
                     foreach (Space space in spaces)
                     {
+                        List<Panel> panels_Space = adjacencyCluster.GetPanels(space);
+                        if(panels_Space is null || panels_Space.Count == 0)
+                        {
+                            spaces_Unassigned.Add(space);
+                        }
+
                         InternalCondition internalCondition = space.InternalCondition;
                         if (internalCondition != null)
                         {
@@ -119,6 +127,7 @@ namespace SAM.Analytical.Windows
                 constructions?.ForEach(x => jSAMObjects.Add(x));
                 apertureConstructions?.ForEach(x => jSAMObjects.Add(x));
                 internalConditions?.ForEach(x => jSAMObjects.Add(x));
+                spaces_Unassigned?.ForEach(x => jSAMObjects.Add(x));
             }
 
             if(jSAMObjects == null || jSAMObjects.Count == 0)
