@@ -29,201 +29,208 @@ namespace SAM.Analytical.Windows.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.Label_Name = new System.Windows.Forms.Label();
-            this.TextBox_Name = new System.Windows.Forms.TextBox();
-            this.Button_OK = new System.Windows.Forms.Button();
-            this.Button_Cancel = new System.Windows.Forms.Button();
-            this.Label_ApertureType = new System.Windows.Forms.Label();
-            this.ComboBox_ApertureType = new System.Windows.Forms.ComboBox();
-            this.GroupBox_PaneConstructionLayers = new System.Windows.Forms.GroupBox();
-            this.MaterialLayersControl_Pane = new SAM.Architectural.Windows.MaterialLayersControl();
-            this.GroupBox_FrameConstruction = new System.Windows.Forms.GroupBox();
-            this.MaterialLayersControl_Frame = new SAM.Architectural.Windows.MaterialLayersControl();
-            this.SplitContainer_Construction = new System.Windows.Forms.SplitContainer();
-            this.TextBox_Description = new System.Windows.Forms.TextBox();
-            this.Label_Description = new System.Windows.Forms.Label();
-            this.GroupBox_PaneConstructionLayers.SuspendLayout();
-            this.GroupBox_FrameConstruction.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_Construction)).BeginInit();
-            this.SplitContainer_Construction.Panel1.SuspendLayout();
-            this.SplitContainer_Construction.Panel2.SuspendLayout();
-            this.SplitContainer_Construction.SuspendLayout();
-            this.SuspendLayout();
+            Label_Name = new System.Windows.Forms.Label();
+            TextBox_Name = new System.Windows.Forms.TextBox();
+            Button_OK = new System.Windows.Forms.Button();
+            Button_Cancel = new System.Windows.Forms.Button();
+            Label_ApertureType = new System.Windows.Forms.Label();
+            ComboBox_ApertureType = new System.Windows.Forms.ComboBox();
+            GroupBox_PaneConstructionLayers = new System.Windows.Forms.GroupBox();
+            MaterialLayersControl_Pane = new SAM.Architectural.Windows.MaterialLayersControl();
+            GroupBox_FrameConstruction = new System.Windows.Forms.GroupBox();
+            MaterialLayersControl_Frame = new SAM.Architectural.Windows.MaterialLayersControl();
+            SplitContainer_Construction = new System.Windows.Forms.SplitContainer();
+            TextBox_Description = new System.Windows.Forms.TextBox();
+            Label_Description = new System.Windows.Forms.Label();
+            Button_CopyFromConstruction = new System.Windows.Forms.Button();
+            GroupBox_PaneConstructionLayers.SuspendLayout();
+            GroupBox_FrameConstruction.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)SplitContainer_Construction).BeginInit();
+            SplitContainer_Construction.Panel1.SuspendLayout();
+            SplitContainer_Construction.Panel2.SuspendLayout();
+            SplitContainer_Construction.SuspendLayout();
+            SuspendLayout();
             // 
             // Label_Name
             // 
-            this.Label_Name.AutoSize = true;
-            this.Label_Name.Location = new System.Drawing.Point(12, 25);
-            this.Label_Name.Name = "Label_Name";
-            this.Label_Name.Size = new System.Drawing.Size(47, 16);
-            this.Label_Name.TabIndex = 0;
-            this.Label_Name.Text = "Name:";
+            Label_Name.AutoSize = true;
+            Label_Name.Location = new System.Drawing.Point(12, 25);
+            Label_Name.Name = "Label_Name";
+            Label_Name.Size = new System.Drawing.Size(52, 20);
+            Label_Name.TabIndex = 0;
+            Label_Name.Text = "Name:";
             // 
             // TextBox_Name
             // 
-            this.TextBox_Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Name.Location = new System.Drawing.Point(96, 22);
-            this.TextBox_Name.Name = "TextBox_Name";
-            this.TextBox_Name.Size = new System.Drawing.Size(374, 22);
-            this.TextBox_Name.TabIndex = 1;
+            TextBox_Name.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            TextBox_Name.Location = new System.Drawing.Point(96, 22);
+            TextBox_Name.Name = "TextBox_Name";
+            TextBox_Name.Size = new System.Drawing.Size(374, 27);
+            TextBox_Name.TabIndex = 1;
             // 
             // Button_OK
             // 
-            this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(314, 813);
-            this.Button_OK.Name = "Button_OK";
-            this.Button_OK.Size = new System.Drawing.Size(75, 28);
-            this.Button_OK.TabIndex = 4;
-            this.Button_OK.Text = "OK";
-            this.Button_OK.UseVisualStyleBackColor = true;
-            this.Button_OK.Click += new System.EventHandler(this.Button_OK_Click);
+            Button_OK.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            Button_OK.Location = new System.Drawing.Point(314, 813);
+            Button_OK.Name = "Button_OK";
+            Button_OK.Size = new System.Drawing.Size(75, 28);
+            Button_OK.TabIndex = 4;
+            Button_OK.Text = "OK";
+            Button_OK.UseVisualStyleBackColor = true;
+            Button_OK.Click += Button_OK_Click;
             // 
             // Button_Cancel
             // 
-            this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(395, 813);
-            this.Button_Cancel.Name = "Button_Cancel";
-            this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
-            this.Button_Cancel.TabIndex = 3;
-            this.Button_Cancel.Text = "Cancel";
-            this.Button_Cancel.UseVisualStyleBackColor = true;
-            this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
+            Button_Cancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            Button_Cancel.Location = new System.Drawing.Point(395, 813);
+            Button_Cancel.Name = "Button_Cancel";
+            Button_Cancel.Size = new System.Drawing.Size(75, 28);
+            Button_Cancel.TabIndex = 3;
+            Button_Cancel.Text = "Cancel";
+            Button_Cancel.UseVisualStyleBackColor = true;
+            Button_Cancel.Click += Button_Cancel_Click;
             // 
             // Label_ApertureType
             // 
-            this.Label_ApertureType.AutoSize = true;
-            this.Label_ApertureType.Location = new System.Drawing.Point(15, 81);
-            this.Label_ApertureType.Name = "Label_ApertureType";
-            this.Label_ApertureType.Size = new System.Drawing.Size(96, 16);
-            this.Label_ApertureType.TabIndex = 9;
-            this.Label_ApertureType.Text = "Aperture Type:";
+            Label_ApertureType.AutoSize = true;
+            Label_ApertureType.Location = new System.Drawing.Point(15, 81);
+            Label_ApertureType.Name = "Label_ApertureType";
+            Label_ApertureType.Size = new System.Drawing.Size(105, 20);
+            Label_ApertureType.TabIndex = 9;
+            Label_ApertureType.Text = "Aperture Type:";
             // 
             // ComboBox_ApertureType
             // 
-            this.ComboBox_ApertureType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_ApertureType.FormattingEnabled = true;
-            this.ComboBox_ApertureType.Location = new System.Drawing.Point(254, 78);
-            this.ComboBox_ApertureType.Name = "ComboBox_ApertureType";
-            this.ComboBox_ApertureType.Size = new System.Drawing.Size(216, 24);
-            this.ComboBox_ApertureType.TabIndex = 10;
+            ComboBox_ApertureType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            ComboBox_ApertureType.FormattingEnabled = true;
+            ComboBox_ApertureType.Location = new System.Drawing.Point(254, 78);
+            ComboBox_ApertureType.Name = "ComboBox_ApertureType";
+            ComboBox_ApertureType.Size = new System.Drawing.Size(216, 28);
+            ComboBox_ApertureType.TabIndex = 10;
             // 
             // GroupBox_PaneConstructionLayers
             // 
-            this.GroupBox_PaneConstructionLayers.Controls.Add(this.MaterialLayersControl_Pane);
-            this.GroupBox_PaneConstructionLayers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GroupBox_PaneConstructionLayers.Location = new System.Drawing.Point(0, 0);
-            this.GroupBox_PaneConstructionLayers.Name = "GroupBox_PaneConstructionLayers";
-            this.GroupBox_PaneConstructionLayers.Size = new System.Drawing.Size(458, 322);
-            this.GroupBox_PaneConstructionLayers.TabIndex = 11;
-            this.GroupBox_PaneConstructionLayers.TabStop = false;
-            this.GroupBox_PaneConstructionLayers.Text = "Pane Construction";
+            GroupBox_PaneConstructionLayers.Controls.Add(MaterialLayersControl_Pane);
+            GroupBox_PaneConstructionLayers.Dock = System.Windows.Forms.DockStyle.Fill;
+            GroupBox_PaneConstructionLayers.Location = new System.Drawing.Point(0, 0);
+            GroupBox_PaneConstructionLayers.Name = "GroupBox_PaneConstructionLayers";
+            GroupBox_PaneConstructionLayers.Size = new System.Drawing.Size(458, 322);
+            GroupBox_PaneConstructionLayers.TabIndex = 11;
+            GroupBox_PaneConstructionLayers.TabStop = false;
+            GroupBox_PaneConstructionLayers.Text = "Pane Construction";
             // 
             // MaterialLayersControl_Pane
             // 
-            this.MaterialLayersControl_Pane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaterialLayersControl_Pane.Location = new System.Drawing.Point(6, 21);
-            this.MaterialLayersControl_Pane.MinimumSize = new System.Drawing.Size(350, 300);
-            this.MaterialLayersControl_Pane.Name = "MaterialLayersControl_Pane";
-            this.MaterialLayersControl_Pane.Size = new System.Drawing.Size(440, 300);
-            this.MaterialLayersControl_Pane.TabIndex = 0;
+            MaterialLayersControl_Pane.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            MaterialLayersControl_Pane.Location = new System.Drawing.Point(6, 21);
+            MaterialLayersControl_Pane.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            MaterialLayersControl_Pane.MinimumSize = new System.Drawing.Size(350, 300);
+            MaterialLayersControl_Pane.Name = "MaterialLayersControl_Pane";
+            MaterialLayersControl_Pane.Size = new System.Drawing.Size(440, 300);
+            MaterialLayersControl_Pane.TabIndex = 0;
             // 
             // GroupBox_FrameConstruction
             // 
-            this.GroupBox_FrameConstruction.Controls.Add(this.MaterialLayersControl_Frame);
-            this.GroupBox_FrameConstruction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GroupBox_FrameConstruction.Location = new System.Drawing.Point(0, 0);
-            this.GroupBox_FrameConstruction.Name = "GroupBox_FrameConstruction";
-            this.GroupBox_FrameConstruction.Size = new System.Drawing.Size(458, 318);
-            this.GroupBox_FrameConstruction.TabIndex = 12;
-            this.GroupBox_FrameConstruction.TabStop = false;
-            this.GroupBox_FrameConstruction.Text = "Frame Construction";
+            GroupBox_FrameConstruction.Controls.Add(MaterialLayersControl_Frame);
+            GroupBox_FrameConstruction.Dock = System.Windows.Forms.DockStyle.Fill;
+            GroupBox_FrameConstruction.Location = new System.Drawing.Point(0, 0);
+            GroupBox_FrameConstruction.Name = "GroupBox_FrameConstruction";
+            GroupBox_FrameConstruction.Size = new System.Drawing.Size(458, 318);
+            GroupBox_FrameConstruction.TabIndex = 12;
+            GroupBox_FrameConstruction.TabStop = false;
+            GroupBox_FrameConstruction.Text = "Frame Construction";
             // 
             // MaterialLayersControl_Frame
             // 
-            this.MaterialLayersControl_Frame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaterialLayersControl_Frame.Location = new System.Drawing.Point(6, 15);
-            this.MaterialLayersControl_Frame.MinimumSize = new System.Drawing.Size(350, 300);
-            this.MaterialLayersControl_Frame.Name = "MaterialLayersControl_Frame";
-            this.MaterialLayersControl_Frame.Size = new System.Drawing.Size(443, 300);
-            this.MaterialLayersControl_Frame.TabIndex = 0;
+            MaterialLayersControl_Frame.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            MaterialLayersControl_Frame.Location = new System.Drawing.Point(6, 15);
+            MaterialLayersControl_Frame.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            MaterialLayersControl_Frame.MinimumSize = new System.Drawing.Size(350, 300);
+            MaterialLayersControl_Frame.Name = "MaterialLayersControl_Frame";
+            MaterialLayersControl_Frame.Size = new System.Drawing.Size(443, 300);
+            MaterialLayersControl_Frame.TabIndex = 0;
             // 
             // SplitContainer_Construction
             // 
-            this.SplitContainer_Construction.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SplitContainer_Construction.Location = new System.Drawing.Point(12, 127);
-            this.SplitContainer_Construction.Name = "SplitContainer_Construction";
-            this.SplitContainer_Construction.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            SplitContainer_Construction.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            SplitContainer_Construction.Location = new System.Drawing.Point(12, 127);
+            SplitContainer_Construction.Name = "SplitContainer_Construction";
+            SplitContainer_Construction.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // SplitContainer_Construction.Panel1
             // 
-            this.SplitContainer_Construction.Panel1.Controls.Add(this.GroupBox_PaneConstructionLayers);
+            SplitContainer_Construction.Panel1.Controls.Add(GroupBox_PaneConstructionLayers);
             // 
             // SplitContainer_Construction.Panel2
             // 
-            this.SplitContainer_Construction.Panel2.Controls.Add(this.GroupBox_FrameConstruction);
-            this.SplitContainer_Construction.Size = new System.Drawing.Size(458, 644);
-            this.SplitContainer_Construction.SplitterDistance = 322;
-            this.SplitContainer_Construction.TabIndex = 13;
+            SplitContainer_Construction.Panel2.Controls.Add(GroupBox_FrameConstruction);
+            SplitContainer_Construction.Size = new System.Drawing.Size(458, 644);
+            SplitContainer_Construction.SplitterDistance = 322;
+            SplitContainer_Construction.TabIndex = 13;
             // 
             // TextBox_Description
             // 
-            this.TextBox_Description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Description.Location = new System.Drawing.Point(96, 50);
-            this.TextBox_Description.Name = "TextBox_Description";
-            this.TextBox_Description.Size = new System.Drawing.Size(374, 22);
-            this.TextBox_Description.TabIndex = 15;
+            TextBox_Description.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            TextBox_Description.Location = new System.Drawing.Point(96, 50);
+            TextBox_Description.Name = "TextBox_Description";
+            TextBox_Description.Size = new System.Drawing.Size(374, 27);
+            TextBox_Description.TabIndex = 15;
             // 
             // Label_Description
             // 
-            this.Label_Description.AutoSize = true;
-            this.Label_Description.Location = new System.Drawing.Point(12, 53);
-            this.Label_Description.Name = "Label_Description";
-            this.Label_Description.Size = new System.Drawing.Size(78, 16);
-            this.Label_Description.TabIndex = 14;
-            this.Label_Description.Text = "Description:";
+            Label_Description.AutoSize = true;
+            Label_Description.Location = new System.Drawing.Point(12, 53);
+            Label_Description.Name = "Label_Description";
+            Label_Description.Size = new System.Drawing.Size(88, 20);
+            Label_Description.TabIndex = 14;
+            Label_Description.Text = "Description:";
+            // 
+            // Button_CopyFromConstruction
+            // 
+            Button_CopyFromConstruction.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            Button_CopyFromConstruction.Location = new System.Drawing.Point(12, 813);
+            Button_CopyFromConstruction.Name = "Button_CopyFromConstruction";
+            Button_CopyFromConstruction.Size = new System.Drawing.Size(264, 28);
+            Button_CopyFromConstruction.TabIndex = 16;
+            Button_CopyFromConstruction.Text = "Copy From ApertureConstruction";
+            Button_CopyFromConstruction.UseVisualStyleBackColor = true;
+            Button_CopyFromConstruction.Click += Button_CopyFromAprtureConstruction_Click;
             // 
             // ApertureConstructionForm
             // 
-            this.AcceptButton = this.Button_OK;
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(482, 853);
-            this.Controls.Add(this.TextBox_Description);
-            this.Controls.Add(this.Label_Description);
-            this.Controls.Add(this.SplitContainer_Construction);
-            this.Controls.Add(this.ComboBox_ApertureType);
-            this.Controls.Add(this.Label_ApertureType);
-            this.Controls.Add(this.Button_OK);
-            this.Controls.Add(this.Button_Cancel);
-            this.Controls.Add(this.TextBox_Name);
-            this.Controls.Add(this.Label_Name);
-            this.KeyPreview = true;
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(800, 1000);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(400, 500);
-            this.Name = "ApertureConstructionForm";
-            this.ShowIcon = false;
-            this.Text = "Aperture Construction";
-            this.Load += new System.EventHandler(this.ApertureConstructionForm_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ApertureConstructionForm_KeyDown);
-            this.GroupBox_PaneConstructionLayers.ResumeLayout(false);
-            this.GroupBox_FrameConstruction.ResumeLayout(false);
-            this.SplitContainer_Construction.Panel1.ResumeLayout(false);
-            this.SplitContainer_Construction.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_Construction)).EndInit();
-            this.SplitContainer_Construction.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AcceptButton = Button_OK;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            CancelButton = Button_Cancel;
+            ClientSize = new System.Drawing.Size(482, 853);
+            Controls.Add(Button_CopyFromConstruction);
+            Controls.Add(TextBox_Description);
+            Controls.Add(Label_Description);
+            Controls.Add(SplitContainer_Construction);
+            Controls.Add(ComboBox_ApertureType);
+            Controls.Add(Label_ApertureType);
+            Controls.Add(Button_OK);
+            Controls.Add(Button_Cancel);
+            Controls.Add(TextBox_Name);
+            Controls.Add(Label_Name);
+            KeyPreview = true;
+            MaximizeBox = false;
+            MaximumSize = new System.Drawing.Size(800, 1000);
+            MinimizeBox = false;
+            MinimumSize = new System.Drawing.Size(400, 500);
+            Name = "ApertureConstructionForm";
+            ShowIcon = false;
+            Text = "Aperture Construction";
+            Load += ApertureConstructionForm_Load;
+            KeyDown += ApertureConstructionForm_KeyDown;
+            GroupBox_PaneConstructionLayers.ResumeLayout(false);
+            GroupBox_FrameConstruction.ResumeLayout(false);
+            SplitContainer_Construction.Panel1.ResumeLayout(false);
+            SplitContainer_Construction.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)SplitContainer_Construction).EndInit();
+            SplitContainer_Construction.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -242,5 +249,6 @@ namespace SAM.Analytical.Windows.Forms
         private Architectural.Windows.MaterialLayersControl MaterialLayersControl_Frame;
         private System.Windows.Forms.TextBox TextBox_Description;
         private System.Windows.Forms.Label Label_Description;
+        private System.Windows.Forms.Button Button_CopyFromConstruction;
     }
 }
