@@ -388,8 +388,8 @@ namespace SAM.Analytical.Windows
             {
                 tuples_Selected = null;
 
-                using (TreeViewForm<Tuple<string, string, T>> treeViewForm = new TreeViewForm<Tuple<string, string, T>>("Select Objects", tuples_All, (Tuple<string, string, T> x) => x.Item2, (Tuple<string, string, T> x) => x.Item1))
-                {
+                using (TreeViewForm<Tuple<string, string, T>> treeViewForm = new TreeViewForm<Tuple<string, string, T>>("Select Objects", tuples_All, (Tuple<string, string, T> x) => x.Item2, (Tuple<string, string, T> x) => x.Item1, x => true))
+                {                   
                     if (groups.Count < 2)
                     {
                         treeViewForm.ExpandAll();
