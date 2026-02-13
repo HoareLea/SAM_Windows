@@ -25,13 +25,13 @@ namespace SAM.Analytical.Windows.Forms
             InitializeComponent();
 
             this.constructionLibrary = constructionLibrary == null ? null : new ConstructionLibrary(constructionLibrary);
-            this.materialLibrary = materialLibrary == null? null : new MaterialLibrary(materialLibrary);
+            this.materialLibrary = materialLibrary == null ? null : new MaterialLibrary(materialLibrary);
 
             this.panel = panel;
-            if(enums != null)
+            if (enums != null)
             {
                 this.enums = new HashSet<Enum>();
-                foreach(Enum @enum in enums)
+                foreach (Enum @enum in enums)
                 {
                     this.enums.Add(@enum);
                 }
@@ -63,7 +63,7 @@ namespace SAM.Analytical.Windows.Forms
                 TextBox_NetArea.Text = Math.Round(panel.GetAreaNet(), 1).ToString();
 
                 Range<double> elevationRange = panel.GetElevationRange();
-                if(elevationRange != null)
+                if (elevationRange != null)
                 {
                     TextBox_MinElevation.Text = Math.Round(elevationRange.Min, 2).ToString();
                     TextBox_MaxElevation.Text = Math.Round(elevationRange.Max, 2).ToString();
@@ -72,7 +72,7 @@ namespace SAM.Analytical.Windows.Forms
                 TextBox_Azimuth.Text = Math.Round(panel.Azimuth(), 2).ToString();
             }
 
-            if(constructionLibrary == null)
+            if (constructionLibrary == null)
             {
                 Button_SelectConstruction.Visible = false;
             }
@@ -84,7 +84,7 @@ namespace SAM.Analytical.Windows.Forms
         {
             get
             {
-                if(panel == null)
+                if (panel == null)
                 {
                     return null;
                 }
@@ -128,7 +128,7 @@ namespace SAM.Analytical.Windows.Forms
             using (ConstructionLibraryForm constructionLibraryForm = new ConstructionLibraryForm(materialLibrary, constructionLibrary))
             {
                 constructionLibraryForm.Text = "Constructions";
-                if(constructionLibraryForm.ShowDialog(this) != DialogResult.OK)
+                if (constructionLibraryForm.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
                 }
@@ -138,7 +138,7 @@ namespace SAM.Analytical.Windows.Forms
 
             }
 
-            if(construction == null)
+            if (construction == null)
             {
                 return;
             }
@@ -152,6 +152,11 @@ namespace SAM.Analytical.Windows.Forms
         private void PanelForm_KeyDown(object sender, KeyEventArgs e)
         {
             Query.JsonForm(Panel, this, e);
+        }
+
+        private void ComboBox_PanelType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TextBox_PanelGroup.Text = Core.Query.Description(Core.Query.Enum<PanelType>(ComboBox_PanelType.Text).PanelGroup());
         }
     }
 }

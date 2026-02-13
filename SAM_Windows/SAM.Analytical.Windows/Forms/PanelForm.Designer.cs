@@ -29,275 +29,291 @@ namespace SAM.Analytical.Windows.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.PropertyGrid_Parameters = new System.Windows.Forms.PropertyGrid();
-            this.Label_Name = new System.Windows.Forms.Label();
-            this.TextBox_Name = new System.Windows.Forms.TextBox();
-            this.Button_OK = new System.Windows.Forms.Button();
-            this.Button_Cancel = new System.Windows.Forms.Button();
-            this.TextBox_Guid = new System.Windows.Forms.TextBox();
-            this.Label_DisplayName = new System.Windows.Forms.Label();
-            this.TextBox_Construction = new System.Windows.Forms.TextBox();
-            this.Label_Construction = new System.Windows.Forms.Label();
-            this.Button_SelectConstruction = new System.Windows.Forms.Button();
-            this.Label_PanelType = new System.Windows.Forms.Label();
-            this.ComboBox_PanelType = new System.Windows.Forms.ComboBox();
-            this.TextBox_Area = new System.Windows.Forms.TextBox();
-            this.Label_Area = new System.Windows.Forms.Label();
-            this.Label_NetArea = new System.Windows.Forms.Label();
-            this.TextBox_NetArea = new System.Windows.Forms.TextBox();
-            this.TextBox_MaxElevation = new System.Windows.Forms.TextBox();
-            this.Label_MaxElevation = new System.Windows.Forms.Label();
-            this.TextBox_MinElevation = new System.Windows.Forms.TextBox();
-            this.Label_MinElevation = new System.Windows.Forms.Label();
-            this.TextBox_Azimuth = new System.Windows.Forms.TextBox();
-            this.Label_Azimuth = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            PropertyGrid_Parameters = new System.Windows.Forms.PropertyGrid();
+            Label_Name = new System.Windows.Forms.Label();
+            TextBox_Name = new System.Windows.Forms.TextBox();
+            Button_OK = new System.Windows.Forms.Button();
+            Button_Cancel = new System.Windows.Forms.Button();
+            TextBox_Guid = new System.Windows.Forms.TextBox();
+            Label_DisplayName = new System.Windows.Forms.Label();
+            TextBox_Construction = new System.Windows.Forms.TextBox();
+            Label_Construction = new System.Windows.Forms.Label();
+            Button_SelectConstruction = new System.Windows.Forms.Button();
+            Label_PanelType = new System.Windows.Forms.Label();
+            ComboBox_PanelType = new System.Windows.Forms.ComboBox();
+            TextBox_Area = new System.Windows.Forms.TextBox();
+            Label_Area = new System.Windows.Forms.Label();
+            Label_NetArea = new System.Windows.Forms.Label();
+            TextBox_NetArea = new System.Windows.Forms.TextBox();
+            TextBox_MaxElevation = new System.Windows.Forms.TextBox();
+            Label_MaxElevation = new System.Windows.Forms.Label();
+            TextBox_MinElevation = new System.Windows.Forms.TextBox();
+            Label_MinElevation = new System.Windows.Forms.Label();
+            TextBox_Azimuth = new System.Windows.Forms.TextBox();
+            Label_Azimuth = new System.Windows.Forms.Label();
+            TextBox_PanelGroup = new System.Windows.Forms.TextBox();
+            Label_PanelGroup = new System.Windows.Forms.Label();
+            SuspendLayout();
             // 
             // PropertyGrid_Parameters
             // 
-            this.PropertyGrid_Parameters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PropertyGrid_Parameters.Location = new System.Drawing.Point(15, 258);
-            this.PropertyGrid_Parameters.Name = "PropertyGrid_Parameters";
-            this.PropertyGrid_Parameters.Size = new System.Drawing.Size(355, 349);
-            this.PropertyGrid_Parameters.TabIndex = 0;
+            PropertyGrid_Parameters.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            PropertyGrid_Parameters.Location = new System.Drawing.Point(15, 289);
+            PropertyGrid_Parameters.Name = "PropertyGrid_Parameters";
+            PropertyGrid_Parameters.Size = new System.Drawing.Size(355, 418);
+            PropertyGrid_Parameters.TabIndex = 0;
             // 
             // Label_Name
             // 
-            this.Label_Name.AutoSize = true;
-            this.Label_Name.Location = new System.Drawing.Point(12, 15);
-            this.Label_Name.Name = "Label_Name";
-            this.Label_Name.Size = new System.Drawing.Size(47, 16);
-            this.Label_Name.TabIndex = 1;
-            this.Label_Name.Text = "Name:";
+            Label_Name.AutoSize = true;
+            Label_Name.Location = new System.Drawing.Point(12, 15);
+            Label_Name.Name = "Label_Name";
+            Label_Name.Size = new System.Drawing.Size(52, 20);
+            Label_Name.TabIndex = 1;
+            Label_Name.Text = "Name:";
             // 
             // TextBox_Name
             // 
-            this.TextBox_Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Name.Location = new System.Drawing.Point(117, 12);
-            this.TextBox_Name.Name = "TextBox_Name";
-            this.TextBox_Name.ReadOnly = true;
-            this.TextBox_Name.Size = new System.Drawing.Size(253, 22);
-            this.TextBox_Name.TabIndex = 2;
+            TextBox_Name.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            TextBox_Name.Location = new System.Drawing.Point(117, 12);
+            TextBox_Name.Name = "TextBox_Name";
+            TextBox_Name.ReadOnly = true;
+            TextBox_Name.Size = new System.Drawing.Size(253, 27);
+            TextBox_Name.TabIndex = 2;
             // 
             // Button_OK
             // 
-            this.Button_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK.Location = new System.Drawing.Point(214, 613);
-            this.Button_OK.Name = "Button_OK";
-            this.Button_OK.Size = new System.Drawing.Size(75, 28);
-            this.Button_OK.TabIndex = 6;
-            this.Button_OK.Text = "OK";
-            this.Button_OK.UseVisualStyleBackColor = true;
-            this.Button_OK.Click += new System.EventHandler(this.Button_OK_Click);
+            Button_OK.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            Button_OK.Location = new System.Drawing.Point(214, 713);
+            Button_OK.Name = "Button_OK";
+            Button_OK.Size = new System.Drawing.Size(75, 28);
+            Button_OK.TabIndex = 6;
+            Button_OK.Text = "OK";
+            Button_OK.UseVisualStyleBackColor = true;
+            Button_OK.Click += Button_OK_Click;
             // 
             // Button_Cancel
             // 
-            this.Button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Button_Cancel.Location = new System.Drawing.Point(295, 613);
-            this.Button_Cancel.Name = "Button_Cancel";
-            this.Button_Cancel.Size = new System.Drawing.Size(75, 28);
-            this.Button_Cancel.TabIndex = 5;
-            this.Button_Cancel.Text = "Cancel";
-            this.Button_Cancel.UseVisualStyleBackColor = true;
-            this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
+            Button_Cancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            Button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            Button_Cancel.Location = new System.Drawing.Point(295, 713);
+            Button_Cancel.Name = "Button_Cancel";
+            Button_Cancel.Size = new System.Drawing.Size(75, 28);
+            Button_Cancel.TabIndex = 5;
+            Button_Cancel.Text = "Cancel";
+            Button_Cancel.UseVisualStyleBackColor = true;
+            Button_Cancel.Click += Button_Cancel_Click;
             // 
             // TextBox_Guid
             // 
-            this.TextBox_Guid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Guid.Location = new System.Drawing.Point(117, 40);
-            this.TextBox_Guid.Name = "TextBox_Guid";
-            this.TextBox_Guid.ReadOnly = true;
-            this.TextBox_Guid.Size = new System.Drawing.Size(253, 22);
-            this.TextBox_Guid.TabIndex = 8;
+            TextBox_Guid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            TextBox_Guid.Location = new System.Drawing.Point(117, 40);
+            TextBox_Guid.Name = "TextBox_Guid";
+            TextBox_Guid.ReadOnly = true;
+            TextBox_Guid.Size = new System.Drawing.Size(253, 27);
+            TextBox_Guid.TabIndex = 8;
             // 
             // Label_DisplayName
             // 
-            this.Label_DisplayName.AutoSize = true;
-            this.Label_DisplayName.Location = new System.Drawing.Point(12, 43);
-            this.Label_DisplayName.Name = "Label_DisplayName";
-            this.Label_DisplayName.Size = new System.Drawing.Size(38, 16);
-            this.Label_DisplayName.TabIndex = 7;
-            this.Label_DisplayName.Text = "Guid:";
+            Label_DisplayName.AutoSize = true;
+            Label_DisplayName.Location = new System.Drawing.Point(12, 43);
+            Label_DisplayName.Name = "Label_DisplayName";
+            Label_DisplayName.Size = new System.Drawing.Size(43, 20);
+            Label_DisplayName.TabIndex = 7;
+            Label_DisplayName.Text = "Guid:";
             // 
             // TextBox_Construction
             // 
-            this.TextBox_Construction.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_Construction.Location = new System.Drawing.Point(117, 68);
-            this.TextBox_Construction.Name = "TextBox_Construction";
-            this.TextBox_Construction.ReadOnly = true;
-            this.TextBox_Construction.Size = new System.Drawing.Size(253, 22);
-            this.TextBox_Construction.TabIndex = 10;
+            TextBox_Construction.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            TextBox_Construction.Location = new System.Drawing.Point(117, 68);
+            TextBox_Construction.Name = "TextBox_Construction";
+            TextBox_Construction.ReadOnly = true;
+            TextBox_Construction.Size = new System.Drawing.Size(253, 27);
+            TextBox_Construction.TabIndex = 10;
             // 
             // Label_Construction
             // 
-            this.Label_Construction.AutoSize = true;
-            this.Label_Construction.Location = new System.Drawing.Point(12, 71);
-            this.Label_Construction.Name = "Label_Construction";
-            this.Label_Construction.Size = new System.Drawing.Size(83, 16);
-            this.Label_Construction.TabIndex = 9;
-            this.Label_Construction.Text = "Construction:";
+            Label_Construction.AutoSize = true;
+            Label_Construction.Location = new System.Drawing.Point(12, 71);
+            Label_Construction.Name = "Label_Construction";
+            Label_Construction.Size = new System.Drawing.Size(95, 20);
+            Label_Construction.TabIndex = 9;
+            Label_Construction.Text = "Construction:";
             // 
             // Button_SelectConstruction
             // 
-            this.Button_SelectConstruction.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_SelectConstruction.Location = new System.Drawing.Point(117, 96);
-            this.Button_SelectConstruction.Name = "Button_SelectConstruction";
-            this.Button_SelectConstruction.Size = new System.Drawing.Size(253, 28);
-            this.Button_SelectConstruction.TabIndex = 11;
-            this.Button_SelectConstruction.Text = "Select Construction";
-            this.Button_SelectConstruction.UseVisualStyleBackColor = true;
-            this.Button_SelectConstruction.Click += new System.EventHandler(this.Button_SelectConstruction_Click);
+            Button_SelectConstruction.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Button_SelectConstruction.Location = new System.Drawing.Point(117, 96);
+            Button_SelectConstruction.Name = "Button_SelectConstruction";
+            Button_SelectConstruction.Size = new System.Drawing.Size(253, 28);
+            Button_SelectConstruction.TabIndex = 11;
+            Button_SelectConstruction.Text = "Select Construction";
+            Button_SelectConstruction.UseVisualStyleBackColor = true;
+            Button_SelectConstruction.Click += Button_SelectConstruction_Click;
             // 
             // Label_PanelType
             // 
-            this.Label_PanelType.AutoSize = true;
-            this.Label_PanelType.Location = new System.Drawing.Point(12, 133);
-            this.Label_PanelType.Name = "Label_PanelType";
-            this.Label_PanelType.Size = new System.Drawing.Size(80, 16);
-            this.Label_PanelType.TabIndex = 9;
-            this.Label_PanelType.Text = "Panel Type:";
+            Label_PanelType.AutoSize = true;
+            Label_PanelType.Location = new System.Drawing.Point(12, 133);
+            Label_PanelType.Name = "Label_PanelType";
+            Label_PanelType.Size = new System.Drawing.Size(82, 20);
+            Label_PanelType.TabIndex = 9;
+            Label_PanelType.Text = "Panel Type:";
             // 
             // ComboBox_PanelType
             // 
-            this.ComboBox_PanelType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_PanelType.FormattingEnabled = true;
-            this.ComboBox_PanelType.Location = new System.Drawing.Point(118, 130);
-            this.ComboBox_PanelType.Name = "ComboBox_PanelType";
-            this.ComboBox_PanelType.Size = new System.Drawing.Size(252, 24);
-            this.ComboBox_PanelType.TabIndex = 12;
+            ComboBox_PanelType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            ComboBox_PanelType.FormattingEnabled = true;
+            ComboBox_PanelType.Location = new System.Drawing.Point(118, 130);
+            ComboBox_PanelType.Name = "ComboBox_PanelType";
+            ComboBox_PanelType.Size = new System.Drawing.Size(252, 28);
+            ComboBox_PanelType.TabIndex = 12;
+            ComboBox_PanelType.SelectedIndexChanged += ComboBox_PanelType_SelectedIndexChanged;
             // 
             // TextBox_Area
             // 
-            this.TextBox_Area.Location = new System.Drawing.Point(118, 160);
-            this.TextBox_Area.Name = "TextBox_Area";
-            this.TextBox_Area.ReadOnly = true;
-            this.TextBox_Area.Size = new System.Drawing.Size(69, 22);
-            this.TextBox_Area.TabIndex = 14;
+            TextBox_Area.Location = new System.Drawing.Point(117, 197);
+            TextBox_Area.Name = "TextBox_Area";
+            TextBox_Area.ReadOnly = true;
+            TextBox_Area.Size = new System.Drawing.Size(69, 27);
+            TextBox_Area.TabIndex = 14;
             // 
             // Label_Area
             // 
-            this.Label_Area.AutoSize = true;
-            this.Label_Area.Location = new System.Drawing.Point(13, 163);
-            this.Label_Area.Name = "Label_Area";
-            this.Label_Area.Size = new System.Drawing.Size(39, 16);
-            this.Label_Area.TabIndex = 13;
-            this.Label_Area.Text = "Area:";
+            Label_Area.AutoSize = true;
+            Label_Area.Location = new System.Drawing.Point(12, 200);
+            Label_Area.Name = "Label_Area";
+            Label_Area.Size = new System.Drawing.Size(43, 20);
+            Label_Area.TabIndex = 13;
+            Label_Area.Text = "Area:";
             // 
             // Label_NetArea
             // 
-            this.Label_NetArea.AutoSize = true;
-            this.Label_NetArea.Location = new System.Drawing.Point(226, 163);
-            this.Label_NetArea.Name = "Label_NetArea";
-            this.Label_NetArea.Size = new System.Drawing.Size(63, 16);
-            this.Label_NetArea.TabIndex = 13;
-            this.Label_NetArea.Text = "Net Area:";
+            Label_NetArea.AutoSize = true;
+            Label_NetArea.Location = new System.Drawing.Point(225, 200);
+            Label_NetArea.Name = "Label_NetArea";
+            Label_NetArea.Size = new System.Drawing.Size(71, 20);
+            Label_NetArea.TabIndex = 13;
+            Label_NetArea.Text = "Net Area:";
             // 
             // TextBox_NetArea
             // 
-            this.TextBox_NetArea.Location = new System.Drawing.Point(300, 160);
-            this.TextBox_NetArea.Name = "TextBox_NetArea";
-            this.TextBox_NetArea.ReadOnly = true;
-            this.TextBox_NetArea.Size = new System.Drawing.Size(70, 22);
-            this.TextBox_NetArea.TabIndex = 14;
+            TextBox_NetArea.Location = new System.Drawing.Point(299, 197);
+            TextBox_NetArea.Name = "TextBox_NetArea";
+            TextBox_NetArea.ReadOnly = true;
+            TextBox_NetArea.Size = new System.Drawing.Size(70, 27);
+            TextBox_NetArea.TabIndex = 14;
             // 
             // TextBox_MaxElevation
             // 
-            this.TextBox_MaxElevation.Location = new System.Drawing.Point(300, 191);
-            this.TextBox_MaxElevation.Name = "TextBox_MaxElevation";
-            this.TextBox_MaxElevation.ReadOnly = true;
-            this.TextBox_MaxElevation.Size = new System.Drawing.Size(70, 22);
-            this.TextBox_MaxElevation.TabIndex = 17;
+            TextBox_MaxElevation.Location = new System.Drawing.Point(299, 228);
+            TextBox_MaxElevation.Name = "TextBox_MaxElevation";
+            TextBox_MaxElevation.ReadOnly = true;
+            TextBox_MaxElevation.Size = new System.Drawing.Size(70, 27);
+            TextBox_MaxElevation.TabIndex = 17;
             // 
             // Label_MaxElevation
             // 
-            this.Label_MaxElevation.AutoSize = true;
-            this.Label_MaxElevation.Location = new System.Drawing.Point(195, 194);
-            this.Label_MaxElevation.Name = "Label_MaxElevation";
-            this.Label_MaxElevation.Size = new System.Drawing.Size(94, 16);
-            this.Label_MaxElevation.TabIndex = 15;
-            this.Label_MaxElevation.Text = "Max Elevation:";
+            Label_MaxElevation.AutoSize = true;
+            Label_MaxElevation.Location = new System.Drawing.Point(194, 231);
+            Label_MaxElevation.Name = "Label_MaxElevation";
+            Label_MaxElevation.Size = new System.Drawing.Size(105, 20);
+            Label_MaxElevation.TabIndex = 15;
+            Label_MaxElevation.Text = "Max Elevation:";
             // 
             // TextBox_MinElevation
             // 
-            this.TextBox_MinElevation.Location = new System.Drawing.Point(118, 191);
-            this.TextBox_MinElevation.Name = "TextBox_MinElevation";
-            this.TextBox_MinElevation.ReadOnly = true;
-            this.TextBox_MinElevation.Size = new System.Drawing.Size(69, 22);
-            this.TextBox_MinElevation.TabIndex = 18;
+            TextBox_MinElevation.Location = new System.Drawing.Point(117, 228);
+            TextBox_MinElevation.Name = "TextBox_MinElevation";
+            TextBox_MinElevation.ReadOnly = true;
+            TextBox_MinElevation.Size = new System.Drawing.Size(69, 27);
+            TextBox_MinElevation.TabIndex = 18;
             // 
             // Label_MinElevation
             // 
-            this.Label_MinElevation.AutoSize = true;
-            this.Label_MinElevation.Location = new System.Drawing.Point(13, 194);
-            this.Label_MinElevation.Name = "Label_MinElevation";
-            this.Label_MinElevation.Size = new System.Drawing.Size(90, 16);
-            this.Label_MinElevation.TabIndex = 16;
-            this.Label_MinElevation.Text = "Min Elevation:";
+            Label_MinElevation.AutoSize = true;
+            Label_MinElevation.Location = new System.Drawing.Point(12, 231);
+            Label_MinElevation.Name = "Label_MinElevation";
+            Label_MinElevation.Size = new System.Drawing.Size(102, 20);
+            Label_MinElevation.TabIndex = 16;
+            Label_MinElevation.Text = "Min Elevation:";
             // 
             // TextBox_Azimuth
             // 
-            this.TextBox_Azimuth.Location = new System.Drawing.Point(117, 219);
-            this.TextBox_Azimuth.Name = "TextBox_Azimuth";
-            this.TextBox_Azimuth.ReadOnly = true;
-            this.TextBox_Azimuth.Size = new System.Drawing.Size(69, 22);
-            this.TextBox_Azimuth.TabIndex = 20;
+            TextBox_Azimuth.Location = new System.Drawing.Point(116, 256);
+            TextBox_Azimuth.Name = "TextBox_Azimuth";
+            TextBox_Azimuth.ReadOnly = true;
+            TextBox_Azimuth.Size = new System.Drawing.Size(69, 27);
+            TextBox_Azimuth.TabIndex = 20;
             // 
             // Label_Azimuth
             // 
-            this.Label_Azimuth.AutoSize = true;
-            this.Label_Azimuth.Location = new System.Drawing.Point(12, 222);
-            this.Label_Azimuth.Name = "Label_Azimuth";
-            this.Label_Azimuth.Size = new System.Drawing.Size(56, 16);
-            this.Label_Azimuth.TabIndex = 19;
-            this.Label_Azimuth.Text = "Azimuth:";
+            Label_Azimuth.AutoSize = true;
+            Label_Azimuth.Location = new System.Drawing.Point(11, 259);
+            Label_Azimuth.Name = "Label_Azimuth";
+            Label_Azimuth.Size = new System.Drawing.Size(67, 20);
+            Label_Azimuth.TabIndex = 19;
+            Label_Azimuth.Text = "Azimuth:";
+            // 
+            // TextBox_PanelGroup
+            // 
+            TextBox_PanelGroup.Location = new System.Drawing.Point(118, 164);
+            TextBox_PanelGroup.Name = "TextBox_PanelGroup";
+            TextBox_PanelGroup.ReadOnly = true;
+            TextBox_PanelGroup.Size = new System.Drawing.Size(252, 27);
+            TextBox_PanelGroup.TabIndex = 22;
+            // 
+            // Label_PanelGroup
+            // 
+            Label_PanelGroup.AutoSize = true;
+            Label_PanelGroup.Location = new System.Drawing.Point(13, 167);
+            Label_PanelGroup.Name = "Label_PanelGroup";
+            Label_PanelGroup.Size = new System.Drawing.Size(92, 20);
+            Label_PanelGroup.TabIndex = 21;
+            Label_PanelGroup.Text = "Panel Group:";
             // 
             // PanelForm
             // 
-            this.AcceptButton = this.Button_OK;
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.CancelButton = this.Button_Cancel;
-            this.ClientSize = new System.Drawing.Size(382, 653);
-            this.Controls.Add(this.TextBox_Azimuth);
-            this.Controls.Add(this.Label_Azimuth);
-            this.Controls.Add(this.TextBox_MaxElevation);
-            this.Controls.Add(this.Label_MaxElevation);
-            this.Controls.Add(this.TextBox_MinElevation);
-            this.Controls.Add(this.Label_MinElevation);
-            this.Controls.Add(this.TextBox_NetArea);
-            this.Controls.Add(this.Label_NetArea);
-            this.Controls.Add(this.TextBox_Area);
-            this.Controls.Add(this.Label_Area);
-            this.Controls.Add(this.ComboBox_PanelType);
-            this.Controls.Add(this.Button_SelectConstruction);
-            this.Controls.Add(this.TextBox_Construction);
-            this.Controls.Add(this.Label_PanelType);
-            this.Controls.Add(this.Label_Construction);
-            this.Controls.Add(this.TextBox_Guid);
-            this.Controls.Add(this.Label_DisplayName);
-            this.Controls.Add(this.Button_OK);
-            this.Controls.Add(this.Button_Cancel);
-            this.Controls.Add(this.TextBox_Name);
-            this.Controls.Add(this.Label_Name);
-            this.Controls.Add(this.PropertyGrid_Parameters);
-            this.KeyPreview = true;
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(800, 700);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(400, 500);
-            this.Name = "PanelForm";
-            this.ShowIcon = false;
-            this.Text = "Panel";
-            this.Load += new System.EventHandler(this.MaterialForm_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PanelForm_KeyDown);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AcceptButton = Button_OK;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            CancelButton = Button_Cancel;
+            ClientSize = new System.Drawing.Size(382, 753);
+            Controls.Add(TextBox_PanelGroup);
+            Controls.Add(Label_PanelGroup);
+            Controls.Add(TextBox_Azimuth);
+            Controls.Add(Label_Azimuth);
+            Controls.Add(TextBox_MaxElevation);
+            Controls.Add(Label_MaxElevation);
+            Controls.Add(TextBox_MinElevation);
+            Controls.Add(Label_MinElevation);
+            Controls.Add(TextBox_NetArea);
+            Controls.Add(Label_NetArea);
+            Controls.Add(TextBox_Area);
+            Controls.Add(Label_Area);
+            Controls.Add(ComboBox_PanelType);
+            Controls.Add(Button_SelectConstruction);
+            Controls.Add(TextBox_Construction);
+            Controls.Add(Label_PanelType);
+            Controls.Add(Label_Construction);
+            Controls.Add(TextBox_Guid);
+            Controls.Add(Label_DisplayName);
+            Controls.Add(Button_OK);
+            Controls.Add(Button_Cancel);
+            Controls.Add(TextBox_Name);
+            Controls.Add(Label_Name);
+            Controls.Add(PropertyGrid_Parameters);
+            KeyPreview = true;
+            MaximizeBox = false;
+            MaximumSize = new System.Drawing.Size(800, 800);
+            MinimizeBox = false;
+            MinimumSize = new System.Drawing.Size(400, 500);
+            Name = "PanelForm";
+            ShowIcon = false;
+            Text = "Panel";
+            Load += MaterialForm_Load;
+            KeyDown += PanelForm_KeyDown;
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -325,5 +341,7 @@ namespace SAM.Analytical.Windows.Forms
         private System.Windows.Forms.Label Label_MinElevation;
         private System.Windows.Forms.TextBox TextBox_Azimuth;
         private System.Windows.Forms.Label Label_Azimuth;
+        private System.Windows.Forms.TextBox TextBox_PanelGroup;
+        private System.Windows.Forms.Label Label_PanelGroup;
     }
 }
