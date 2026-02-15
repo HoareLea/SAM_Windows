@@ -51,7 +51,7 @@ namespace SAM.Analytical.Windows
                 importOptions = new ImportOptions();
             }
 
-            List<IJSAMObject> jSAMObjects_Open = new List<IJSAMObject>();
+            List<IJSAMObject> jSAMObjects_Open = [];
 
             try
             {
@@ -478,10 +478,10 @@ namespace SAM.Analytical.Windows
                 importOptions = new ImportOptions();
             }
 
-            List<Construction> constructions = new List<Construction>();
-            List<ApertureConstruction> apertureConstructions = new List<ApertureConstruction>();
-            List<InternalCondition> internalConditions = new List<InternalCondition>();
-            List<Panel> panels = new List<Panel>();
+            List<Construction> constructions = [];
+            List<ApertureConstruction> apertureConstructions = [];
+            List<InternalCondition> internalConditions = [];
+            List<Panel> panels = [];
             using (ProgressForm progressForm = new ProgressForm("Import", jSAMObjects.Count() + 5))
             {
                 foreach (T jSAMObject in jSAMObjects)
@@ -631,26 +631,29 @@ namespace SAM.Analytical.Windows
                 }
 
                 progressForm.Update("Panels");
-                if (panels != null)
+                if (panels != null && panels.Count > 0)
                 {
                     BoundingBox3D boundingBox3D = panels.BoundingBox3D();
 
-                    string name = "Unassigned";
+                    string name = Name.Space.Unassigned;
 
                     List<Space> spaces = adjacencyCluster.GetSpaces();
-                    if(spaces is not null && spaces.Find(x => x.Name == name) != null)
+                    if (spaces is null || spaces.Count == 0)
                     {
-                        int index = 2;
-
-                        while (spaces.Find(x => x.Name == $"{name} {index}") != null)
-                        {
-                            index++;
-                        }
-
-                        name = $"{name} {index}";
+                        adjacencyCluster.AddSpace(new(name, null), panels);
                     }
-
-                    adjacencyCluster.AddSpace(new(name, null), panels);
+                    else
+                    {
+                        Space space = spaces.Find(x => x.Name == name);
+                        if(space == null)
+                        {
+                            adjacencyCluster.AddSpace(new(name, null), panels);
+                        }
+                        else
+                        {
+                            adjacencyCluster.AddSpace(space, panels);
+                        }
+                    }
                 }
 
                 progressForm.Update("Internal Conditions");
