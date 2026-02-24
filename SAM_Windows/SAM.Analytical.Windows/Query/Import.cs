@@ -161,6 +161,20 @@ namespace SAM.Analytical.Windows
                         }
                     }
 
+                    IEnumerable<ApertureConstruction> apertureConstructions = adjacencyCluster.GetApertureConstructions();
+                    if (apertureConstructions != null)
+                    {
+                        foreach (ApertureConstruction apertureConstruction in apertureConstructions)
+                        {
+                            if (apertureConstruction is T)
+                            {
+                                tuples_All.Add(new Tuple<string, string, T>(typeof(ApertureConstruction).Name, apertureConstruction.Name, (T)(object)apertureConstruction));
+                            }
+
+                            jSAMObjects.Add(apertureConstruction);
+                        }
+                    }
+
                     List<MechanicalSystemType> mechanicalSystemTypes = adjacencyCluster.GetMechanicalSystemTypes<MechanicalSystemType>();
                     if(mechanicalSystemTypes != null)
                     {
