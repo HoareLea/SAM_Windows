@@ -188,6 +188,48 @@ namespace SAM.Analytical.Windows
                             jSAMObjects.Add(mechanicalSystemType);
                         }
                     }
+
+                    IEnumerable<Panel> panels = adjacencyCluster.GetPanels();
+                    if (panels != null)
+                    {
+                        foreach (Panel panel in panels)
+                        {
+                            if (panel is T)
+                            {
+                                tuples_All.Add(new Tuple<string, string, T>(typeof(Panel).Name, panel.Name, (T)(object)panel));
+                            }
+
+                            jSAMObjects.Add(panel);
+                        }
+                    }
+
+                    IEnumerable<Aperture> apertures = adjacencyCluster.GetApertures();
+                    if (apertures != null)
+                    {
+                        foreach (Aperture aperture in apertures)
+                        {
+                            if (aperture is T)
+                            {
+                                tuples_All.Add(new Tuple<string, string, T>(typeof(Aperture).Name, aperture.Name, (T)(object)aperture));
+                            }
+
+                            jSAMObjects.Add(aperture);
+                        }
+                    }
+
+                    IEnumerable<Space> spaces = adjacencyCluster.GetSpaces();
+                    if (spaces != null)
+                    {
+                        foreach (Space space in spaces)
+                        {
+                            if (space is T)
+                            {
+                                tuples_All.Add(new Tuple<string, string, T>(typeof(Space).Name, space.Name, (T)(object)space));
+                            }
+
+                            jSAMObjects.Add(space);
+                        }
+                    }
                 }
 
                 if (jSAMObject is MaterialLibrary)
