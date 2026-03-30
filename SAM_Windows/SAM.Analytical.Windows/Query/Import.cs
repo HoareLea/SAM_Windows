@@ -1,4 +1,7 @@
-﻿using SAM.Core;
+﻿// SPDX-License-Identifier: LGPL-3.0-or-later
+// Copyright (c) 2020–2026 Michal Dengusiak & Jakub Ziolkowski and contributors
+
+using SAM.Core;
 using SAM.Core.Windows.Forms;
 using System;
 using System.Linq;
@@ -81,8 +84,8 @@ namespace SAM.Analytical.Windows
                 importOptions = new ImportOptions();
             }
 
-            List<Tuple<string, string, T>> tuples_All = new List<Tuple<string, string, T>>();
-            jSAMObjects = new List<IJSAMObject>();
+            List<Tuple<string, string, T>> tuples_All = [];
+            jSAMObjects = [];
             foreach (IJSAMObject jSAMObject in jSAMObjects_Open)
             {
                 if (jSAMObject == null)
@@ -96,10 +99,8 @@ namespace SAM.Analytical.Windows
                 {
                     adjacencyCluster = (AdjacencyCluster)jSAMObject;
                 }
-                else if (jSAMObject is AnalyticalModel)
+                else if (jSAMObject is AnalyticalModel analyticalModel)
                 {
-                    AnalyticalModel analyticalModel = (AnalyticalModel)jSAMObject;
-
                     List<IMaterial> materials = analyticalModel.MaterialLibrary?.GetMaterials();
                     if (materials != null)
                     {
@@ -436,7 +437,7 @@ namespace SAM.Analytical.Windows
                 return null;
             }
 
-            HashSet<string> groups = new HashSet<string>();
+            HashSet<string> groups = [];
             tuples_All.ForEach(x => groups.Add(x.Item1));
 
             List<Tuple<string, string, T>> tuples_Selected = tuples_All;
