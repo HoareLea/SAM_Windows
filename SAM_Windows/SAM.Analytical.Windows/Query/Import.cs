@@ -574,7 +574,11 @@ namespace SAM.Analytical.Windows
                     {
                         adjacencyCluster.AddObject((MechanicalSystemType)(object)jSAMObject);
                     }
-                    
+                    else if (jSAMObject is Aperture aperture)
+                    {
+                        adjacencyCluster.AddAperture(aperture);
+                    }
+
                     //Added 2026.01.29
                     else if (jSAMObject is Panel panel)
                     {

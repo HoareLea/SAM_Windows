@@ -74,6 +74,7 @@ namespace SAM.Analytical.Windows.Forms
                 ComboBox_ApertureType.Enabled = value;
                 TextBox_Name.Enabled = value;
                 TextBox_Description.Enabled = value;
+                Button_CopyFromConstruction.Enabled = value;
             }
         }
 
