@@ -255,9 +255,8 @@ namespace SAM.Core.Windows.WPF
                     // than once: the title-bar X dismisses the dialog and the run carries on to finish
                     // normally. That run then genuinely succeeds, so reporting it as successful is right, not
                     // a missed cancel - what the user gives up is visibility, not the result. Only the Cancel
-                    // button means "stop". SAM.Core.Windows.Forms.ProgressFormHost behaves identically, and
-                    // Michal confirmed on 2026-07-27, after seeing it in the app, that it should stay this
-                    // way. Do not "fix" this into a cancel or into a refused close without asking him first.
+                    // button means "stop". SAM.Core.Windows.Forms.ProgressFormHost behaves identically. This
+                    // behaviour is intentional and settled; do not turn it into a cancel or a refused close.
                     progressWindow_Temp.Closed += (s, e) => Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Background);
 
                     // Set before the loop starts so the caller never sees a null window once it is released.
