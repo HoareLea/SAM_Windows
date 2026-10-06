@@ -158,12 +158,27 @@ namespace SAM.Analytical.Windows
 
             using (ProgressForm simpleProgressForm = new ProgressForm("Removing Elements", jSAMObjects.Count))
             {
+                // One step per element and Update pumps the message queue each time, so the form keeps
+                // responding and the click is seen. adjacencyCluster and both libraries are copies handed out
+                // by AnalyticalModel, and the result is only built from them once the loop finishes - so
+                // returning null here leaves the caller's model exactly as it was.
+                simpleProgressForm.Cancellable = true;
+                simpleProgressForm.Note = "Cancel stops after the current element - nothing is removed.";
+
                 foreach (IJSAMObject jSAMObject in jSAMObjects)
                 {
                     string name = (jSAMObject as SAMObject)?.Name;
                     name = string.IsNullOrWhiteSpace(name) ? "???" : name;
 
                     simpleProgressForm.Update(name);
+
+                    // Checked after Update, because Update is what pumps the queue and so what turns a click
+                    // made during the previous element into a set flag. Checking before it would read the
+                    // flag one element stale and remove one more than the user asked for.
+                    if (simpleProgressForm.CancellationRequested)
+                    {
+                        return null;
+                    }
 
                     if (jSAMObject is Profile)
                     {

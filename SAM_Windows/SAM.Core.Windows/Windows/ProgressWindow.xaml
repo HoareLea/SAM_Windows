@@ -1,0 +1,26 @@
+<Window x:Class="SAM.Core.Windows.WPF.ProgressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SAM.Core.Windows.WPF"
+        mc:Ignorable="d"
+        Title="Progress" MinHeight="120" SizeToContent="Height" Width="420" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ResizeMode="NoResize">
+    <!-- SizeToContent="Height" with the note and Cancel rows collapsed by default keeps a non-cancellable
+         dialog at the original 120 height; setting Cancellable grows the window instead of the caller having
+         to know the two heights, which is what the WinForms twin has to do. -->
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="36"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="Label_Description" Grid.Row="0" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+        <!-- MinHeight holds two lines' worth of space so a one-line note and a two-line one do not resize the
+             window from under the user mid-run. -->
+        <TextBlock x:Name="Label_Note" Grid.Row="1" Visibility="Collapsed" TextWrapping="Wrap" MinHeight="32" Margin="0,0,0,6" Opacity="0.75"/>
+        <ProgressBar x:Name="ProgressBar_Main" Grid.Row="2" Height="20" Minimum="0"/>
+        <Button x:Name="Button_Cancel" Grid.Row="3" Content="Cancel" Width="90" Height="24" HorizontalAlignment="Right" Margin="0,10,0,0" Visibility="Collapsed" Click="Button_Cancel_Click"/>
+    </Grid>
+</Window>

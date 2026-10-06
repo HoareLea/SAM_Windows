@@ -530,6 +530,13 @@ namespace SAM.Analytical.Windows
                 adjacencyCluster = new AdjacencyCluster();
             }
 
+            // Everything below imports into this copy rather than into the caller's model. AdjacencyCluster,
+            // MaterialLibrary and ProfileLibrary all hand out copies, but AddMaterial and AddProfile write
+            // straight into the model they are called on - so without this a run that ends early (the user
+            // cancels, or one of the guards below returns) would leave the caller holding a model with some
+            // of the import already applied and no result to say so.
+            AnalyticalModel analyticalModel_Temp = new AnalyticalModel(analyticalModel);
+
             if(importOptions == null)
             {
                 importOptions = new ImportOptions();
@@ -541,9 +548,23 @@ namespace SAM.Analytical.Windows
             List<Panel> panels = [];
             using (ProgressForm progressForm = new ProgressForm("Import", jSAMObjects.Count() + 5))
             {
+                // The loop below steps once per object and Update pumps the message queue each time, so the
+                // form never stops responding and the click is seen. Only the per-object loop is cancellable:
+                // the fixed stages after it are single operations that cannot be interrupted part way.
+                progressForm.Cancellable = true;
+                progressForm.Note = "Cancel stops after the current object - the model is left as it was.";
+
                 foreach (T jSAMObject in jSAMObjects)
                 {
                     progressForm.Update(jSAMObject is SAMObject ? ((SAMObject)(object)jSAMObject).Name : "???");
+
+                    // Checked after Update, because Update is what pumps the queue and so what turns a click
+                    // made during the previous object into a set flag. Checking before it would read the flag
+                    // one object stale and import one more than the user asked for.
+                    if (progressForm.CancellationRequested)
+                    {
+                        return null;
+                    }
 
                     if (jSAMObject == null)
                     {
@@ -552,11 +573,11 @@ namespace SAM.Analytical.Windows
 
                     if (jSAMObject is IMaterial)
                     {
-                        analyticalModel.AddMaterial((IMaterial)jSAMObject);
+                        analyticalModel_Temp.AddMaterial((IMaterial)jSAMObject);
                     }
                     else if (jSAMObject is Profile)
                     {
-                        analyticalModel.AddProfile((Profile)(object)jSAMObject);
+                        analyticalModel_Temp.AddProfile((Profile)(object)jSAMObject);
                     }
                     else if (jSAMObject is Construction)
                     {
@@ -662,7 +683,7 @@ namespace SAM.Analytical.Windows
                     List<IMaterial> materials = jSAMObjects_All?.ToList().FindAll(x => x is IMaterial).ConvertAll(x => (IMaterial)x);
                     if (materials != null && materials.Count != 0)
                     {
-                        MaterialLibrary materialLibrary = analyticalModel.MaterialLibrary;
+                        MaterialLibrary materialLibrary = analyticalModel_Temp.MaterialLibrary;
 
                         HashSet<string> names_Missing = new HashSet<string>();
                         foreach (string name in names)
@@ -683,7 +704,7 @@ namespace SAM.Analytical.Windows
                                     IMaterial material = materials.Find(x => x.Name == name);
                                     if (material != null)
                                     {
-                                        analyticalModel.AddMaterial(material);
+                                        analyticalModel_Temp.AddMaterial(material);
                                     }
                                 }
                             }
@@ -721,7 +742,7 @@ namespace SAM.Analytical.Windows
 
                 if (internalConditions != null)
                 {
-                    ProfileLibrary profileLibrary = analyticalModel.ProfileLibrary;
+                    ProfileLibrary profileLibrary = analyticalModel_Temp.ProfileLibrary;
 
                     List<Profile> profiles = jSAMObjects_All?.ToList().FindAll(x => x is Profile).ConvertAll(x => (Profile)x);
 
@@ -774,7 +795,7 @@ namespace SAM.Analytical.Windows
                                     Profile profile = Analytical.Query.Profile(profiles, name, keyValuePair.Key, true);
                                     if (profile != null)
                                     {
-                                        analyticalModel.AddProfile(profile);
+                                        analyticalModel_Temp.AddProfile(profile);
                                     }
                                 }
                             }
@@ -785,9 +806,9 @@ namespace SAM.Analytical.Windows
 
             }
 
-            analyticalModel = new AnalyticalModel(analyticalModel);
-
-            return new AnalyticalModel(analyticalModel, adjacencyCluster);
+            // This constructor already deep-copies the libraries off analyticalModel_Temp, so the extra copy
+            // that used to sit here bought nothing.
+            return new AnalyticalModel(analyticalModel_Temp, adjacencyCluster);
         }
     }
 }
